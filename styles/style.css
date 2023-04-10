@@ -1,0 +1,51 @@
+body {
+
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+p {
+
+    color:black;
+    font-size: 2em;
+}
+
+.simTable {
+
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.5em;
+    min-width: 400px;
+
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.simTable thead tr {
+
+    background-color: #4ea822;
+    color:white;
+    text-align: left;
+    font-weight: bold;
+}
+
+.simTable th, .simTable td {
+
+    padding: 8px 15px;
+}
+
+.simTable tbody tr {
+
+    border-bottom: 2px solid #aaaaaa;
+
+}
+
+.simTable tbody tr:nth-of-type(even){
+
+    background-color: #f3f3f3;
+}
+
+.simTable tbody tr:last-of-type {
+
+    border-bottom: 2px solid #4ea822;
+}

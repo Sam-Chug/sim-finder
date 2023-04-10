@@ -1,0 +1,14 @@
+short sim list
+https://api.freeso.org/userapi/avatars/online
+
+long sim list
+https://api.freeso.org/userapi/avatars?ids=887,30363 etc.
+
+short lot list
+https://api.freeso.org/userapi/city/1/lots/online
+
+long single-lot list (lot id)
+https://api.freeso.org/userapi/lots/6852
+
+lot thumbnail (location)
+https://api.freeso.org/userapi/city/1/13828398.png
