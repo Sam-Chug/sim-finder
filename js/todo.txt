@@ -12,3 +12,16 @@ https://api.freeso.org/userapi/lots/6852
 
 lot thumbnail (location)
 https://api.freeso.org/userapi/city/1/13828398.png
+
+allow user to bookmark sims
+
+allow user to search sims
+
+store bookmarks in cookies
+
+admin lookup?
+
+display open lots and sims inside
+
+find hidden sims
+

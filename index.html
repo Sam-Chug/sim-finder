@@ -7,20 +7,40 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <link href = "styles/style.css" rel = "stylesheet"/>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
-
         <title>Sim Finder</title>
         
     </head>
     <body>
         
-        <p id = "p"></p>
+        <div class = "div-sim-table box block-background">
 
-        <table id = "target" class = "simTable">
-        </table>
+            <div id = "sims-online-count-label" class = "inset-title"></div>
 
+            <div class = "div-sim-table-content">
+
+                <table id = "sims-table" class = "list-table"></table>
+    
+            </div>
+        </div>
+
+        <div class = "div-lot-table box block-background">
+
+            <div id = "lots-online-count-label" class = "inset-title"></div>
+
+            <div class = "div-lot-table-content">
+
+                <table id = "lots-table" class = "list-table"></table>
+
+            </div>
+
+        </div>
+
+        <div class = "div-focus-view box block-background">
+
+            <div class = "div-focus-view-content">testing2</div>
+
+        </div>
+        
         <script src = "js/main.js"></script>
 
     </body>
