@@ -22,7 +22,7 @@ outset title bg #5077a3
 
 @font-face {
     font-family: "FreeSO Font";
-    src: url(/styles/fonts/FreeSOFont.otf);
+    src: url(../fonts/FreeSOFont.otf);
 }
 
 body {
