@@ -6,6 +6,8 @@
         <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <link href = "styles/style.css" rel = "stylesheet"/>
+        <link href = "styles/style-thumbnail.css" rel = "stylesheet"/>
+        <link href = "styles/style-lists.css" rel = "stylesheet"/>
 
         <title>Sim Finder</title>
         
@@ -41,14 +43,29 @@
 
             <div class = "div-thumbnail block-background">
 
-                <img src = "/styles/img/unknown.png" class = "thumbnail-holder thumbnail-oval">
+                <div class = "div-thumbnail-desc thumb-1">
 
-                <div id = "thumbnail-text-content" class = "thumbnail-text-holder">Temporary Lot Title</div>
+                    <div id = "thumbnail-title" class = "outset-title thumb-1-1">Temporary Lot Title</div>
+                    
+                    <div class = "thumbnail-image thumb-1-2">
+
+                        <div class = "thumbnail-holder"></div>
+
+                        <img id = "thumbnail-image" src = "/styles/img/unknown.png">
+
+                    </div>
+
+                </div>
+
+                <div id = "thumbnail-desc-content" class = "thumbnail-desc-holder thumb-2">Temporary Lot Desc</div>
 
             </div>
         </div>
 
         <script src = "js/main.js"></script>
+        <script src = "js/definitions.js"></script>
+        <script src = "js/utils.js"></script>
+        <script src = "js/elements.js"></script>
 
     </body>
 </html>
