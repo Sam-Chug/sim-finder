@@ -29,6 +29,7 @@ function returnShortLotFromLocation (location) {
             return lotShortList.lots[i];
         }
     }
+    return {error:"lot not found"};
 }
 
 // Return format date string from unix timestamp
@@ -126,54 +127,17 @@ async function grabAPI (apiLink) {
 }
 
 // Onclick function for sim/lot lists
-// Sends lot data to thumbnail writer
+// Sends data to writers
 function getIndex (selectedIndex) {
 
     index = selectedIndex.rowIndex - 1;
 
     if(selectedIndex.id == "sim"){
 
-        const simView = document.getElementById("sim-viewer");
-        simView.style.display = "flex";
-
         const selSimShort = simShortList.avatars[index];
         const selSimLong = simLongList.avatars[index];
-        writeSimThumbnail(selSimShort, selSimLong);
-
-        switch(returnExistenceState(selSimShort)){
-
-            case "LANDED":
-
-                var selShortLot = returnShortLotFromLocation(simShortList.avatars[index].location);
-                var selLongLot = returnLongLotFromLocation(simShortList.avatars[index].location);
-                writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
-                break;
-
-            case "FLOATING":
-
-                var selShortLot = {name:"FLOATING"};
-                var simsInLot = document.getElementById("show-sims-in-lot");
-                simsInLot.style.display = "none";
-                break;
-
-            case "LANDED_HIDDEN":
-
-                var selLongLot = returnLongLotOfRoommate(selSimShort.avatar_id);
-                var selShortLot = returnShortLotFromLocation(selLongLot.location);
-                writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
-                break;
-
-            case "HIDDEN":
-
-                var selShortLot = {name:"HIDDEN"};
-                var simsInLot = document.getElementById("show-sims-in-lot");
-                simsInLot.style.display = "none";
-                break;
-
-            default:
-                break;
-        }
-        writeLotThumbnail(selShortLot, selLongLot);
+        writeGreaterSimContext(selSimShort, selSimLong, returnExistenceState(selSimShort));
+        
     }
     else if (selectedIndex.id == "lot"){
 
@@ -182,10 +146,61 @@ function getIndex (selectedIndex) {
 
         const selShortLot = lotShortList.lots[index];
         const selLongLot = returnLongLotFromID(lotShortList.lots[index].lot_id);
-        writeLotThumbnail(selShortLot, selLongLot);
+        writeLotThumbnail(selShortLot, selLongLot, "");
         writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
     }
     return;
+}
+
+// Write sim information
+function writeGreaterSimContext (simShort, simLong, existence) {
+
+    writeSimThumbnail(simShort, simLong);
+
+    const simView = document.getElementById("sim-viewer");
+    simView.style.display = "flex";
+
+    switch (existence){
+
+        case "LANDED":
+
+            var selShortLot = returnShortLotFromLocation(simShortList.avatars[index].location);
+            var selLongLot = returnLongLotFromLocation(simShortList.avatars[index].location);
+            writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+            break;
+
+        case "FLOATING":
+
+            var selShortLot = {name:"FLOATING"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        case "LANDED_HIDDEN":
+
+            var selLongLot = returnLongLotOfRoommate(simShort.avatar_id);
+            var selShortLot = returnShortLotFromLocation(selLongLot.location);
+            writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+            break;
+
+        case "HIDDEN":
+
+            var selShortLot = {name:"HIDDEN"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        case "OFFLINE":
+
+            var selShortLot = {name:"OFFLINE"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        default:
+            break;
+    }
+    writeLotThumbnail(selShortLot, selLongLot, existence);
 }
 
 // Write list of sims in selected lot
@@ -291,7 +306,12 @@ function returnExistenceState (simShort) {
     const privacyMode = simShort.privacy_mode;
     const location = simShort.location;
 
-    if (location != 0) {
+    if ("error" in simShort) {
+
+        return "OFFLINE";
+    }
+    else if (location != 0) {
+
         return "LANDED";
     }
     else if (location == 0 && privacyMode == 0) {
@@ -309,8 +329,8 @@ function returnExistenceState (simShort) {
                 return "LANDED_HIDDEN";
             }
         }
-        return "HIDDEN"
-    }
+        return "HIDDEN";
+    } 
 }
 
 // Return lot of sim
@@ -328,26 +348,151 @@ function returnLongLotOfRoommate (simID) {
 // Return sim existence text
 function returnExistenceText (simShort) {
 
-    var existenceText = "";
-
     const simExistence = returnExistenceState(simShort);
-    if (simExistence == "LANDED_HIDDEN") {
+    switch (simExistence) {
 
-        const hiddenAt = returnLongLotOfRoommate(simShort.avatar_id);
-        existenceText = "Location: (Maybe) " + hiddenAt.name + "\n";
-    }
-    else if (simExistence == "HIDDEN") {
+        case "LANDED":
 
-        existenceText = "Location: Unknown\n";
-    }
-    else if (simExistence == "LANDED") {
+            const landedAt = returnShortLotFromLocation(simShort.location);
+            return "Location: " + landedAt.name;
+            break;
 
-        const landedAt = returnShortLotFromLocation(simShort.location);
-        existenceText = "Location: " + landedAt.name + "\n";
-    }
-    else if (simExistence == "FLOATING") {
+        case "FLOATING":
 
-        existenceText = "Location: Floating\n";
+            return "Location: Floating";
+            break;
+
+        case "LANDED_HIDDEN":
+
+            const hiddenAt = returnLongLotOfRoommate(simShort.avatar_id);
+            return "Location: (Maybe) " + hiddenAt.name;
+            break;
+
+        case "HIDDEN":
+
+            return "Location: Unknown";
+            break;
+
+        case "OFFLINE":
+
+            return "Location: Offline"
+            break;
+
+        default:
+
+            return "Location: Unknown";
+            break;
     }
-    return existenceText;
+}
+
+// Easter Eggs
+function doEasterEggs (eggID, value) {
+
+    switch (eggID){
+
+        // Rea sim panel
+        case 0:
+
+            var location = document.getElementById("sim-title");
+            var block = document.getElementById("sim-viewer");
+            var image = document.getElementById("sim-thumbnail-image");
+
+            if (value == "Reaganomics Lamborghini") {
+
+                location.classList.add("rainbow-title");
+                block.classList.add("rainbow-block");
+                image.classList.add("rainbow-image");
+                block.classList.remove("block-background");
+            }
+            else {
+                location.classList.remove("rainbow-title");
+                block.classList.add("block-background");
+                image.classList.remove("rainbow-image");
+                block.classList.remove("rainbow-block");
+            }
+            break;
+
+        // Rea sim head
+        case 1:
+
+            var image = document.getElementById("sim-thumbnail-image");
+            if (value == "Reaganomics Lamborghini"){
+        
+                image.src = "./images/simface-rea.png";
+            }
+
+            break;
+
+        default:
+            break;
+    }
+}
+
+// Retrieve long sim from database
+async function searchSim() {
+
+    const simName = document.getElementById("sim-search-input").value;
+    const simLong = await grabAPI("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+
+    if ("error" in simLong) {
+
+        alert("Cannot find sim \"" + simName + "\"");
+        return;
+    }
+
+    const simShort = returnShortSimFromLong(simLong);
+    const existence = returnExistenceState(simShort);
+    writeGreaterSimContext(simShort, simLong, existence);
+}
+
+// Retrieve long lot from database
+async function searchLot() {
+
+    const lotName = document.getElementById("lot-search-input").value;
+    const lotLong = await grabAPI("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
+
+    if ("error" in lotLong) {
+
+        alert("Cannot find lot \"" + lotName + "\"");
+        return;
+    }
+
+    const lotShort = returnShortLotFromLocation(lotLong.location);
+    writeLotThumbnail(lotShort, lotLong, "");
+
+    if (!("error" in lotShort)) {
+        writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+    }
+
+    const simView = document.getElementById("sim-viewer");
+    const lotSims = document.getElementById("show-sims-in-lot");
+    simView.style.display = "none";
+    lotSims.style.display = "none";
+}
+
+// Return if lot is open or closed
+function returnOpenState (lotLong) {
+
+    for (i = 0; i < lotShortList.lots.length; i++) {
+
+        if (lotShortList.lots[i].lot_id == lotLong.lot_id) {
+            
+            return lotShortList.lots[i];
+        }
+    }
+    return {error:"lot not online"};
+}
+
+// Return short sim from sims currently online, from avatar id
+// Null returns error object
+function returnShortSimFromLong (longSim) {
+
+    for (i = 0; i < simShortList.avatars.length; i++) {
+
+        if (longSim.avatar_id == simShortList.avatars[i].avatar_id) {
+
+            return simShortList.avatars[i];
+        }
+    }
+    return {error:"sim not online"};
 }

@@ -1,0 +1,44 @@
+.rainbow-text {
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    font-style: italic;
+    animation: move 60s linear infinite;
+}
+
+.rainbow-title {
+    color: rgba(0, 0, 0, 0.55);
+    background: #d4af37;
+    text-shadow: -1px -1px rgba(0, 0, 0, 0.35);
+    font-style: italic;
+    animation: move 60s linear infinite;
+
+    box-shadow: -2px -3px 2px 2px rgba(0, 0, 0, 0.5) inset,
+                2px 3px 2px 2px rgba(255, 255, 255, 0.8) inset,
+                3px 3px 2px 1px rgba(0, 0, 0, 0.6);
+}
+
+.rainbow-block {
+    border-radius: 45px;
+    background-color: #d4af37;
+    
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
+                6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
+}
+
+.rainbow-image {
+    background-image: linear-gradient(to right, rgb(255, 192, 203, 0.3), rgb(160, 32, 240, 0.3), rgb(100, 149, 237, 0.3),
+                                                rgb(0, 255, 255, 0.3), rgb(46, 139, 87, 0.3), rgb(255, 192, 203, 0.3));
+    mask-image: url("./images/simface-rea.png");
+    border-radius: 100%;
+    box-shadow: 0 -25px 20px 2px #00bedc inset,
+                0 10px 20px 2px #002594 inset;
+    animation: move 60s linear infinite;
+}
+
+@keyframes move {
+    to {
+        background-position: 400vh;
+    }
+}

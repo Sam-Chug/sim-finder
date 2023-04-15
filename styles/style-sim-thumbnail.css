@@ -38,6 +38,11 @@
     padding: 25px;
 }
 
+.thumbnail-offline {
+    background-color: #736766;
+    background-image: linear-gradient(0, #8a7c7b, #615756);
+}
+
 .div-sim-thumbnail img {
     position: absolute;
     top: 55px;

@@ -1,0 +1,63 @@
+.div-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.search-title {
+    width: 60%;
+}
+
+.search-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+
+.search-bar {
+    font-family: 'FreeSO Font', cursive;
+    color:#fff89d;
+    letter-spacing: 0.05em;
+    font-size: 1.3em;
+    text-align: center;
+    width: 100%;
+    border: none;
+
+    border-radius: 25px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background-color: #2f4158;
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.input-center {
+    margin: 4px 0 18px 20px;
+    flex-grow: 1;
+}
+
+.button-center {
+    margin: -5px 20px 11px 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.search-button {
+    border-radius: 50%;
+    background: url(../images/search-button.png) no-repeat;
+    height: 41px;
+    width: 41px;
+    border: none;
+}
+
+.search-button:hover {
+    background: url(../images/search-button-hover.png) no-repeat;
+}
+
+.search-button:active {
+    background: url(../images/search-button-click.png) no-repeat;
+}

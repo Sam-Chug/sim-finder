@@ -11,6 +11,8 @@
         <link href = "styles/style-lists.css" rel = "stylesheet"/>
         <link href = "styles/style-sim-thumbnail.css" rel = "stylesheet"/>
         <link href = "styles/style-sims-in-lot.css" rel = "stylesheet"/>
+        <link href = "styles/style-search-bar.css" rel = "stylesheet"/>
+        <link href = "styles/style-eggs.css" rel = "stylesheet"/>
 
         <title>Sim Finder</title>
         
@@ -19,29 +21,87 @@
         
         <div class = "container">
 
-            <div class = "div-sim-table block-background">
+            <!-- sim list -->
+            <div class = "column-1">
 
-                <div id = "sims-online-count-label" class = "inset-title"></div>
-    
-                <div>
-    
-                    <table id = "sims-table" class = "list-table"></table>
+                <!-- sim search -->
+                <div class = "div-search block-background">
+
+                    <p class = "outset-title search-title">Sim Search</p>
+
+                    <!-- search inputs -->
+                    <div class = "search-flex">
+
+                        <div class = "input-center">
+
+                            <input type = "text" id = "sim-search-input" class = "search-bar">
+
+                        </div>
+
+                        <div class = "button-center">
+
+                            <button id = "sim-search-button" class = "search-button" onclick = "searchSim()"></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sim list -->
+                <div class = "div-sim-table block-background">
+
+                    <div id = "sims-online-count-label" class = "inset-title"></div>
         
+                    <div>
+        
+                        <table id = "sims-table" class = "list-table"></table>
+            
+                    </div>
                 </div>
             </div>
+
+            <!-- lot list -->
+            <div class = "column-2">
+
+                <!-- lot search -->
+                <div class = "div-search block-background">
+
+                    <p class = "outset-title search-title">Lot Search</p>
+
+                    <!-- search inputs -->
+                    <div class = "search-flex">
+
+                        <div class = "input-center">
+
+                            <input type = "text" id = "lot-search-input" class = "search-bar">
+
+                        </div>
+
+                        <div class = "button-center">
+
+                            <button id = "lot-search-button" class = "search-button" onclick = "searchLot()"></button>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                </div>
+
+                <!-- lot list -->
+                <div class = "div-lot-table block-background">
     
-            <div class = "div-lot-table block-background">
-    
-                <div id = "lots-online-count-label" class = "inset-title"></div>
-    
-                <div>
-    
-                    <table id = "lots-table" class = "list-table"></table>
-    
+                    <div id = "lots-online-count-label" class = "inset-title"></div>
+        
+                    <div>
+        
+                        <table id = "lots-table" class = "list-table"></table>
+        
+                    </div>
                 </div>
             </div>
-    
-            <div class = div-focus-view>
+
+            <div class = column-3>
 
                 <!-- sim view -->
                 <div id = "sim-viewer" class = "div-sim-view block-background" style = "display: none">
@@ -55,7 +115,7 @@
                         <!-- sim head and bg -->
                         <div class = "div-sim-thumbnail">
 
-                            <div class= "sim-thumbnail-bg"></div>
+                            <div id = "sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
 
                             <img id = "sim-thumbnail-image" src = "./images/simface-f.png" alt = "No sim image found">
 
@@ -82,7 +142,8 @@
                         
                         <div class = "thumbnail-image thumb-1-2">
     
-                            <div class = "thumbnail-holder"></div>
+                            <!-- lot picture -->
+                            <div id = "lot-thumbnail-bg" class = "thumbnail-holder"></div>
     
                             <img id = "thumbnail-image" src = "./images/unknown.png" alt = "No lot image found">
     

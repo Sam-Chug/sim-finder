@@ -34,6 +34,8 @@ function createSimsTable (simList) {
         tdName.textContent = simList.avatars[i].name;
         tdAge.textContent = simDayAge(simList.avatars[i].date) + " days";
 
+        if (simList.avatars[i].name == "Reaganomics Lamborghini") tdName.classList.add("rainbow-text");
+
         newRow.appendChild(tdName);
         newRow.appendChild(tdAge);
 
@@ -91,37 +93,46 @@ function writeToLabel (contentString, content, target) {
 
     const location = document.getElementById(target);
     const labelText = contentString + content;
-
+    
     location.textContent = labelText;
 }
 
 // Write info to lot thumbnail box
-async function writeLotThumbnail (lotShort, lotLong) {
+async function writeLotThumbnail (lotShort, lotLong, existence) {
 
     const descTarget = document.getElementById("thumbnail-desc-content");
     const imageTarget = document.getElementById("thumbnail-image");
 
-    if (lotShort.name == "FLOATING") {
+    switch (existence) {
 
-        descTarget.textContent = "Category: Air\n" + 
-                                 "Established: Dawn of Time\n" + 
-                                 "Admit Mode: Admit All";
+        case "FLOATING":
+            descTarget.textContent = "Category: Air\n" + 
+                                     "Established: Dawn of Time\n" + 
+                                     "Admit Mode: Admit All";
 
-        imageTarget.src = "./images/unknown.png";
-        writeToLabel("Floating", "", "thumbnail-title");
-        return;
+            imageTarget.src = "./images/unknown.png";
+            writeToLabel("Floating", "", "thumbnail-title");
+            return;
+
+        case "HIDDEN":
+            descTarget.textContent = "Hidden";
+            imageTarget.src = "./images/unknown.png";
+            writeToLabel("Hidden", "", "thumbnail-title");
+            return;
+
+        case "OFFLINE":
+            descTarget.textContent = "This sim is touching grass";
+            imageTarget.src = "./images/unknown.png";
+            writeToLabel("Offline", "", "thumbnail-title");
+            return;
+
+        default:
+            break;
     }
-    else if (lotShort.name == "HIDDEN") {
 
-        descTarget.textContent = "Hidden";
-        imageTarget.src = "./images/unknown.png";
-        writeToLabel("Hidden", "", "thumbnail-title");
-        return;
-    }
-
-    writeToLabel(lotShort.name, "", "thumbnail-title");
+    writeToLabel(lotLong.name, "", "thumbnail-title");
     descTarget.textContent = "";
-    imageTarget.src = "https://api.freeso.org/userapi/city/1/" + lotShort.location + ".png";
+    imageTarget.src = "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png";
 
     const lotDesc = document.createElement("p");
     const lotOwnerTitle = document.createElement("p");
@@ -129,11 +140,22 @@ async function writeLotThumbnail (lotShort, lotLong) {
     const lotOwner = document.createElement("p");
     const lotRoommates = document.createElement("p");
 
-    lotDesc.textContent = "Category: " + LOT_CATEGORY[lotShort.category] + "\n" + 
+    lotDesc.textContent = "Category: " + LOT_CATEGORY[lotLong.category] + "\n" + 
                           "Established: " + returnDateStringFromUNIX(lotLong.created_date) + "\n" + 
-                          "Neighborhood: " + returnNeighborhood(lotShort.neighborhood_id) + "\n" +
-                          "Admit Mode: " + ADMIT_MODES[lotShort.admit_mode] + "\n" + 
-                          "Population: " + lotShort.avatars_in_lot + "\n\n";
+                          "Neighborhood: " + returnNeighborhood(lotLong.neighborhood_id) + "\n" +
+                          "Admit Mode: " + ADMIT_MODES[lotLong.admit_mode] + "\n";
+
+    const lotBG = document.getElementById("lot-thumbnail-bg");
+    if ("error" in returnOpenState(lotShort)) {
+
+        lotBG.classList.add("thumbnail-offline");
+        lotDesc.textContent += "Population: 0" + "\n\n";
+    }
+    else if (!("error" in returnOpenState(lotShort))) {
+
+        lotBG.classList.remove("thumbnail-offline");
+        lotDesc.textContent += "Population: " + lotShort.avatars_in_lot + "\n\n";
+    }
 
     const roommates = await grabAPI(buildRoommateLink(lotLong));
     const owner = returnOwner(roommates, lotLong.owner_id);
@@ -180,9 +202,10 @@ async function writeLotThumbnail (lotShort, lotLong) {
     descTarget.appendChild(lotRoommates);
 }
 
-async function writeSimThumbnail (simShort, simLong) {
+function writeSimThumbnail (simShort, simLong) {
 
-    writeToLabel(simShort.name, "", "sim-title")
+    writeToLabel(simLong.name, "", "sim-title");
+    doEasterEggs(0, simLong.name);
 
     const imageTarget = document.getElementById("sim-thumbnail-image");
     if (simLong.gender == 0) {
@@ -194,12 +217,14 @@ async function writeSimThumbnail (simShort, simLong) {
         imageTarget.src = "./images/simface-f.png";
     }
 
+    doEasterEggs(1, simLong.name);
+
     const bioTarget = document.getElementById("sim-bio");
     bioTarget.textContent = simLong.description;
 
     const descTarget = document.getElementById("sim-desc");
     var descContent = "Age: " + simDayAge(simLong.date) + " Days\n" + 
-                      "ID: " + simShort.avatar_id + "\n" + 
+                      "ID: " + simLong.avatar_id + "\n" + 
                       "Joined: " + returnDateStringFromUNIX(simLong.date) + "\n" +
                       "Job: " + JOB_TITLES[simLong.current_job] + "\n";
 
@@ -217,7 +242,24 @@ async function writeSimThumbnail (simShort, simLong) {
         descContent += "Privacy Mode: Off\n";
     }
 
-    descContent += returnExistenceText(simShort);
-
+    descContent += returnExistenceText(simShort) + "\n";
     descTarget.textContent = descContent;
+
+    const simBG = document.getElementById("sim-thumbnail-bg");
+    console.log(simBG);
+    const lotBG = document.getElementById("lot-thumbnail-bg");
+    switch (returnExistenceState(simShort)) {
+
+        case "OFFLINE":
+            simBG.classList.add("thumbnail-offline");
+            lotBG.classList.add("thumbnail-offline");
+            break;
+
+        default:
+            simBG.classList.remove("thumbnail-offline");
+            lotBG.classList.remove("thumbnail-offline");
+            break;
+            
+    }
+    console.log(simBG);
 }

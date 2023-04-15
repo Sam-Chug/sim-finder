@@ -3,7 +3,7 @@
 
     background-color: #32455b;
     color: #fff89d;
-    font-size: clamp(0.9em, 1vw, 2em);
+    font-size: clamp(1em, 1vw, 2em);
 
     border-radius: 10px;
     border-collapse: collapse;

@@ -19,6 +19,10 @@ bg thumbnail dark #002594
 bg thumbnail fallback #016abb
 bg thumbnail border #395273
 
+bg thumbnail offline light: #8a7c7b
+bg thumbnail offline dark: #615756
+bg thumbnail offline fallback: #736766
+
 outset title bg #5077a3
 */
 
@@ -44,27 +48,36 @@ body {
     gap: 1em;
 }
 
-.container div{
+.container *{
     /* outline: 10px solid red; */
 }
 
-.div-sim-table {
-    width: fit-content;
-    height: fit-content;
-}
-
-.div-lot-table {
-    width: fit-content;
-    height: fit-content;
-}
-
-.div-focus-view {
-    width: fit-content;
-    height: fit-content;
-
+.column-1 {
     display: flex;
     flex-direction: column;
     gap: 1em;
+}
+
+.column-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.column-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.div-sim-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-lot-table {
+    display: flex;
+    flex-direction: column;
 }
 
 .block-background {
@@ -78,7 +91,7 @@ body {
 .inset-title {
     width: fit-content;
     
-    margin: 10px auto;
+    margin: 15px auto 5px auto;
     padding: 4px 12px;
 
     font-size: clamp(1.5em, 1vw, 2em);
@@ -109,7 +122,8 @@ body {
 
     background-color: #5077a3;
     box-shadow: -5px -5px 4px 3px rgba(0, 0, 0, 0.4) inset,
-                3px 3px 4px 3px rgba(255, 255, 255, 0.5) inset;
+                5px 5px 4px 3px rgba(255, 255, 255, 0.5) inset,
+                3px 3px 3px 1px rgba(0, 0, 0, 0.6);
 
     align-self: center;
     width: 350px;

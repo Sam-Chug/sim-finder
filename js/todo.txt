@@ -13,12 +13,18 @@ https://api.freeso.org/userapi/lots/6852
 lot thumbnail (location)
 https://api.freeso.org/userapi/city/1/13828398.png
 
+search by sim name
+https://api.freeso.org/userapi/city/1/avatars/name/burglar%20cop
+
+search by lot name
+https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
+
 allow user to bookmark sims
 
 allow user to search sims
 
 store bookmarks in cookies
 
-admin lookup?
+sort sims by job, show who is at work
 
-display open lots and sims inside
+game clock
