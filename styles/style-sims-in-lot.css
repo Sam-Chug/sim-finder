@@ -1,0 +1,22 @@
+.div-list-sims-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sims-in-lot-title {
+    align-self: center;
+    width: fit-content;
+}
+
+.div-sims-in-lot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -25px;
+}
+
+.list-sims-in-lot {
+    width: 50%;
+    margin: 25px;
+}

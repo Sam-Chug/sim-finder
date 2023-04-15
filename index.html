@@ -5,9 +5,12 @@
         <meta charset = "UTF-8">
         <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
         <link href = "styles/style.css" rel = "stylesheet"/>
         <link href = "styles/style-thumbnail.css" rel = "stylesheet"/>
         <link href = "styles/style-lists.css" rel = "stylesheet"/>
+        <link href = "styles/style-sim-thumbnail.css" rel = "stylesheet"/>
+        <link href = "styles/style-sims-in-lot.css" rel = "stylesheet"/>
 
         <title>Sim Finder</title>
         
@@ -38,27 +41,74 @@
                 </div>
             </div>
     
-            <!-- <div class = "div-focus-view block-background">
-            </div> -->
+            <div class = div-focus-view>
 
-            <div class = "div-thumbnail block-background">
-
-                <div class = "div-thumbnail-desc thumb-1">
-
-                    <div id = "thumbnail-title" class = "outset-title thumb-1-1">Temporary Lot Title</div>
+                <!-- sim view -->
+                <div id = "sim-viewer" class = "div-sim-view block-background" style = "display: none">
                     
-                    <div class = "thumbnail-image thumb-1-2">
+                    <!-- sim's name -->
+                    <div id = "sim-title" class = "outset-title sim-title">No Sim Selected</div>
 
-                        <div class = "thumbnail-holder"></div>
+                    <!-- sim image and desc -->
+                    <div class = "div-sim-thumbnail-desc">
 
-                        <img id = "thumbnail-image" src = "./images/unknown.png" alt = "No lot found">
+                        <!-- sim head and bg -->
+                        <div class = "div-sim-thumbnail">
 
+                            <div class= "sim-thumbnail-bg"></div>
+
+                            <img id = "sim-thumbnail-image" src = "./images/simface-f.png" alt = "No sim image found">
+
+                        </div>
+
+                        <!-- sim's info and bio -->
+                        <div class = "div-sim-desc-bio">
+
+                            <div id = "sim-desc" class = "thumbnail-desc-holder">Unknown</div>
+
+                            <div id = "sim-bio" class = "thumbnail-sim-bio thumbnail-bio-holder">Unknown</div>
+
+                        </div>
                     </div>
-
                 </div>
 
-                <div id = "thumbnail-desc-content" class = "thumbnail-desc-holder thumb-2">Temporary Lot Desc</div>
+                <!-- selected lot info -->
+                <div class = "div-thumbnail block-background">
 
+                    <!-- thumbnail and title div -->
+                    <div class = "div-thumbnail-desc thumb-1">
+    
+                        <div id = "thumbnail-title" class = "outset-title thumb-1-1">No Lot Selected</div>
+                        
+                        <div class = "thumbnail-image thumb-1-2">
+    
+                            <div class = "thumbnail-holder"></div>
+    
+                            <img id = "thumbnail-image" src = "./images/unknown.png" alt = "No lot image found">
+    
+                        </div>
+    
+                    </div>
+    
+                    <!-- lot info -->
+                    <div id = "thumbnail-desc-content" class = "thumbnail-desc-holder thumb-2">Unknown</div>
+    
+                </div>
+
+                <!-- list sims in selected lot -->
+                <div id = "show-sims-in-lot" class = "div-list-sims-block block-background" style = "display: none">
+
+                    <!-- title -->
+                    <div class = "outset-title sims-in-lot-title">Sims In Lot</div>
+
+                    <div class = "div-sims-in-lot">
+
+                        <!-- sim list -->
+                        <div id = "lot-sims-list" class = "list-sims-in-lot thumbnail-desc-holder"></div>
+
+                        <div id = "lot-roommates-list" class = "list-sims-in-lot thumbnail-desc-holder"></div>
+                    </div>
+                </div>
             </div>
         </div>
 

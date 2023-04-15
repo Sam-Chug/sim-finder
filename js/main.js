@@ -10,7 +10,7 @@ var lotLongList;
 document.addEventListener("DOMContentLoaded", getOnline);
 
 // Main
-async function getOnline(){
+async function getOnline() {
 
     // Grab sims
     simShortList = await grabAPI(SIM_ONLINE_URL);
@@ -32,5 +32,5 @@ async function getOnline(){
     createLotsTable(lotShortList);
     writeToLabel("Lots Online: ", lotShortList.total_lots_online, "lots-online-count-label");
 
-    //console.log(lotShortList, lotLongList, simShortList, simLongList);
+    console.log(lotShortList, lotLongList, simShortList, simLongList);
 }

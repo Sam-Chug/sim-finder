@@ -1,0 +1,92 @@
+.div-sim-view {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div-sim-thumbnail-desc {
+    display: flex;
+    flex-direction: row;
+
+    margin-top: -20px;
+    padding-left: 25px;
+}
+
+.div-sim-thumbnail {
+    position: relative;
+    padding: 25px 0;
+}
+
+.sim-thumbnail-bg {
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.3) inset,
+                3px 3px 4px 2px rgba(255, 255, 255, 0.5) inset,
+                -1px -1px 2px 2px rgba(0, 0, 0, 0.3),
+                1px 1px 2px 1px rgba(255, 255, 255, 0.7);
+
+    background-color: #016abb;
+    background-image: linear-gradient(0, #00bedc, #002594);
+
+    border: 8px solid #395273;
+    border-radius: 50%;
+    
+    height: 275px;
+    width: 175px;
+
+    padding: 25px;
+}
+
+.div-sim-thumbnail img {
+    position: absolute;
+    top: 55px;
+    left: 20px;
+    width: 200px;
+}
+
+.thumbnail-bio-holder {
+    margin: 25px;
+    padding: 5px 12px 5px 7px;
+
+    white-space: pre-wrap;
+    font-weight: normal;
+
+    font-weight: 50;
+
+    width: 18.8vw;
+    height: 12vw;
+
+    background-color: #32455b;
+    color: #fff89d;
+    font-size: clamp(0.9em, 1vw, 2em);
+
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.thumbnail-sim-bio::-webkit-scrollbar {
+    width: 12px;
+}
+
+.thumbnail-sim-bio::-webkit-scrollbar-track {
+    box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.3) inset,
+                1px 1px 3px 1px rgba(255, 255, 255, 0.2) inset;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.thumbnail-sim-bio::-webkit-scrollbar-thumb {
+
+    box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.4) inset,
+                2px 2px 2px 1px rgba(255, 255, 255, 0.3) inset;
+
+    background: #016abb;
+    border-radius: 5px;
+}

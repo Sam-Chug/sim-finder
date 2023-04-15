@@ -22,31 +22,3 @@ store bookmarks in cookies
 admin lookup?
 
 display open lots and sims inside
-
-find hidden sims
-
-lot focus view:
-    - lot name
-    - neighborhood: xyx
-    - id: xyz
-
-    - sims at lot:
-        - sim list
-        - highlight roommates
-        - possible hidden sims
-
-sim focus view:
-    - name - xyz days old
-    - location: lot name
-    - neighborhood of location
-    - job: xyz
-    - sim id
-
-- side panel:
-    - lot thumbnail image
-    - category: xyz
-    - established date
-    - admit mode: xyz
-    - sims at lot: xyz
-    - owner
-    - roommates

@@ -5,7 +5,7 @@
     color: #fff89d;
     font-size: clamp(0.9em, 1vw, 2em);
 
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     border-collapse: collapse;
     overflow: hidden;
 
@@ -30,6 +30,12 @@
     text-align: right;
 }
 
-.list-table tr td{
+.list-table tr td {
     padding: 3px 10px;
+}
+
+.table-row-selected {
+    background-color: #fac98c;
+    color: black;
+    text-shadow: none;
 }
