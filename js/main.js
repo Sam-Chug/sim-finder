@@ -41,12 +41,13 @@ async function getOnline() {
     fillButtonGraphics();
 
     // Check if localstorage empty
-    if (localStorage.length == 0) {
+    if (JSON.parse(localStorage.getItem("idList")) == null ||
+    JSON.parse(localStorage.getItem("idList")).simID.length == 0) {
 
         localStorage.clear();
 
-        const initStorage = {
-            simID: [0]
+        let initStorage = {
+            simID: [194687]
         };
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }

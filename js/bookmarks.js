@@ -50,10 +50,14 @@ function updateBookmarkButton (selID) {
 // Return bookmark object
 function getBookmark () {
 
-    if (localStorage.length == 0) {
+    // Check if localstorage empty
+    if (JSON.parse(localStorage.getItem("idList")) == null ||
+        JSON.parse(localStorage.getItem("idList")).simID.length == 0) {
 
-        const initStorage = {
-            simID: [0]
+        localStorage.clear();
+
+        let initStorage = {
+            simID: [194687]
         };
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }
