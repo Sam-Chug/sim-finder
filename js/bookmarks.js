@@ -51,7 +51,7 @@ function getBookmark () {
     if (localStorage.length == 0) {
 
         const initStorage = {
-            simID: []
+            simID: [0]
         };
 
         localStorage.setItem("idList", JSON.stringify(initStorage));
