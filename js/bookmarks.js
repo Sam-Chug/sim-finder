@@ -6,15 +6,25 @@ async function checkBookmark() {
     const checkBox = document.getElementById("bookmark-checkbox");
 
     if(checkBox.checked) {
+
         setBookmark(selSimID);
+        const addSim = await idListToSimLongList([selSimID]);
+        bookmarkList.avatars.push(addSim.avatars[0]);
     }
     else if (!checkBox.checked) {
+
         delBookmark(selSimID);
+        for (let i = 0; i < bookmarkList.avatars.length; i++) {
+
+            if (bookmarkList.avatars[i].avatar_id == selSimID) {
+
+                bookmarkList.avatars.splice(i, 1);
+                break;
+            }
+        }
     }
-    
-    //update bookmark list
-    const simList = await idListToSimLongList(getBookmark().simID);
-    writeBookmarkSims(simList);
+    bookmarkList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+    writeBookmarkSims(bookmarkList);
 }
 
 // Change bookmark button styles
@@ -35,13 +45,6 @@ function updateBookmarkButton (selID) {
     }
     checkBox.checked = false;
     return;
-
-    if (state == "CHECK") {
-        checkBox.background = "url(./images/bookmark-icons.png) 50 0";
-    }
-    else if (state == "UNCHECK") {
-        checkBox.background = "url(./images/bookmark-icons.png) 0 0";
-    }
 }
 
 // Return bookmark object
@@ -52,10 +55,8 @@ function getBookmark () {
         const initStorage = {
             simID: [0]
         };
-
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }
-
     const simIDObject = JSON.parse(localStorage.getItem("idList"));
 
     return simIDObject;
@@ -117,6 +118,9 @@ function writeBookmarkSims (simList) {
 
     const tableBody = document.createElement("tbody");
 
+    const onlineSims = new Array();
+    const offlineSims = new Array();
+
     for (let i = 0; i < simList.avatars.length; i++) {
 
         var online = false;
@@ -125,18 +129,25 @@ function writeBookmarkSims (simList) {
 
             if (simList.avatars[i].avatar_id == simShortList.avatars[j].avatar_id) {
 
-                newRow = createBookmarkTableRow(simList.avatars[i], "ONLINE");
-                tableBody.append(newRow);
-
+                onlineSims.push(simList.avatars[i]);
                 online = true;
                 break;
             }
         }
         if (!online) {
 
-            newRow = createBookmarkTableRow(simList.avatars[i], "OFFLINE");
-            tableBody.append(newRow);
+            offlineSims.push(simList.avatars[i]);
         }
+    }
+    for (sim of onlineSims) {
+
+        newRow = createBookmarkTableRow(sim, "ONLINE");
+        tableBody.append(newRow);
+    }
+    for (sim of offlineSims) {
+
+        newRow = createBookmarkTableRow(sim, "OFFLINE");
+        tableBody.append(newRow);
     }
     target.appendChild(tableBody);
 }
@@ -160,7 +171,6 @@ function createBookmarkTableRow (sim, state) {
 
         if (sim.name == "Reaganomics Lamborghini") tdName.classList.add("rainbow-text");
     }
-
     newRow.appendChild(tdName);
     newRow.appendChild(tdAge);
 

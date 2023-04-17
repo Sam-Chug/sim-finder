@@ -26,6 +26,7 @@ function writeFilterToTable (type, filter) {
     }
 }
 
+// Return filtered sim list from selected filter
 function returnFilterSimList (filter) {
 
     const longList = new Array();
@@ -121,6 +122,7 @@ function returnFilterSimList (filter) {
     return longList;
 }
 
+// Return filtered lot list from selected filter
 function returnFilterLotList (filter) {
 
     const shortList = new Array();

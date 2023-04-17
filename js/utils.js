@@ -542,21 +542,6 @@ function returnShortSimFromLong (longSim) {
     return {error:"sim not online"};
 }
 
-function filterLot (lotType) {
-
-
-    switch (lotType) {
-
-        case "TEST":
-            alert("1");
-            break;
-
-        case "TEST1":
-            alert("2");
-            break;
-    }
-}
-
 // Fill search button arrays on load
 function fillButtonGraphics () {
 
@@ -571,7 +556,6 @@ function fillButtonGraphics () {
 
         button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
         addClassesToButton(button, "lot");
-        button.title = LOT_FILTER_TOOLTIP[count];
 
         count++;
     }

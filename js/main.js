@@ -22,6 +22,7 @@ async function getOnline() {
     lotShortList = await grabAPI(LOTS_ONLINE_URL);
     lotLongList = await grabAPI(buildLotLink(lotShortList));
     
+    // Sort
     lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
     simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
     simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);

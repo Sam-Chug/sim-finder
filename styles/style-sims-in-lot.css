@@ -1,4 +1,5 @@
 .div-list-sims-block {
+    cursor: default;
     display: flex;
     flex-direction: column;
     justify-content: center;

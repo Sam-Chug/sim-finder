@@ -141,10 +141,10 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
         default:
             break;
     }
-
     writeToLabel(lotLong.name, "", "thumbnail-title");
     descTarget.textContent = "";
     imageTarget.src = "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png";
+    console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png");
 
     const lotDesc = document.createElement("p");
     const lotOwnerTitle = document.createElement("p");
@@ -191,7 +191,6 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
             lotOwner.classList.remove("user-offline");
         }
     }
-
     for (i = 0; i < roommates.avatars.length; i++) {
 
         if (roommates.avatars[i].avatar_id != owner.avatar_id) {
@@ -208,11 +207,9 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
                     listRoommate.classList.remove("user-offline");
                 }
             }
-
             lotRoommates.appendChild(listRoommate);
         }
     }
-
     descTarget.appendChild(lotDesc);
     descTarget.appendChild(lotOwnerTitle);
     descTarget.appendChild(lotOwner);
@@ -220,6 +217,7 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
     descTarget.appendChild(lotRoommates);
 }
 
+// Build sim thumbnail
 function writeSimThumbnail (simShort, simLong) {
 
     writeToLabel(simLong.name, "", "sim-title");

@@ -21,8 +21,6 @@ https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
 
 
 TODO:
-clean up all the html class names
-
-fix sim filter icons to be in color parity with lot filter icons
+clean up all the html class names <- this will never happen
 
 game clock
