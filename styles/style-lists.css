@@ -5,7 +5,7 @@
 
     background-color: #32455b;
     color: #fff89d;
-    font-size: clamp(1em, 1vw, 2em);
+    font-size: clamp(0.9em, calc(1 * 1vw), 1.25em);
     white-space: nowrap;
     
     border-radius: 10px;
