@@ -29,7 +29,6 @@ function updateBookmarkButton (selID) {
 
         if (selID == bookSims.simID[i]) {
 
-            console.log(selID, bookSims.simID[i]);
             checkBox.checked = true;
             return;
         }
@@ -72,8 +71,8 @@ function setBookmark (newID) {
     const storageString = JSON.stringify(idStorage);
     localStorage.setItem("idList", storageString);
 
-    console.log("set: " + newID);
-    console.log(localStorage);
+    //console.log("set: " + newID);
+    //console.log(localStorage);
 }
 
 // Remove id from bookmark list
@@ -89,8 +88,8 @@ function delBookmark (delID) {
     const storageString = JSON.stringify(idStorage);
     localStorage.setItem("idList", storageString);
 
-    console.log("del: " + delID);
-    console.log(localStorage);
+    //console.log("del: " + delID);
+    //console.log(localStorage);
 }
 
 // Id list to sim object

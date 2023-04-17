@@ -332,8 +332,6 @@ function addClassesToTableRow (tableRow) {
 // Return if sim floating, hidden, or possibly landed
 function returnExistenceState (simShort) {
 
-    console.log(simShort);
-
     if ("error" in simShort) {
 
         return "OFFLINE";
@@ -486,12 +484,8 @@ async function searchSim() {
         alert("Cannot find sim \"" + simName + "\"");
         return;
     }
-
     const simShort = returnShortSimFromLong(simLong);
     const existence = returnExistenceState(simShort);
-
-    console.log(simShort);
-    console.log(existence);
 
     writeGreaterSimContext(simShort, simLong, existence);
 }

@@ -34,7 +34,7 @@ async function getOnline() {
     createLotsTable(lotShortList.lots);
     writeToLabel("Lots Online: ", lotShortList.total_lots_online, "lots-online-count-label");
 
-    console.log(lotShortList, lotLongList, simShortList, simLongList);
+    //console.log(lotShortList, lotLongList, simShortList, simLongList);
 
     // Style buttons
     fillButtonGraphics();
