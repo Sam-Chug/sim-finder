@@ -9,6 +9,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    align-self: center;
     gap: 5px;
     margin: 5px 18px 18px 18px;
 }
@@ -28,6 +29,7 @@
 .sim-filter-flex {
     display: flex;
     justify-content: flex-start;
+    align-self: center;
     flex-wrap: wrap;
     gap: 5px;
     margin: 5px 18px 18px 18px;
