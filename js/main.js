@@ -40,6 +40,17 @@ async function getOnline() {
     // Style buttons
     fillButtonGraphics();
 
+    // Check if localstorage empty
+    if (localStorage.length == 0) {
+
+        localStorage.clear();
+
+        const initStorage = {
+            simID: [0]
+        };
+        localStorage.setItem("idList", JSON.stringify(initStorage));
+    }
+
     // Fill bookmark list
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
