@@ -7,6 +7,8 @@ var simLongList;
 var lotShortList;
 var lotLongList;
 
+var bookmarkList;
+
 document.addEventListener("DOMContentLoaded", getOnline);
 
 // Main
@@ -36,4 +38,8 @@ async function getOnline() {
 
     // Style buttons
     fillButtonGraphics();
+
+    // Fill bookmark list
+    bookmarkList = await idListToSimLongList(getBookmark().simID);
+    writeBookmarkSims(bookmarkList);
 }

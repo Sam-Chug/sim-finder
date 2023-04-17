@@ -95,3 +95,13 @@
     background: #016abb;
     border-radius: 5px;
 }
+
+.bookmark-checkbox {
+    width: 25px;
+    height: 25px;
+}
+
+.bookmark-label {
+    font-size: 1.4em;
+    vertical-align: super;
+}

@@ -20,12 +20,9 @@ search by lot name
 https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
 
 
-
 TODO:
 clean up all the html class names
 
-allow user to bookmark sims
-
-store bookmarks in cookies
+fix sim filter icons to be in color parity with lot filter icons
 
 game clock

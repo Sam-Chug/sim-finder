@@ -168,7 +168,13 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
         lotBG.classList.remove("thumbnail-offline");
         lotDesc.textContent += "Population: " + lotShort.avatars_in_lot + "\n\n";
     }
+    if (lotShort.category == 11) {
 
+        descTarget.appendChild(lotDesc);
+        descTarget.appendChild(lotOwnerTitle);
+        descTarget.appendChild(lotOwner);
+        descTarget.appendChild(lotRoommateTitle);
+    }
     const roommates = await grabAPI(buildRoommateLink(lotLong));
     const owner = returnOwner(roommates, lotLong.owner_id);
 
@@ -258,7 +264,6 @@ function writeSimThumbnail (simShort, simLong) {
     descTarget.textContent = descContent;
 
     const simBG = document.getElementById("sim-thumbnail-bg");
-    console.log(simBG);
     const lotBG = document.getElementById("lot-thumbnail-bg");
     switch (returnExistenceState(simShort)) {
 
@@ -273,5 +278,4 @@ function writeSimThumbnail (simShort, simLong) {
             break;
             
     }
-    console.log(simBG);
 }

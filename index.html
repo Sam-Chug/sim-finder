@@ -36,7 +36,8 @@
 
                         <div class = "input-center">
 
-                            <input type = "text" id = "sim-search-input" class = "search-bar">
+                            <input type = "text" id = "sim-search-input" class = "search-bar"
+                            onkeydown = "if (event.keyCode == 13) document.getElementById('sim-search-button').click()">
 
                         </div>
 
@@ -56,15 +57,15 @@
                     <!-- sim filter buttons -->
                     <div id = "sim-filter-array" class = "sim-filter-flex inset-title">
 
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
+                        <button id = "sim-filter-button" class = "filter-button"></button>
                 
                     </div>
                 </div>
@@ -95,13 +96,14 @@
 
                         <div class = "input-center">
 
-                            <input type = "text" id = "lot-search-input" class = "search-bar">
+                            <input type = "text" id = "lot-search-input" class = "search-bar"
+                            onkeydown = "if (event.keyCode == 13) document.getElementById('lot-search-button').click()">
 
                         </div>
 
                         <div class = "button-center">
 
-                            <button class = "search-button" onclick = "searchLot()"></button>
+                            <button id = "lot-search-button" class = "search-button" onclick = "searchLot()"></button>
 
                         </div>
                     </div>
@@ -115,20 +117,20 @@
                     <!-- lot filter buttons -->
                     <div id = "lot-filter-array" class = "lot-filter-flex inset-title">
 
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
 
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
-                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
+                        <button id = "lot-filter-button" class = "filter-button"></button>
 
                     </div>
                 </div>
@@ -144,6 +146,20 @@
         
                     </div>
                 </div>
+
+                <!-- bookmark list -->
+                <div class = "div-sim-table block-background">
+
+                    <div class = "inset-title">Bookmarks</div>
+
+                    <div>
+
+                        <table id = "bookmark-table" class = "list-table"></table>
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div class = column-3>
@@ -163,6 +179,9 @@
                             <div id = "sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
 
                             <img id = "sim-thumbnail-image" src = "./images/simface-f.png" alt = "No sim image found">
+
+                            <input type = "checkbox" id = "bookmark-checkbox" class = "bookmark-checkbox" name = "bookmark" onclick="checkBookmark()">
+                            <label for = "bookmark" class = "bookmark-label">Bookmark This Sim</label>
 
                         </div>
 
@@ -223,6 +242,7 @@
         <script src = "js/utils.js"></script>
         <script src = "js/elements.js"></script>
         <script src = "js/filters.js"></script>
+        <script src = "js/bookmarks.js"></script>
 
     </body>
 </html>

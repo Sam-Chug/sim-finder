@@ -93,14 +93,14 @@ const SIM_SEARCH = [
 ]
 
 const SIM_FILTER_TOOLTIP = [
-    "Sims with the Diner Job",
-    "Sims with Club Jobs",
-    "Sims with the Robot Factory Job",
-    "Sims Landed at a Lot",
-    "Sims with Privacy Mode: Off",
-    "Sims with Privacy Mode: On",
-    "Privated Sims who have been Located",
-    "Sims who are Floating"
+    "Job: Diner",
+    "Job: Club",
+    "Job: Robot Factory",
+    "Landed at Lot",
+    "Privacy Mode: Off",
+    "Privacy Mode: On",
+    "Located Private Sims",
+    "Floating"
 ]
 
 const LOT_FILTER_TOOLTIP = [

@@ -128,7 +128,7 @@ async function grabAPI (apiLink) {
 
 // Onclick function for sim/lot lists
 // Sends data to writers
-function getIndex (selectedIndex) {
+async function getIndex (selectedIndex) {
 
     if(selectedIndex.id == "sim"){
 
@@ -136,15 +136,23 @@ function getIndex (selectedIndex) {
         var selSimShort;
         var selSimLong;
 
+        var simOnline = false;
         for (let i = 0; i < simShortList.avatars.length; i++) {
 
             if (simShortList.avatars[i].name == simName) {
                 
-                selSimShort = simShortList.avatars[i];
                 selSimLong = simLongList.avatars[i];
+                selSimShort = returnShortSimFromLong(selSimLong);
+                simOnline = true;
                 break;
             }
         }
+
+        if (!simOnline) {
+            selSimLong = await grabAPI("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+            selSimShort = returnShortSimFromLong(selSimLong);
+        }
+
         writeGreaterSimContext(selSimShort, selSimLong, returnExistenceState(selSimShort));
     }
     else if (selectedIndex.id == "lot"){
@@ -165,8 +173,6 @@ function getIndex (selectedIndex) {
         const simView = document.getElementById("sim-viewer");
         simView.style.display = "none";
 
-        console.log(selLotShort, selLotLong);
-
         writeLotThumbnail(selLotShort, selLotLong, "");
         writeSimsInLot(selLotLong, selLotShort.avatars_in_lot);
     }
@@ -176,6 +182,7 @@ function getIndex (selectedIndex) {
 // Write sim information
 function writeGreaterSimContext (simShort, simLong, existence) {
 
+    updateBookmarkButton(simLong.avatar_id);
     writeSimThumbnail(simShort, simLong);
 
     const simView = document.getElementById("sim-viewer");
@@ -246,7 +253,6 @@ function writeSimsInLot (selLot, population) {
     var simListText = "";
     var simTally = 0;
 
-    console.log(selLot.roommates);
     for (let i = 0; i < simShortList.avatars.length; i++) {
 
         if (selLot.roommates.includes(simShortList.avatars[i].avatar_id)) continue;
@@ -326,14 +332,17 @@ function addClassesToTableRow (tableRow) {
 // Return if sim floating, hidden, or possibly landed
 function returnExistenceState (simShort) {
 
-    const privacyMode = simShort.privacy_mode;
-    const location = simShort.location;
+    console.log(simShort);
 
     if ("error" in simShort) {
 
         return "OFFLINE";
     }
-    else if (location != 0) {
+
+    const privacyMode = simShort.privacy_mode;
+    const location = simShort.location;
+
+    if (location != 0) {
 
         var isWorking = true;
         for (let i = 0; i < lotShortList.lots.length; i++) {
@@ -480,6 +489,10 @@ async function searchSim() {
 
     const simShort = returnShortSimFromLong(simLong);
     const existence = returnExistenceState(simShort);
+
+    console.log(simShort);
+    console.log(existence);
+
     writeGreaterSimContext(simShort, simLong, existence);
 }
 
@@ -576,7 +589,6 @@ function fillButtonGraphics () {
 
         button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
         addClassesToButton(button, "sim");
-        button.title = SIM_FILTER_TOOLTIP[count];
 
         count++;
     }
@@ -594,13 +606,24 @@ function addClassesToButton (element, type) {
     element.addEventListener("mouseover",
     function() {
 
-         mouseOverButtonChange(this, "in", type);
+        mouseOverButtonChange(this, "in", type);
+
+        const tooltip = document.createElement("span");
+        tooltip.classList.add("tooltip");
+        
+        if (type == "sim")tooltip.textContent = SIM_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
+        if (type == "lot")tooltip.textContent = LOT_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
+
+        this.appendChild(tooltip);
+
     });
 
     element.addEventListener("mouseout",
     function(){
 
         mouseOverButtonChange(this, "out", type);
+
+        this.removeChild(this.children[0]);
     });
 }
 
