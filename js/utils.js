@@ -130,24 +130,45 @@ async function grabAPI (apiLink) {
 // Sends data to writers
 function getIndex (selectedIndex) {
 
-    index = selectedIndex.rowIndex - 1;
-
     if(selectedIndex.id == "sim"){
 
-        const selSimShort = simShortList.avatars[index];
-        const selSimLong = simLongList.avatars[index];
+        const simName = selectedIndex.cells[0].textContent;
+        var selSimShort;
+        var selSimLong;
+
+        for (let i = 0; i < simShortList.avatars.length; i++) {
+
+            if (simShortList.avatars[i].name == simName) {
+                
+                selSimShort = simShortList.avatars[i];
+                selSimLong = simLongList.avatars[i];
+                break;
+            }
+        }
         writeGreaterSimContext(selSimShort, selSimLong, returnExistenceState(selSimShort));
-        
     }
     else if (selectedIndex.id == "lot"){
 
+        const lotName = selectedIndex.cells[0].textContent;
+        var selLotShort;
+        var selLotLong;
+
+        for (let i = 0; i < lotShortList.lots.length; i++) {
+
+            if (lotShortList.lots[i].name == lotName) {
+                
+                selLotShort = lotShortList.lots[i];
+                selLotLong = returnLongLotFromLocation(selLotShort.location);
+                break;
+            }
+        }
         const simView = document.getElementById("sim-viewer");
         simView.style.display = "none";
 
-        const selShortLot = lotShortList.lots[index];
-        const selLongLot = returnLongLotFromID(lotShortList.lots[index].lot_id);
-        writeLotThumbnail(selShortLot, selLongLot, "");
-        writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+        console.log(selLotShort, selLotLong);
+
+        writeLotThumbnail(selLotShort, selLotLong, "");
+        writeSimsInLot(selLotLong, selLotShort.avatars_in_lot);
     }
     return;
 }
@@ -163,35 +184,36 @@ function writeGreaterSimContext (simShort, simLong, existence) {
     switch (existence){
 
         case "LANDED":
-
-            var selShortLot = returnShortLotFromLocation(simShortList.avatars[index].location);
-            var selLongLot = returnLongLotFromLocation(simShortList.avatars[index].location);
+            var selShortLot = returnShortLotFromLocation(simShort.location);
+            var selLongLot = returnLongLotFromLocation(simShort.location);
             writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
             break;
 
-        case "FLOATING":
+        case "WORKING":
+            var selShortLot = {name:"WORKING"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
 
+        case "FLOATING":
             var selShortLot = {name:"FLOATING"};
             var simsInLot = document.getElementById("show-sims-in-lot");
             simsInLot.style.display = "none";
             break;
 
         case "LANDED_HIDDEN":
-
             var selLongLot = returnLongLotOfRoommate(simShort.avatar_id);
             var selShortLot = returnShortLotFromLocation(selLongLot.location);
             writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
             break;
 
         case "HIDDEN":
-
             var selShortLot = {name:"HIDDEN"};
             var simsInLot = document.getElementById("show-sims-in-lot");
             simsInLot.style.display = "none";
             break;
 
         case "OFFLINE":
-
             var selShortLot = {name:"OFFLINE"};
             var simsInLot = document.getElementById("show-sims-in-lot");
             simsInLot.style.display = "none";
@@ -215,8 +237,6 @@ function writeSimsInLot (selLot, population) {
     simList.textContent = "";
     roommateList.textContent = "";
 
-    var simTally = 0;
-
     // Write sims
     const simsHeader = document.createElement("p");
     simsHeader.classList.add("column-header");
@@ -224,7 +244,10 @@ function writeSimsInLot (selLot, population) {
 
     const simsContent = document.createElement("p");
     var simListText = "";
-    for (i = 0; i < simShortList.avatars.length; i++) {
+    var simTally = 0;
+
+    console.log(selLot.roommates);
+    for (let i = 0; i < simShortList.avatars.length; i++) {
 
         if (selLot.roommates.includes(simShortList.avatars[i].avatar_id)) continue;
 
@@ -312,7 +335,22 @@ function returnExistenceState (simShort) {
     }
     else if (location != 0) {
 
-        return "LANDED";
+        var isWorking = true;
+        for (let i = 0; i < lotShortList.lots.length; i++) {
+
+            if (lotShortList.lots[i].location == location) {
+                isWorking = false;
+                break;
+            }
+        }
+        if (isWorking) {
+
+            return "WORKING";
+        }
+        else {
+
+            return "LANDED";
+        }
     }
     else if (location == 0 && privacyMode == 0) {
 
@@ -495,4 +533,176 @@ function returnShortSimFromLong (longSim) {
         }
     }
     return {error:"sim not online"};
+}
+
+function filterLot (lotType) {
+
+
+    switch (lotType) {
+
+        case "TEST":
+            alert("1");
+            break;
+
+        case "TEST1":
+            alert("2");
+            break;
+    }
+}
+
+// Fill search button arrays on load
+function fillButtonGraphics () {
+
+    const lotFilterArray = document.getElementById("lot-filter-array");
+    const simFilterArray = document.getElementById("sim-filter-array");
+
+    var count = 0;
+    for (const button of lotFilterArray.children) {
+
+        var x = (count % 4) * 71;
+        var y = Math.floor(count / 4) * 71;
+
+        button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
+        addClassesToButton(button, "lot");
+        button.title = LOT_FILTER_TOOLTIP[count];
+
+        count++;
+    }
+    count = 0;
+    for (const button of simFilterArray.children) {
+
+        var x = (count % 4) * 71;
+        var y = Math.floor(count / 4) * 71;
+
+        button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
+        addClassesToButton(button, "sim");
+        button.title = SIM_FILTER_TOOLTIP[count];
+
+        count++;
+    }
+}
+
+// Add functions to filter buttons
+function addClassesToButton (element, type) {
+
+    element.addEventListener("click",
+    function() {
+
+    filterButtonClick(this, type);
+    });
+
+    element.addEventListener("mouseover",
+    function() {
+
+         mouseOverButtonChange(this, "in", type);
+    });
+
+    element.addEventListener("mouseout",
+    function(){
+
+        mouseOverButtonChange(this, "out", type);
+    });
+}
+
+// Style change on button mouseover
+function mouseOverButtonChange (button, action, type) {
+
+    const index = Array.from(button.parentElement.children).indexOf(button);
+
+    var x = (index % 4) * 71;
+    var y = Math.floor(index / 4) * 71;
+
+    if (type == "lot") {
+
+        if (button.classList.contains("lot-filter-active")) return;
+
+        if (action == "in") {
+        
+            button.style.background = "url(./images/lot-filter-hover.png) " + -x + "px " + -y + "px";
+
+        }
+        else if (action == "out") {
+
+            button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
+        }
+    }
+    else if (type == "sim") {
+
+        if (button.classList.contains("sim-filter-active")) return;
+
+        if (action == "in") {
+        
+            button.style.background = "url(./images/sim-filter-hover.png) " + -x + "px " + -y + "px";
+
+        }
+        else if (action == "out") {
+
+            button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
+        }
+    }
+}
+
+// Style change on button click
+function filterButtonClick (button, type) {
+
+    const index = Array.from(button.parentElement.children).indexOf(button);
+    filterArray = button.parentElement;
+
+    var count = 0;
+
+    if (type == "lot") {
+
+        var sameButton = (button.classList.contains("lot-filter-active"));
+
+        for (let button of filterArray.children) {
+
+            button.classList.remove("lot-filter-active");
+            var x = (count % 4) * 71;
+            var y = Math.floor(count / 4) * 71;
+            button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
+    
+            count++;
+        }
+
+        if (sameButton) {
+            writeFilterToTable("lot", "REMOVE");
+        }
+        else {
+            var x = (index % 4) * 71;
+            var y = Math.floor(index / 4) * 71;
+            button.style.background = "url(./images/lot-filter-selected.png) " + -x + "px " + -y + "px";
+            button.classList.add("lot-filter-active");
+            writeFilterToTable("lot", index);
+        }
+        return;
+    }
+
+    else if (type == "sim") {
+
+        var sameButton = (button.classList.contains("sim-filter-active"));
+
+        for (let button of filterArray.children) {
+
+            button.classList.remove("sim-filter-active");
+            var x = (count % 4) * 71;
+            var y = Math.floor(count / 4) * 71;
+            button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
+    
+            count++;
+        }
+
+        if (sameButton) {
+
+            writeFilterToTable("sim", "REMOVE");
+        }
+        else {
+
+            var x = (index % 4) * 71;
+            var y = Math.floor(index / 4) * 71;
+            button.style.background = "url(./images/sim-filter-selected.png) " + -x + "px " + -y + "px";
+            button.classList.add("sim-filter-active");
+            writeFilterToTable("sim", SIM_SEARCH[index]);
+        }
+        return;
+    }
 }

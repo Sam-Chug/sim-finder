@@ -12,6 +12,7 @@
         <link href = "styles/style-sim-thumbnail.css" rel = "stylesheet"/>
         <link href = "styles/style-sims-in-lot.css" rel = "stylesheet"/>
         <link href = "styles/style-search-bar.css" rel = "stylesheet"/>
+        <link href = "styles/style-lot-filter.css" rel = "stylesheet"/>
         <link href = "styles/style-eggs.css" rel = "stylesheet"/>
 
         <title>Sim Finder</title>
@@ -19,9 +20,10 @@
     </head>
     <body>
         
+        <!-- the stuff -->
         <div class = "container">
 
-            <!-- sim list -->
+            <!-- sim column -->
             <div class = "column-1">
 
                 <!-- sim search -->
@@ -46,6 +48,27 @@
                     </div>
                 </div>
 
+                <!-- sim filter -->
+                <div class = "div-sim-filter block-background">
+
+                    <p class = "outset-title search-title">Filter Sims</p>
+
+                    <!-- sim filter buttons -->
+                    <div id = "sim-filter-array" class = "sim-filter-flex inset-title">
+
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "sim-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                
+                    </div>
+                </div>
+
                 <!-- sim list -->
                 <div class = "div-sim-table block-background">
 
@@ -59,7 +82,7 @@
                 </div>
             </div>
 
-            <!-- lot list -->
+            <!-- lot column -->
             <div class = "column-2">
 
                 <!-- lot search -->
@@ -78,14 +101,36 @@
 
                         <div class = "button-center">
 
-                            <button id = "lot-search-button" class = "search-button" onclick = "searchLot()"></button>
+                            <button class = "search-button" onclick = "searchLot()"></button>
 
                         </div>
+                    </div>
+                </div>
+
+                <!-- lot filter -->
+                <div class = "div-lot-filter block-background">
+
+                    <p class = "outset-title search-title">Filter Lots</p>
+
+                    <!-- lot filter buttons -->
+                    <div id = "lot-filter-array" class = "lot-filter-flex inset-title">
+
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
+                        <button id = "lot-filter-button" class = "filter-button" onclick = "filterLot()"></button>
 
                     </div>
-
-                    
-
                 </div>
 
                 <!-- lot list -->
@@ -177,6 +222,7 @@
         <script src = "js/definitions.js"></script>
         <script src = "js/utils.js"></script>
         <script src = "js/elements.js"></script>
+        <script src = "js/filters.js"></script>
 
     </body>
 </html>

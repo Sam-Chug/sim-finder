@@ -21,20 +21,22 @@ function buildTableHead (columnLeftText, columnRightText) {
 function createSimsTable (simList) {
 
     const target = document.getElementById('sims-table');
+    target.textContent = "";
+
     const tableHead = buildTableHead("Name", "Age");
     target.appendChild(tableHead);
 
     const tableBody = document.createElement("tbody");
-    for (i = 0; i < simList.avatars.length; i++) {
+    for (i = 0; i < simList.length; i++) {
 
         var newRow = document.createElement("tr");
         const tdName = document.createElement("td");
         const tdAge = document.createElement("td");
 
-        tdName.textContent = simList.avatars[i].name;
-        tdAge.textContent = simDayAge(simList.avatars[i].date) + " days";
+        tdName.textContent = simList[i].name;
+        tdAge.textContent = simDayAge(simList[i].date) + " days";
 
-        if (simList.avatars[i].name == "Reaganomics Lamborghini") tdName.classList.add("rainbow-text");
+        if (simList[i].name == "Reaganomics Lamborghini") tdName.classList.add("rainbow-text");
 
         newRow.appendChild(tdName);
         newRow.appendChild(tdAge);
@@ -51,18 +53,20 @@ function createSimsTable (simList) {
 function createLotsTable (lotList) {
 
     const target = document.getElementById('lots-table');
+    target.textContent = "";
+
     const tableHead = buildTableHead("Name", "Population");
     target.appendChild(tableHead);
 
     const tableBody = document.createElement("tbody");
-    for (i = 0; i < lotList.lots.length; i++) {
+    for (i = 0; i < lotList.length; i++) {
 
         var newRow = document.createElement("tr");
         const tdName = document.createElement("td");
         const tdPop = document.createElement("td");
 
-        tdName.textContent = lotList.lots[i].name;
-        tdPop.textContent = lotList.lots[i].avatars_in_lot + " sims";
+        tdName.textContent = lotList[i].name;
+        tdPop.textContent = lotList[i].avatars_in_lot + " sims";
 
         newRow.appendChild(tdName);
         newRow.appendChild(tdPop);
@@ -112,6 +116,14 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
 
             imageTarget.src = "./images/unknown.png";
             writeToLabel("Floating", "", "thumbnail-title");
+            return;
+
+        case "WORKING":
+            descTarget.textContent = "Category: Job\n" +
+                                     "Making: Simoleons";
+
+            imageTarget.src = "./images/unknown.png";
+            writeToLabel("Working", "", "thumbnail-title");
             return;
 
         case "HIDDEN":

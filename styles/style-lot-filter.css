@@ -1,0 +1,41 @@
+.div-lot-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lot-filter-flex {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 5px 18px 18px 18px;
+}
+
+.div-lot-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div-sim-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sim-filter-flex {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 5px 18px 18px 18px;
+
+}
+
+.filter-button{
+    width: 71px;
+    height: 71px;
+    margin: 0px;
+    border: none;
+}

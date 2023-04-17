@@ -19,12 +19,13 @@ https://api.freeso.org/userapi/city/1/avatars/name/burglar%20cop
 search by lot name
 https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
 
+
+
+TODO:
+clean up all the html class names
+
 allow user to bookmark sims
 
-allow user to search sims
-
 store bookmarks in cookies
-
-sort sims by job, show who is at work
 
 game clock

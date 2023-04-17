@@ -4,7 +4,8 @@
     background-color: #32455b;
     color: #fff89d;
     font-size: clamp(1em, 1vw, 2em);
-
+    white-space: nowrap;
+    
     border-radius: 10px;
     border-collapse: collapse;
     overflow: hidden;
@@ -26,7 +27,6 @@
 
 .list-table td:nth-child(2), .list-table thead tr th:nth-child(2) {
     width: 1%;
-    white-space: nowrap;
     text-align: right;
 }
 

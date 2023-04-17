@@ -25,12 +25,15 @@ async function getOnline() {
     simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
     // Build sims
-    createSimsTable(simLongList);
+    createSimsTable(simLongList.avatars);
     writeToLabel("Sims Online: ", simShortList.avatars_online_count, "sims-online-count-label");
 
     // Build lots
-    createLotsTable(lotShortList);
+    createLotsTable(lotShortList.lots);
     writeToLabel("Lots Online: ", lotShortList.total_lots_online, "lots-online-count-label");
 
     console.log(lotShortList, lotLongList, simShortList, simLongList);
+
+    // Style buttons
+    fillButtonGraphics();
 }
