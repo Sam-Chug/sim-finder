@@ -41,3 +41,5 @@ TODO:
     - linegraph
 - freeso market watch:
     - job clock
+
+- Add filter option for each job for sims currently at job lot
