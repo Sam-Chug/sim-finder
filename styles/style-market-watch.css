@@ -1,0 +1,31 @@
+.div-market-watch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0em;
+}
+
+.div-market-watch-title {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.div-market-watch-title img {
+    position: relative;
+    top: 15px;
+    width: 50px;
+    height: 31px;
+    margin: 0px 10px;
+}
+
+.div-market-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -18px;
+}
+
+.market-watch-content {
+    flex: 1;
+}

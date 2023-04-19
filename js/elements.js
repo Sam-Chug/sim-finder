@@ -1,84 +1,3 @@
-// Build table head, shorten code
-function buildTableHead (columnLeftText, columnRightText) {
-
-    const tableHead = document.createElement("thead");
-    const headRow = document.createElement("tr");
-
-    const thLeft = document.createElement("th");
-    const thRight = document.createElement("th");
-    thLeft.textContent = columnLeftText;
-    thRight.textContent = columnRightText;
-
-    headRow.appendChild(thLeft);
-    headRow.appendChild(thRight);
-
-    tableHead.appendChild(headRow);
-
-    return tableHead;
-}
-
-// Write to online sims table
-function createSimsTable (simList) {
-
-    const target = document.getElementById('sims-table');
-    target.textContent = "";
-
-    const tableHead = buildTableHead("Name", "Age");
-    target.appendChild(tableHead);
-
-    const tableBody = document.createElement("tbody");
-    for (i = 0; i < simList.length; i++) {
-
-        var newRow = document.createElement("tr");
-        const tdName = document.createElement("td");
-        const tdAge = document.createElement("td");
-
-        tdName.textContent = simList[i].name;
-        tdAge.textContent = simDayAge(simList[i].date) + " days";
-
-        if (simList[i].name == "Reaganomics Lamborghini") tdName.classList.add("rainbow-text");
-
-        newRow.appendChild(tdName);
-        newRow.appendChild(tdAge);
-
-        newRow = addClassesToTableRow(newRow);
-        newRow.setAttribute("id", "sim");
-
-        tableBody.appendChild(newRow);
-    }
-    target.appendChild(tableBody);
-}
-
-// Write to online sims table
-function createLotsTable (lotList) {
-
-    const target = document.getElementById('lots-table');
-    target.textContent = "";
-
-    const tableHead = buildTableHead("Name", "Population");
-    target.appendChild(tableHead);
-
-    const tableBody = document.createElement("tbody");
-    for (i = 0; i < lotList.length; i++) {
-
-        var newRow = document.createElement("tr");
-        const tdName = document.createElement("td");
-        const tdPop = document.createElement("td");
-
-        tdName.textContent = lotList[i].name;
-        tdPop.textContent = lotList[i].avatars_in_lot + " sims";
-
-        newRow.appendChild(tdName);
-        newRow.appendChild(tdPop);
-
-        newRow = addClassesToTableRow(newRow);
-        newRow.setAttribute("id", "lot");
-
-        tableBody.appendChild(newRow);
-    }
-    target.appendChild(tableBody);
-}
-
 // Style change on mouse movement over text
 function styleMouseOverChange (selectedIndex, movement) {
 
@@ -92,17 +11,8 @@ function styleMouseOverChange (selectedIndex, movement) {
     }
 }
 
-// Write amount of sims online
-function writeToLabel (contentString, content, target) {
-
-    const location = document.getElementById(target);
-    const labelText = contentString + content;
-    
-    location.textContent = labelText;
-}
-
 // Write info to lot thumbnail box
-async function writeLotThumbnail (lotShort, lotLong, existence) {
+async function writeLotThumbnail (lotShort, lotLong, existence, simLong) {
 
     const descTarget = document.getElementById("thumbnail-desc-content");
     const imageTarget = document.getElementById("thumbnail-image");
@@ -123,7 +33,7 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
                                      "Making: Simoleons";
 
             imageTarget.src = "./images/unknown.png";
-            writeToLabel("Working", "", "thumbnail-title");
+            writeToLabel("Working - " + JOB_STRINGS[simLong.current_job], "", "thumbnail-title");
             return;
 
         case "HIDDEN":
@@ -155,7 +65,8 @@ async function writeLotThumbnail (lotShort, lotLong, existence) {
     lotDesc.textContent = "Category: " + LOT_CATEGORY[lotLong.category] + "\n" + 
                           "Established: " + returnDateStringFromUNIX(lotLong.created_date) + "\n" + 
                           "Neighborhood: " + returnNeighborhood(lotLong.neighborhood_id) + "\n" +
-                          "Admit Mode: " + ADMIT_MODES[lotLong.admit_mode] + "\n";
+                          "Admit Mode: " + ADMIT_MODES[lotLong.admit_mode] + "\n" + 
+                          SKILL_MODES[lotLong.skill_mode] + "\n";
 
     const lotBG = document.getElementById("lot-thumbnail-bg");
     if ("error" in returnOpenState(lotShort)) {
@@ -276,4 +187,150 @@ function writeSimThumbnail (simShort, simLong) {
             break;
             
     }
+}
+
+// Write sim information
+function writeGreaterSimContext (simShort, simLong, existence) {
+
+    updateBookmarkButton(simLong.avatar_id);
+    writeSimThumbnail(simShort, simLong);
+
+    const simView = document.getElementById("sim-viewer");
+    simView.style.display = "flex";
+
+    switch (existence){
+
+        case "LANDED":
+            var selShortLot = returnShortLotFromLocation(simShort.location);
+            var selLongLot = returnLongLotFromLocation(simShort.location);
+            writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+            break;
+
+        case "WORKING":
+            var selShortLot = {name:"WORKING"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        case "FLOATING":
+            var selShortLot = {name:"FLOATING"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        case "LANDED_HIDDEN":
+            var selLongLot = returnLongLotOfRoommate(simShort.avatar_id);
+            var selShortLot = returnShortLotFromLocation(selLongLot.location);
+            writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+            break;
+
+        case "HIDDEN":
+            var selShortLot = {name:"HIDDEN"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        case "OFFLINE":
+            var selShortLot = {name:"OFFLINE"};
+            var simsInLot = document.getElementById("show-sims-in-lot");
+            simsInLot.style.display = "none";
+            break;
+
+        default:
+            break;
+    }
+    writeLotThumbnail(selShortLot, selLongLot, existence, simLong);
+}
+
+// Write list of sims in selected lot
+function writeSimsInLot (selLot, population) {
+
+    var simsInLot = document.getElementById("show-sims-in-lot");
+    simsInLot.style.display = "flex";
+
+    const simList = document.getElementById("lot-sims-list");
+    const roommateList = document.getElementById("lot-roommates-list");
+    
+    simList.textContent = "";
+    roommateList.textContent = "";
+
+    // Write sims
+    const simsHeader = document.createElement("p");
+    simsHeader.classList.add("column-header");
+    simsHeader.textContent = "Sims:\n";
+
+    const simsContent = document.createElement("p");
+    var simListText = "";
+    var simTally = 0;
+
+    for (let i = 0; i < simShortList.avatars.length; i++) {
+
+        if (selLot.roommates.includes(simShortList.avatars[i].avatar_id)) continue;
+
+        if (simShortList.avatars[i].location == selLot.location) {
+
+            simListText += simShortList.avatars[i].name + "\n";
+            simTally++;
+        }
+    }
+    // Write roommates
+    const roommatesHeader = document.createElement("p");
+    roommatesHeader.classList.add("column-header");
+    roommatesHeader.textContent = "Roommates:\n";
+
+    const roommatesContent = document.createElement("p");
+    var roomListText = "";
+    for (i = 0; i < simShortList.avatars.length; i++) {
+
+        if (selLot.roommates.includes(simShortList.avatars[i].avatar_id)) {
+
+            if (simShortList.avatars[i].privacy_mode == 1) {
+
+                roomListText += simShortList.avatars[i].name + " (Maybe)\n"
+            }
+            else if (simShortList.avatars[i].location == selLot.location) {
+
+                roomListText += simShortList.avatars[i].name + "\n"
+                simTally++;
+            }
+        }
+    }
+    if (population - simTally > 0) {
+
+        simListText += "\nAnd " + (population - simTally) + " More Hidden Sim(s)"
+    }
+    simsContent.textContent = simListText;
+    simList.appendChild(simsHeader);
+    simList.appendChild(simsContent);
+
+    roommatesContent.textContent = roomListText;
+    roommateList.appendChild(roommatesHeader);
+    roommateList.appendChild(roommatesContent);
+}
+
+// Write market data to market watch element
+function writeMarketWatch (marketObj) {
+
+    const marketBreakdown = document.getElementById("market-breakdown");
+    var breakdownText = "$" + (marketObj.moneyPerHourJob + marketObj.moneyPerHourSMO).toLocaleString("en-US") + " Generated Per Hour\n\n" + 
+                        "SMO Total $/Hr: $" + marketObj.moneyPerHourSMO.toLocaleString("en-US") + "\n" + 
+                        marketObj.simsSMO + " Sims at " + marketObj.moneyLots.length + " Money Lots\n\n" +
+                        "Job Total $/Hr: $" + marketObj.moneyPerHourJob.toLocaleString("en-US") + "\n" +
+                        marketObj.simsWorking + " Sims at " + returnJobsOpen().length + " Job(s)\n\n\n" + 
+                        "(Values Heavily Estimated)";
+
+    marketBreakdown.textContent = breakdownText;
+
+    const marketHotspots = document.getElementById("market-hotspots");
+    var hotspotText = "Top Money Lots: \n\n";
+
+    marketObj.moneyLots.sort(({lotMoney:a}, {lotMoney:b}) => b - a);
+
+    for ( let i = 0; i < 3 && i < marketObj.moneyLots.length; i++) {
+
+        hotspotText += (i + 1) + ". " + marketObj.moneyLots[i].lotObj.name + "\n" + 
+                       " - $" + (marketObj.moneyLots[i].lotMoney).toLocaleString("en-US") + " $/Hr Total\n\n";
+    }
+    hotspotText = hotspotText.slice(0, -1);
+    marketHotspots.textContent = hotspotText;
 }

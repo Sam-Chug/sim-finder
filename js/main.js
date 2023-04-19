@@ -55,4 +55,6 @@ async function getOnline() {
     // Fill bookmark list
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
+
+    returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
 }

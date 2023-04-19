@@ -99,13 +99,13 @@ body {
     cursor: default;
 
     width: fit-content;
-    
     margin: 15px auto 5px auto;
     padding: 4px 12px;
 
-    font-size: clamp(1.5em, 1vw, 2em);
+    font-size: clamp(1.5em, calc(1.6 * 1vw), 2em);
     text-align: center;
     letter-spacing: 0.05em;
+    white-space: nowrap;
 
     border-radius: 25px;
     border-collapse: collapse;
@@ -120,12 +120,14 @@ body {
 .outset-title {
     cursor: default;
 
+    min-width: fit-content;
     margin: 10px auto;
     padding: 4px 12px;
 
-    font-size: clamp(1.5em, 1vw, 2em);
+    font-size: clamp(1.4em, calc(1.5 * 1vw), 1.8em);
     text-align: center;
     letter-spacing: 0.05em;
+    white-space: nowrap;
 
     border-radius: 25px;
     border-collapse: collapse;

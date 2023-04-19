@@ -7,6 +7,15 @@ const JOB_TITLES = [
     "Nightclub - Dancer"
 ];
 
+const JOB_STRINGS = [
+    "Unemployed",
+    "Factory",
+    "Restaurant",
+    "Unused",
+    "Club",
+    "Club"
+]
+
 const LOT_CATEGORY = [
     "None",
     "Money",

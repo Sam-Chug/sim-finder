@@ -14,8 +14,18 @@
         <link href = "styles/style-search-bar.css" rel = "stylesheet"/>
         <link href = "styles/style-lot-filter.css" rel = "stylesheet"/>
         <link href = "styles/style-eggs.css" rel = "stylesheet"/>
+        <link href = "styles/style-market-watch.css" rel = "stylesheet"/>
+
+        <script defer src = "./js/main.js"></script>
+        <script defer src = "./js/bookmarks.js"></script>
+        <script defer src = "./js/definitions.js"></script>
+        <script defer src = "./js/dynamic-css.js"></script>
+        <script defer src = "./js/elements.js"></script>
+        <script defer src = "./js/filters.js"></script>
+        <script defer src = "./js/utils.js"></script>
 
         <title>Sim Finder</title>
+        <link rel = "icon" type = "image/x-icon" href = "./images/favicon.ico">
         
     </head>
     <body>
@@ -29,9 +39,8 @@
                 <!-- sim search -->
                 <div class = "div-search block-background">
 
-                    <p class = "outset-title search-title">Sim Search</p>
-
                     <!-- search inputs -->
+                    <p class = "outset-title search-title">Sim Search</p>
                     <div class = "search-flex">
 
                         <div class = "input-center">
@@ -52,34 +61,18 @@
                 <!-- sim filter -->
                 <div class = "div-sim-filter block-background">
 
+                    <!-- sim filter buttons - buttons generated -->
                     <p class = "outset-title search-title">Filter Sims</p>
+                    <div id = "sim-filter-array" class = "sim-filter-flex inset-title"></div>
 
-                    <!-- sim filter buttons -->
-                    <div id = "sim-filter-array" class = "sim-filter-flex inset-title">
-
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                        <button id = "sim-filter-button" class = "filter-button"></button>
-                
-                    </div>
                 </div>
 
                 <!-- sim list -->
                 <div class = "div-sim-table block-background">
 
                     <div id = "sims-online-count-label" class = "inset-title"></div>
-        
-                    <div>
-        
-                        <table id = "sims-table" class = "list-table"></table>
-            
-                    </div>
+                    <div><table id = "sims-table" class = "list-table"></table></div>
+                    
                 </div>
             </div>
 
@@ -89,9 +82,8 @@
                 <!-- lot search -->
                 <div class = "div-search block-background">
 
-                    <p class = "outset-title search-title">Lot Search</p>
-
                     <!-- search inputs -->
+                    <p class = "outset-title search-title">Lot Search</p>
                     <div class = "search-flex">
 
                         <div class = "input-center">
@@ -112,56 +104,30 @@
                 <!-- lot filter -->
                 <div class = "div-lot-filter block-background">
 
+                    <!-- lot filter buttons - buttons generated -->
                     <p class = "outset-title search-title">Filter Lots</p>
+                    <div id = "lot-filter-array" class = "lot-filter-flex inset-title"></div>
 
-                    <!-- lot filter buttons -->
-                    <div id = "lot-filter-array" class = "lot-filter-flex inset-title">
-
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-                        <button id = "lot-filter-button" class = "filter-button"></button>
-
-                    </div>
                 </div>
 
                 <!-- lot list -->
                 <div class = "div-lot-table block-background">
     
                     <div id = "lots-online-count-label" class = "inset-title"></div>
-        
-                    <div>
-        
-                        <table id = "lots-table" class = "list-table"></table>
-        
-                    </div>
+                    <div><table id = "lots-table" class = "list-table"></table></div>
+
                 </div>
 
                 <!-- bookmark list -->
                 <div class = "div-sim-table block-background">
 
                     <div class = "inset-title">Bookmarks</div>
-
-                    <div>
-
-                        <table id = "bookmark-table" class = "list-table"></table>
-
-                    </div>
+                    <div><table id = "bookmark-table" class = "list-table"></table></div>
 
                 </div>
-
             </div>
 
+            <!-- everything else -->
             <div class = column-3>
 
                 <!-- sim view -->
@@ -177,7 +143,6 @@
                         <div class = "div-sim-thumbnail">
 
                             <div id = "sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
-
                             <img id = "sim-thumbnail-image" src = "./images/simface-f.png" alt = "No sim image found">
 
                             <input type = "checkbox" id = "bookmark-checkbox" class = "bookmark-checkbox" name = "bookmark" onclick="checkBookmark()">
@@ -189,7 +154,6 @@
                         <div class = "div-sim-desc-bio">
 
                             <div id = "sim-desc" class = "thumbnail-desc-holder">Unknown</div>
-
                             <div id = "sim-bio" class = "thumbnail-sim-bio thumbnail-bio-holder">Unknown</div>
 
                         </div>
@@ -203,16 +167,13 @@
                     <div class = "div-thumbnail-desc thumb-1">
     
                         <div id = "thumbnail-title" class = "outset-title thumb-1-1">No Lot Selected</div>
-                        
                         <div class = "thumbnail-image thumb-1-2">
     
                             <!-- lot picture -->
                             <div id = "lot-thumbnail-bg" class = "thumbnail-holder"></div>
-    
                             <img id = "thumbnail-image" src = "./images/unknown.png" alt = "No lot image found">
     
                         </div>
-    
                     </div>
     
                     <!-- lot info -->
@@ -225,24 +186,37 @@
 
                     <!-- title -->
                     <div class = "outset-title sims-in-lot-title">Sims In Lot</div>
-
                     <div class = "div-sims-in-lot">
 
                         <!-- sim list -->
                         <div id = "lot-sims-list" class = "list-sims-in-lot thumbnail-desc-holder"></div>
-
                         <div id = "lot-roommates-list" class = "list-sims-in-lot thumbnail-desc-holder"></div>
+
+                    </div>
+                </div>
+
+                <!-- market watch -->
+                <div class = "div-market-watch block-background">
+
+                    <!-- title -->
+                    <div class = "div-market-watch-title">
+
+                        <img src = "./images/market-watch-graphic.png" alt = "">
+                        <div class = "outset-title">FreeSO Market Watch</div>
+                        <img src = "./images/market-watch-graphic.png" alt = "">
+
+                    </div>
+
+                    <div class = "div-market-context">
+
+                        <!-- sims in money lots / total money lots / sims at work count -->
+                        <div id = "market-breakdown" class = "thumbnail-desc-holder market-watch-content"></div>
+                        <!-- best lots for money -->
+                        <div id = "market-hotspots" class = "thumbnail-desc-holder market-watch-content"></div>
+
                     </div>
                 </div>
             </div>
         </div>
-
-        <script src = "js/main.js"></script>
-        <script src = "js/definitions.js"></script>
-        <script src = "js/utils.js"></script>
-        <script src = "js/elements.js"></script>
-        <script src = "js/filters.js"></script>
-        <script src = "js/bookmarks.js"></script>
-
     </body>
 </html>

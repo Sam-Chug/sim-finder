@@ -19,7 +19,7 @@
                 3px 3px 2px 1px rgba(0, 0, 0, 0.6);
 }
 
-.rainbow-block {
+.golden-block {
     border-radius: 45px;
     background-color: #d4af37;
     
@@ -28,18 +28,22 @@
 }
 
 .rainbow-image {
-    background-image: linear-gradient(to right, rgb(255, 192, 203, 0.3), rgb(160, 32, 240, 0.3), rgb(100, 149, 237, 0.3),
-                                                rgb(0, 255, 255, 0.3), rgb(46, 139, 87, 0.3), rgb(255, 192, 203, 0.3));
-    mask-image: url("./images/simface-rea.png");
-    border-radius: 100%;
-    box-shadow: 0 -25px 20px 2px #00bedc inset,
-                0 10px 20px 2px #002594 inset;
     z-index: 3;
-    animation: move 60s linear infinite;
+    animation: 2.5s pulse infinite;
+    animation-timing-function: ease-in-out;
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px 5px rgba(255, 233, 163, 0.5),
+                0px 0px 5px 5px rgba(255, 233, 163, 0.5) inset;
 }
 
 @keyframes move {
     to {
         background-position: 400vh;
     }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); }
+    50% { transform: scale(1); }
+    100% { transform: scale(0.9); }
 }
