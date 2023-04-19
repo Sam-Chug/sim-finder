@@ -20,7 +20,29 @@ search by lot name
 https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
 
 
-TODO:
-clean up all the html class names <- this will never happen
+FIX (priority sort):
+- fix bookmark checkbox graphic
+- merge css files into one on push
+- max height for sim list
 
-game clock
+TODO:
+- clean up all the html class names <- this will never happen
+- game clock
+- top neighborhoods
+- new lot thumbnail:
+    - show category icon
+    - number of sims in box like ingame
+    - add lot description
+    - add skill-mode
+- make bookmark-text link to checkbox click
+- add mobile res support
+- online sim stats:
+    - age piechart
+    - linegraph
+- freeso market watch:
+    - job clock
+
+Update Notes:
+- Fixed all online roommates being listed in-lot instead of just those in the lot
+- Fixed some messes when resizing window
+- Various fixes/optimizations
