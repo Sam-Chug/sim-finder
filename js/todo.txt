@@ -41,8 +41,3 @@ TODO:
     - linegraph
 - freeso market watch:
     - job clock
-
-Update Notes:
-- Fixed all online roommates being listed in-lot instead of just those in the lot
-- Fixed some messes when resizing window
-- Various fixes/optimizations
