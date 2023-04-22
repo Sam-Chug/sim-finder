@@ -48,16 +48,19 @@
 
 .search-button {
     border-radius: 50%;
-    background: url(../images/search-button.png) no-repeat;
+    background: url(../images/buttons/search-button.png) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
 }
 
 .search-button:hover {
-    background: url(../images/search-button-hover.png) no-repeat;
+    background: url(../images/buttons/search-button-hover.png) no-repeat;
 }
 
 .search-button:active {
-    background: url(../images/search-button-click.png) no-repeat;
+    background: url(../images/buttons/search-button-click.png) no-repeat;
 }

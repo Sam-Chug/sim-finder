@@ -7,6 +7,9 @@ var simLongList;
 var lotShortList;
 var lotLongList;
 
+var topLotShort;
+var topLotLong;
+
 var bookmarkList;
 
 document.addEventListener("DOMContentLoaded", getOnline);
@@ -56,5 +59,13 @@ async function getOnline() {
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
 
-    returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
+    // Write market watch
+    const marketObj = returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
+    writeMarketWatch(marketObj);
+
+    // Top neighborhoods
+    // topLotShort = await grabAPI("https://api.freeso.org/userapi/city/1/lots/top100/all");
+    // topLotLong = await grabAPI(buildTopLotsLink(topLotShort));
+    // const topNhood = returnNeighborhoodScore(topLotShort, topLotLong);
+    // writeNeighborhoodWatch(topNhood);
 }

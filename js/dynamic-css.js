@@ -180,7 +180,7 @@ function fillButtonGraphics () {
 
         var x = (i % 4) * 71;
         var y = Math.floor(i / 4) * 71;
-        button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
+        button.style.background = "url(./images/filter-spritesheets/lot-filter.png) " + -x + "px " + -y + "px";
 
         addClassesToButton(button, "lot");
         lotFilterArray.appendChild(button);
@@ -191,7 +191,7 @@ function fillButtonGraphics () {
 
         var x = (i % 4) * 71;
         var y = Math.floor(i / 4) * 71;
-        button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
+        button.style.background = "url(./images/filter-spritesheets/sim-filter.png) " + -x + "px " + -y + "px";
 
         addClassesToButton(button, "sim");
         simFilterArray.appendChild(button);
@@ -246,11 +246,11 @@ function mouseOverButtonChange (button, action, type) {
 
         if (action == "in") {
         
-            button.style.background = "url(./images/lot-filter-hover.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png) " + -x + "px " + -y + "px";
         }
         else if (action == "out") {
 
-            button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter.png) " + -x + "px " + -y + "px";
         }
     }
     else if (type == "sim") {
@@ -259,12 +259,11 @@ function mouseOverButtonChange (button, action, type) {
 
         if (action == "in") {
         
-            button.style.background = "url(./images/sim-filter-hover.png) " + -x + "px " + -y + "px";
-
+            button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png) " + -x + "px " + -y + "px";
         }
         else if (action == "out") {
 
-            button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter.png) " + -x + "px " + -y + "px";
         }
     }
 }
@@ -280,13 +279,12 @@ function filterButtonClick (button, type) {
     if (type == "lot") {
 
         var sameButton = (button.classList.contains("lot-filter-active"));
-
         for (let button of filterArray.children) {
 
             button.classList.remove("lot-filter-active");
             var x = (count % 4) * 71;
             var y = Math.floor(count / 4) * 71;
-            button.style.background = "url(./images/lot-filter.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter.png) " + -x + "px " + -y + "px";
     
             count++;
         }
@@ -296,7 +294,7 @@ function filterButtonClick (button, type) {
         else {
             var x = (index % 4) * 71;
             var y = Math.floor(index / 4) * 71;
-            button.style.background = "url(./images/lot-filter-selected.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png) " + -x + "px " + -y + "px";
             button.classList.add("lot-filter-active");
             writeFilterToTable("lot", index);
         }
@@ -305,17 +303,15 @@ function filterButtonClick (button, type) {
     else if (type == "sim") {
 
         var sameButton = (button.classList.contains("sim-filter-active"));
-
         for (let button of filterArray.children) {
 
             button.classList.remove("sim-filter-active");
             var x = (count % 4) * 71;
             var y = Math.floor(count / 4) * 71;
-            button.style.background = "url(./images/sim-filter.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter.png) " + -x + "px " + -y + "px";
     
             count++;
         }
-
         if (sameButton) {
 
             writeFilterToTable("sim", "REMOVE");
@@ -324,7 +320,7 @@ function filterButtonClick (button, type) {
 
             var x = (index % 4) * 71;
             var y = Math.floor(index / 4) * 71;
-            button.style.background = "url(./images/sim-filter-selected.png) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png) " + -x + "px " + -y + "px";
             button.classList.add("sim-filter-active");
             writeFilterToTable("sim", SIM_SEARCH[index]);
         }

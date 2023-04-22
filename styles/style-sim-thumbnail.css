@@ -7,6 +7,12 @@
     justify-content: center;
 }
 
+.div-sim-title {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
 .div-sim-thumbnail-desc {
     display: flex;
     flex-direction: row;
@@ -79,18 +85,18 @@
                 0px 3px 1px 3px rgba(255, 255, 255, 0.15);
 }
 
-.thumbnail-sim-bio::-webkit-scrollbar {
+.scrollbar::-webkit-scrollbar {
     width: 12px;
 }
 
-.thumbnail-sim-bio::-webkit-scrollbar-track {
+.scrollbar::-webkit-scrollbar-track {
     box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.3) inset,
                 1px 1px 3px 1px rgba(255, 255, 255, 0.2) inset;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
 
-.thumbnail-sim-bio::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-thumb {
 
     box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.4) inset,
                 2px 2px 2px 1px rgba(255, 255, 255, 0.3) inset;
@@ -107,4 +113,38 @@
 .bookmark-label {
     font-size: 1.4em;
     vertical-align: super;
+}
+
+.sim-title {
+    align-self: center;
+    flex: 1;
+    margin-right: 25px;
+}
+
+.button-sim-help-holder {
+    margin: 13px 3px 0px 13px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.button-sim-help {
+    background: url(../images/buttons/question-button.png) 0px 0px;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
+}
+
+.button-sim-help:hover {
+    background: url(../images/buttons/question-button.png) 80px 0px;
+}
+
+.button-sim-help:active {
+    background: url(../images/buttons/question-button.png) 40px 0px;
 }

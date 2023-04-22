@@ -227,42 +227,96 @@ function returnExistenceText (simShort) {
     }
 }
 
+// Reset sim thumbnail styles
+function resetSimThumbnailStyles () {
+
+    var title = document.getElementById("sim-title");
+    var block = document.getElementById("sim-viewer");
+    var image = document.getElementById("sim-thumbnail-image");
+
+    title.className = "";
+    block.className = "";
+    image.className = "";
+
+    title.classList.add("outset-title", "sim-title");
+    block.classList.add("div-sim-view", "block-background");
+}
+
+// Parse sim bio for style markers
+function returnStyleMarker (styleString) {
+
+    let startIndex = styleString.indexOf("sifi:") + 5;
+    let endIndex = 0;
+
+    for (let i = startIndex; i < styleString.length; i++) {
+        
+        if (styleString[i] == ":") {
+
+            endIndex = i;
+            break;
+        }
+    }
+    let styleText = styleString.substring(startIndex, endIndex);
+    return styleText.split(",");
+}
+
 // Easter Eggs
 function doEasterEggs (eggID, value) {
 
     switch (eggID){
 
-        // Rea sim panel
+        // Sim's panel
         case 0:
+            const simStyles = returnStyleMarker(value.description);
+            resetSimThumbnailStyles();
+            console.log(simStyles);
 
-            var location = document.getElementById("sim-title");
+            var title = document.getElementById("sim-title");
             var block = document.getElementById("sim-viewer");
             var image = document.getElementById("sim-thumbnail-image");
 
-            if (value == "Reaganomics Lamborghini") {
+            if (value.name == "Reaganomics Lamborghini") {
 
-                location.classList.add("rainbow-title");
-                block.classList.add("golden-block");
+                title.classList.add("rainbow-title");
                 image.classList.add("rainbow-image");
+
+                block.classList.add("golden-block");
                 block.classList.remove("block-background");
             }
-            else {
-                location.classList.remove("rainbow-title");
-                block.classList.add("block-background");
-                block.classList.remove("golden-block");
-                image.classList.remove("rainbow-image");
+            else if (simStyles.includes("bp")) {
+
+                block.classList.remove("block-background");
+                block.classList.add("pink-block");
+            }
+            else if (simStyles.includes("bsg")) {
+
+                block.classList.remove("block-background");
+                block.classList.add("seagreen-block");
+            }
+            else if (simStyles.includes("bdg")) {
+
+                block.classList.remove("block-background");
+                block.classList.add("dark-block");
+            }
+            else if (simStyles.includes("br")) {
+
+                block.classList.remove("block-background");
+                block.classList.add("red-block");
+            }
+            else if (simStyles.includes("bw")) {
+
+                block.classList.remove("block-background");
+                block.classList.add("bone-block");
             }
             break;
 
         // Rea sim head
         case 1:
-
             var image = document.getElementById("sim-thumbnail-image");
-            if (value == "Reaganomics Lamborghini"){
+            if (value.name == "Reaganomics Lamborghini"){
         
-                image.src = "./images/simface-rea.png";
+                image.src = "./images/sim-faces/simface-rea.png";
             }
-
             break;
 
         default:
@@ -298,7 +352,6 @@ async function searchLot() {
         alert("Cannot find lot \"" + lotName + "\"");
         return;
     }
-
     const lotShort = returnShortLotFromLocation(lotLong.location);
     writeLotThumbnail(lotShort, lotLong, "");
 
@@ -375,9 +428,6 @@ function returnMarketObject (simLong, simShort, lotShort) {
             marketObj.moneyLots.push(lotObj);
         } 
     });
-
-    console.log(marketObj);
-
     const avgBase = 31.7;
     const avgTime = 242.25;
 
@@ -407,7 +457,6 @@ function returnMarketObject (simLong, simShort, lotShort) {
     lotShort.forEach(function(lot) {
         lotLocations.push(lot.location);
     });
-
     // Check if sim working
     const jobPay = [0, 2, 5.2, 0, 5.9, 5.9];
     const jobsOpen = returnJobsOpen();
@@ -423,15 +472,13 @@ function returnMarketObject (simLong, simShort, lotShort) {
                 // Sim's job performance is based on 0 -> 1 year age, scaled into job payout
                 // These estimates are bound to be wonky, but no way to know job level for sure
                 const payPercent = Math.min(simDayAge(simLong[i].date), 365) / 365;
-                marketObj.moneyPerHourJob += Math.floor(payPercent * jobPay[jobsOpen[j]] * 3600);
+                marketObj.moneyPerHourJob += Math.floor(payPercent * jobPay[jobsOpen[j]] * 3600) + 1500;
                 marketObj.simsWorking++;
-                console.log(simShort[i].avatar_id);
                 break;
             }
         }
     }
-    console.log(marketObj);
-    writeMarketWatch(marketObj);
+    return marketObj;
 }
 
 // Return sim time [HH, MM] in a 24 hour format
@@ -451,9 +498,212 @@ function returnJobsOpen () {
     const simHour = returnSimTime()[0];
     var jobsOpen = [];
     
-    if (simHour >= 8 && simHour < 17) jobsOpen.push(1);
-    if (simHour >= 10 && simHour < 19) jobsOpen.push(2);
-    if (simHour >= 19 || simHour < 4) jobsOpen.push(4, 5)
+    // Feathers shift-end by one hour to account for any late shifts
+    if (simHour >= 8 && simHour < 18) jobsOpen.push(1);
+    if (simHour >= 10 && simHour < 20) jobsOpen.push(2);
+    if (simHour >= 19 || simHour < 5) jobsOpen.push(4, 5);
 
     return jobsOpen;
+}
+
+// Build lot_id string from top lot list
+function buildTopLotsLink (topLotList) {
+
+    var lotIDString = "https://api.freeso.org/userapi/lots?ids=";
+    for (let i = 0; i < topLotList.lots.length; i++) {
+
+        lotIDString += topLotList.lots[i].lot_id + ",";
+    }
+    lotIDString = lotIDString.slice(0, -1);
+    return lotIDString;
+}
+
+// Score each neighborhood by activity
+function returnNeighborhoodScore (lotsShort, lotsLong) {
+
+    const lotArray = new Array(lotsLong.lots.length);
+    lotArray.fill({
+        lot_id: 0,
+        lot_name: "",
+        nhood_id: 0,
+        category: 0,
+        rank: 0
+    });
+    for (let i = 0; i < lotsShort.lots.length; i++) {
+
+        for (let j = 0; j < lotsLong.lots.length; j++) {
+
+            if (lotsShort.lots[i].lot_id == lotsLong.lots[j].lot_id) {
+
+                lotArray[i] = {
+                    lot_id: lotsShort.lots[i].lot_id,
+                    lot_name: lotsShort.lots[i].lot_name,
+                    nhood_id: lotsLong.lots[j].neighborhood_id,
+                    category: lotsShort.lots[i].category,
+                    rank: lotsShort.lots[i].rank
+                }
+                lotsLong.lots.splice(j, 1);
+                break;
+            }
+        }
+    }
+    // (VERY) Estimated average amount of sims in a lot
+    var catWeights = [
+        0,  //None
+        19, //Money
+        5,  //Offbeat
+        8,  //Romance
+        8,  //Service
+        8,  //Shopping
+        32, //Skills
+        6,  //Welcome
+        5,  //Games
+        4,  //Entertainment
+        4,  //Residence
+        0   //Community
+    ];
+    const catCounts = new Array(12).fill(0);
+    for (let i = 0; i < lotArray.length; i++) {
+
+        catCounts[lotArray[i].category]++;
+    }
+    var nhoodRatings = returnNhoodRankings(lotArray, catCounts, catWeights);
+    //logRankAccuracy(nhoodRatings);
+
+    return nhoodRatings;
+}
+
+// Estimate rankings of neighborhoods and return ranked neighborhood list
+function returnNhoodRankings (lotArray, catCounts, catWeights) {
+
+    const nhoodRatings = new Array(NEIGHBORHOOD.length);
+    nhoodRatings.fill({
+        nhood_id: 0,
+        rating: 0
+    });
+    for (let i = 0; i < nhoodRatings.length; i++) {
+
+        nhoodRatings[i] = {nhood_id: i, rating: 0};
+    }
+    for (let i = 0; i < lotArray.length; i++) {
+
+        let nhoodID = returnFixedNeighborhoodID("to_normal", lotArray[i].nhood_id);
+        let rankMax = Math.min(catCounts[lotArray[i].category], 10);
+        let rank = lotArray[i].rank;
+        //let catSkew = Math.sqrt(catCounts[lotArray[i].category]);
+        let weight = catWeights[lotArray[i].category];
+
+        if (rank > 10) continue;
+
+        // Weighted scoring formula
+        //let rating = ((1 / (Math.sqrt(rank + 0.7))) * 10 - 2) * weight; //68
+        //let rating = ((Math.cos(rank / catSkew) / 2) + 0.5) * weight; //62
+        let rating = Math.max((((-rank ^ 0.5) + rankMax / 1.54) * weight), 0); //71
+        nhoodRatings[nhoodID].rating += rating;
+    }
+    nhoodRatings.sort(({rating:a}, {rating:b}) => b - a);
+    return nhoodRatings;
+}
+
+// Format between human readable and freeso neighborhood_id format
+function returnFixedNeighborhoodID (format, id) {
+
+    if (format == "to_freeso") {
+
+        if (id == 0) return 1;
+        return id + 34;
+    }
+    else if (format == "to_normal") {
+
+        if (id == 1) return 0;
+        return id - 34;
+    }
+}
+
+// These functions are decrepit until i find a more responsive way to rank neighborhoods accurately
+// // Log ranking accuracy to console
+// function logRankAccuracy (nhoodRatings) {
+
+//     const rankAcc = returnRankAccuracy(nhoodRatings);
+//     console.log("Top 30 Neighborhoods (Top 10 " + rankAcc + "% Accurate): ");
+//     for (let i = 0; i < 30; i++) {
+//         console.log((i + 1) + ". " + returnNeighborhood(returnFixedNeighborhoodID("to_freeso", nhoodRatings[i].nhood_id)) + 
+//                     " - " + Math.floor(nhoodRatings[i].rating));
+//     }
+// }
+
+// // Tune weights of lot categories
+// function returnRandomCatTuning (catList) {
+
+//     const tuneSize = 2;
+
+//     const randCat = Math.floor(Math.random() * 12);
+//     const randAmount = (Math.random() * tuneSize) - (tuneSize / 2);
+
+//     catList[randCat] = Math.max(catList[randCat] + randAmount, 0);
+//     return catList;
+// }
+
+// // Return accuracy of ranking estimate
+// function returnRankAccuracy (nhoodList) {
+
+//     // current top 10
+//     const realTopLots = [
+//         "Serpent's Spine",
+//         "Volcanic Springs",
+//         "Spiral Cove",
+//         "M.O.M.I. Mire",
+//         "Wright Shoals",
+//         "Clover Heights",
+//         "Crescent Rock",
+//         "The Sunrise Riviera",
+//         "Calvin's Coast",
+//         "Turtle Rock",
+//         "Bhugarbha Triangle",
+//         "Journey's End",
+//         "Trio Lake",
+//         "Offbeat Islands",
+//         "Lunar Lake"
+//     ];
+//     var accuracy = 0;
+//     var maxScore = 15
+//     for (let i = 0; i < 15; i++) {
+
+//         for (let j = 0; j < realTopLots.length; j++) {
+
+//             if (returnNeighborhood(returnFixedNeighborhoodID("to_freeso", nhoodList[i].nhood_id)) == realTopLots[j]) {
+
+//                 accuracy += maxScore - Math.abs(i - j);
+//             }
+//         }
+//     }
+//     accuracy = (accuracy / 225).toFixed(3);
+//     return accuracy;
+// }
+
+// Return percentage of population in each region currently
+function returnNHoodTopMovers (lotsShort, lotsLong, onlinePop) {
+
+    lotsShort = lotsShort.lots;
+    lotsLong = lotsLong.lots;
+    lotsShort.sort(({lot_id:a}, {lot_id:b}) => b - a);
+    lotsLong.sort(({lot_id:a}, {lot_id:b}) => b - a);
+    var nhoodPop = new Array(NEIGHBORHOOD.length);
+
+    for (let i = 0; i < nhoodPop.length; i++) {
+
+        nhoodPop[i] = {nhood_id: returnFixedNeighborhoodID("to_freeso", i), rating: 0};
+    }
+    for (let i = 0; i < nhoodPop.length; i++) {
+
+        for (let j = 0; j < lotsShort.length; j ++) {
+
+            if (lotsLong[j].neighborhood_id == nhoodPop[i].nhood_id) {
+
+                var percent = lotsShort[j].avatars_in_lot / onlinePop;
+                nhoodPop[i].rating += percent;
+            }
+        }
+    }
+    return(nhoodPop);
 }

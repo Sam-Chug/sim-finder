@@ -7,6 +7,15 @@
     animation: move 60s linear infinite;
 }
 
+.rainbow-image {
+    z-index: 3;
+    animation: 2.5s pulse infinite;
+    animation-timing-function: ease-in-out;
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px 5px rgba(255, 233, 163, 0.5),
+                0px 0px 5px 5px rgba(255, 233, 163, 0.5) inset;
+}
+
 .rainbow-title {
     color: rgba(0, 0, 0, 0.55);
     background: #d4af37;
@@ -21,19 +30,51 @@
 
 .golden-block {
     border-radius: 45px;
-    background-color: #d4af37;
+    background-image: linear-gradient(90deg, #d4af37, #aa8714);
     
     box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
                 6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
 }
 
-.rainbow-image {
-    z-index: 3;
-    animation: 2.5s pulse infinite;
-    animation-timing-function: ease-in-out;
-    border-radius: 100%;
-    box-shadow: 0px 0px 5px 5px rgba(255, 233, 163, 0.5),
-                0px 0px 5px 5px rgba(255, 233, 163, 0.5) inset;
+.pink-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, pink, rgb(255, 132, 153));
+    
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
+                6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
+}
+
+.seagreen-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, seagreen, rgb(23, 103, 57));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+.dark-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(75, 75, 75), rgb(49, 49, 49));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+.red-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(210, 67, 67), rgb(183, 56, 56));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+
+}
+
+.bone-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(242, 237, 223), rgb(218, 211, 190));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
 }
 
 @keyframes move {

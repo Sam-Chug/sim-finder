@@ -79,12 +79,14 @@ async function writeLotThumbnail (lotShort, lotLong, existence, simLong) {
         lotBG.classList.remove("thumbnail-offline");
         lotDesc.textContent += "Population: " + lotShort.avatars_in_lot + "\n\n";
     }
+    // If town hall, skip roommates
     if (lotShort.category == 11) {
 
         descTarget.appendChild(lotDesc);
         descTarget.appendChild(lotOwnerTitle);
         descTarget.appendChild(lotOwner);
         descTarget.appendChild(lotRoommateTitle);
+        return;
     }
     const roommates = await grabAPI(buildRoommateLink(lotLong));
     const owner = returnOwner(roommates, lotLong.owner_id);
@@ -132,20 +134,19 @@ async function writeLotThumbnail (lotShort, lotLong, existence, simLong) {
 function writeSimThumbnail (simShort, simLong) {
 
     writeToLabel(simLong.name, "", "sim-title");
-    doEasterEggs(0, simLong.name);
-
+    
     const imageTarget = document.getElementById("sim-thumbnail-image");
     if (simLong.gender == 0) {
 
-        imageTarget.src = "./images/simface-m.png";
+        imageTarget.src = "./images/sim-faces/simface-m.png";
     }
     else if (simLong.gender == 1) {
 
-        imageTarget.src = "./images/simface-f.png";
+        imageTarget.src = "./images/sim-faces/simface-f.png";
     }
-
-    doEasterEggs(1, simLong.name);
-
+    doEasterEggs(0, simLong);
+    doEasterEggs(1, simLong);
+    
     const bioTarget = document.getElementById("sim-bio");
     bioTarget.textContent = simLong.description;
 
@@ -159,7 +160,6 @@ function writeSimThumbnail (simShort, simLong) {
 
         descContent += "Mayor of " + returnNeighborhood(simLong.mayor_nhood) + "\n";
     }
-
     if (simShort.privacy_mode == 1) {
 
         descContent += "Privacy Mode: On\n";
@@ -168,7 +168,6 @@ function writeSimThumbnail (simShort, simLong) {
 
         descContent += "Privacy Mode: Off\n";
     }
-
     descContent += returnExistenceText(simShort) + "\n";
     descTarget.textContent = descContent;
 
@@ -185,7 +184,6 @@ function writeSimThumbnail (simShort, simLong) {
             simBG.classList.remove("thumbnail-offline");
             lotBG.classList.remove("thumbnail-offline");
             break;
-            
     }
 }
 
@@ -263,6 +261,7 @@ function writeSimsInLot (selLot, population) {
     var simListText = "";
     var simTally = 0;
 
+    var visitCount = 0;
     for (let i = 0; i < simShortList.avatars.length; i++) {
 
         if (selLot.roommates.includes(simShortList.avatars[i].avatar_id)) continue;
@@ -271,6 +270,7 @@ function writeSimsInLot (selLot, population) {
 
             simListText += simShortList.avatars[i].name + "\n";
             simTally++;
+            visitCount++;
         }
     }
     // Write roommates
@@ -297,7 +297,26 @@ function writeSimsInLot (selLot, population) {
     }
     if (population - simTally > 0) {
 
-        simListText += "\nAnd " + (population - simTally) + " More Hidden Sim(s)"
+        if (visitCount == 0) {
+
+            if ((population - simTally) == 1) {
+
+                simListText += (population - simTally) + " Hidden Sim";
+            }
+            else {
+                simListText += (population - simTally) + " Hidden Sims";
+            }
+        }
+        else {
+
+            if ((population - simTally) == 1) {
+
+                simListText += "\nAnd " + (population - simTally) + " More Hidden Sim";
+            }
+            else {
+                simListText += "\nAnd " + (population - simTally) + " More Hidden Sims";
+            }
+        }
     }
     simsContent.textContent = simListText;
     simList.appendChild(simsHeader);
@@ -333,4 +352,62 @@ function writeMarketWatch (marketObj) {
     }
     hotspotText = hotspotText.slice(0, -1);
     marketHotspots.textContent = hotspotText;
+}
+
+// Write to neighborhood watch div
+function writeNeighborhoodWatch (nhoodObj) {
+
+    const topNeighborhoods = document.getElementById("top-nhoods");
+    var topText = "Top 10 Neighborhoods:\n\n";
+    for (let i = 0; i < 10; i++) {
+
+        topText += (i + 1) + ". " + returnNeighborhood(returnFixedNeighborhoodID("to_freeso", nhoodObj[i].nhood_id)) + "\n";
+    }
+    topText += "\n(Values Heavily Estimated)";
+    topNeighborhoods.textContent = topText;
+
+    const nextMovement = document.getElementById("nhood-movement");
+    activeRegions = returnNHoodTopMovers(lotShortList, lotLongList, simShortList.avatars_online_count);
+    activeRegions.sort(({rating:a}, {rating:b}) => b - a);
+    const ratingMax = activeRegions[0].rating;
+
+    const thead = buildTableHead("Region", "Movement");
+    nextMovement.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (let i = 0; i < activeRegions.length; i++) {
+        
+        if (activeRegions[i].rating == 0) {
+
+            break;
+        }
+        let rating = activeRegions[i].rating;
+        let chevronCount = "";
+        if (ratingMax == rating) {
+
+            chevronCount += "▲▲▲";
+        }
+        else if (ratingMax / .667 <= rating) {
+
+            chevronCount += "▲▲"; 
+        }
+        else {
+            
+            chevronCount += "▲";
+        }
+        var newRow = document.createElement("tr");
+        const tdRegion = document.createElement("td");
+        const tdChevron = document.createElement("td");
+
+        tdRegion.textContent = (i + 1) + ". " + returnNeighborhood(activeRegions[i].nhood_id);
+        tdChevron.textContent = chevronCount;
+
+        newRow.appendChild(tdRegion);
+        newRow.appendChild(tdChevron);
+
+        newRow = addClassesToTableRow(newRow);
+        tbody.appendChild(newRow);
+    }
+    nextMovement.appendChild(tbody);
+    return;
 }

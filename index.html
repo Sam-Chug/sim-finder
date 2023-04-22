@@ -7,7 +7,7 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 
         <link href = "styles/style.css" rel = "stylesheet"/>
-        <link href = "styles/style-thumbnail.css" rel = "stylesheet"/>
+        <link href = "styles/style-lot-thumbnail.css" rel = "stylesheet"/>
         <link href = "styles/style-lists.css" rel = "stylesheet"/>
         <link href = "styles/style-sim-thumbnail.css" rel = "stylesheet"/>
         <link href = "styles/style-sims-in-lot.css" rel = "stylesheet"/>
@@ -15,6 +15,7 @@
         <link href = "styles/style-lot-filter.css" rel = "stylesheet"/>
         <link href = "styles/style-eggs.css" rel = "stylesheet"/>
         <link href = "styles/style-market-watch.css" rel = "stylesheet"/>
+        <link href = "styles/style-nhood-watch.css" rel = "stylesheet"/>
 
         <script defer src = "./js/main.js"></script>
         <script defer src = "./js/bookmarks.js"></script>
@@ -71,7 +72,7 @@
                 <div class = "div-sim-table block-background">
 
                     <div id = "sims-online-count-label" class = "inset-title"></div>
-                    <div><table id = "sims-table" class = "list-table"></table></div>
+                    <div><table id = "sims-table" class = "list-table scrollbar" style = "max-height: 650px;"></table></div>
                     
                 </div>
             </div>
@@ -114,7 +115,7 @@
                 <div class = "div-lot-table block-background">
     
                     <div id = "lots-online-count-label" class = "inset-title"></div>
-                    <div><table id = "lots-table" class = "list-table"></table></div>
+                    <div><table id = "lots-table" class = "list-table scrollbar" style = "max-height: 281px;"></table></div>
 
                 </div>
 
@@ -122,7 +123,7 @@
                 <div class = "div-sim-table block-background">
 
                     <div class = "inset-title">Bookmarks</div>
-                    <div><table id = "bookmark-table" class = "list-table"></table></div>
+                    <div><table id = "bookmark-table" class = "list-table scrollbar" style = "max-height: 301px;"></table></div>
 
                 </div>
             </div>
@@ -134,8 +135,16 @@
                 <div id = "sim-viewer" class = "div-sim-view block-background" style = "display: none">
                     
                     <!-- sim's name -->
-                    <div id = "sim-title" class = "outset-title sim-title">No Sim Selected</div>
+                    <div class = "div-sim-title">
 
+                        <div class = "button-sim-help-holder">
+                            <button class = "button-sim-help" title = "Open Sim Panel Formatting Help Page"
+                            onclick = "window.open('https://sam-chug.github.io/SimFinderStyles.html')"></button>
+                        </div>
+                        <div id = "sim-title" class = "outset-title sim-title">No Sim Selected</div>
+
+                    </div>
+                    
                     <!-- sim image and desc -->
                     <div class = "div-sim-thumbnail-desc">
 
@@ -143,10 +152,12 @@
                         <div class = "div-sim-thumbnail">
 
                             <div id = "sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
-                            <img id = "sim-thumbnail-image" src = "./images/simface-f.png" alt = "No sim image found">
+                            <img id = "sim-thumbnail-image" src = "./images/sim-faces/simface-f.png" alt = "No sim image found">
 
                             <input type = "checkbox" id = "bookmark-checkbox" class = "bookmark-checkbox" name = "bookmark" onclick="checkBookmark()">
-                            <label for = "bookmark" class = "bookmark-label">Bookmark This Sim</label>
+                            <label for = "bookmark" class = "bookmark-label"
+                            onclick = "document.getElementById('bookmark-checkbox').click()">
+                            Bookmark This Sim</label>
 
                         </div>
 
@@ -154,7 +165,7 @@
                         <div class = "div-sim-desc-bio">
 
                             <div id = "sim-desc" class = "thumbnail-desc-holder">Unknown</div>
-                            <div id = "sim-bio" class = "thumbnail-sim-bio thumbnail-bio-holder">Unknown</div>
+                            <div id = "sim-bio" class = "thumbnail-sim-bio thumbnail-bio-holder scrollbar">Unknown</div>
 
                         </div>
                     </div>
@@ -189,8 +200,8 @@
                     <div class = "div-sims-in-lot">
 
                         <!-- sim list -->
-                        <div id = "lot-sims-list" class = "list-sims-in-lot thumbnail-desc-holder"></div>
-                        <div id = "lot-roommates-list" class = "list-sims-in-lot thumbnail-desc-holder"></div>
+                        <div id = "lot-sims-list" class = "list-sims-in-lot thumbnail-desc-holder scrollbar"></div>
+                        <div id = "lot-roommates-list" class = "list-sims-in-lot thumbnail-desc-holder scrollbar"></div>
 
                     </div>
                 </div>
@@ -201,9 +212,9 @@
                     <!-- title -->
                     <div class = "div-market-watch-title">
 
-                        <img src = "./images/market-watch-graphic.png" alt = "">
-                        <div class = "outset-title">FreeSO Market Watch</div>
-                        <img src = "./images/market-watch-graphic.png" alt = "">
+                        <img src = "./images/buttons/market-watch-graphic.png" alt = "">
+                        <p class = "outset-title" style = "min-width: fit-content">FreeSO Market Analysis</p>
+                        <img src = "./images/buttons/market-watch-graphic.png" alt = "">
 
                     </div>
 
@@ -216,6 +227,27 @@
 
                     </div>
                 </div>
+
+                <!-- neighborhood watch -->
+                <div class = "div-nhood-watch block-background" style = "display: none;">
+
+                    <!-- title -->
+                    <div class = "div-nhood-watch-title">
+
+                        <p class = "outset-title" style = "width: fit-content;">Neighborhood Watch</p>
+
+                    </div>
+
+                    <div class = "div-nhood-context">
+
+                        <!-- top 10 neighborhoods -->
+                        <div id = "top-nhoods" class = "thumbnail-desc-holder market-watch-content"></div>
+                        <!-- neighborhood movement -->
+                        <table id = "nhood-movement" class = "thumbnail-desc-holder market-watch-content"></table>
+
+                    </div>
+                </div>
+                
             </div>
         </div>
     </body>

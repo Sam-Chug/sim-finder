@@ -58,7 +58,7 @@ const NEIGHBORHOOD = [
     "The Sunrise Riviera", //35
     "Bhugarbha Triangle",
     "Journey's End",
-    "Offbeat Island",
+    "Offbeat Islands",
     "Spiral Cove",
     "Riverblossom Ravines",
     "Dragon's Isle",

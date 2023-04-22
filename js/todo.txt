@@ -19,27 +19,35 @@ https://api.freeso.org/userapi/city/1/avatars/name/burglar%20cop
 search by lot name
 https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
 
+return obj of top lots
+https://api.freeso.org/userapi/city/1/lots/top100/all
 
 FIX (priority sort):
 - fix bookmark checkbox graphic
-- merge css files into one on push
-- max height for sim list
 
 TODO:
 - clean up all the html class names <- this will never happen
 - game clock
-- top neighborhoods
 - new lot thumbnail:
     - show category icon
     - number of sims in box like ingame
     - add lot description
-    - add skill-mode
-- make bookmark-text link to checkbox click
-- add mobile res support
 - online sim stats:
     - age piechart
     - linegraph
 - freeso market watch:
     - job clock
+- add filter option for each job for sims currently at job lot
+- Add filter for lots with hidden sims
+- add panel for events?
+- special panel styles for staff accounts?
 
-- Add filter option for each job for sims currently at job lot
+In Progress:
+- Neighborhood watch
+- More custom sim themes
+
+Patch Notes:
+- Scrollbar for all lists
+- Adjusted market analysis low-end job payouts
+- Add sim-panel style indicators for sim's bio
+- Clicking bookmark text functions as clicking checkbox

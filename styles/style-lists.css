@@ -1,16 +1,29 @@
+.div-sim-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.div-lot-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
 .list-table {
     cursor: default;
-
-    margin: 10px 25px 35px 25px;
+    display: block;
+    margin: 10px 20px 35px 20px;
 
     background-color: #32455b;
     color: #fff89d;
-    font-size: clamp(0.9em, calc(1 * 1vw), 1.25em);
+    font-size: clamp(0.9em, calc(0.9 * 1vw), 1.1em);
     white-space: nowrap;
     
     border-radius: 10px;
     border-collapse: collapse;
     overflow: hidden;
+    overflow-y: scroll;
 
     box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
                 0px -1px 1px 3px rgba(0, 0, 0, 0.35),

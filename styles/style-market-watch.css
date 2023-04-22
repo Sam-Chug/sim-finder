@@ -1,7 +1,7 @@
 .div-market-watch {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-content: center;
     gap: 0em;
 }
 
@@ -9,6 +9,7 @@
     align-self: center;
     display: flex;
     flex-direction: row;
+    align-content: center;
 }
 
 .div-market-watch-title img {

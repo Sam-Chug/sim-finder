@@ -20,4 +20,6 @@
 .list-sims-in-lot {
     width: 50%;
     margin: 25px;
+    max-height: 250px;
+    overflow-y: scroll;
 }
