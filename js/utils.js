@@ -269,13 +269,12 @@ function doEasterEggs (eggID, value) {
         case 0:
             const simStyles = returnStyleMarker(value.description);
             resetSimThumbnailStyles();
-            console.log(simStyles);
 
             var title = document.getElementById("sim-title");
             var block = document.getElementById("sim-viewer");
             var image = document.getElementById("sim-thumbnail-image");
 
-            if (value.name == "Reaganomics Lamborghini") {
+            if (value.name == "-Reaganomics Lamborghini") {
 
                 title.classList.add("rainbow-title");
                 image.classList.add("rainbow-image");
@@ -308,6 +307,12 @@ function doEasterEggs (eggID, value) {
                 block.classList.remove("block-background");
                 block.classList.add("bone-block");
             }
+            else if (simStyles.includes("bpr")) {
+
+                block.classList.remove("block-background");
+                block.classList.add("purple-block");
+            }
+
             break;
 
         // Rea sim head

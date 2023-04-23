@@ -77,6 +77,14 @@
                 4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
 }
 
+.purple-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(121, 121, 162), rgb(79, 79, 135));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
 @keyframes move {
     to {
         background-position: 400vh;
