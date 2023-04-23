@@ -274,7 +274,7 @@ function doEasterEggs (eggID, value) {
             var block = document.getElementById("sim-viewer");
             var image = document.getElementById("sim-thumbnail-image");
 
-            if (value.name == "-Reaganomics Lamborghini") {
+            if (value.name == "Reaganomics Lamborghini") {
 
                 title.classList.add("rainbow-title");
                 image.classList.add("rainbow-image");
