@@ -500,21 +500,21 @@ function writeActiveJobs() {
     const jobDiner = document.getElementById("job-diner");
     const jobClub = document.getElementById("job-club");
 
-    jobRobot.style.background = "url(../images/buttons/jobs-active.png) 40px 0";
-    jobDiner.style.background = "url(../images/buttons/jobs-active.png) 40px 80px";
-    jobClub.style.background = "url(../images/buttons/jobs-active.png) 40px 40px";
+    jobRobot.style.background = "url(./images/buttons/jobs-active.png) 40px 0";
+    jobDiner.style.background = "url(./images/buttons/jobs-active.png) 40px 80px";
+    jobClub.style.background = "url(./images/buttons/jobs-active.png) 40px 40px";
 
     if (jobsActive.includes(1)) {
 
-        jobRobot.style.background = "url(../images/buttons/jobs-active.png) 0 0";
+        jobRobot.style.background = "url(./images/buttons/jobs-active.png) 0 0";
     }
     if (jobsActive.includes(2)) {
 
-        jobDiner.style.background = "url(../images/buttons/jobs-active.png) 0 80px";
+        jobDiner.style.background = "url(./images/buttons/jobs-active.png) 0 80px";
     }
     if (jobsActive.includes(4)) {
 
-        jobClub.style.background = "url(../images/buttons/jobs-active.png) 0 40px";
+        jobClub.style.background = "url(./images/buttons/jobs-active.png) 0 40px";
     }
 }
 
