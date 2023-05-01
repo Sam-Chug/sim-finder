@@ -30,7 +30,7 @@
         <link rel = "icon" type = "image/x-icon" href = "./images/favicon.ico">
         
     </head>
-    <body>
+    <body onresize = "sizeLists()">
         
         <!-- the stuff -->
         <div class = "container">
@@ -71,7 +71,7 @@
             <div class = "column-1">
 
                 <!-- sim search -->
-                <div class = "div-search block-background">
+                <div id = "sim-search-panel" class = "div-search block-background">
 
                     <!-- search inputs -->
                     <p class = "outset-title search-title">Sim Search</p>
@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- sim filter -->
-                <div class = "div-sim-filter block-background">
+                <div id = "sim-filter-panel" class = "div-sim-filter block-background">
 
                     <!-- sim filter buttons - buttons generated -->
                     <div class = "filter-title">
@@ -110,7 +110,7 @@
                 </div>
 
                 <!-- sim list -->
-                <div class = "div-sim-table block-background">
+                <div id = "sim-list-panel" class = "div-sim-table block-background">
 
                     <div id = "sims-online-count-label" class = "inset-title"></div>
                     <div><table id = "sims-table" class = "list-table scrollbar" style = "max-height: 650px;"></table></div>
@@ -122,7 +122,7 @@
             <div class = "column-2">
 
                 <!-- lot search -->
-                <div class = "div-search block-background">
+                <div id = "lot-search-panel" class = "div-search block-background">
 
                     <!-- search inputs -->
                     <p class = "outset-title search-title">Lot Search</p>
@@ -144,7 +144,7 @@
                 </div>
 
                 <!-- lot filter -->
-                <div class = "div-lot-filter block-background">
+                <div id = "lot-filter-panel" class = "div-lot-filter block-background">
 
                     <!-- lot filter buttons - buttons generated -->
                     <div class = "filter-title">
@@ -192,7 +192,7 @@
                             onclick = "window.open('https://sam-chug.github.io/SimFinderStyles.html')">
                                 <div class = "buttom-sim-help-image"></div>
                             </button>
-                            
+
                         </div>
                         <div id = "sim-title" class = "outset-title sim-title">No Sim Selected</div>
 

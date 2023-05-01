@@ -569,6 +569,7 @@ function minWindow(type) {
             filterPanel.style.display = "none";
         }
     }
+    sizeLists();
 }
 
 // Write about info in sidebar info panel 
@@ -580,4 +581,29 @@ async function writeSidebarInfo() {
     
     var infoText = "Sim Finder\n\nLast Update:\n" + date;
     infoBox.textContent = infoText;
+}
+
+// Auto size lists to fit screen
+function sizeLists() {
+
+    const windowHeight = window.innerHeight;
+
+    const simSearch = document.getElementById("sim-search-panel");
+    const simFilter = document.getElementById("sim-filter-panel");
+    const simList = document.getElementById("sims-table");
+    var height = Math.max(windowHeight - (simSearch.offsetHeight + simFilter.offsetHeight) - 145, 416);
+    height = Math.min(height, 1016);
+    var heightPX = height + "px";
+    simList.style.maxHeight = heightPX;
+
+
+    const lotSearch = document.getElementById("lot-search-panel");
+    const lotFilter = document.getElementById("lot-filter-panel");
+    const bookList = document.getElementById("bookmark-table");
+    const lotList = document.getElementById("lots-table");
+    var height = Math.max((windowHeight - (lotSearch.offsetHeight + lotFilter.offsetHeight) - 261) / 2, 150);
+    height = Math.min(height, 450);
+    var heightPX = height + "px";
+    lotList.style.maxHeight = heightPX;
+    bookList.style.maxHeight = heightPX;
 }
