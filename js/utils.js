@@ -95,6 +95,20 @@ function buildRoommateLink (longLot) {
     return roommateIDString;
 }
 
+// Return git json so i can get the date
+async function returnGitCommitJson() {
+
+    const apiLink = "https://api.github.com/repos/sam-chug/sim-finder/branches/master";
+
+    let obj;
+    const res = await fetch(apiLink);
+    obj = await res.json();
+
+    console.log("Pinged: " + apiLink);
+
+    return obj;
+}
+
 // Return owner sim-object from roommate list
 function returnOwner (roommates, owner_id) {
 
@@ -504,9 +518,9 @@ function returnJobsOpen () {
     var jobsOpen = [];
     
     // Feathers shift-end by one hour to account for any late shifts
-    if (simHour >= 8 && simHour < 18) jobsOpen.push(1);
-    if (simHour >= 10 && simHour < 20) jobsOpen.push(2);
-    if (simHour >= 19 || simHour < 5) jobsOpen.push(4, 5);
+    if (simHour >= 8 && simHour <= 17) jobsOpen.push(1);
+    if (simHour >= 10 && simHour <= 19) jobsOpen.push(2);
+    if (simHour >= 19 || simHour <= 4) jobsOpen.push(4, 5);
 
     return jobsOpen;
 }

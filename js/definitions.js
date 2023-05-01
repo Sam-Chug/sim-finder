@@ -98,7 +98,8 @@ const SIM_SEARCH = [
     "SHOWN",
     "HIDDEN",
     "FOUND",
-    "FLOATING"
+    "FLOATING",
+    "WORKING"
 ]
 
 const SIM_FILTER_TOOLTIP = [
@@ -109,7 +110,8 @@ const SIM_FILTER_TOOLTIP = [
     "Privacy Mode: Off",
     "Privacy Mode: On",
     "Located Private Sims",
-    "Floating"
+    "Floating",
+    "Working"
 ]
 
 const LOT_FILTER_TOOLTIP = [

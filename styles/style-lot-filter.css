@@ -33,7 +33,6 @@
     flex-wrap: wrap;
     gap: 5px;
     margin: 5px 18px 18px 18px;
-
 }
 
 .filter-button{
@@ -41,4 +40,19 @@
     height: 71px;
     margin: 0px;
     border: none;
+}
+
+.filter-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.filter-min {
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    align-self: center;
 }

@@ -28,6 +28,7 @@
 }
 
 .market-watch-content {
+    cursor: default;
     flex: 1;
     min-width: fit-content;
     font-size: clamp(0.9em, calc(1.1 * 1vw), 1.1em);

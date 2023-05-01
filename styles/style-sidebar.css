@@ -1,0 +1,172 @@
+.sidebar-holder {
+    display: block;
+    width: 200px;
+    position: fixed;
+    left: -155px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    min-width: 200px;
+    width: 200px;
+    border-radius: 0 40px 40px 0;
+}
+
+.animate-sidebar {
+    animation-name: sidebarExpand;
+    -webkit-animation-name: sidebarExpand;
+    animation-duration: 0.75s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-button {
+    animation-name: rotate180;
+    -webkit-animation-name: rotate180;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-holder {
+    animation-name: sidebarHolderSizeExpand;
+    -webkit-animation-name: sidebarHolderSizeExpand;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+/* this is probably stupid but i dont know any better */
+.animate-sidebar-reverse {
+    animation-name: sidebarRetract;
+    -webkit-animation-name: sidebarRetract;
+    animation-duration: 0.75s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-button-reverse {
+    animation-name: rotate180Reverse;
+    -webkit-animation-name: rotate180Reverse;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-holder-reverse {
+    animation-name: sidebarHolderSizeRetract;
+    -webkit-animation-name: sidebarHolderSizeRetract;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.sim-clock {
+    display: none;
+    cursor: default;
+    
+    width: 145px;
+    margin: 10px 15px 15px 15px;
+    padding: 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    
+    background-color: #2f4158;
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-outset-title {
+    display: none;
+    cursor: default;
+
+    margin: 15px 15px;
+    padding: 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background-color: #5077a3;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                5px 5px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                3px 3px 3px 1px rgba(0, 0, 0, 0.6);
+
+    align-self: center;
+    width: 150px;
+    padding: 0 10px 3px 10px;
+    margin: 12px 6px;
+}
+
+.expand-sidebar {
+    align-self: flex-end;
+    margin: 15px 11px -5px 11px;
+    translate: 0 2px;
+    display: block;
+}
+
+.expand-sidebar-button {
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transform-origin: 14px 13px;
+}
+
+.expand-sidebar-image {
+    transform: translate(-8px, -3px);
+    background: url(../images/buttons/expand-arrow.png) 0px 0px;
+    width: 30px;
+    height: 30px;
+}
+
+.expand-sidebar-image:hover {
+    background: url(../images/buttons/expand-arrow.png) 60px 0px;
+}
+
+.expand-sidebar-image:active {
+    background: url(../images/buttons/expand-arrow.png) 30px 0px;
+}
+
+.job-holder {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+.job-active {
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    margin-top: -5px;
+    border-radius: 50%;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}

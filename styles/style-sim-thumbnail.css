@@ -70,10 +70,11 @@
     height: 12vw;
     min-height: 200px;
     min-width: 313px;
+    max-width: 490px;
 
     background-color: #32455b;
     color: #fff89d;
-    font-size: clamp(1em, 1vw, 2em);
+    font-size: clamp(1em, 1vw, 1.65em);
 
     border-radius: 10px;
     border-collapse: collapse;
@@ -123,28 +124,33 @@
 
 .button-sim-help-holder {
     margin: 13px 3px 0px 13px;
-
-    display: flex;
-    justify-content: center;
+    display: block;
 }
 
 .button-sim-help {
-    background: url(../images/buttons/question-button.png) 0px 0px;
-
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    border: none;
+}
 
+.buttom-sim-help-image {
+    transform: translate(-5px, -1px);
+    border-radius: 50%;
     box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
                 4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
                 1px 1px 2px 1px rgba(0, 0, 0, 0.6);
+
+    width: 40px;
+    height: 40px;
+    background: url(../images/buttons/question-button.png) 0px 0px;
 }
 
-.button-sim-help:hover {
+.buttom-sim-help-image:hover {
     background: url(../images/buttons/question-button.png) 80px 0px;
 }
 
-.button-sim-help:active {
+.buttom-sim-help-image:active {
     background: url(../images/buttons/question-button.png) 40px 0px;
 }

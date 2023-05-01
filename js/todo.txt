@@ -26,28 +26,20 @@ FIX (priority sort):
 - fix bookmark checkbox graphic
 
 TODO:
-- clean up all the html class names <- this will never happen
-- game clock
 - new lot thumbnail:
     - show category icon
     - number of sims in box like ingame
     - add lot description
-- online sim stats:
-    - age piechart
-    - linegraph
-- freeso market watch:
-    - job clock
-- add filter option for each job for sims currently at job lot
-- Add filter for lots with hidden sims
-- add panel for events?
-- special panel styles for staff accounts?
 
 In Progress:
-- Neighborhood watch
 - More custom sim themes
 
+With New Database:
+- Neighborhood watch
+- Sim last online time
+- Improve market watch
+
 Patch Notes:
-- Scrollbar for all lists
-- Adjusted market analysis low-end job payouts
-- Add sim-panel style indicators for sim's bio
-- Clicking bookmark text functions as clicking checkbox
+- Side bar
+- Min-max buttons for filter windows
+- Filter option for sims currently at work

@@ -4,7 +4,7 @@
     -webkit-text-fill-color: transparent;
     text-shadow: none;
     font-style: italic;
-    animation: move 60s linear infinite;
+    animation: move 3s linear infinite;
 }
 
 .rainbow-image {
@@ -87,7 +87,7 @@
 
 @keyframes move {
     to {
-        background-position: 400vh;
+        background-position: 215px;
     }
 }
 

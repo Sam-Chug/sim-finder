@@ -116,6 +116,16 @@ function returnFilterSimList (filter) {
             }
             break;
 
+        case "WORKING":
+            for (let i = 0; i < simShortList.avatars.length; i++) {
+            
+                if (returnExistenceState(simShortList.avatars[i]) == "WORKING") {
+
+                    longList.push(simLongList.avatars[i]);
+                }
+            }
+            break;
+
         default:
             break;
     }

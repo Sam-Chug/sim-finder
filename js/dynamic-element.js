@@ -185,7 +185,7 @@ function fillButtonGraphics () {
         addClassesToButton(button, "lot");
         lotFilterArray.appendChild(button);
     }
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
 
         let button = document.createElement("button");
 

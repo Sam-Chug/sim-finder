@@ -16,11 +16,12 @@
         <link href = "styles/style-eggs.css" rel = "stylesheet"/>
         <link href = "styles/style-market-watch.css" rel = "stylesheet"/>
         <link href = "styles/style-nhood-watch.css" rel = "stylesheet"/>
+        <link href = "styles/style-sidebar.css" rel = "stylesheet"/>
 
         <script defer src = "./js/main.js"></script>
         <script defer src = "./js/bookmarks.js"></script>
         <script defer src = "./js/definitions.js"></script>
-        <script defer src = "./js/dynamic-css.js"></script>
+        <script defer src = "./js/dynamic-element.js"></script>
         <script defer src = "./js/elements.js"></script>
         <script defer src = "./js/filters.js"></script>
         <script defer src = "./js/utils.js"></script>
@@ -33,6 +34,38 @@
         
         <!-- the stuff -->
         <div class = "container">
+
+            <div id = "sidebar-holder" class = "sidebar-holder">
+
+                <!-- sidebar -->
+                <div id = "sidebar" class = "sidebar block-background" >
+
+                    <!-- expand -->
+                    <div class = "expand-sidebar">
+
+                        <button title = "Expand Sidebar" id = "sidebar-button" class = "expand-sidebar-button" onclick = "expandSidebar()">
+                            <div class = "expand-sidebar-image"></div>
+                        </button>
+                    </div>
+
+                    <!-- clock -->
+                    <div id = "sim-clock" class = "clock-text sim-clock sidebar-hide"></div>
+
+                    <!-- jobs active -->
+                    <div class = "job-holder">
+                        <div title = "Robot Factory" id = "job-robot" class = "job-active sidebar-hide"></div>
+                        <div title = "Diner" id = "job-diner" class = "job-active sidebar-hide"></div>
+                        <div title = "Club - DJ/Dancer" id = "job-club" class = "job-active sidebar-hide"></div>
+                    </div>
+
+                    <!-- version/info -->
+                    <div style = "display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <p class = "sidebar-outset-title sidebar-hide" style = "margin-top: 100px;">Info</p>
+                        <p id = "sidebar-site-info" class = "sim-clock sidebar-hide" style = "font-size: 1em; margin-top: 0px; text-align: left; white-space: pre-wrap;"></p>
+                    </div>
+
+                </div>
+            </div>
 
             <!-- sim column -->
             <div class = "column-1">
@@ -63,9 +96,17 @@
                 <div class = "div-sim-filter block-background">
 
                     <!-- sim filter buttons - buttons generated -->
-                    <p class = "outset-title search-title">Filter Sims</p>
-                    <div id = "sim-filter-array" class = "sim-filter-flex inset-title"></div>
+                    <div class = "filter-title">
 
+                        <button id = "sim-filter-min-button" class = "filter-min" onclick = "minWindow('sim')">
+                            
+                            <div id = "sim-filter-min-image" class = "min-max-button window-minable"></div>
+
+                        </button>
+                        <p class = "outset-title search-title">Filter Sims</p>
+
+                    </div>
+                    <div id = "sim-filter-array" class = "sim-filter-flex inset-title"></div>
                 </div>
 
                 <!-- sim list -->
@@ -106,9 +147,17 @@
                 <div class = "div-lot-filter block-background">
 
                     <!-- lot filter buttons - buttons generated -->
-                    <p class = "outset-title search-title">Filter Lots</p>
-                    <div id = "lot-filter-array" class = "lot-filter-flex inset-title"></div>
+                    <div class = "filter-title">
 
+                        <button id = "lot-filter-min-button" class = "filter-min" onclick = "minWindow('lot')">
+
+                            <div id = "lot-filter-min-image" class = "min-max-button window-minable"></div>
+
+                        </button>
+                        <p class = "outset-title search-title">Filter Lots</p>
+                        
+                    </div>
+                    <div id = "lot-filter-array" class = "lot-filter-flex inset-title"></div>
                 </div>
 
                 <!-- lot list -->
@@ -138,8 +187,12 @@
                     <div class = "div-sim-title">
 
                         <div class = "button-sim-help-holder">
+                            
                             <button class = "button-sim-help" title = "Open Sim Panel Formatting Help Page"
-                            onclick = "window.open('https://sam-chug.github.io/SimFinderStyles.html')"></button>
+                            onclick = "window.open('https://sam-chug.github.io/SimFinderStyles.html')">
+                                <div class = "buttom-sim-help-image"></div>
+                            </button>
+                            
                         </div>
                         <div id = "sim-title" class = "outset-title sim-title">No Sim Selected</div>
 
@@ -237,7 +290,6 @@
                         <p class = "outset-title" style = "width: fit-content;">Neighborhood Watch</p>
 
                     </div>
-
                     <div class = "div-nhood-context">
 
                         <!-- top 10 neighborhoods -->

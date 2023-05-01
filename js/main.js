@@ -63,6 +63,13 @@ async function getOnline() {
     const marketObj = returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
     writeMarketWatch(marketObj);
 
+    // Start sim clock
+    setInterval(writeSimClock, 1000);
+    writeSimClock();
+
+    // Write sidebar info
+    writeSidebarInfo();
+
     // Top neighborhoods
     // topLotShort = await grabAPI("https://api.freeso.org/userapi/city/1/lots/top100/all");
     // topLotLong = await grabAPI(buildTopLotsLink(topLotShort));
