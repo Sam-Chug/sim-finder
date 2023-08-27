@@ -9,7 +9,7 @@ class SimData{
     
         this.topLotShort;
         this.topLotLong;
-        
+
         this.bookmarkList;
     }
-}
+};

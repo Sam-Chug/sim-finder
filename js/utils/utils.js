@@ -13,6 +13,7 @@ simUtils = function() {
 
 guiUtils = function() {
 
+    //#region Build sim/lot lists
     function buildListHeader(columnLeftText, columnRightText) {
 
         let listHead = document.createElement("div");
@@ -73,6 +74,7 @@ guiUtils = function() {
             GUI_ONLINELOTS.appendChild(lotNode);
         }
     }
+    //#endregion
 
     function writeToLabel(contentString, content, target) {
 
@@ -87,6 +89,19 @@ guiUtils = function() {
         populateSimList: populateSimList,
         populateLotList: populateLotList,
         writeToLabel: writeToLabel
+    }
+}();
+
+drawUtils = function() {
+
+    function generateFilterIcons() {
+
+        // for amoutn of filter icons
+        // generate normal, hovered, selected sprite canvas
+    }
+
+    return {
+        generateFilterIcons: generateFilterIcons
     }
 }();
 

@@ -138,6 +138,10 @@ const LOT_FILTER_TOOLTIP = [
 
 // Converts search id to lot category id
 const LOT_SEARCH_ID = [7, 1, 6, 4, 9, 3, 5, 8, 2, 10, 11, 0];
+const FILTER_ICON_CACHE = {
+    sim_filters: [],
+    lot_filters: [],
+};
 
 //#region DOM cache
 const GUI_ONLINESIMS = document.getElementById('sims-table');

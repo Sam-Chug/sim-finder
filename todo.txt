@@ -6,6 +6,8 @@
             - Generated from wherever a sim or lot node is clicked
         - Automatically ping api, update per minute
         - Fix clock 12:00 am/pm
+        - Upgrade versioning system
+        - Change "idList" to "simfinder-bookmarks" in localStorage
     
     Side Features:
         - Lot renderer/object finder
