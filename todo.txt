@@ -1,0 +1,78 @@
+- Rewrite TODO:
+
+    System:
+        - Filter icons drawn on canvi, resizable
+        - Sim/lot windows cleanly generated from data object
+            - Generated from wherever a sim or lot node is clicked
+        - Automatically ping api, update per minute
+        - Fix clock 12:00 am/pm
+    
+    Side Features:
+        - Lot renderer/object finder
+
+    Fluff:
+        - Upgrade from sim head to ingame sim bio gif
+            - Pick from a set of 10, 5m 5f
+
+        - Sim/lot bio closer in design to how the ingame bios look
+        - Much more comprehensive user-style codes
+            - Sims:
+                - Sim avatar gif
+                - Sim window color
+                - Sim title color
+
+            - Lots:
+                - Lot window color
+                - Lot title color
+
+        - "Hot" Lots
+            - Highlight top 3 lots in a category if online
+
+        - Sim birthdays
+            - Every 100 & 365 day increment
+            - Cake slice emoji next to name
+
+        - Current elections, if possible
+
+short sim list
+https://api.freeso.org/userapi/avatars/online
+
+long sim list
+https://api.freeso.org/userapi/avatars?ids=887,30363 etc.
+
+short lot list
+https://api.freeso.org/userapi/city/1/lots/online
+
+long single-lot list (lot id)
+https://api.freeso.org/userapi/lots/6852
+
+lot thumbnail (location)
+https://api.freeso.org/userapi/city/1/13828398.png
+
+search by sim name
+https://api.freeso.org/userapi/city/1/avatars/name/burglar%20cop
+
+search by lot name
+https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
+
+return obj of top lots
+https://api.freeso.org/userapi/city/1/lots/top100/all
+
+FIX (priority sort):
+- fix bookmark checkbox graphic
+
+TODO:
+- new lot thumbnail:
+    - show category icon
+    - number of sims in box like ingame
+    - add lot description
+
+In Progress:
+- More custom sim themes
+
+With New Database:
+- Neighborhood watch
+- Sim last online time
+- Improve market watch
+
+Patch Notes:

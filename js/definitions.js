@@ -1,3 +1,9 @@
+//#region Strings
+const VERSION_STR = "v0.2.1a";
+
+const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
+const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
+
 const JOB_TITLES = [
     "Unemployed",
     "Robot Factory",
@@ -128,6 +134,12 @@ const LOT_FILTER_TOOLTIP = [
     "Places with the Community Category",
     "Most Popular Places with the No Category"
 ]
+//#endregion
 
-// converts search id to lot category id
+// Converts search id to lot category id
 const LOT_SEARCH_ID = [7, 1, 6, 4, 9, 3, 5, 8, 2, 10, 11, 0];
+
+//#region DOM cache
+const GUI_ONLINESIMS = document.getElementById('sims-table');
+const GUI_ONLINELOTS = document.getElementById('lots-table');
+//#endregion

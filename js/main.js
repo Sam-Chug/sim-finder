@@ -1,18 +1,63 @@
-const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
-const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
+const simDataHolder = new SimData();
 
-var simShortList;
-var simLongList;
+document.addEventListener("DOMContentLoaded", async e => {
 
-var lotShortList;
-var lotLongList;
+    simFinderMain.start();
+});
 
-var topLotShort;
-var topLotLong;
+simFinderMain = function() {
 
-var bookmarkList;
+    async function start() {
 
-document.addEventListener("DOMContentLoaded", getOnline);
+        await getOnlineData();
+        populateGui();
+    }
+
+    async function getOnlineData() {
+
+        // Grab sim data
+        let simShortList = await apiUtils.getAPIData(SIM_ONLINE_URL);
+        let simLongList = await apiUtils.getAPIData(apiUtils.buildLongSimLink(simShortList));
+
+        // Grab lot data
+        let lotShortList = await apiUtils.getAPIData(LOTS_ONLINE_URL);
+        let lotLongList = await apiUtils.getAPIData(apiUtils.buildLongLotLink(lotShortList));
+
+        // Sort
+        lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
+        simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+        simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+
+        // Put into data holder
+        simDataHolder.simShortList = simShortList;
+        simDataHolder.simLongList = simLongList;
+        simDataHolder.lotShortList = lotShortList;
+        simDataHolder.lotLongList = lotLongList;
+    }
+
+    function populateGui() {
+
+        guiUtils.populateSimList(simDataHolder.simLongList.avatars);
+        guiUtils.writeToLabel(
+            "Sims Online: ", 
+            simDataHolder.simShortList.avatars_online_count, 
+            "sims-online-count-label"
+        );
+        
+        guiUtils.populateLotList(simDataHolder.lotShortList.lots);
+        guiUtils.writeToLabel(
+            "Lots Online: ", 
+            simDataHolder.lotShortList.total_lots_online, 
+            "lots-online-count-label"
+        );
+
+    }
+
+    return {
+        start: start,
+        getOnlineData: getOnlineData
+    }
+}();
 
 // Main
 async function getOnline() {
