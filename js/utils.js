@@ -334,7 +334,7 @@ function doEasterEggs (eggID, value) {
             var image = document.getElementById("sim-thumbnail-image");
             if (value.name == "Reaganomics Lamborghini"){
         
-                image.src = "./images/sim-faces/simface-rea.png";
+                image.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
             }
             break;
 

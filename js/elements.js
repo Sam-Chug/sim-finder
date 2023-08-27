@@ -24,7 +24,7 @@ async function writeLotThumbnail (lotShort, lotLong, existence, simLong) {
                                      "Established: Dawn of Time\n" + 
                                      "Admit Mode: Admit All";
 
-            imageTarget.src = "./images/unknown.png";
+            imageTarget.src = "./images/unknown.png?v0.2.1a";
             writeToLabel("Floating", "", "thumbnail-title");
             return;
 
@@ -32,19 +32,19 @@ async function writeLotThumbnail (lotShort, lotLong, existence, simLong) {
             descTarget.textContent = "Category: Job\n" +
                                      "Making: Simoleons";
 
-            imageTarget.src = "./images/unknown.png";
+            imageTarget.src = "./images/unknown.png?v0.2.1a";
             writeToLabel("Working - " + JOB_STRINGS[simLong.current_job], "", "thumbnail-title");
             return;
 
         case "HIDDEN":
             descTarget.textContent = "Hidden";
-            imageTarget.src = "./images/unknown.png";
+            imageTarget.src = "./images/unknown.png?v0.2.1a";
             writeToLabel("Hidden", "", "thumbnail-title");
             return;
 
         case "OFFLINE":
             descTarget.textContent = "This sim is touching grass";
-            imageTarget.src = "./images/unknown.png";
+            imageTarget.src = "./images/unknown.png?v0.2.1a";
             writeToLabel("Offline", "", "thumbnail-title");
             return;
 
@@ -53,8 +53,8 @@ async function writeLotThumbnail (lotShort, lotLong, existence, simLong) {
     }
     writeToLabel(lotLong.name, "", "thumbnail-title");
     descTarget.textContent = "";
-    imageTarget.src = "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png";
-    console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png");
+    imageTarget.src = "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png?v0.2.1a";
+    console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + lotLong.location + ".png?v0.2.1a");
 
     const lotDesc = document.createElement("p");
     const lotOwnerTitle = document.createElement("p");
@@ -138,11 +138,11 @@ function writeSimThumbnail (simShort, simLong) {
     const imageTarget = document.getElementById("sim-thumbnail-image");
     if (simLong.gender == 0) {
 
-        imageTarget.src = "./images/sim-faces/simface-m.png";
+        imageTarget.src = "./images/sim-faces/simface-m.png?v0.2.1a";
     }
     else if (simLong.gender == 1) {
 
-        imageTarget.src = "./images/sim-faces/simface-f.png";
+        imageTarget.src = "./images/sim-faces/simface-f.png?v0.2.1a";
     }
     doEasterEggs(0, simLong);
     doEasterEggs(1, simLong);

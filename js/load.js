@@ -14,7 +14,7 @@ const SCRIPTS = [
 for (let i = 0; i < SCRIPTS.length; i++) {
 
     let scriptElement = document.createElement("script");
-    scriptElement.setAttribute("src", "./js/scripts/" + SCRIPTS[i] + ".js");
+    scriptElement.setAttribute("src", "./js/scripts/" + SCRIPTS[i] + ".js?v0.2.1a");
 
     scriptElement.addEventListener("load", () => console.log(SCRIPTS[i] + ".js loaded"));
     document.body.appendChild(scriptElement);
@@ -22,7 +22,7 @@ for (let i = 0; i < SCRIPTS.length; i++) {
 
 // Load main
 let scriptElement = document.createElement("script");
-scriptElement.setAttribute("src", "./js/scripts/main.js");
+scriptElement.setAttribute("src", "./js/scripts/main.js?v0.2.1a");
 
 scriptElement.addEventListener("load", function (){
     console.log("main.js loaded"); 
