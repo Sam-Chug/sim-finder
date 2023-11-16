@@ -1,3 +1,123 @@
+
+/* #region Page Basics */
+body {
+    font-family: 'FreeSO Font', cursive;
+    background-color: #7ca1bf;
+    background-image: linear-gradient(90deg, #476a8d, #5f88af);
+    background-attachment: fixed;
+    text-shadow: 0px 2px 1px black;
+
+    color:#fff89d;
+    font-size: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: absolute;
+}
+
+.container *{
+    /* outline: 10px solid red; */
+}
+
+.column-1 {
+    display: flex;
+    flex-direction: column;
+    min-width: 360px;
+    max-width: 511px;
+    flex: 0;
+    gap: 10px;
+}
+
+.column-2 {
+    display: flex;
+    flex-direction: column;
+    min-width: 360px;
+    max-width: 511px;
+    flex: 0;
+    gap: 10px;
+}
+
+.column-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* #endregion */
+
+/* #region Sim States */
+.user-offline {
+    color: #969696;
+}
+
+.mouse-over-list-index, .column-header {
+    color: white;
+}
+/* #endregion */
+
+/* #region UI Building */
+.block-background {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, #96bad0, #5f88af);
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+.inset-title {
+    cursor: default;
+
+    width: fit-content;
+    margin: 15px auto 5px auto;
+    padding: 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background-color: #2f4158;
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.outset-title {
+    cursor: default;
+
+    margin: 10px auto;
+    padding: 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background-color: #5077a3;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                5px 5px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                3px 3px 3px 1px rgba(0, 0, 0, 0.6);
+
+    align-self: center;
+    width: 350px;
+    padding: 0 10px 3px 10px;
+    margin: 12px 6px;
+}
+
+
+/* #endregion */
+
+/* #region Lists */
 #sim-list-node {
     width: 100%;
 
@@ -13,3 +133,8 @@
     padding: 0px;
     margin: 3px 10px;
 }
+
+.sim-list-title {
+    color: white;
+}
+/* #endregion */

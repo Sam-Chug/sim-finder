@@ -18,6 +18,7 @@ guiUtils = function() {
 
         let listHead = document.createElement("div");
         listHead.id = "sim-list-node";
+        listHead.classList.add("sim-list-title");
 
         let leftHead = document.createElement("p");
         leftHead.textContent = columnLeftText;
@@ -96,12 +97,19 @@ drawUtils = function() {
 
     function generateFilterIcons() {
 
-        // for amoutn of filter icons
+        // for amount of filter icons
         // generate normal, hovered, selected sprite canvas
     }
 
+    function buildFilterCanvas() {
+
+
+
+    }
+
     return {
-        generateFilterIcons: generateFilterIcons
+        generateFilterIcons: generateFilterIcons,
+        buildFilterCanvas: buildFilterCanvas
     }
 }();
 
