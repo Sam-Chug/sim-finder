@@ -37,6 +37,8 @@ simFinderMain = function() {
 
     function populateGui() {
 
+        guiUtils.fillButtonGraphics();
+
         guiUtils.populateSimList(simDataHolder.simLongList.avatars);
         guiUtils.writeToLabel(
             "Sims Online: ", 
@@ -50,7 +52,6 @@ simFinderMain = function() {
             simDataHolder.lotShortList.total_lots_online, 
             "lots-online-count-label"
         );
-
     }
 
     return {
@@ -77,7 +78,7 @@ async function getOnline() {
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }
 
-    // Fill bookmark list
+    // Fill bookmark list (Converted)
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
 
