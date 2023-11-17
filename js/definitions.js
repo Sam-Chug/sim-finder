@@ -136,6 +136,13 @@ const LOT_FILTER_TOOLTIP = [
 ]
 //#endregion
 
+//#region Market Watch Constants
+const SMO_AVERAGE_BASE_PAYOUT = 31.7;
+const SMO_AVERAGE_COMPLETION_TIME = 242.25;
+
+const JOB_AVERAGE_PAY_SECOND = [0, 2, 5.2, 0, 5.9, 5.9];
+//#endregion
+
 // Converts search id to lot category id
 const LOT_SEARCH_ID = [7, 1, 6, 4, 9, 3, 5, 8, 2, 10, 11, 0];
 const FILTER_ICON_CACHE = {
