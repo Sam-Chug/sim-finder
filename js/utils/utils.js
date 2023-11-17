@@ -86,6 +86,7 @@ guiUtils = function() {
     }
 
     //#region Filter Icons
+    // Populate filter buttons
     function fillButtonGraphics () {
 
         const lotFilterArray = document.getElementById("lot-filter-array");
@@ -115,6 +116,7 @@ guiUtils = function() {
         }
     }
 
+    // Add classes to filter buttons
     function addFilterClasses (element, type) {
 
         element.classList.add("filter-button");
@@ -148,6 +150,7 @@ guiUtils = function() {
         });
     }
 
+    // On mouseover filter button
     function mouseOverFilterChange (button, action, type) {
 
         const index = Array.from(button.parentElement.children).indexOf(button);
@@ -183,6 +186,7 @@ guiUtils = function() {
         }
     }
 
+    // On click filter button
     function filterButtonClick (button, type) {
 
         const index = Array.from(button.parentElement.children).indexOf(button);
