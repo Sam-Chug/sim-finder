@@ -1,4 +1,6 @@
 /*
+CONVERT TO DEFINED CCOLORS
+
 sim font: #fff89d
 sim offline font: #969696
 
@@ -26,6 +28,7 @@ bg thumbnail offline fallback: #736766
 outset title bg #5077a3
 */
 
+/* #region Page Basics */
 @font-face {
     font-family: "FreeSO Font";
     src: url(../fonts/FreeSOFont.otf);
@@ -76,7 +79,19 @@ body {
     flex-direction: column;
     gap: 10px;
 }
+/* #endregion */
 
+/* #region Sim States */
+.user-offline {
+    color: #969696;
+}
+
+.mouse-over-list-index, .column-header {
+    color: white;
+}
+/* #endregion */
+
+/* #region UI Building */
 .block-background {
     border-radius: 45px;
     background-image: linear-gradient(90deg, #96bad0, #5f88af);
@@ -133,14 +148,32 @@ body {
     margin: 12px 6px;
 }
 
-.user-offline {
-    color: #969696;
+
+/* #endregion */
+
+/* #region Lists */
+#sim-list-node {
+    width: 100%;
+
+    padding: 0px;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.mouse-over-list-index, .column-header {
+#sim-list-node * {
+    padding: 0px;
+    margin: 3px 10px;
+}
+
+.sim-list-title {
     color: white;
 }
+/* #endregion */
 
+/* #region Tooltip */
 .tooltip {
     opacity: 0;
 
@@ -167,7 +200,9 @@ body {
     animation-fill-mode: both;
     -webkit-animation-fill-mode: both;
 }
+/* #endregion */
 
+/* #region Min/Maximize Filters */
 .min-max-button {
     border-radius: 50%;
     box-shadow: -3px -3px 3px 2px rgba(0, 0, 0, 0.4) inset,
@@ -200,7 +235,817 @@ body {
 .window-maxable:active {
     background: url(../images/buttons/min-window-button.png) 41px 41px;
 }
+/* #endregion */
 
+/* #region Easter Eggs */
+.rainbow-text {
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    font-style: italic;
+    animation: move 3s linear infinite;
+}
+
+.rainbow-image {
+    z-index: 3;
+    animation: 2.5s pulse infinite;
+    animation-timing-function: ease-in-out;
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px 5px rgba(255, 233, 163, 0.5),
+                0px 0px 5px 5px rgba(255, 233, 163, 0.5) inset;
+}
+
+.rainbow-title {
+    color: rgba(0, 0, 0, 0.55);
+    background: #d4af37;
+    text-shadow: -1px -1px rgba(0, 0, 0, 0.35);
+    font-style: italic;
+    animation: move 60s linear infinite;
+
+    box-shadow: -2px -3px 2px 2px rgba(0, 0, 0, 0.5) inset,
+                2px 3px 2px 2px rgba(255, 255, 255, 0.8) inset,
+                3px 3px 2px 1px rgba(0, 0, 0, 0.6);
+}
+
+.golden-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, #d4af37, #aa8714);
+    
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
+                6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
+}
+
+.pink-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, pink, rgb(255, 132, 153));
+    
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
+                6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
+}
+
+.seagreen-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, seagreen, rgb(23, 103, 57));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+.dark-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(75, 75, 75), rgb(49, 49, 49));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+.red-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(210, 67, 67), rgb(183, 56, 56));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+
+}
+
+.bone-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(242, 237, 223), rgb(218, 211, 190));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+.purple-block {
+    border-radius: 45px;
+    background-image: linear-gradient(90deg, rgb(121, 121, 162), rgb(79, 79, 135));
+
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
+}
+
+@keyframes move {
+    to {
+        background-position: 215px;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); }
+    50% { transform: scale(1); }
+    100% { transform: scale(0.9); }
+}
+/* #endregion */
+
+/* #region Lot Filters */
+.div-lot-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: none;
+}
+
+.lot-filter-flex {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-self: center;
+    gap: 5px;
+    margin: 5px 18px 18px 18px;
+}
+
+.div-lot-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div-sim-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sim-filter-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 5px 18px 18px 18px;
+}
+
+.filter-button{
+    width: 71px;
+    height: 71px;
+    margin: 0px;
+    border: none;
+}
+
+.filter-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.filter-min {
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    align-self: center;
+}
+/* #endregion */
+
+/* #region Lot Thumbnail */
+.div-thumbnail {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.thumb-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    padding-left: 25px;
+}
+
+.thumb-1-1 {
+    align-self: center;
+    min-width: 350px;
+    width: fit-content;
+    padding: 0px 15px 9px 15px;
+    margin: 12px;
+}
+
+.thumb-1-2 {
+    align-self: center;
+    margin: 0 0 15px 0;
+}
+
+.thumbnail-desc-holder p {
+    margin: 0px;
+}
+
+.thumbnail-desc-holder {
+    cursor: default;
+
+    margin: 25px;
+    padding: 5px 7px;
+
+    white-space: pre-line;
+    letter-spacing: 0.5px;
+    white-space: pre;
+
+    background-color: #32455b;
+    color: #fff89d;
+    font-size: clamp(1em, calc(1.1 * 1vw), 1.1em);
+
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.thumbnail-holder {
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.3) inset,
+                3px 3px 4px 2px rgba(255, 255, 255, 0.5) inset,
+                -1px -1px 2px 2px rgba(0, 0, 0, 0.3),
+                1px 1px 2px 1px rgba(255, 255, 255, 0.7);
+
+    background-color: #016abb;
+    background-image: linear-gradient(0, #00bedc, #002594);
+
+    border: 8px solid #395273;
+    border-radius: 50%;
+    padding: 0 207px;
+    
+    min-height: 250px;
+}
+
+.thumbnail-offline {
+    background-color: #736766;
+    background-image: linear-gradient(0, #8a7c7b, #615756);
+}
+
+/* this is fucked, whoopsies 🤪 */
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.thumbnail-image img {
+    position: absolute;
+    top: -72px;
+    left: 3px;
+    
+    width: 420px;
+}
+/* #endregion */
+
+/* #region Sim Thumbnail */
+.div-sim-view {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div-sim-title {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.div-sim-thumbnail-desc {
+    display: flex;
+    flex-direction: row;
+
+    margin-top: -20px;
+    padding-left: 25px;
+}
+
+.div-sim-thumbnail {
+    position: relative;
+    padding: 25px 0;
+}
+
+.sim-thumbnail-bg {
+    box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.3) inset,
+                3px 3px 4px 2px rgba(255, 255, 255, 0.5) inset,
+                -1px -1px 2px 2px rgba(0, 0, 0, 0.3),
+                1px 1px 2px 1px rgba(255, 255, 255, 0.7);
+
+    background-color: #016abb;
+    background-image: linear-gradient(0, #00bedc, #002594);
+
+    border: 8px solid #395273;
+    border-radius: 50%;
+    
+    height: 275px;
+    width: 175px;
+
+    padding: 25px;
+}
+
+.thumbnail-offline {
+    background-color: #736766;
+    background-image: linear-gradient(0, #8a7c7b, #615756);
+}
+
+.div-sim-thumbnail img {
+    position: absolute;
+    top: 55px;
+    left: 20px;
+    width: 200px;
+    z-index: 4;
+}
+
+.thumbnail-bio-holder {
+    margin: 25px;
+    padding: 5px 12px 5px 7px;
+
+    white-space: pre-wrap;
+    font-weight: normal;
+
+    font-weight: 50;
+
+    width: 18.8vw;
+    height: 12vw;
+    min-height: 200px;
+    min-width: 313px;
+    max-width: 490px;
+
+    background-color: #32455b;
+    color: #fff89d;
+    font-size: clamp(1em, 1vw, 1.65em);
+
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.3) inset,
+                1px 1px 3px 1px rgba(255, 255, 255, 0.2) inset;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+
+    box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.4) inset,
+                2px 2px 2px 1px rgba(255, 255, 255, 0.3) inset;
+
+    background: #016abb;
+    border-radius: 5px;
+}
+
+.bookmark-checkbox {
+    width: 25px;
+    height: 25px;
+}
+
+.bookmark-label {
+    font-size: 1.4em;
+    vertical-align: super;
+}
+
+.sim-title {
+    align-self: center;
+    flex: 1;
+    margin-right: 25px;
+}
+
+.button-sim-help-holder {
+    margin: 13px 3px 0px 13px;
+    display: block;
+}
+
+.button-sim-help {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.buttom-sim-help-image {
+    transform: translate(-5px, -1px);
+    border-radius: 50%;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
+
+    width: 40px;
+    height: 40px;
+    background: url(../images/buttons/question-button.png) 0px 0px;
+}
+
+.buttom-sim-help-image:hover {
+    background: url(../images/buttons/question-button.png) 80px 0px;
+}
+
+.buttom-sim-help-image:active {
+    background: url(../images/buttons/question-button.png) 40px 0px;
+}
+/* #endregion */
+
+/* #region Market Watch */
+.div-market-watch {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 0em;
+}
+
+.div-market-watch-title {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.div-market-watch-title img {
+    position: relative;
+    top: 15px;
+    width: 50px;
+    height: 31px;
+    margin: 0px 10px;
+}
+
+.div-market-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -18px;
+}
+
+.market-watch-content {
+    cursor: default;
+    flex: 1;
+    min-width: fit-content;
+    font-size: clamp(1em, calc(1.1 * 1vw), 1.1em);
+}
+/* #endregion */
+
+/* #region Neighborhood Watch */
+.div-nhood-watch {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 0em;
+}
+
+.div-nhood-watch-title {
+    align-self: center;
+}
+
+.div-nhood-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -18px;
+}
+/* #endregion */
+
+/* #region Sims In Lot */
+.div-list-sims-block {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sims-in-lot-title {
+    align-self: center;
+    width: fit-content;
+}
+
+.div-sims-in-lot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -25px;
+}
+
+.list-sims-in-lot {
+    width: 50%;
+    margin: 25px;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+/* #endregion */
+
+/* #region Sidebar */
+.sidebar-holder {
+    display: block;
+    width: 200px;
+    position: fixed;
+    left: -155px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    min-width: 200px;
+    width: 200px;
+    border-radius: 0 40px 40px 0;
+}
+
+.animate-sidebar {
+    animation-name: sidebarExpand;
+    -webkit-animation-name: sidebarExpand;
+    animation-duration: 0.75s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-button {
+    animation-name: rotate180;
+    -webkit-animation-name: rotate180;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-holder {
+    animation-name: sidebarHolderSizeExpand;
+    -webkit-animation-name: sidebarHolderSizeExpand;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+/* this is probably stupid but i dont know any better */
+.animate-sidebar-reverse {
+    animation-name: sidebarRetract;
+    -webkit-animation-name: sidebarRetract;
+    animation-duration: 0.75s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-button-reverse {
+    animation-name: rotate180Reverse;
+    -webkit-animation-name: rotate180Reverse;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.animate-sidebar-holder-reverse {
+    animation-name: sidebarHolderSizeRetract;
+    -webkit-animation-name: sidebarHolderSizeRetract;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.75s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.sim-clock {
+    display: none;
+    cursor: default;
+    
+    width: 145px;
+    margin: 10px 15px 15px 15px;
+    padding: 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    
+    background-color: #2f4158;
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-outset-title {
+    display: none;
+    cursor: default;
+
+    margin: 15px 15px;
+    padding: 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background-color: #5077a3;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                5px 5px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                3px 3px 3px 1px rgba(0, 0, 0, 0.6);
+
+    align-self: center;
+    width: 150px;
+    padding: 0 10px 3px 10px;
+    margin: 12px 6px;
+}
+
+.expand-sidebar {
+    align-self: flex-end;
+    margin: 15px 11px -5px 11px;
+    translate: 0 2px;
+    display: block;
+}
+
+.expand-sidebar-button {
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transform-origin: 14px 13px;
+}
+
+.expand-sidebar-image {
+    transform: translate(-8px, -3px);
+    background: url(../images/buttons/expand-arrow.png) 0px 0px;
+    width: 30px;
+    height: 30px;
+}
+
+.expand-sidebar-image:hover {
+    background: url(../images/buttons/expand-arrow.png) 60px 0px;
+}
+
+.expand-sidebar-image:active {
+    background: url(../images/buttons/expand-arrow.png) 30px 0px;
+}
+
+.job-holder {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+.job-active {
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    margin-top: -5px;
+    border-radius: 50%;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+/* #endregion */
+
+/* #region Search Bar */
+.div-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.search-title {
+    width: 60%;
+}
+
+.search-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+
+.search-bar {
+    font-family: 'FreeSO Font', cursive;
+    color:#fff89d;
+    letter-spacing: 0.05em;
+    font-size: 1.3em;
+    text-align: center;
+    width: 100%;
+    border: none;
+
+    border-radius: 25px;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    background-color: #2f4158;
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.input-center {
+    margin: 4px 0 18px 20px;
+    flex-grow: 1;
+}
+
+.button-center {
+    margin: -5px 20px 11px 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.search-button {
+    border-radius: 50%;
+    background: url(../images/buttons/search-button.png) no-repeat;
+    height: 41px;
+    width: 41px;
+    border: none;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
+}
+
+.search-button:hover {
+    background: url(../images/buttons/search-button-hover.png) no-repeat;
+}
+
+.search-button:active {
+    background: url(../images/buttons/search-button-click.png) no-repeat;
+}
+/* #endregion */
+
+/* #region Lists */
+.div-sim-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.div-lot-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.list-table {
+    cursor: default;
+    display: block;
+    margin: 10px 20px 35px 20px;
+
+    background-color: #32455b;
+    color: #fff89d;
+    font-size: 0.9em;
+    white-space: nowrap;
+    
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.list-table thead tr th {
+    color:white;
+    font-weight: bold;
+    padding: 6px 10px;
+}
+
+.list-table td:nth-child(1), .list-table thead tr th:nth-child(1) {
+    text-align: left;
+}
+
+.list-table td:nth-child(2), .list-table thead tr th:nth-child(2) {
+    width: 1%;
+    text-align: right;
+}
+
+.list-table tr td {
+    padding: 3px 10px;
+}
+
+.table-row-selected {
+    background-color: #fac98c;
+    color: black;
+    text-shadow: none;
+}
+/* #endregion */
+
+/* #region EMPTY */
+
+/* #endregion */
+
+/* #region Animations */
 @keyframes fadeIn {
     0% {opacity: 0;}
     100% {opacity: 1;}
@@ -239,3 +1084,4 @@ body {
     50% {height: 63px;}
     100% {width: 200px;}
 }
+/* #endregion */
