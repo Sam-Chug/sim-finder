@@ -79,11 +79,11 @@ async function getOnline() {
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }
 
-    // Fill bookmark list (Converted)
+    // Fill bookmark list (In progress, sim/lot selection is non functional)
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
 
-    // Write market watch
+    // Write market watch (In progress, refactor returnExistenceState())
     const marketObj = returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
     writeMarketWatch(marketObj);
 

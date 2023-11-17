@@ -8,6 +8,7 @@
         - Fix clock 12:00 am/pm
         - Upgrade versioning system
         - Change "idList" to "simfinder-bookmarks" in localStorage
+        - Choose to sort sims by age or by name
     
     Side Features:
         - Lot renderer/object finder
