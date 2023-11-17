@@ -63,10 +63,11 @@ simFinderMain = function() {
 // Main
 async function getOnline() {
 
-    // Style buttons
+    // Style buttons (Converted)
     fillButtonGraphics();
 
     // Check if localstorage empty
+    // POSSIBLE TODO: Change localstorage key for better storage safety
     if (JSON.parse(localStorage.getItem("idList")) == null ||
     JSON.parse(localStorage.getItem("idList")).simID.length == 0) {
 
