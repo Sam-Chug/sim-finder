@@ -163,4 +163,18 @@ const FILTER_ICON_CACHE = {
 //#region DOM cache
 const GUI_ONLINESIMS = document.getElementById('sims-table');
 const GUI_ONLINELOTS = document.getElementById('lots-table');
+
+const GUI_BOOKMARK_BUTTON = document.getElementById('bookmark-checkbox');
+
+const GUI_SIM_VIEW = document.getElementById('sim-viewer');
+const GUI_SIM_THUMBNAIL = document.getElementById('sim-thumbnail-image');
+const GUI_SIM_THUMBNAIL_BG = document.getElementById('sim-thumbnail-bg');
+const GUI_SIM_BIO = document.getElementById('sim-bio');
+const GUI_SIM_DESCRIPTION = document.getElementById('sim-desc');
+
+const GUI_LOT_THUMBNAIL_BG = document.getElementById('lot-thumbnail-bg');
+
+const GUI_SIMS_IN_LOT = document.getElementById('show-sims-in-lot');
+const GUI_SIMS_IN_LOT_SIMS = document.getElementById("lot-sims-list");
+const GUI_SIMS_IN_LOT_ROOMMATES = document.getElementById("lot-roommates-list");
 //#endregion

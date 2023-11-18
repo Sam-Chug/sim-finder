@@ -27,26 +27,6 @@ async function checkBookmark() {
     writeBookmarkSims(bookmarkList);
 }
 
-// Change bookmark button styles
-function updateBookmarkButton (selID) {
-
-    selSimID = selID;
-
-    const checkBox = document.getElementById("bookmark-checkbox");
-    const bookSims = getBookmark();
-
-    for (let i = 0; i < bookSims.simID.length; i++) {
-
-        if (selID == bookSims.simID[i]) {
-
-            checkBox.checked = true;
-            return;
-        }
-    }
-    checkBox.checked = false;
-    return;
-}
-
 // Return bookmark object
 function getBookmark () {
 
