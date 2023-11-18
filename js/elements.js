@@ -1,30 +1,3 @@
-// Write market data to market watch element
-function writeMarketWatch (marketObj) {
-
-    const marketBreakdown = document.getElementById("market-breakdown");
-    var breakdownText = "$" + (marketObj.moneyPerHourJob + marketObj.moneyPerHourSMO).toLocaleString("en-US") + " Generated Per Hour\n\n" + 
-                        "SMO Total $/Hr: $" + marketObj.moneyPerHourSMO.toLocaleString("en-US") + "\n" + 
-                        marketObj.simsSMO + " Sims at " + marketObj.moneyLots.length + " Money Lots\n\n" +
-                        "Job Total $/Hr: $" + marketObj.moneyPerHourJob.toLocaleString("en-US") + "\n" +
-                        marketObj.simsWorking + " Sims at " + returnJobsOpen().length + " Job(s)\n\n\n" + 
-                        "(Values Heavily Estimated)";
-
-    marketBreakdown.textContent = breakdownText;
-
-    const marketHotspots = document.getElementById("market-hotspots");
-    var hotspotText = "Top Money Lots: \n\n";
-
-    marketObj.moneyLots.sort(({lotMoney:a}, {lotMoney:b}) => b - a);
-
-    for ( let i = 0; i < 3 && i < marketObj.moneyLots.length; i++) {
-
-        hotspotText += (i + 1) + ". " + marketObj.moneyLots[i].lotObj.name + "\n" + 
-                       " - $" + (marketObj.moneyLots[i].lotMoney).toLocaleString("en-US") + " $/Hr Total\n\n";
-    }
-    hotspotText = hotspotText.slice(0, -1);
-    marketHotspots.textContent = hotspotText;
-}
-
 // Do animation for expanding/retracting sidebar window
 // This is probably stupid but i dont know any better
 function expandSidebar() {
@@ -131,60 +104,6 @@ function writeActiveJobs() {
     }
 }
 
-// Process min/max window button on click
-function minWindow(type) {
-
-    if (type == "sim") {
-
-        const filterImg = document.getElementById("sim-filter-min-image");
-        const filterPanel = document.getElementById("sim-filter-array");
-
-        if (filterImg.classList.contains("window-minable")) {
-
-            filterImg.classList.remove("window-minable");
-            filterImg.classList.add("window-maxable");
-        }
-        else {
-
-            filterImg.classList.add("window-minable");
-            filterImg.classList.remove("window-maxable");
-        }
-        if (filterPanel.style.display === "none") {
-
-            filterPanel.style.display = "flex";
-        }
-        else {
-
-            filterPanel.style.display = "none";
-        }
-    }
-    else if (type == "lot") {
-
-        const filterImg = document.getElementById("lot-filter-min-image");
-        const filterPanel = document.getElementById("lot-filter-array");
-
-        if (filterImg.classList.contains("window-minable")) {
-
-            filterImg.classList.remove("window-minable");
-            filterImg.classList.add("window-maxable");
-        }
-        else {
-
-            filterImg.classList.add("window-minable");
-            filterImg.classList.remove("window-maxable");
-        }
-        if (filterPanel.style.display === "none") {
-
-            filterPanel.style.display = "flex";
-
-        } else {
-
-            filterPanel.style.display = "none";
-        }
-    }
-    sizeLists();
-}
-
 // Write about info in sidebar info panel 
 async function writeSidebarInfo() {
 
@@ -194,29 +113,4 @@ async function writeSidebarInfo() {
     
     var infoText = "Sim Finder\n\nLast Update:\n" + date;
     infoBox.textContent = infoText;
-}
-
-// Auto size lists to fit screen
-function sizeLists() {
-
-    const windowHeight = window.innerHeight;
-
-    const simSearch = document.getElementById("sim-search-panel");
-    const simFilter = document.getElementById("sim-filter-panel");
-    const simList = document.getElementById("sims-table");
-    var height = Math.max(windowHeight - (simSearch.offsetHeight + simFilter.offsetHeight) - 145, 416);
-    height = Math.min(height, 1016);
-    var heightPX = height + "px";
-    simList.style.maxHeight = heightPX;
-
-
-    const lotSearch = document.getElementById("lot-search-panel");
-    const lotFilter = document.getElementById("lot-filter-panel");
-    const bookList = document.getElementById("bookmark-table");
-    const lotList = document.getElementById("lots-table");
-    var height = Math.max((windowHeight - (lotSearch.offsetHeight + lotFilter.offsetHeight) - 261) / 2, 150);
-    height = Math.min(height, 450);
-    var heightPX = height + "px";
-    lotList.style.maxHeight = heightPX;
-    bookList.style.maxHeight = heightPX;
 }

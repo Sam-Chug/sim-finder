@@ -20,7 +20,7 @@
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico?v0.2.1a">
         
     </head>
-    <body onresize="sizeLists()">
+    <body onresize="domUtils.sizeLists()">
         
         <!-- the stuff -->
         <div class="container">
@@ -88,7 +88,7 @@
                     <!-- sim filter buttons - buttons generated -->
                     <div class="filter-title">
 
-                        <button id="sim-filter-min-button" class="filter-min" onclick="minWindow('sim')">
+                        <button id="sim-filter-min-button" class="filter-min" onclick="filterUtils.minWindow('sim')">
                             
                             <div id="sim-filter-min-image" class="min-max-button window-minable"></div>
 
@@ -139,7 +139,7 @@
                     <!-- lot filter buttons - buttons generated -->
                     <div class="filter-title">
 
-                        <button id="lot-filter-min-button" class="filter-min" onclick="minWindow('lot')">
+                        <button id="lot-filter-min-button" class="filter-min" onclick="filterUtils.minWindow('lot')">
 
                             <div id="lot-filter-min-image" class="min-max-button window-minable"></div>
 

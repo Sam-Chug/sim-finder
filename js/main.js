@@ -77,6 +77,9 @@ simFinderMain = function() {
 
         // Write market watch
         marketWatchUtils.writeMarketWatch(simDataHolder.marketData);
+
+        // Set list sizes
+        domUtils.sizeLists();
     }
 
     return {
@@ -94,7 +97,4 @@ async function getOnline() {
 
     // Write sidebar info
     writeSidebarInfo();
-
-    // Set list sizes
-    sizeLists();
 }

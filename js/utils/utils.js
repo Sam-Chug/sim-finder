@@ -199,9 +199,36 @@ domUtils = function() {
         });
     }
 
+    // Auto size lists to fit screen
+    // TODO: CSS Bottom px instead of crazy measurements
+    function sizeLists() {
+
+        const windowHeight = window.innerHeight;
+
+        const simSearch = document.getElementById("sim-search-panel");
+        const simFilter = document.getElementById("sim-filter-panel");
+        const simList = document.getElementById("sims-table");
+        var height = Math.max(windowHeight - (simSearch.offsetHeight + simFilter.offsetHeight) - 145, 416);
+        height = Math.min(height, 1016);
+        var heightPX = height + "px";
+        simList.style.maxHeight = heightPX;
+
+
+        const lotSearch = document.getElementById("lot-search-panel");
+        const lotFilter = document.getElementById("lot-filter-panel");
+        const bookList = document.getElementById("bookmark-table");
+        const lotList = document.getElementById("lots-table");
+        var height = Math.max((windowHeight - (lotSearch.offsetHeight + lotFilter.offsetHeight) - 261) / 2, 150);
+        height = Math.min(height, 450);
+        var heightPX = height + "px";
+        lotList.style.maxHeight = heightPX;
+        bookList.style.maxHeight = heightPX;
+    }
+
     return {
         getIndexInParent: getIndexInParent,
-        resetListSelection: resetListSelection
+        resetListSelection: resetListSelection,
+        sizeLists: sizeLists
     }
 }();
 
@@ -752,11 +779,10 @@ guiUtils = function() {
     // Change bookmark button styles
     function updateBookmarkButton (selID) {
 
-        selSimID = selID;
-
         let bookSims = storageUtils.returnLocalStorage(STORAGE_KEY);
         let isBookmarked = false;
 
+        // Find if sim bookmarked or not
         for (let i = 0; i < bookSims.simID.length; i++) {
 
             if (selID == bookSims.simID[i]) {
@@ -1099,6 +1125,48 @@ guiUtils = function() {
         writeLotThumbnail: writeLotThumbnail,
         writeBookmarkSims: writeBookmarkSims,
         writeSimsInLot: writeSimsInLot
+    }
+}();
+
+filterUtils = function() {
+
+    // Process min/max window button on click
+    function minWindow(type) {
+
+        if (type == "sim") {
+
+            if (GUI_FILTER_SIM_ICON.classList.contains("window-minable")) {
+
+                GUI_FILTER_SIM_ICON.classList.remove("window-minable");
+                GUI_FILTER_SIM_ICON.classList.add("window-maxable");
+            }
+            else {
+
+                GUI_FILTER_SIM_ICON.classList.remove("window-maxable");
+                GUI_FILTER_SIM_ICON.classList.add("window-minable");
+            }
+            if (GUI_FILTER_SIM_ICON_ARRAY.style.display === "none") GUI_FILTER_SIM_ICON_ARRAY.style.display = "flex";
+            else GUI_FILTER_SIM_ICON_ARRAY.style.display = "none";
+        }
+        else if (type == "lot") {
+
+            if (GUI_FILTER_LOT_ICON.classList.contains("window-minable")) {
+
+                GUI_FILTER_LOT_ICON.classList.remove("window-minable");
+                GUI_FILTER_LOT_ICON.classList.add("window-maxable");
+            }
+            else {
+
+                GUI_FILTER_LOT_ICON.classList.add("window-minable");
+                GUI_FILTER_LOT_ICON.classList.remove("window-maxable");
+            }
+            if (GUI_FILTER_LOT_ICON_ARRAY.style.display === "none") GUI_FILTER_LOT_ICON_ARRAY.style.display = "flex";
+            else GUI_FILTER_LOT_ICON_ARRAY.style.display = "none";
+        }
+        domUtils.sizeLists();
+    }
+    return {
+        minWindow: minWindow
     }
 }();
 
