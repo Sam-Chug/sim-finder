@@ -1,37 +1,3 @@
-// Return long lot object from list using lot_id
-function returnLongLotFromID (lot_id) {
-
-    for (i = 0; i < lotLongList.lots.length; i++) {
-
-        if (lotLongList.lots[i].lot_id == lot_id) {
-            return lotLongList.lots[i];
-        }
-    }
-}
-
-// Return short lot object from list using location
-function returnShortLotFromLocation (location) {
-
-    for (i = 0; i < lotShortList.lots.length; i++) {
-
-        if (lotShortList.lots[i].location == location) {
-            return lotShortList.lots[i];
-        }
-    }
-    return {error:"lot not found"};
-}
-
-// Return format date string from unix timestamp
-function returnDateStringFromUNIX (unixTime) {
-
-    const d = new Date(unixTime * 1000);
-    const yyyy = ("" + d.getFullYear()).slice(2);
-    const mm = ("0" + (d.getMonth() + 1)).slice(-2);
-    const dd = ("0" + (d.getDate())).slice(-2);
-
-    return mm + "/" + dd + "/" + yyyy;
-}
-
 // Neighborhood id's are wonky, return correct from id
 function returnNeighborhood (nhood_id) {
 
@@ -45,33 +11,15 @@ function returnNeighborhood (nhood_id) {
     }
 }
 
-// Return git json so i can get the date
-async function returnGitCommitJson() {
-
-    const apiLink = "https://api.github.com/repos/sam-chug/sim-finder/branches/master";
-
-    let obj;
-    const res = await fetch(apiLink);
-    obj = await res.json();
-
-    console.log("Pinged: " + apiLink);
-
-    return obj;
-}
-
 // Reset sim thumbnail styles
 function resetSimThumbnailStyles () {
 
-    var title = document.getElementById("sim-title");
-    var block = document.getElementById("sim-viewer");
-    var image = document.getElementById("sim-thumbnail-image");
+    GUI_SIM_LABEL.className = "";
+    GUI_SIM_VIEW.className = "";
+    GUI_SIM_THUMBNAIL.className = "";
 
-    title.className = "";
-    block.className = "";
-    image.className = "";
-
-    title.classList.add("outset-title", "sim-title");
-    block.classList.add("div-sim-view", "block-background");
+    GUI_SIM_LABEL.classList.add("outset-title", "sim-title");
+    GUI_SIM_VIEW.classList.add("div-sim-view", "block-background");
 }
 
 // Parse sim bio for style markers
@@ -159,47 +107,6 @@ function doEasterEggs (eggID, value) {
         default:
             break;
     }
-}
-
-// Retrieve long sim from database
-async function searchSim() {
-
-    const simName = document.getElementById("sim-search-input").value;
-    const simLong = await grabAPI("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
-
-    if ("error" in simLong) {
-
-        alert("Cannot find sim \"" + simName + "\"");
-        return;
-    }
-    const simShort = returnShortSimFromLong(simLong);
-    const existence = returnExistenceState(simShort);
-
-    writeGreaterSimContext(simShort, simLong, existence);
-}
-
-// Retrieve long lot from database
-async function searchLot() {
-
-    const lotName = document.getElementById("lot-search-input").value;
-    const lotLong = await grabAPI("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
-
-    if ("error" in lotLong) {
-
-        alert("Cannot find lot \"" + lotName + "\"");
-        return;
-    }
-    const lotShort = returnShortLotFromLocation(lotLong.location);
-    writeLotThumbnail(lotShort, lotLong, "");
-
-    if (!("error" in lotShort)) {
-        writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
-    }
-
-    const simView = document.getElementById("sim-viewer");
-    const lotSims = document.getElementById("show-sims-in-lot");
-    simView.style.display = "none";
-    lotSims.style.display = "none";
 }
 
 // Format between human readable and freeso neighborhood_id format

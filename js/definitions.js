@@ -173,6 +173,7 @@ const GUI_BOOKMARK_BUTTON = document.getElementById('bookmark-checkbox');
 const GUI_BOOKMARK_LIST = document.getElementById("bookmark-table");
 
 const GUI_SIM_VIEW = document.getElementById('sim-viewer');
+const GUI_SIM_LABEL = document.getElementById("sim-title");
 const GUI_SIM_THUMBNAIL = document.getElementById('sim-thumbnail-image');
 const GUI_SIM_THUMBNAIL_BG = document.getElementById('sim-thumbnail-bg');
 const GUI_SIM_BIO = document.getElementById('sim-bio');
@@ -188,4 +189,7 @@ const GUI_SIMS_IN_LOT_ROOMMATES = document.getElementById("lot-roommates-list");
 
 const GUI_MARKET_BREAKDOWN = document.getElementById("market-breakdown");
 const GUI_MARKET_HOTSPOTS = document.getElementById("market-hotspots");
+
+const GUI_SEARCH_SIM = document.getElementById("sim-search-input");
+const GUI_SEARCH_LOT = document.getElementById("lot-search-input");
 //#endregion

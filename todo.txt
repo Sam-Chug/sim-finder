@@ -4,7 +4,7 @@
         - Condense css
         - Lot/sim search
         - Easter eggs
-        - Market watch
+        - Market watch (done, test)
         - Bookmarks (done, test)
         - Change localstorage keys (wip)
         - Resizing lot/sim/bookmark lists

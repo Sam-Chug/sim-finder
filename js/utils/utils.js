@@ -6,6 +6,17 @@ simUtils = function() {
         return Math.round((now - joinDate) / 86400);
     }
 
+    // Return format date string from unix timestamp
+    function returnDateStringFromUNIX (unixTime) {
+
+        const d = new Date(unixTime * 1000);
+        const yyyy = ("" + d.getFullYear()).slice(2);
+        const mm = ("0" + (d.getMonth() + 1)).slice(-2);
+        const dd = ("0" + (d.getDate())).slice(-2);
+
+        return mm + "/" + dd + "/" + yyyy;
+    }
+
     // Return sim time [HH, MM] in a 24 hour format
     function returnSimTime () {
 
@@ -162,12 +173,13 @@ simUtils = function() {
             };
             localStorage.setItem("idList", JSON.stringify(initStorage));
         }
-        const simIDObject = JSON.parse(localStorage.getItem("idList"));
-
+        
+        let simIDObject = JSON.parse(localStorage.getItem("idList"));
         return simIDObject;
     }
 
     return {
+        returnDateStringFromUNIX: returnDateStringFromUNIX,
         returnSimAge: returnSimAge,
         isSimOnline: isSimOnline,
         returnShortSimFromLong: returnShortSimFromLong,
@@ -179,7 +191,8 @@ simUtils = function() {
         returnOwnerFromRoommateList: returnOwnerFromRoommateList,
         returnOpenState: returnOpenState,
         returnJobsOpen: returnJobsOpen,
-        returnSimTime: returnSimTime
+        returnSimTime: returnSimTime,
+        returnDateStringFromUNIX: returnDateStringFromUNIX
     }
 }();
 
@@ -293,7 +306,7 @@ guiUtils = function() {
 
                 // Else, grab long offline data
                 // TODO: Switch to apiUtils function
-                selectedSimLong = await grabAPI("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+                selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
             }
 
@@ -373,7 +386,7 @@ guiUtils = function() {
         // Sim description basics
         var descContent = `Age: ${simUtils.returnSimAge(selectedSimLong.date)} Days\n` + 
                           `ID: ${selectedSimLong.avatar_id}\n` + 
-                          `Joined: ${returnDateStringFromUNIX(selectedSimLong.date)}\n` +
+                          `Joined: ${simUtils.returnDateStringFromUNIX(selectedSimLong.date)}\n` +
                           `Job: ${JOB_TITLES[selectedSimLong.current_job]}\n`;
 
         // Is sim mayor of a neighborhood?
@@ -515,7 +528,7 @@ guiUtils = function() {
 
         // Basic lot info
         lotDesc.textContent = `Category: ${LOT_CATEGORY[selectedLotLong.category]}\n` + 
-                              `Established: ${returnDateStringFromUNIX(selectedLotLong.created_date)}\n` + 
+                              `Established: ${simUtils.returnDateStringFromUNIX(selectedLotLong.created_date)}\n` + 
                               `Neighborhood: ${returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
                               `Admit Mode: ${ADMIT_MODES[selectedLotLong.admit_mode]}\n` + 
                               `${SKILL_MODES[selectedLotLong.skill_mode]}\n`;
@@ -544,7 +557,7 @@ guiUtils = function() {
         }
 
         // Get roommates of lot and owner
-        let roommates = await apiUtils.getAPIData(buildRoommateLink(selectedLotLong));
+        let roommates = await apiUtils.getAPIData(apiUtils.buildRoommateLink(selectedLotLong));
         let owner = simUtils.returnOwnerFromRoommateList(roommates, selectedLotLong.owner_id);
 
         // Write lot owner and roommate elements
@@ -972,6 +985,7 @@ guiUtils = function() {
     //#endregion
 
     return {
+        writeGreaterSimContext: writeGreaterSimContext,
         buildListHeader: buildListHeader,
         populateSimList: populateSimList,
         populateLotList: populateLotList,
@@ -981,7 +995,68 @@ guiUtils = function() {
         updateBookmarkButton: updateBookmarkButton,
         writeSimThumbnail: writeSimThumbnail,
         writeLotThumbnail: writeLotThumbnail,
-        writeBookmarkSims: writeBookmarkSims
+        writeBookmarkSims: writeBookmarkSims,
+        writeSimsInLot: writeSimsInLot
+    }
+}();
+
+searchUtils = function() {
+
+    // Retrieve long sim from database
+    async function searchSim() {
+
+        // Search sim's name in api
+        let simName = GUI_SEARCH_SIM.value;
+        let simLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+
+        // Alert if sim doesn't exist
+        if ("error" in simLong) {
+
+            alert("Cannot find sim \"" + simName + "\"");
+            return;
+        }
+
+        // Get searched sim data
+        let simShort = simUtils.returnShortSimFromLong(simLong);
+        let existence = simUtils.returnExistenceState(simShort);
+
+        // Write to sim bio
+        guiUtils.writeGreaterSimContext(simShort, simLong, existence);
+    }
+
+    // Retrieve long lot from database
+    async function searchLot() {
+
+        // Search lot in api
+        let lotName = GUI_SEARCH_LOT.value;
+        let lotLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
+
+        // Alert if lot doesn't exist
+        if ("error" in lotLong) {
+
+            alert("Cannot find lot \"" + lotName + "\"");
+            return;
+        }
+
+        // Get lot data
+        let lotShort = simUtils.returnShortLotFromLocation(lotLong.location);
+        guiUtils.writeLotThumbnail(lotShort, lotLong, "");
+
+        // If lot online, write sims in lot
+        if (!("error" in lotShort)) {
+
+            GUI_SIMS_IN_LOT.style.display = "flex";
+            guiUtils.writeSimsInLot(lotLong, lotShort.avatars_in_lot);
+        }
+        else GUI_SIMS_IN_LOT.style.display = "none";
+
+        // Hide irrelevant gui elements
+        GUI_SIM_VIEW.style.display = "none";
+    }
+
+    return {
+        searchSim: searchSim,
+        searchLot: searchLot
     }
 }();
 
@@ -1024,6 +1099,20 @@ marketWatchUtils = function() {
 
 apiUtils = function() {
 
+    // Return git json so i can get the date
+    async function returnGitCommitJson() {
+
+        const apiLink = "https://api.github.com/repos/sam-chug/sim-finder/branches/master";
+
+        let obj;
+        const res = await fetch(apiLink);
+        obj = await res.json();
+
+        console.log("Pinged: " + apiLink);
+
+        return obj;
+    }
+
     async function getAPIData (apiLink) {
 
         let obj;
@@ -1036,7 +1125,6 @@ apiUtils = function() {
     }
 
     //#region API url building
-
     // Id list to sim object (for bookmark id list)
     function buildLongSimLinkFromID(idList) {
 
@@ -1092,7 +1180,8 @@ apiUtils = function() {
         buildLongSimLink: buildLongSimLink,
         buildLongLotLink: buildLongLotLink,
         buildRoommateLink: buildRoommateLink,
-        buildLongSimLinkFromID: buildLongSimLinkFromID
+        buildLongSimLinkFromID: buildLongSimLinkFromID,
+        returnGitCommitJson: returnGitCommitJson
     }
 }();
 
