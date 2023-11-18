@@ -661,6 +661,19 @@ guiUtils = function() {
         }
     }
 
+    function populateLotList(lotList) {
+
+        GUI_ONLINELOTS.textContent = "";
+        GUI_ONLINELOTS.appendChild(buildListHeader("Name", "Population"));
+        
+        for (i = 0; i < lotList.length; i++) {
+        
+            let lotNode = createListNode(lotList[i].name, lotList[i].avatars_in_lot + " sims");
+            addIndexClickHandler(lotNode, "lot");
+            GUI_ONLINELOTS.appendChild(lotNode);
+        }
+    }
+
     function writeBookmarkSims (simList) {
 
         // Reset bookmark list, append header
@@ -719,19 +732,6 @@ guiUtils = function() {
         listNode.appendChild(elementLeft);
         listNode.appendChild(elementRight);
         return listNode;
-    }
-
-    function populateLotList(lotList) {
-
-        GUI_ONLINELOTS.textContent = "";
-        GUI_ONLINELOTS.appendChild(buildTableHead("Name", "Population"));
-        
-        for (i = 0; i < lotList.length; i++) {
-        
-            let lotNode = createListNode(lotList[i].name, lotList[i].avatars_in_lot + " sims");
-            addIndexClickHandler(lotNode, "lot");
-            GUI_ONLINELOTS.appendChild(lotNode);
-        }
     }
 
     function addIndexClickHandler(element, type) {

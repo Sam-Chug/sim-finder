@@ -1,4 +1,5 @@
 const simDataHolder = new SimData();
+var selSimID;
 
 document.addEventListener("DOMContentLoaded", async e => {
 
@@ -93,7 +94,7 @@ async function getOnline() {
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }
 
-    // Fill bookmark list (In progress)
+    // Fill bookmark list (Converted)
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
 
