@@ -42,6 +42,13 @@ simFinderMain = function() {
         simDataHolder.lotShortList = lotShortList;
         simDataHolder.lotLongList = lotLongList;
         simDataHolder.bookmarkList = bookmarkList;
+
+        // Get market watch data
+        simDataHolder.marketData = marketWatchUtils.returnMarketObject(
+            simDataHolder.simLongList, 
+            simDataHolder.simShortList, 
+            simDataHolder.lotShortList
+        );
     }
 
     // Write online sims/lots to lists
@@ -67,6 +74,9 @@ simFinderMain = function() {
 
         // Fill bookmark lists
         guiUtils.writeBookmarkSims(simDataHolder.bookmarkList);
+
+        // Write market watch
+        marketWatchUtils.writeMarketWatch(simDataHolder.marketData);
     }
 
     return {
@@ -98,7 +108,7 @@ async function getOnline() {
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
 
-    // Write market watch (In progress, refactor returnExistenceState())
+    // Write market watch (Converted)
     const marketObj = returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
     writeMarketWatch(marketObj);
 

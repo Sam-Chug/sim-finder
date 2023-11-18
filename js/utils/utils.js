@@ -6,6 +6,17 @@ simUtils = function() {
         return Math.round((now - joinDate) / 86400);
     }
 
+    // Return sim time [HH, MM] in a 24 hour format
+    function returnSimTime () {
+
+        var date = Date.now() / 1000;
+        var minutes = Math.floor((date % 7200) / 5);
+        var simHour = Math.floor(minutes / 60);
+        var simMin = minutes % 60;
+
+        return [simHour, simMin];
+    }
+
     function isSimOnline(simName) {
 
         for (let i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
@@ -44,6 +55,18 @@ simUtils = function() {
             if (simDataHolder.lotShortList.lots[i].location == location) return simDataHolder.lotShortList.lots[i];
         }
         return {error: "lot not found"};
+    }
+
+    function returnJobsOpen () {
+
+        const simHour = returnSimTime()[0];
+        var jobsOpen = [];
+        
+        if (simHour >= FACTORY_START_TIME && simHour <= FACTORY_END_TIME) jobsOpen.push(1);
+        if (simHour >= DINER_START_TIME && simHour <= DINER_END_TIME) jobsOpen.push(2);
+        if (simHour >= CLUB_START_TIME || simHour <= CLUB_END_TIME) jobsOpen.push(4, 5);
+    
+        return jobsOpen;
     }
 
     // Return short sim from sims currently online, from avatar id
@@ -154,7 +177,9 @@ simUtils = function() {
         returnShortLotFromLocation: returnShortLotFromLocation,
         returnLongLotFromRoommate: returnLongLotFromRoommate,
         returnOwnerFromRoommateList: returnOwnerFromRoommateList,
-        returnOpenState: returnOpenState
+        returnOpenState: returnOpenState,
+        returnJobsOpen: returnJobsOpen,
+        returnSimTime: returnSimTime
     }
 }();
 
@@ -957,6 +982,43 @@ guiUtils = function() {
         writeSimThumbnail: writeSimThumbnail,
         writeLotThumbnail: writeLotThumbnail,
         writeBookmarkSims: writeBookmarkSims
+    }
+}();
+
+marketWatchUtils = function() {
+
+    function returnMarketObject (simLong, simShort, lotShort) {
+
+        let marketObject = new MarketObject(simLong, simShort, lotShort);
+        return marketObject;
+    }
+
+    function writeMarketWatch(marketObj) {
+
+        // Write market breakdown text
+        let breakdownText = `$${(marketObj.moneyPerHourJob + marketObj.moneyPerHourSMO).toLocaleString("en-US")} Generated Per Hour\n\n` + 
+                            `SMO Total $/Hr: $${marketObj.moneyPerHourSMO.toLocaleString("en-US")}\n` + 
+                            `${marketObj.simsSMO} Sims at ${marketObj.moneyLots.length} Money Lots\n\n` +
+                            `Job Total $/Hr: $${marketObj.moneyPerHourJob.toLocaleString("en-US")}\n` +
+                            `${marketObj.simsWorking} Sims at ${simUtils.returnJobsOpen().length} Job(s)\n\n\n` + 
+                            "(Values Heavily Estimated)";
+        GUI_MARKET_BREAKDOWN.textContent = breakdownText;
+
+        // Write top 3 money lots
+        let hotspotText = "Top Money Lots: \n\n";
+        marketObj.moneyLots.sort(({lotMoney:a}, {lotMoney:b}) => b - a);
+        for (let i = 0; i < 3 && i < marketObj.moneyLots.length; i++) {
+
+            hotspotText += `${(i + 1)}. ${marketObj.moneyLots[i].lotObj.name}\n` + 
+                           ` - $${(marketObj.moneyLots[i].lotMoney).toLocaleString("en-US")} $/Hr Total\n\n`;
+        }
+        hotspotText = hotspotText.slice(0, -1);
+        GUI_MARKET_HOTSPOTS.textContent = hotspotText;
+    }
+
+    return {
+        returnMarketObject: returnMarketObject,
+        writeMarketWatch: writeMarketWatch
     }
 }();
 

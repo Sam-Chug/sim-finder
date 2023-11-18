@@ -185,4 +185,7 @@ const GUI_LOT_DESCRIPTION = document.getElementById("thumbnail-desc-content");
 const GUI_SIMS_IN_LOT = document.getElementById('show-sims-in-lot');
 const GUI_SIMS_IN_LOT_SIMS = document.getElementById("lot-sims-list");
 const GUI_SIMS_IN_LOT_ROOMMATES = document.getElementById("lot-roommates-list");
+
+const GUI_MARKET_BREAKDOWN = document.getElementById("market-breakdown");
+const GUI_MARKET_HOTSPOTS = document.getElementById("market-hotspots");
 //#endregion

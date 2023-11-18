@@ -3,8 +3,10 @@
     Refactor TODO:
         - Condense css
         - Lot/sim search
-        - Bookmarks
-        - Change localstorage keys
+        - Easter eggs
+        - Market watch
+        - Bookmarks (done, test)
+        - Change localstorage keys (wip)
         - Resizing lot/sim/bookmark lists
             - Make css bottom: 10px or something
 
