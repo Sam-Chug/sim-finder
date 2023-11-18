@@ -50,11 +50,20 @@ simUtils = function() {
 
     // Return lot from sim ID
     // Assumes sim is roommate possibly with privacy mode on
-    function returnLongLotFromRoommate (simID) {
+    function returnLongLotFromRoommate(simID) {
 
         for (i = 0; i < simDataHolder.lotLongList.lots.length; i++) {
 
             if (simDataHolder.lotLongList.lots[i].roommates.includes(simID)) return simDataHolder.lotLongList.lots[i];
+        }
+    }
+
+    // Return owner sim-object from roommate list
+    function returnOwnerFromRoommateList(roommates, owner_id) {
+
+        for (i = 0; i < roommates.avatars.length; i++) {
+
+            if (roommates.avatars[i].avatar_id == owner_id) return roommates.avatars[i];
         }
     }
 
@@ -105,6 +114,7 @@ simUtils = function() {
     }
 
     // Return bookmark object
+    // TODO: REFACTOR
     function getBookmark() {
 
         // Check if localstorage empty
@@ -131,7 +141,8 @@ simUtils = function() {
         returnExistenceState: returnExistenceState,
         returnLongLotFromLocation: returnLongLotFromLocation,
         returnShortLotFromLocation: returnShortLotFromLocation,
-        returnLongLotFromRoommate: returnLongLotFromRoommate
+        returnLongLotFromRoommate: returnLongLotFromRoommate,
+        returnOwnerFromRoommateList: returnOwnerFromRoommateList
     }
 }();
 
@@ -239,41 +250,41 @@ guiUtils = function() {
         switch (existence){
         
             case "LANDED":
-                var selShortLot = simUtils.returnShortLotFromLocation(selectedSimShort.location);
-                var selLongLot = simUtils.returnLongLotFromLocation(selectedSimShort.location);
-                writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+                var selectedShortLot = simUtils.returnShortLotFromLocation(selectedSimShort.location);
+                var selectedLongLot = simUtils.returnLongLotFromLocation(selectedSimShort.location);
+                writeSimsInLot(selectedLongLot, selectedShortLot.avatars_in_lot);
                 break;
         
             case "WORKING":
-                var selShortLot = {name: "WORKING"};
+                var selectedShortLot = {name: "WORKING"};
                 GUI_SIMS_IN_LOT.style.display = "none";
                 break;
         
             case "FLOATING":
-                var selShortLot = {name: "FLOATING"};
+                var selectedShortLot = {name: "FLOATING"};
                 GUI_SIMS_IN_LOT.style.display = "none";
                 break;
         
             case "LANDED_HIDDEN":
-                var selLongLot = simUtils.returnLongLotFromRoommate(selectedSimShort.avatar_id);
-                var selShortLot = simUtils.returnShortLotFromLocation(selLongLot.location);
-                writeSimsInLot(selLongLot, selShortLot.avatars_in_lot);
+                var selectedLongLot = simUtils.returnLongLotFromRoommate(selectedSimShort.avatar_id);
+                var selectedShortLot = simUtils.returnShortLotFromLocation(selLongLot.location);
+                writeSimsInLot(selectedLongLot, selectedShortLot.avatars_in_lot);
                 break;
         
             case "HIDDEN":
-                var selShortLot = {name: "HIDDEN"};
+                var selectedShortLot = {name: "HIDDEN"};
                 GUI_SIMS_IN_LOT.style.display = "none";
                 break;
         
             case "OFFLINE":
-                var selShortLot = {name: "OFFLINE"};
+                var selectedShortLot = {name: "OFFLINE"};
                 GUI_SIMS_IN_LOT.style.display = "none";
                 break;
         
             default:
                 break;
         }
-        writeLotThumbnail(selShortLot, selLongLot, existence, selectedSimLong);
+        writeLotThumbnail(selectedShortLot, selectedLongLot, existence, selectedSimLong);
     }
 
     // Build sim thumbnail
@@ -347,7 +358,7 @@ guiUtils = function() {
             // If sim is a roommate, save for later
             // TODO: Cache list of roommates for speed?
             let simID = simDataHolder.simShortList.avatars[i].avatar_id;
-            if (simDataHolder.selectedLot.roommates.includes(simID)) continue;
+            if (selectedLot.roommates.includes(simID)) continue;
 
             // If sim at lot and not roommate
             if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
@@ -372,7 +383,7 @@ guiUtils = function() {
 
             // If sim is roommate of lot
             let simID = simDataHolder.simShortList.avatars[i].avatar_id
-            if (simDataHolder.selectedLot.roommates.includes(simID)) {
+            if (selectedLot.roommates.includes(simID)) {
 
                 // Lot is online, hidden roommate sim may be there
                 if (simDataHolder.simShortList.avatars[i].privacy_mode == 1) {
@@ -380,7 +391,7 @@ guiUtils = function() {
                     roomListText += `${simDataHolder.simShortList.avatars[i].name} (Maybe)\n`;
                 }
                 // Else the sim is there
-                else if (simDataHolder.simShortList.avatars[i].location == simDataHolder.selectedLot.location) {
+                else if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
 
                     roomListText += `${simDataHolder.simShortList.avatars[i].name}"\n"`
                     allCount++;
@@ -392,28 +403,165 @@ guiUtils = function() {
         if (population - allCount > 0) {
 
             // If the known count of sims is 0
-            if (knownCount == 0) {
-
-                // Handle plurals
-                simListText += `${population - allCount}  Hidden Sim` + ((population - allCount) == 1) ? "" : "s";
-            }
+            if (knownCount == 0) simListText += `${population - allCount}  Hidden Sim` + ((population - allCount) == 1) ? "" : "s";
 
             // Else write an "And" if there are known sims
-            else {
-
-                // Handle plurals
-                simListText += `And ${population - allCount} More Hidden Sim` + ((population - allCount) == 1) ? "" : "s";
-            }
+            else simListText += `And ${population - allCount} More Hidden Sim` + ((population - allCount) == 1) ? "" : "s";
         }
 
         // Append text to sims/roommates in lot
         simsContent.textContent = simListText;
-        simList.appendChild(simsHeader);
-        simList.appendChild(simsContent);
+        GUI_SIMS_IN_LOT_SIMS.appendChild(simsHeader);
+        GUI_SIMS_IN_LOT_SIMS.appendChild(simsContent);
 
         roommatesContent.textContent = roomListText;
-        roommateList.appendChild(roommatesHeader);
-        roommateList.appendChild(roommatesContent);
+        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
+        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesContent);
+    }
+
+    // Write info to lot thumbnail box
+    async function writeLotThumbnail (selectedLotShort, selectedLotLong, existence, selectedSimLong) {
+
+        // If sim not landed at a lot, contextually fill lot bio
+        if (existence != "LANDED" && existence != "LANDED_HIDDEN") {
+
+            writeAbsentLotThumbnail(existence, selectedSimLong);
+            return;
+        }
+        
+        // Lot label
+        writeToLabel(selectedLotLong.name, "", "thumbnail-title");
+
+        // Reset description, get thumbnail from API
+        GUI_LOT_DESCRIPTION.textContent = "";
+        GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + ".png?v0.2.1a";
+        console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + ".png?v0.2.1a");
+
+        // Create lot bio elements
+        const lotDesc = document.createElement("p");
+        const lotOwnerTitle = document.createElement("p");
+        const lotRoommateTitle = document.createElement("p");
+        const lotOwner = document.createElement("p");
+        const lotRoommates = document.createElement("p");
+
+        // Basic lot info
+        lotDesc.textContent = `Category: ${LOT_CATEGORY[selectedLotLong.category]}\n` + 
+                              `Established: ${returnDateStringFromUNIX(selectedLotLong.created_date)}\n` + 
+                              `Neighborhood: ${returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
+                              `Admit Mode: ${ADMIT_MODES[selectedLotLong.admit_mode]}\n` + 
+                              `${SKILL_MODES[selectedLotLong.skill_mode]}\n`;
+
+        // Set thumbnail background and lot population
+        if ("error" in returnOpenState(selectedLotShort)) {
+
+            GUI_LOT_THUMBNAIL_BG.classList.add("thumbnail-offline");
+            lotDesc.textContent += "Population: 0\n\n";
+        }
+        else if (!("error" in returnOpenState(selectedLotShort))) {
+
+            GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
+            lotDesc.textContent += `Population: ${selectedLotShort.avatars_in_lot}\n\n`;
+        }
+
+        // If town hall, skip roommates
+        if (selectedLotShort.category == 11) {
+
+            // TODO: Check necessity of these elements
+            descTarget.appendChild(lotDesc);
+            descTarget.appendChild(lotOwnerTitle);
+            descTarget.appendChild(lotOwner);
+            descTarget.appendChild(lotRoommateTitle);
+            return;
+        }
+
+        // Get roommates of lot and owner
+        let roommates = await apiUtils.getAPIData(buildRoommateLink(selectedLotLong));
+        let owner = simUtils.returnOwnerFromRoommateList(roommates, selectedLotLong.owner_id);
+
+        // Write lot owner and roommate elements
+        // TODO: Refactor
+        lotOwnerTitle.textContent = "Owner: ";
+        lotRoommateTitle.textContent = "\nRoommates: ";
+        lotOwner.textContent = owner.name;
+        lotOwner.classList.add("user-offline");
+
+        // If owner online, remove offline styling
+        for (i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
+
+            let simID = simDataHolder.simShortList.avatars[i].avatar_id;
+            if (owner.avatar_id == simID) lotOwner.classList.remove("user-offline");
+        }
+
+        // Search roommates
+        for (i = 0; i < roommates.avatars.length; i++) {
+
+            // Skip roommate if roommate is lot owner
+            if (roommates.avatars[i].avatar_id != owner.avatar_id) {
+
+                // Check if roommate online
+                const listRoommate = document.createElement("p");
+                listRoommate.classList.add("user-offline");
+                listRoommate.textContent = roommates.avatars[i].name;
+
+                // If roommate online, remove offline styling
+                for (j = 0; j < simDataHolder.simShortList.avatars.length; j++) {
+
+                    let simID = simDataHolder.simShortList.avatars[j].avatar_id;
+                    if (roommates.avatars[i].avatar_id == simID) listRoommate.classList.remove("user-offline");
+                }
+
+                // Append roommate to roommate list element
+                lotRoommates.appendChild(listRoommate);
+            }
+        }
+
+        // Append elements to lot bio
+        GUI_LOT_DESCRIPTION.appendChild(lotDesc);
+        GUI_LOT_DESCRIPTION.appendChild(lotOwnerTitle);
+        GUI_LOT_DESCRIPTION.appendChild(lotOwner);
+        GUI_LOT_DESCRIPTION.appendChild(lotRoommateTitle);
+        GUI_LOT_DESCRIPTION.appendChild(lotRoommates);
+    }
+
+    function writeAbsentLotThumbnail(existence, selectedSimLong) {
+
+        // Set lot image to unknown
+        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.1a";
+
+        // Get lot description and label
+        let lotDescription = "";
+        let lotLabel = "";
+        switch (existence) {
+
+            case "FLOATING":
+
+                lotDescription.textContent = "Category: Air\n" + "Established: Dawn of Time\n" + "Admit Mode: Admit All";
+                lotLabel = "Floating";
+                break;
+
+            case "WORKING":
+
+                lotDescription.textContent = "Category: Job\n" + "Making: Simoleons";
+                lotLabel = `Working - ${JOB_STRINGS[selectedSimLong.current_job]}`;
+                break;
+
+            case "HIDDEN":
+
+                lotDescription.textContent = "Hidden";
+                lotLabel = "Hidden";
+                break;
+
+            case "OFFLINE":
+            default:
+
+                lotDescription.textContent = "This sim is touching grass";
+                lotLabel = "Offline";
+                break;
+        }
+
+        // Write label and description
+        writeToLabel(lotLabel, "", "thumbnail-title");
+        GUI_LOT_DESCRIPTION.lotDescription;
     }
 
     // Change bookmark button styles
@@ -708,7 +856,8 @@ guiUtils = function() {
         fillButtonGraphics: fillButtonGraphics,
         getIndex: getIndex,
         updateBookmarkButton: updateBookmarkButton,
-        writeSimThumbnail: writeSimThumbnail
+        writeSimThumbnail: writeSimThumbnail,
+        writeLotThumbnail: writeLotThumbnail
     }
 }();
 
@@ -749,11 +898,25 @@ apiUtils = function() {
         lotIDString = lotIDString.slice(0, -1);
         return lotIDString;
     }
+
+    // Builds api link from lot's roommates
+    function buildRoommateLink (longLot) {
+
+        var roommateIDString = "https://api.freeso.org/userapi/avatars?ids=";
+        for (i = 0; i < longLot.roommates.length; i++) {
+
+            roommateIDString += longLot.roommates[i] + ",";
+        }
+
+        roommateIDString = roommateIDString.slice(0, -1);
+        return roommateIDString;
+    }
     //#endregion
 
     return {
         getAPIData: getAPIData,
         buildLongSimLink: buildLongSimLink,
-        buildLongLotLink: buildLongLotLink
+        buildLongLotLink: buildLongLotLink,
+        buildRoommateLink: buildRoommateLink
     }
 }();

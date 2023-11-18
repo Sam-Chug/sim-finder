@@ -1,16 +1,26 @@
 class SimData{
     constructor() {
 
+        // Sim/lot data
         this.simShortList;
         this.simLongList;
 
         this.lotShortList;
         this.lotLongList;
-    
+        
+        // Sim bookmark list
+        this.bookmarkList;
+
+        // Store currently selected sim/lot
+        //this.selectedSimShort;
+        //this.selectedSimLong;
+        
+        //this.selectedLotShort;
+        //this.selectedLotLong;
+
+        // Deprecated top lots lists
         this.topLotShort;
         this.topLotLong;
-
-        this.bookmarkList;
     }
 };
 

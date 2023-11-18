@@ -10,6 +10,8 @@
         - Choose to sort sims by age or by name
     
     Possible Features
+        - Make easier to use on mobile
+            - Renders very large, could be much smaller
         - Automatically ping api, update per minute
             - Could get annoying updating while trying to click on index in list
 
