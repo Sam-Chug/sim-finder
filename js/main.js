@@ -88,30 +88,6 @@ simFinderMain = function() {
 // Main
 async function getOnline() {
 
-    // Style buttons (Converted)
-    fillButtonGraphics();
-
-    // Check if localstorage empty
-    // TODO: Change localstorage key for better storage safety
-    if (JSON.parse(localStorage.getItem("idList")) == null ||
-    JSON.parse(localStorage.getItem("idList")).simID.length == 0) {
-
-        localStorage.clear();
-
-        let initStorage = {
-            simID: [194687]
-        };
-        localStorage.setItem("idList", JSON.stringify(initStorage));
-    }
-
-    // Fill bookmark list (Converted)
-    bookmarkList = await idListToSimLongList(getBookmark().simID);
-    writeBookmarkSims(bookmarkList);
-
-    // Write market watch (Converted)
-    const marketObj = returnMarketObject(simLongList.avatars, simShortList.avatars, lotShortList.lots);
-    writeMarketWatch(marketObj);
-
     // Start sim clock
     setInterval(writeSimClock, 1000);
     writeSimClock();

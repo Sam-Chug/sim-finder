@@ -166,32 +166,11 @@ simUtils = function() {
         } 
     }
 
-    // Return bookmark object
-    // TODO: REFACTOR
-    function getBookmark() {
-
-        // Check if localstorage empty
-        if (JSON.parse(localStorage.getItem("idList")) == null ||
-            JSON.parse(localStorage.getItem("idList")).simID.length == 0) {
-
-            localStorage.clear();
-
-            let initStorage = {
-                simID: [194687]
-            };
-            localStorage.setItem("idList", JSON.stringify(initStorage));
-        }
-        
-        let simIDObject = JSON.parse(localStorage.getItem("idList"));
-        return simIDObject;
-    }
-
     return {
         returnDateStringFromUNIX: returnDateStringFromUNIX,
         returnSimAge: returnSimAge,
         isSimOnline: isSimOnline,
         returnShortSimFromLong: returnShortSimFromLong,
-        getBookmark: getBookmark,
         returnExistenceState: returnExistenceState,
         returnLongLotFromLocation: returnLongLotFromLocation,
         returnShortLotFromLocation: returnShortLotFromLocation,
@@ -775,7 +754,7 @@ guiUtils = function() {
 
         selSimID = selID;
 
-        const bookSims = simUtils.getBookmark();
+        let bookSims = storageUtils.returnLocalStorage(STORAGE_KEY);
         let isBookmarked = false;
 
         for (let i = 0; i < bookSims.simID.length; i++) {
