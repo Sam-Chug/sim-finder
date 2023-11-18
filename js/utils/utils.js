@@ -196,7 +196,7 @@ guiUtils = function() {
         if (type == "sim") {
     
             // Get sim name from index
-            let simName = GUI_ONLINESIMS.children[index + 1].children[0].textContent;
+            let simName = GUI_ONLINESIMS.children[index].children[0].textContent;
 
             // Selected sim data
             let selectedSimShort;
@@ -246,6 +246,34 @@ guiUtils = function() {
             // Write lot data
             writeLotThumbnail(selectedLotShort, selectedLotLong, "");
             writeSimsInLot(selectedLotLong, selectedLotShort.avatars_in_lot);
+        }
+        else if (type == "bookmark") {
+
+            // Get sim name from bookmark list
+            let simName = GUI_BOOKMARK_LIST.children[index].children[0].textContent;
+
+            // TODO: This is all the same as the sim case, refactor
+            // Selected sim data
+            let selectedSimShort;
+            let selectedSimLong = simDataHolder.simLongList.avatars.filter(obj => { return obj.name === simName; });
+            selectedSimLong = selectedSimLong[0];
+
+            // Check if sim is online
+            if (simUtils.isSimOnline(simName)) {
+
+                // If sim is online, grab short data
+                selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
+            }
+            else {
+
+                // Else, grab long offline data
+                // TODO: Switch to apiUtils function
+                selectedSimLong = await grabAPI("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+                selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
+            }
+
+            // Send data to sim bio writer
+            writeGreaterSimContext(selectedSimShort, selectedSimLong, simUtils.returnExistenceState(selectedSimShort));
         }
         return;
     }
@@ -663,7 +691,7 @@ guiUtils = function() {
             
             // TODO: Reagan easter egg probably gets caught here
             let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
-            addIndexClickHandler(simNode, "sim");
+            addIndexClickHandler(simNode, "bookmark");
             GUI_BOOKMARK_LIST.append(simNode);
         }
 
@@ -672,7 +700,7 @@ guiUtils = function() {
             
             let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
             simNode.classList.add("sim-list-node-offline");
-            addIndexClickHandler(simNode, "sim");
+            addIndexClickHandler(simNode, "bookmark");
             GUI_BOOKMARK_LIST.append(simNode);
         }
     }
@@ -720,7 +748,7 @@ guiUtils = function() {
                 this.classList.add("sim-list-node-selected");
 
                 // Write sim bio
-                guiUtils.getIndex("sim", index - 1);
+                guiUtils.getIndex("sim", index);
             });
         }
         else if (type == "lot") {
@@ -736,6 +764,21 @@ guiUtils = function() {
 
                 // Write lot bio
                 guiUtils.getIndex("lot", index);
+            });
+        }
+        else if (type == "bookmark") {
+
+            element.addEventListener("click", function() {
+
+                // Grab index of sim in list
+                let index = domUtils.getIndexInParent(this);
+
+                // Move selection graphic to index
+                domUtils.resetListSelection();
+                this.classList.add("sim-list-node-selected");
+
+                // Write sim bio
+                guiUtils.getIndex("bookmark", index);
             });
         }
     }
@@ -986,7 +1029,8 @@ apiUtils = function() {
         getAPIData: getAPIData,
         buildLongSimLink: buildLongSimLink,
         buildLongLotLink: buildLongLotLink,
-        buildRoommateLink: buildRoommateLink
+        buildRoommateLink: buildRoommateLink,
+        buildLongSimLinkFromID: buildLongSimLinkFromID
     }
 }();
 
@@ -1088,7 +1132,7 @@ storageUtils = function() {
             storageUtils.addBookmark(selSimID);
 
             // Get data from new bookmark list, fetch in case sim was offline
-            let addSim = await apiUtils.getAPIData(buildLongSimLinkFromID([selSimID]));
+            let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([selSimID]));
             simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
         }
         // If removing bookmark
@@ -1098,9 +1142,9 @@ storageUtils = function() {
             storageUtils.deleteBookmark(selSimID);
 
             // Remove sim from bookmark list
-            for (let i = 0; i < bookmarkList.avatars.length; i++) {
+            for (let i = 0; i < simDataHolder.bookmarkList.avatars.length; i++) {
 
-                if (bookmarkList.avatars[i].avatar_id == selSimID) {
+                if (simDataHolder.bookmarkList.avatars[i].avatar_id == selSimID) {
 
                     simDataHolder.bookmarkList.avatars.splice(i, 1);
                     break;
@@ -1110,7 +1154,7 @@ storageUtils = function() {
 
         // Sort sims by id, rewrite bookmark list
         simDataHolder.bookmarkList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
-        writeBookmarkSims(simDataHolder.bookmarkList);
+        guiUtils.writeBookmarkSims(simDataHolder.bookmarkList);
     }
 
     return {

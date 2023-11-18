@@ -137,7 +137,7 @@ const LOT_FILTER_TOOLTIP = [
 //#endregion
 
 //#region Misc
-const STORAGE_KEY = "simfinder-id-list";
+const STORAGE_KEY = "idList"; //simfinder-id-list
 const STORAGE_KEY_OLD = "idList";
 //#endregion
 

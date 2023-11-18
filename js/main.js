@@ -32,11 +32,15 @@ simFinderMain = function() {
         simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
         simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
+        // Get bookmarks
+        let bookmarkList = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID(storageUtils.returnLocalStorage(STORAGE_KEY_OLD).simID));
+
         // Put into data holder
         simDataHolder.simShortList = simShortList;
         simDataHolder.simLongList = simLongList;
         simDataHolder.lotShortList = lotShortList;
         simDataHolder.lotLongList = lotLongList;
+        simDataHolder.bookmarkList = bookmarkList;
     }
 
     // Write online sims/lots to lists
@@ -61,6 +65,7 @@ simFinderMain = function() {
         );
 
         // Fill bookmark lists
+        guiUtils.writeBookmarkSims(simDataHolder.bookmarkList);
     }
 
     return {
