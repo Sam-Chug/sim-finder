@@ -517,7 +517,6 @@ function returnJobsOpen () {
     const simHour = returnSimTime()[0];
     var jobsOpen = [];
     
-    // Feathers shift-end by one hour to account for any late shifts
     if (simHour >= FACTORY_START_TIME && simHour <= FACTORY_END_TIME) jobsOpen.push(1);
     if (simHour >= DINER_START_TIME && simHour <= DINER_END_TIME) jobsOpen.push(2);
     if (simHour >= CLUB_START_TIME || simHour <= CLUB_END_TIME) jobsOpen.push(4, 5);

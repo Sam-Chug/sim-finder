@@ -139,9 +139,10 @@ const LOT_FILTER_TOOLTIP = [
 //#region Market Watch Constants
 const SMO_AVERAGE_BASE_PAYOUT = 31.7;
 const SMO_AVERAGE_COMPLETION_TIME = 242.25;
-
 const JOB_AVERAGE_PAY_SECOND = [0, 2, 5.2, 0, 5.9, 5.9];
 
+// Job start/end times
+// Feathers shift-end by one hour to account for any late shifts
 const CLUB_START_TIME = 19;
 const CLUB_END_TIME = 4;
 
