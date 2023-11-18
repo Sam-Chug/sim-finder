@@ -15,6 +15,17 @@ simUtils = function() {
         return false;
     }
 
+    // Return if lot is open or closed
+    function returnOpenState (lotLong) {
+    
+        for (i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
+            
+            let lotID = simDataHolder.lotShortList.lots[i].lot_id;
+            if (lotLong.lot_id == lotID) return simDataHolder.lotShortList.lots[i];
+        }
+        return {error:"lot not online"};
+    }
+
     // Return long lot object from list using location
     function returnLongLotFromLocation(location) {
 
@@ -142,7 +153,8 @@ simUtils = function() {
         returnLongLotFromLocation: returnLongLotFromLocation,
         returnShortLotFromLocation: returnShortLotFromLocation,
         returnLongLotFromRoommate: returnLongLotFromRoommate,
-        returnOwnerFromRoommateList: returnOwnerFromRoommateList
+        returnOwnerFromRoommateList: returnOwnerFromRoommateList,
+        returnOpenState: returnOpenState
     }
 }();
 
@@ -188,10 +200,7 @@ guiUtils = function() {
 
             // Selected sim data
             let selectedSimShort;
-            let selectedSimLong = simDataHolder.simLongList.avatars.filter(obj => {
-                return obj.name === simName;
-            })
-            // TODO: FIX
+            let selectedSimLong = simDataHolder.simLongList.avatars.filter(obj => { return obj.name === simName; });
             selectedSimLong = selectedSimLong[0];
 
             // Check if sim is online
@@ -209,7 +218,6 @@ guiUtils = function() {
             }
 
             // Send data to sim bio writer
-            console.log(simUtils.isSimOnline(simName), selectedSimShort, selectedSimLong, simUtils.returnExistenceState(selectedSimShort));
             writeGreaterSimContext(selectedSimShort, selectedSimLong, simUtils.returnExistenceState(selectedSimShort));
         }
         else if (type == "lot") {
@@ -267,7 +275,7 @@ guiUtils = function() {
         
             case "LANDED_HIDDEN":
                 var selectedLongLot = simUtils.returnLongLotFromRoommate(selectedSimShort.avatar_id);
-                var selectedShortLot = simUtils.returnShortLotFromLocation(selLongLot.location);
+                var selectedShortLot = simUtils.returnShortLotFromLocation(selectedLongLot.location);
                 writeSimsInLot(selectedLongLot, selectedShortLot.avatars_in_lot);
                 break;
         
@@ -393,7 +401,7 @@ guiUtils = function() {
                 // Else the sim is there
                 else if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
 
-                    roomListText += `${simDataHolder.simShortList.avatars[i].name}"\n"`
+                    roomListText += `${simDataHolder.simShortList.avatars[i].name}\n`
                     allCount++;
                 }
             }
@@ -402,11 +410,13 @@ guiUtils = function() {
         // Write extra text for number of hidden sims
         if (population - allCount > 0) {
 
+            simListText += "\n";
+
             // If the known count of sims is 0
-            if (knownCount == 0) simListText += `${population - allCount}  Hidden Sim` + ((population - allCount) == 1) ? "" : "s";
+            if (knownCount == 0) simListText += `${population - allCount}  Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
 
             // Else write an "And" if there are known sims
-            else simListText += `And ${population - allCount} More Hidden Sim` + ((population - allCount) == 1) ? "" : "s";
+            else simListText += `And ${population - allCount} More Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
         }
 
         // Append text to sims/roommates in lot
@@ -452,12 +462,12 @@ guiUtils = function() {
                               `${SKILL_MODES[selectedLotLong.skill_mode]}\n`;
 
         // Set thumbnail background and lot population
-        if ("error" in returnOpenState(selectedLotShort)) {
+        if ("error" in simUtils.returnOpenState(selectedLotShort)) {
 
             GUI_LOT_THUMBNAIL_BG.classList.add("thumbnail-offline");
             lotDesc.textContent += "Population: 0\n\n";
         }
-        else if (!("error" in returnOpenState(selectedLotShort))) {
+        else if (!("error" in simUtils.returnOpenState(selectedLotShort))) {
 
             GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
             lotDesc.textContent += `Population: ${selectedLotShort.avatars_in_lot}\n\n`;
@@ -523,6 +533,7 @@ guiUtils = function() {
         GUI_LOT_DESCRIPTION.appendChild(lotRoommates);
     }
 
+    // If roommate not located, write contextual lot bio
     function writeAbsentLotThumbnail(existence, selectedSimLong) {
 
         // Set lot image to unknown
