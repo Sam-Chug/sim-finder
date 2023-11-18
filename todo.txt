@@ -2,7 +2,7 @@
 
     Refactor TODO:
         - Condense css
-        - Lot/sim search
+        - Lot/sim search (done, test)
         - Easter eggs
         - Market watch (done, test)
         - Bookmarks (done, test)

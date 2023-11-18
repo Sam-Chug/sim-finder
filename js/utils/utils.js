@@ -618,33 +618,38 @@ guiUtils = function() {
 
             case "FLOATING":
 
-                lotDescription.textContent = "Category: Air\n" + "Established: Dawn of Time\n" + "Admit Mode: Admit All";
+                lotDescription = "Category: Air\nEstablished: Dawn of Time\nAdmit Mode: Admit All";
                 lotLabel = "Floating";
                 break;
 
             case "WORKING":
 
-                lotDescription.textContent = "Category: Job\n" + "Making: Simoleons";
+                lotDescription = "Category: Job\nMaking: Simoleons";
                 lotLabel = `Working - ${JOB_STRINGS[selectedSimLong.current_job]}`;
                 break;
 
             case "HIDDEN":
 
-                lotDescription.textContent = "Hidden";
+                lotDescription = "Hidden";
                 lotLabel = "Hidden";
                 break;
 
             case "OFFLINE":
+            
+                lotDescription = "This sim is touching grass";
+                lotLabel = "Offline";
+                break;
+
             default:
 
-                lotDescription.textContent = "This sim is touching grass";
+                lotDescription = "This sim is touching grass";
                 lotLabel = "Offline";
                 break;
         }
 
         // Write label and description
         writeToLabel(lotLabel, "", "thumbnail-title");
-        GUI_LOT_DESCRIPTION.lotDescription;
+        GUI_LOT_DESCRIPTION.textContent = lotDescription;
     }
 
     // Change bookmark button styles
