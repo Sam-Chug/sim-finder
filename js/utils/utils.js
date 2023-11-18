@@ -488,6 +488,7 @@ guiUtils = function() {
     function writeSimThumbnail (selectedSimShort, selectedSimLong) {
 
         writeToLabel(selectedSimLong.name, "", "sim-title");
+        selSimID = selectedSimShort.avatar_id;
 
         // TODO: REFACTOR, ADD NEW CONTENT
         if (selectedSimLong.gender == 0) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-m.png?v0.2.1a";
@@ -1544,8 +1545,8 @@ storageUtils = function() {
 
     function returnLocalStorage(storageKey) {
 
-        // If storage empty, return
-        if (checkIfStorageEmpty(storageKey)) return;
+        // If storage empty, set default storage
+        if (checkIfStorageEmpty(storageKey)) setDefaultStorage(storageKey);
 
         // Return json from local storage
         let simIDObject = JSON.parse(localStorage.getItem(storageKey));
@@ -1566,7 +1567,7 @@ storageUtils = function() {
             simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
         }
         // If removing bookmark
-        else if (!GUI_BOOKMARK_BUTTON.checked) {
+        else {
 
             // Remove bookmark
             storageUtils.deleteBookmark(selSimID);
