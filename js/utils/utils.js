@@ -28,6 +28,14 @@ simUtils = function() {
         return [simHour, simMin];
     }
 
+    // Neighborhood id's are wonky, return correct from id
+    function returnNeighborhood (nhood_id) {
+
+        if (nhood_id == 0) return "Unknown";
+        if (nhood_id == 1) return NEIGHBORHOOD[0];
+        else return NEIGHBORHOOD[nhood_id - 34];
+    }
+
     function isSimOnline(simName) {
 
         for (let i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
@@ -192,7 +200,8 @@ simUtils = function() {
         returnOpenState: returnOpenState,
         returnJobsOpen: returnJobsOpen,
         returnSimTime: returnSimTime,
-        returnDateStringFromUNIX: returnDateStringFromUNIX
+        returnDateStringFromUNIX: returnDateStringFromUNIX,
+        returnNeighborhood: returnNeighborhood
     }
 }();
 
@@ -214,6 +223,115 @@ domUtils = function() {
     return {
         getIndexInParent: getIndexInParent,
         resetListSelection: resetListSelection
+    }
+}();
+
+eggUtils = function() {
+
+    // TODO: Redo all of this in more easily modular way
+
+    // Reset sim thumbnail styles
+    function resetSimThumbnailStyles() {
+
+        GUI_SIM_LABEL.className = "";
+        GUI_SIM_VIEW.className = "";
+        GUI_SIM_THUMBNAIL.className = "";
+
+        GUI_SIM_LABEL.classList.add("outset-title", "sim-title");
+        GUI_SIM_VIEW.classList.add("div-sim-view", "block-background");
+    }
+
+    // Parse sim bio for style markers
+    function returnStyleMarker(styleString) {
+
+        let startIndex = styleString.indexOf("sifi:") + 5;
+        let endIndex = 0;
+
+        for (let i = startIndex; i < styleString.length; i++) {
+            
+            if (styleString[i] == ":") {
+
+                endIndex = i;
+                break;
+            }
+        }
+        let styleText = styleString.substring(startIndex, endIndex);
+        return styleText.split(",");
+    }
+
+    // Easter Eggs
+    function doEasterEggs(eggID, value) {
+
+        switch (eggID){
+
+            // Sim's panel
+            case 0:
+                const simStyles = returnStyleMarker(value.description);
+                resetSimThumbnailStyles();
+
+                var title = document.getElementById("sim-title");
+                var block = document.getElementById("sim-viewer");
+                var image = document.getElementById("sim-thumbnail-image");
+
+                if (value.name == "Reaganomics Lamborghini") {
+
+                    title.classList.add("rainbow-title");
+                    image.classList.add("rainbow-image");
+
+                    block.classList.add("golden-block");
+                    block.classList.remove("block-background");
+                }
+                else if (simStyles.includes("bp")) {
+
+                    block.classList.remove("block-background");
+                    block.classList.add("pink-block");
+                }
+                else if (simStyles.includes("bsg")) {
+
+                    block.classList.remove("block-background");
+                    block.classList.add("seagreen-block");
+                }
+                else if (simStyles.includes("bdg")) {
+
+                    block.classList.remove("block-background");
+                    block.classList.add("dark-block");
+                }
+                else if (simStyles.includes("br")) {
+
+                    block.classList.remove("block-background");
+                    block.classList.add("red-block");
+                }
+                else if (simStyles.includes("bw")) {
+
+                    block.classList.remove("block-background");
+                    block.classList.add("bone-block");
+                }
+                else if (simStyles.includes("bpr")) {
+
+                    block.classList.remove("block-background");
+                    block.classList.add("purple-block");
+                }
+
+                break;
+
+            // Rea sim head
+            case 1:
+                var image = document.getElementById("sim-thumbnail-image");
+                if (value.name == "Reaganomics Lamborghini"){
+            
+                    image.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    return {
+        resetSimThumbnailStyles: resetSimThumbnailStyles,
+        returnStyleMarker: returnStyleMarker,
+        doEasterEggs: doEasterEggs
     }
 }();
 
@@ -390,7 +508,7 @@ guiUtils = function() {
                           `Job: ${JOB_TITLES[selectedSimLong.current_job]}\n`;
 
         // Is sim mayor of a neighborhood?
-        if (selectedSimLong.mayor_nhood != null) descContent += "Mayor of " + returnNeighborhood(selectedSimLong.mayor_nhood) + "\n";
+        if (selectedSimLong.mayor_nhood != null) descContent += "Mayor of " + simUtils.returnNeighborhood(selectedSimLong.mayor_nhood) + "\n";
 
         // Set sim description to constructed text
         GUI_SIM_DESCRIPTION.textContent = descContent;
@@ -529,7 +647,7 @@ guiUtils = function() {
         // Basic lot info
         lotDesc.textContent = `Category: ${LOT_CATEGORY[selectedLotLong.category]}\n` + 
                               `Established: ${simUtils.returnDateStringFromUNIX(selectedLotLong.created_date)}\n` + 
-                              `Neighborhood: ${returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
+                              `Neighborhood: ${simUtils.returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
                               `Admit Mode: ${ADMIT_MODES[selectedLotLong.admit_mode]}\n` + 
                               `${SKILL_MODES[selectedLotLong.skill_mode]}\n`;
 

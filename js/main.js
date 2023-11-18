@@ -121,10 +121,4 @@ async function getOnline() {
 
     // Set list sizes
     sizeLists();
-
-    // Top neighborhoods
-    // topLotShort = await grabAPI("https://api.freeso.org/userapi/city/1/lots/top100/all");
-    // topLotLong = await grabAPI(buildTopLotsLink(topLotShort));
-    // const topNhood = returnNeighborhoodScore(topLotShort, topLotLong);
-    // writeNeighborhoodWatch(topNhood);
 }
