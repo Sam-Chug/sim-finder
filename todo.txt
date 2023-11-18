@@ -42,6 +42,13 @@
                 - Redundant, opens lot window along with sim
 
         - Much more comprehensive user-style codes
+            - More compact style indicators:
+                - start - "sf:"
+                - avatar - "a_"
+                - header - "h_"
+                - body - "b_"
+                - separate each and end with ":"
+
             - Sims:
                 - Defaults to a randomly chosen head, based on sim ID
                 - Sim avatar gif
