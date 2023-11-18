@@ -221,25 +221,33 @@ guiUtils = function() {
             writeGreaterSimContext(selectedSimShort, selectedSimLong, simUtils.returnExistenceState(selectedSimShort));
         }
         else if (type == "lot") {
+            
+            // Get lot name from index
+            let lotName = GUI_ONLINELOTS.children[index].children[0].textContent;
+
+            // Selected lot data
+            let selectedLotShort;
+            let selectedLotLong;
     
-            const lotName = selectedIndex.cells[0].textContent;
-            var selLotShort;
-            var selLotLong;
+            // Get lot data from online lots by name
+            for (let i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
     
-            for (let i = 0; i < lotShortList.lots.length; i++) {
-    
-                if (lotShortList.lots[i].name == lotName) {
+                if (simDataHolder.lotShortList.lots[i].name == lotName) {
                     
-                    selLotShort = lotShortList.lots[i];
-                    selLotLong = returnLongLotFromLocation(selLotShort.location);
+                    selectedLotShort = simDataHolder.lotShortList.lots[i];
+                    selectedLotLong = simUtils.returnLongLotFromLocation(selectedLotShort.location);
                     break;
                 }
             }
-            const simView = document.getElementById("sim-viewer");
-            simView.style.display = "none";
-    
-            writeLotThumbnail(selLotShort, selLotLong, "");
-            writeSimsInLot(selLotLong, selLotShort.avatars_in_lot);
+
+            // Hide sim bio
+            GUI_SIM_VIEW.style.display = "none";
+            
+            console.log(selectedLotShort, selectedLotLong)
+
+            // Write lot data
+            writeLotThumbnail(selectedLotShort, selectedLotLong, "");
+            writeSimsInLot(selectedLotLong, selectedLotShort.avatars_in_lot);
         }
         return;
     }
@@ -433,7 +441,7 @@ guiUtils = function() {
     async function writeLotThumbnail (selectedLotShort, selectedLotLong, existence, selectedSimLong) {
 
         // If sim not landed at a lot, contextually fill lot bio
-        if (existence != "LANDED" && existence != "LANDED_HIDDEN") {
+        if ((existence != "LANDED" && existence != "LANDED_HIDDEN") && existence != "") {
 
             writeAbsentLotThumbnail(existence, selectedSimLong);
             return;
