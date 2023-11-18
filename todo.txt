@@ -1,15 +1,18 @@
 - Rewrite TODO:
 
     System:
-        - Filter icons drawn on canvi, resizable
         - Sim/lot windows cleanly generated from data object
             - Generated from wherever a sim or lot node is clicked
-        - Automatically ping api, update per minute
+        
         - Fix clock 12:00 am/pm
         - Upgrade versioning system
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Choose to sort sims by age or by name
     
+    Possible Features
+        - Automatically ping api, update per minute
+            - Could get annoying updating while trying to click on index in list
+
     Side Features:
         - Lot renderer/object finder
 
@@ -17,13 +20,25 @@
         - Upgrade from sim head to ingame sim bio gif
             - Pick from a set of 10, 5m 5f
 
-        - Sim/lot bio closer in design to how the ingame bios look
+        - Lot bio closer in design to how the ingame bios look
+            - Symbol for lot type
+            - Sims in lot count
+
+        - Clean up sim bio
+            - Merge date joined and age
+            - Remove privacy mode?
+                - Obvious if sim hidden or not
+            - Remove location?
+                - Redundant, opens lot window along with sim
+
         - Much more comprehensive user-style codes
             - Sims:
+                - Defaults to a randomly chosen head, based on sim ID
                 - Sim avatar gif
                 - Sim window color
                 - Sim title color
-
+                - Experiment with font color, inset text holder color
+                
             - Lots:
                 - Lot window color
                 - Lot title color
