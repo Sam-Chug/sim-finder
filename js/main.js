@@ -80,6 +80,10 @@ simFinderMain = function() {
 
         // Set list sizes
         domUtils.sizeLists();
+
+        // Start sidebar update
+        setInterval(sidebarUtils.updateSidebar, 1000);
+        sidebarUtils.writeSidebarInfo();
     }
 
     return {
@@ -87,14 +91,3 @@ simFinderMain = function() {
         getOnlineData: getOnlineData
     }
 }();
-
-// Main
-async function getOnline() {
-
-    // Start sim clock
-    setInterval(writeSimClock, 1000);
-    writeSimClock();
-
-    // Write sidebar info
-    writeSidebarInfo();
-}

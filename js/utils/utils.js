@@ -1340,6 +1340,117 @@ searchUtils = function() {
     }
 }();
 
+sidebarUtils = function() {
+
+    function updateSidebar() {
+
+        writeSimClock();
+        writeActiveJobs();
+    }
+
+    function expandSidebar() {
+
+        // Do animation for expanding/retracting sidebar window
+        if (!SIDEBAR.classList.contains("animate-sidebar")) {
+
+            SIDEBAR.classList.remove("animate-sidebar-reverse");
+            SIDEBAR_EXPAND_BUTTON.classList.remove("animate-sidebar-button-reverse");
+            SIDEBAR_CONTAINER.classList.remove("animate-sidebar-holder-reverse");
+
+            SIDEBAR_CONTAINER.classList.add("animate-sidebar-holder");
+            SIDEBAR.classList.add("animate-sidebar");
+            SIDEBAR_EXPAND_BUTTON.classList.add("animate-sidebar-button");
+
+            toggleSidebarElements("show");
+        }
+        else {
+
+            SIDEBAR.classList.remove("animate-sidebar");
+            SIDEBAR_EXPAND_BUTTON.classList.remove("animate-sidebar-button");
+            SIDEBAR_CONTAINER.classList.remove("animate-sidebar-holder");
+
+            SIDEBAR_CONTAINER.classList.add("animate-sidebar-holder-reverse");
+            SIDEBAR.classList.add("animate-sidebar-reverse");
+            SIDEBAR_EXPAND_BUTTON.classList.add("animate-sidebar-button-reverse");
+
+            toggleSidebarElements("hide");
+        }
+    }
+
+    function toggleSidebarElements(visibility) {
+
+        // Hide/show sidebar elements
+        const toggleElements = document.getElementsByClassName("sidebar-hide");
+        if (visibility == "hide") {
+
+            for (let i = 0; i < toggleElements.length; i++) toggleElements[i].style.display = "none";
+        }
+        else if (visibility == "show") {
+
+            for (let i = 0; i < toggleElements.length; i++) toggleElements[i].style.display = "block";
+        }
+    }
+
+    // Format to sim-time and write to clock
+    function writeSimClock() {
+
+        // Get sim time
+        const simTime = simUtils.returnSimTime();
+        
+        // Format to 12 hour clock
+        let timeDenom = "AM";
+        if (simTime[0] >= 12) {
+
+            timeDenom = "PM";
+            simTime[0] %= 12;
+        }
+        if (simTime[0] == 0) {
+
+            simTime[0] = 12;
+        }
+        if (simTime[1] < 10) {
+            simTime[1] = "0" + simTime[1];
+        }
+
+        // Write clock to element
+        SIDEBAR_CLOCK.textContent = simTime[0] + ":" + simTime[1] + " " + timeDenom;
+    }
+
+    // Display which jobs are currently active
+    function writeActiveJobs() {
+
+        // Get open jobs
+        let jobsActive = simUtils.returnJobsOpen();
+
+        // Set job icon to inactive
+        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png) 40px 0";
+        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png) 40px 80px";
+        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png) 40px 40px";
+
+        // Set active jobs to active icon
+        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png) 0 0";
+        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png) 0 80px";
+        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png) 0 40px";
+    }
+
+    // Write about info in sidebar info panel 
+    async function writeSidebarInfo() {
+
+        let gitJson = await apiUtils.returnGitCommitJson();
+        let date = gitJson.commit.commit.author.date.slice(0, 10);
+
+        let infoText = "Sim Finder\n\nLast Update:\n" + date;
+        SIDEBAR_INFO.textContent = infoText;
+    }
+
+    return {
+        expandSidebar: expandSidebar,
+        writeSidebarInfo: writeSidebarInfo,
+        updateSidebar: updateSidebar,
+        toggleSidebarElements: toggleSidebarElements
+    }
+}();
+
 marketWatchUtils = function() {
 
     function returnMarketObject (simLong, simShort, lotShort) {
