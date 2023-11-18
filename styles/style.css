@@ -168,8 +168,70 @@ body {
     margin: 3px 10px;
 }
 
+#sim-list-node:hover {
+    color: white;
+}
+
+.sim-list-node-selected {
+    background-color: #fac98c;
+    color: black;
+    text-shadow: none;
+}
+
 .sim-list-title {
     color: white;
+}
+
+/* REFACTOR VV */
+.div-sim-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.div-lot-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.list-table {
+    cursor: default;
+    display: block;
+    margin: 10px 20px 35px 20px;
+
+    background-color: #32455b;
+    color: #fff89d;
+    font-size: 0.9em;
+    white-space: nowrap;
+    
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.list-table thead tr th {
+    color:white;
+    font-weight: bold;
+    padding: 6px 10px;
+}
+
+.list-table td:nth-child(1), .list-table thead tr th:nth-child(1) {
+    text-align: left;
+}
+
+.list-table td:nth-child(2), .list-table thead tr th:nth-child(2) {
+    width: 1%;
+    text-align: right;
+}
+
+.list-table tr td {
+    padding: 3px 10px;
 }
 /* #endregion */
 
@@ -979,65 +1041,6 @@ body {
 
 .search-button:active {
     background: url(../images/buttons/search-button-click.png) no-repeat;
-}
-/* #endregion */
-
-/* #region Lists */
-.div-sim-table {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-.div-lot-table {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-.list-table {
-    cursor: default;
-    display: block;
-    margin: 10px 20px 35px 20px;
-
-    background-color: #32455b;
-    color: #fff89d;
-    font-size: 0.9em;
-    white-space: nowrap;
-    
-    border-radius: 10px;
-    border-collapse: collapse;
-    overflow: hidden;
-    overflow-y: scroll;
-
-    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
-                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
-                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
-}
-
-.list-table thead tr th {
-    color:white;
-    font-weight: bold;
-    padding: 6px 10px;
-}
-
-.list-table td:nth-child(1), .list-table thead tr th:nth-child(1) {
-    text-align: left;
-}
-
-.list-table td:nth-child(2), .list-table thead tr th:nth-child(2) {
-    width: 1%;
-    text-align: right;
-}
-
-.list-table tr td {
-    padding: 3px 10px;
-}
-
-.table-row-selected {
-    background-color: #fac98c;
-    color: black;
-    text-shadow: none;
 }
 /* #endregion */
 

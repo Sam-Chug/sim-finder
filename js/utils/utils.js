@@ -18,8 +18,17 @@ domUtils = function() {
         return Array.from(element.parentNode.children).indexOf(element);
     }
 
+    function resetListSelection() {
+
+        const elements = document.querySelectorAll("*");
+        elements.forEach((element) => {
+            element.classList.remove("sim-list-node-selected");
+        });
+    }
+
     return {
-        getIndexInParent: getIndexInParent
+        getIndexInParent: getIndexInParent,
+        resetListSelection: resetListSelection
     }
 }();
 
@@ -106,7 +115,13 @@ guiUtils = function() {
 
             element.addEventListener("click", function() {
 
+                // Grab index of sim in list
                 let index = domUtils.getIndexInParent(this) - 1;
+
+                // Move selection graphic to index
+                domUtils.resetListSelection();
+                this.classList.add("sim-list-node-selected");
+
                 console.log(`sim ${index}`);
             });
         }
@@ -114,7 +129,13 @@ guiUtils = function() {
 
             element.addEventListener("click", function() {
 
+                // Grab index of lot in list
                 let index = domUtils.getIndexInParent(this) - 1;
+
+                // Move selection graphic to index
+                domUtils.resetListSelection();
+                this.classList.add("sim-list-node-selected");
+
                 console.log(`lot ${index}`);
             });
         }
