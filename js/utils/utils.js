@@ -243,8 +243,6 @@ guiUtils = function() {
             // Hide sim bio
             GUI_SIM_VIEW.style.display = "none";
             
-            console.log(selectedLotShort, selectedLotLong)
-
             // Write lot data
             writeLotThumbnail(selectedLotShort, selectedLotLong, "");
             writeSimsInLot(selectedLotLong, selectedLotShort.avatars_in_lot);
@@ -629,21 +627,70 @@ guiUtils = function() {
 
         for (let i = 0; i < simList.length; i++) {
 
-            let simNode = document.createElement("div");
-            simNode.id = "sim-list-node";
-
-            let simName = document.createElement("p");
-            simName.textContent = simList[i].name;
-
-            let simAge = document.createElement("p");
-            simAge.textContent = `${simUtils.returnSimAge(simList[i].date)} Days`;
-
+            let simNode = createListNode(simList[i].name, `${simUtils.returnSimAge(simList[i].date)} Days`);
             addIndexClickHandler(simNode, "sim");
-
-            simNode.appendChild(simName);
-            simNode.appendChild(simAge);
             GUI_ONLINESIMS.appendChild(simNode);
         }
+    }
+
+    function writeBookmarkSims (simList) {
+
+        // Reset bookmark list, append header
+        GUI_BOOKMARK_LIST.innerHTML = "";
+        GUI_BOOKMARK_LIST.appendChild(buildListHeader("Name", "Age"));
+    
+        // Set sims into online or offline lists
+        let onlineSims = new Array();
+        let offlineSims = new Array();
+        for (let i = 0; i < simList.avatars.length; i++) {
+    
+            let online = false;
+            for (let j = 0; j < simDataHolder.simShortList.avatars.length; j++) {
+                
+                let simID = simDataHolder.simShortList.avatars[j].avatar_id;
+                if (simList.avatars[i].avatar_id == simID) {
+    
+                    onlineSims.push(simList.avatars[i]);
+                    online = true;
+                    break;
+                }
+            }
+            if (!online) offlineSims.push(simList.avatars[i]);
+        }
+
+        // Append and style online sims
+        for (sim of onlineSims) {
+            
+            // TODO: Reagan easter egg probably gets caught here
+            let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
+            addIndexClickHandler(simNode, "sim");
+            GUI_BOOKMARK_LIST.append(simNode);
+        }
+
+        // Append and style offline sims
+        for (sim of offlineSims) {
+            
+            let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
+            simNode.classList.add("sim-list-node-offline");
+            addIndexClickHandler(simNode, "sim");
+            GUI_BOOKMARK_LIST.append(simNode);
+        }
+    }
+
+    function createListNode(contentLeft, contentRight) {
+
+        let listNode = document.createElement("div");
+        listNode.id = "sim-list-node";
+
+        let elementLeft = document.createElement("p");
+        elementLeft.textContent = contentLeft;
+
+        let elementRight = document.createElement("p");
+        elementRight.textContent = contentRight;
+
+        listNode.appendChild(elementLeft);
+        listNode.appendChild(elementRight);
+        return listNode;
     }
 
     function populateLotList(lotList) {
@@ -653,19 +700,8 @@ guiUtils = function() {
         
         for (i = 0; i < lotList.length; i++) {
         
-            let lotNode = document.createElement("div");
-            lotNode.id = "sim-list-node";
-
-            let lotName = document.createElement("p");
-            lotName.textContent = lotList[i].name;
-
-            let lotPop = document.createElement("p");
-            lotPop.textContent = lotList[i].avatars_in_lot + " sims";
-
+            let lotNode = createListNode(lotList[i].name, lotList[i].avatars_in_lot + " sims");
             addIndexClickHandler(lotNode, "lot");
-
-            lotNode.appendChild(lotName);
-            lotNode.appendChild(lotPop);
             GUI_ONLINELOTS.appendChild(lotNode);
         }
     }
@@ -876,7 +912,8 @@ guiUtils = function() {
         getIndex: getIndex,
         updateBookmarkButton: updateBookmarkButton,
         writeSimThumbnail: writeSimThumbnail,
-        writeLotThumbnail: writeLotThumbnail
+        writeLotThumbnail: writeLotThumbnail,
+        writeBookmarkSims: writeBookmarkSims
     }
 }();
 
@@ -894,9 +931,22 @@ apiUtils = function() {
     }
 
     //#region API url building
+
+    // Id list to sim object (for bookmark id list)
+    function buildLongSimLinkFromID(idList) {
+
+        let simIdString = "https://api.freeso.org/userapi/avatars?ids=";
+        for (i = 0; i < idList.length; i++) {
+        
+            simIdString += idList[i] + ",";
+        }
+        simIdString = simIdString.slice(0, -1);
+        return simIdString;
+    }
+
     function buildLongSimLink (simList) {
 
-        var simIdString = "https://api.freeso.org/userapi/avatars?ids=";
+        let simIdString = "https://api.freeso.org/userapi/avatars?ids=";
         for (i = 0; i < simList.avatars.length; i++) {
     
             simIdString += simList.avatars[i].avatar_id + ",";
@@ -908,7 +958,7 @@ apiUtils = function() {
 
     function buildLongLotLink (lotList) {
 
-        var lotIDString = "https://api.freeso.org/userapi/lots?ids=";
+        let lotIDString = "https://api.freeso.org/userapi/lots?ids=";
         for (i = 0; i < lotList.lots.length; i++) {
     
             lotIDString += lotList.lots[i].lot_id + ",";
@@ -921,7 +971,7 @@ apiUtils = function() {
     // Builds api link from lot's roommates
     function buildRoommateLink (longLot) {
 
-        var roommateIDString = "https://api.freeso.org/userapi/avatars?ids=";
+        let roommateIDString = "https://api.freeso.org/userapi/avatars?ids=";
         for (i = 0; i < longLot.roommates.length; i++) {
 
             roommateIDString += longLot.roommates[i] + ",";
@@ -937,5 +987,139 @@ apiUtils = function() {
         buildLongSimLink: buildLongSimLink,
         buildLongLotLink: buildLongLotLink,
         buildRoommateLink: buildRoommateLink
+    }
+}();
+
+storageUtils = function() {
+
+    function checkIfStorageEmpty(storageKey) {
+
+        // If storage empty or sim ID list is empty
+        return (JSON.parse(localStorage.getItem(storageKey)) == null ||
+        JSON.parse(localStorage.getItem(storageKey)).simID.length == 0);
+    }
+
+    function setDefaultStorage(storageKey) {
+
+        // If storage is not empty, return
+        if (!checkIfStorageEmpty(storageKey)) return;
+
+        // Clear previous storage, just in case
+        localStorage.removeItem(storageKey);
+
+        // Set storage to have one sim ID
+        let initStorage = { simID: [194687] };
+        localStorage.setItem(storageKey, JSON.stringify(initStorage));
+    }
+
+    function removeStorageKey(storageKey) {
+
+        localStorage.removeItem(storageKey);
+    }
+
+    function changeStorageKey(oldKey, newKey) {
+
+        let oldStorageEmpty = checkIfStorageEmpty(oldKey);
+        let newStorageEmpty = checkIfStorageEmpty(newKey);
+
+        if (newStorageEmpty && !oldStorageEmpty) {
+
+            // Get data from previous key
+            let oldStorage = returnLocalStorage(oldKey);
+            let oldStorageString = JSON.stringify(oldStorage);
+
+            // Write old data to new key
+            saveStorage(newKey, oldStorageString);
+
+            // Remove data from old key
+            removeStorageKey(oldKey);
+        }
+    }
+
+    function saveStorage(storageKey, storageString) {
+
+        localStorage.setItem(storageKey, storageString);
+    }
+
+    function addBookmark(addID) {
+
+        // Get bookmark storage, append new bookmark
+        let bookmarkStorage = returnLocalStorage(STORAGE_KEY);
+        bookmarkStorage.simID.push(addID);
+        
+        // Save local storage
+        let storageString = JSON.stringify(bookmarkStorage);
+        saveStorage(STORAGE_KEY, storageString);
+    }
+
+    function deleteBookmark(deleteID) {
+
+        // Get bookmark storage
+        let bookmarkStorage = returnLocalStorage(STORAGE_KEY);
+
+        // Remove id from bookmarks
+        let index = bookmarkStorage.simID.indexOf(deleteID);
+        if (index > -1) {
+            bookmarkStorage.simID.splice(index, 1);
+        }
+        
+        // Save local storage
+        let storageString = JSON.stringify(bookmarkStorage);
+        saveStorage(STORAGE_KEY, storageString);
+    }
+
+    function returnLocalStorage(storageKey) {
+
+        // If storage empty, return
+        if (checkIfStorageEmpty(storageKey)) return;
+
+        // Return json from local storage
+        let simIDObject = JSON.parse(localStorage.getItem(storageKey));
+        return simIDObject;
+    }
+
+    // When bookmark button clicked
+    async function handleBookmarkCheck() {
+
+        // If adding bookmark
+        if (GUI_BOOKMARK_BUTTON.checked) {
+
+            // Add bookmark to list
+            storageUtils.addBookmark(selSimID);
+
+            // Get data from new bookmark list, fetch in case sim was offline
+            let addSim = await apiUtils.getAPIData(buildLongSimLinkFromID([selSimID]));
+            simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
+        }
+        // If removing bookmark
+        else if (!GUI_BOOKMARK_BUTTON.checked) {
+
+            // Remove bookmark
+            storageUtils.deleteBookmark(selSimID);
+
+            // Remove sim from bookmark list
+            for (let i = 0; i < bookmarkList.avatars.length; i++) {
+
+                if (bookmarkList.avatars[i].avatar_id == selSimID) {
+
+                    simDataHolder.bookmarkList.avatars.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+        // Sort sims by id, rewrite bookmark list
+        simDataHolder.bookmarkList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+        writeBookmarkSims(simDataHolder.bookmarkList);
+    }
+
+    return {
+        checkIfStorageEmpty: checkIfStorageEmpty,
+        handleBookmarkCheck: handleBookmarkCheck,
+        setDefaultStorage: setDefaultStorage,
+        changeStorageKey: changeStorageKey,
+        returnLocalStorage: returnLocalStorage,
+        deleteBookmark: deleteBookmark,
+        addBookmark: addBookmark
     }
 }();

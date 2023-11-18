@@ -9,10 +9,14 @@ simFinderMain = function() {
 
     async function start() {
 
+        // Fetch online data
         await getOnlineData();
+
+        // Populate GUI
         populateGui();
     }
 
+    // Get data from api
     async function getOnlineData() {
 
         // Grab sim data
@@ -35,10 +39,13 @@ simFinderMain = function() {
         simDataHolder.lotLongList = lotLongList;
     }
 
+    // Write online sims/lots to lists
     function populateGui() {
 
+        // Generate filter buttons
         guiUtils.fillButtonGraphics();
 
+        // Fill sim/lot lists
         guiUtils.populateSimList(simDataHolder.simLongList.avatars);
         guiUtils.writeToLabel(
             "Sims Online: ", 
@@ -52,6 +59,8 @@ simFinderMain = function() {
             simDataHolder.lotShortList.total_lots_online, 
             "lots-online-count-label"
         );
+
+        // Fill bookmark lists
     }
 
     return {
@@ -67,7 +76,7 @@ async function getOnline() {
     fillButtonGraphics();
 
     // Check if localstorage empty
-    // POSSIBLE TODO: Change localstorage key for better storage safety
+    // TODO: Change localstorage key for better storage safety
     if (JSON.parse(localStorage.getItem("idList")) == null ||
     JSON.parse(localStorage.getItem("idList")).simID.length == 0) {
 
@@ -79,7 +88,7 @@ async function getOnline() {
         localStorage.setItem("idList", JSON.stringify(initStorage));
     }
 
-    // Fill bookmark list (In progress, sim/lot selection is non functional)
+    // Fill bookmark list (In progress)
     bookmarkList = await idListToSimLongList(getBookmark().simID);
     writeBookmarkSims(bookmarkList);
 

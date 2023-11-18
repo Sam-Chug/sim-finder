@@ -1,5 +1,13 @@
 - Rewrite TODO:
 
+    Refactor TODO:
+        - Condense css
+        - Lot/sim search
+        - Bookmarks
+        - Change localstorage keys
+        - Resizing lot/sim/bookmark lists
+            - Make css bottom: 10px or something
+
     System:
         - Sim/lot windows cleanly generated from data object
             - Generated from wherever a sim or lot node is clicked

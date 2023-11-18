@@ -5,7 +5,7 @@ async function checkBookmark() {
 
     const checkBox = document.getElementById("bookmark-checkbox");
 
-    if(checkBox.checked) {
+    if (checkBox.checked) {
 
         setBookmark(selSimID);
         const addSim = await idListToSimLongList([selSimID]);

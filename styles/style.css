@@ -172,6 +172,10 @@ body {
     color: white;
 }
 
+.sim-list-node-offline {
+    color: #969696;
+}
+
 .sim-list-node-selected {
     background-color: #fac98c;
     color: black;

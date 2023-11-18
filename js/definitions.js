@@ -136,6 +136,11 @@ const LOT_FILTER_TOOLTIP = [
 ]
 //#endregion
 
+//#region Misc
+const STORAGE_KEY = "simfinder-id-list";
+const STORAGE_KEY_OLD = "idList";
+//#endregion
+
 //#region Market Watch Constants
 const SMO_AVERAGE_BASE_PAYOUT = 31.7;
 const SMO_AVERAGE_COMPLETION_TIME = 242.25;
@@ -151,7 +156,6 @@ const DINER_END_TIME = 19;
 
 const FACTORY_START_TIME = 8;
 const FACTORY_END_TIME = 17;
-//#endregion
 
 // Converts search id to lot category id
 const LOT_SEARCH_ID = [7, 1, 6, 4, 9, 3, 5, 8, 2, 10, 11, 0];
@@ -159,12 +163,14 @@ const FILTER_ICON_CACHE = {
     sim_filters: [],
     lot_filters: [],
 };
+//#endregion
 
 //#region DOM cache
 const GUI_ONLINESIMS = document.getElementById('sims-table');
 const GUI_ONLINELOTS = document.getElementById('lots-table');
 
 const GUI_BOOKMARK_BUTTON = document.getElementById('bookmark-checkbox');
+const GUI_BOOKMARK_LIST = document.getElementById("bookmark-table");
 
 const GUI_SIM_VIEW = document.getElementById('sim-viewer');
 const GUI_SIM_THUMBNAIL = document.getElementById('sim-thumbnail-image');
