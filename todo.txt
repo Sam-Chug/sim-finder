@@ -2,18 +2,15 @@
 
     Refactor TODO:
         - Condense css
-        - filters (done, test)
         - Easter eggs (WIP)
         - Change localstorage keys (WIP)
-        - Resizing lot/sim/bookmark lists (WIP)
-            - Make css bottom: 10px or something
 
     Refactor TEST:
         - Lot/sim search (done, test)
         - Market watch (done, test)
         - Bookmarks (done, test)
+        - filters (done, test)
         
-
     System:
         - Sim/lot windows cleanly generated from data object
             - Generated from wherever a sim or lot node is clicked

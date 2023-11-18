@@ -608,6 +608,9 @@ guiUtils = function() {
             else simListText += `And ${population - allCount} More Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
         }
 
+        // Write number of sims in lot
+        GUI_SIMS_IN_LOT_LABEL.textContent = `Sims In Lot: ${population}`;
+
         // Append text to sims/roommates in lot
         simsContent.textContent = simListText;
         GUI_SIMS_IN_LOT_SIMS.appendChild(simsHeader);
@@ -648,18 +651,16 @@ guiUtils = function() {
                               `Established: ${simUtils.returnDateStringFromUNIX(selectedLotLong.created_date)}\n` + 
                               `Neighborhood: ${simUtils.returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
                               `Admit Mode: ${ADMIT_MODES[selectedLotLong.admit_mode]}\n` + 
-                              `${SKILL_MODES[selectedLotLong.skill_mode]}\n`;
+                              `${SKILL_MODES[selectedLotLong.skill_mode]}\n\n`;
 
         // Set thumbnail background and lot population
         if ("error" in simUtils.returnOpenState(selectedLotShort)) {
 
             GUI_LOT_THUMBNAIL_BG.classList.add("thumbnail-offline");
-            lotDesc.textContent += "Population: 0\n\n";
         }
         else if (!("error" in simUtils.returnOpenState(selectedLotShort))) {
 
             GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
-            lotDesc.textContent += `Population: ${selectedLotShort.avatars_in_lot}\n\n`;
         }
 
         // If town hall, skip roommates

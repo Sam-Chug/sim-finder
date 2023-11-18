@@ -183,6 +183,7 @@ const GUI_LOT_THUMBNAIL = document.getElementById("lot-thumbnail-image");
 const GUI_LOT_THUMBNAIL_BG = document.getElementById('lot-thumbnail-bg');
 const GUI_LOT_DESCRIPTION = document.getElementById("thumbnail-desc-content");
 
+const GUI_SIMS_IN_LOT_LABEL = document.getElementById("lot-sims-in-lot-title");
 const GUI_SIMS_IN_LOT = document.getElementById('show-sims-in-lot');
 const GUI_SIMS_IN_LOT_SIMS = document.getElementById("lot-sims-list");
 const GUI_SIMS_IN_LOT_ROOMMATES = document.getElementById("lot-roommates-list");
