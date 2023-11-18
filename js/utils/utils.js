@@ -334,7 +334,7 @@ guiUtils = function() {
 
         writeToLabel(selectedSimLong.name, "", "sim-title");
 
-        // TODO: REFACTOR
+        // TODO: REFACTOR, ADD NEW CONTENT
         if (selectedSimLong.gender == 0) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-m.png?v0.2.1a";
         else if (selectedSimLong.gender == 1) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-f.png?v0.2.1a";
 
@@ -346,7 +346,7 @@ guiUtils = function() {
         GUI_SIM_BIO.textContent = selectedSimLong.description;
 
         // Sim description basics
-        var descContent = `Age: ${simDayAge(selectedSimLong.date)} Days\n` + 
+        var descContent = `Age: ${simUtils.returnSimAge(selectedSimLong.date)} Days\n` + 
                           `ID: ${selectedSimLong.avatar_id}\n` + 
                           `Joined: ${returnDateStringFromUNIX(selectedSimLong.date)}\n` +
                           `Job: ${JOB_TITLES[selectedSimLong.current_job]}\n`;
