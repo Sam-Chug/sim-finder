@@ -55,7 +55,7 @@ simFinderMain = function() {
     function populateGui() {
 
         // Generate filter buttons
-        guiUtils.fillButtonGraphics();
+        filterUtils.fillButtonGraphics();
 
         // Fill sim/lot lists
         guiUtils.populateSimList(simDataHolder.simLongList.avatars);

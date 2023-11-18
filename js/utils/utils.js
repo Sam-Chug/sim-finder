@@ -206,14 +206,12 @@ domUtils = function() {
 
         const windowHeight = window.innerHeight;
 
-        const simFilter = document.getElementById("sim-filter-panel");
-        var height = Math.max(windowHeight - (GUI_SEARCH_SIM_PANEL.offsetHeight + simFilter.offsetHeight) - 145, 416);
+        var height = Math.max(windowHeight - (GUI_SEARCH_SIM_PANEL.offsetHeight + GUI_FILTER_SIM_PANEL.offsetHeight) - 145, 416);
         height = Math.min(height, 1016);
         var heightPX = height + "px";
         GUI_ONLINESIMS.style.maxHeight = heightPX;
 
-        const lotFilter = document.getElementById("lot-filter-panel");
-        var height = Math.max((windowHeight - (GUI_SEARCH_LOT_PANEL.offsetHeight + lotFilter.offsetHeight) - 261) / 2, 150);
+        var height = Math.max((windowHeight - (GUI_SEARCH_LOT_PANEL.offsetHeight + GUI_FILTER_LOT_PANEL.offsetHeight) - 261) / 2, 150);
         height = Math.min(height, 450);
         var heightPX = height + "px";
         GUI_ONLINELOTS.style.maxHeight = heightPX;
@@ -601,8 +599,8 @@ guiUtils = function() {
         // Write extra text for number of hidden sims
         if (population - allCount > 0) {
 
-            simListText += "\n";
-
+            if (knownCount > 0) simListText += "\n";
+            
             // If the known count of sims is 0
             if (knownCount == 0) simListText += `${population - allCount}  Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
 
@@ -945,6 +943,171 @@ guiUtils = function() {
     }
     //#endregion
 
+    return {
+        writeGreaterSimContext: writeGreaterSimContext,
+        buildListHeader: buildListHeader,
+        populateSimList: populateSimList,
+        populateLotList: populateLotList,
+        writeToLabel: writeToLabel,
+        getIndex: getIndex,
+        updateBookmarkButton: updateBookmarkButton,
+        writeSimThumbnail: writeSimThumbnail,
+        writeLotThumbnail: writeLotThumbnail,
+        writeBookmarkSims: writeBookmarkSims,
+        writeSimsInLot: writeSimsInLot
+    }
+}();
+
+filterUtils = function() {
+
+    // Process min/max window button on click
+    function minWindow(type) {
+
+        if (type == "sim") {
+
+            if (GUI_FILTER_SIM_ICON.classList.contains("window-minable")) {
+
+                GUI_FILTER_SIM_ICON.classList.remove("window-minable");
+                GUI_FILTER_SIM_ICON.classList.add("window-maxable");
+            }
+            else {
+
+                GUI_FILTER_SIM_ICON.classList.remove("window-maxable");
+                GUI_FILTER_SIM_ICON.classList.add("window-minable");
+            }
+            if (GUI_FILTER_SIM_ICON_ARRAY.style.display === "none") GUI_FILTER_SIM_ICON_ARRAY.style.display = "flex";
+            else GUI_FILTER_SIM_ICON_ARRAY.style.display = "none";
+        }
+        else if (type == "lot") {
+
+            if (GUI_FILTER_LOT_ICON.classList.contains("window-minable")) {
+
+                GUI_FILTER_LOT_ICON.classList.remove("window-minable");
+                GUI_FILTER_LOT_ICON.classList.add("window-maxable");
+            }
+            else {
+
+                GUI_FILTER_LOT_ICON.classList.add("window-minable");
+                GUI_FILTER_LOT_ICON.classList.remove("window-maxable");
+            }
+            if (GUI_FILTER_LOT_ICON_ARRAY.style.display === "none") GUI_FILTER_LOT_ICON_ARRAY.style.display = "flex";
+            else GUI_FILTER_LOT_ICON_ARRAY.style.display = "none";
+        }
+        domUtils.sizeLists();
+    }
+
+    // Filter array and send to list
+    function writeFilterToTable (type, filter) {
+
+        if (type == "sim") {
+
+            if (filter == "REMOVE") guiUtils.populateSimList(simDataHolder.simLongList.avatars);
+            else guiUtils.populateSimList(filterUtils.returnFilterSimList(filter));
+
+        } 
+        else if(type == "lot") {
+
+            if (filter == "REMOVE") guiUtils.populateLotList(simDataHolder.lotShortList.lots);
+            else guiUtils.populateLotList(filterUtils.returnFilterLotList(filter));
+        }
+    }
+
+    // Return filtered sim list from selected filter
+    function returnFilterSimList (filter) {
+
+        let longList = new Array();
+
+        let simLongList = simDataHolder.simLongList;
+        let simShortList = simDataHolder.simShortList;
+
+        switch (filter) {
+
+            case "JOB_DINER":
+
+                for (i = 0; i < simLongList.avatars.length; i++) {
+                    if (simLongList.avatars[i].current_job == 2) longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "JOB_CLUB":
+
+                for (i = 0; i < simLongList.avatars.length; i++) {
+                    if (simLongList.avatars[i].current_job > 3) longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "JOB_ROBOT":
+
+                for (i = 0; i < simLongList.avatars.length; i++) {
+                    if (simLongList.avatars[i].current_job == 1) longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "LANDED":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (existence == "LANDED") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "SHOWN":
+
+                for (i = 0; i < simShortList.avatars.length; i++) {
+                    if (simShortList.avatars[i].privacy_mode == 0) longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "HIDDEN":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (existence == "HIDDEN" || existence == "LANDED_HIDDEN") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "FOUND":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (existence == "LANDED_HIDDEN") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "FLOATING":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (existence == "FLOATING") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "WORKING":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (existence == "WORKING") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            default:
+                break;
+        }
+        return longList;
+    }
+
+    // Return filtered lot list from selected filter
+    function returnFilterLotList (filter) {
+
+        let shortList = new Array();
+        for (let i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
+
+            if (simDataHolder.lotShortList.lots[i].category == LOT_SEARCH_ID[filter]) shortList.push(simDataHolder.lotShortList.lots[i]);
+        }
+        return shortList;
+    }
+
     //#region Filter Icons
     // Populate filter buttons
     function fillButtonGraphics () {
@@ -983,17 +1146,15 @@ guiUtils = function() {
         if (type == "sim") element.id = "sim-filter-button";
         if (type == "lot") element.id = "lot-filter-button";
     
-        element.addEventListener("click",
-        function() {
+        element.addEventListener("click", function() {
     
-        filterButtonClick(this, type);
+            filterButtonClick(this, type);
         });
-        element.addEventListener("mouseover",
-        function() {
+
+        element.addEventListener("mouseover", function() {
     
-            mouseOverFilterChange(this, "in", type);
-    
-            const tooltip = document.createElement("span");
+            filterUtils.mouseOverFilterChange(this, "in", type);
+            let tooltip = document.createElement("span");
             tooltip.classList.add("tooltip");
             
             if (type == "sim") tooltip.textContent = SIM_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
@@ -1001,11 +1162,10 @@ guiUtils = function() {
     
             this.appendChild(tooltip);
         });
-        element.addEventListener("mouseout",
-        function(){
+
+        element.addEventListener("mouseout", function(){
     
-            mouseOverFilterChange(this, "out", type);
-    
+            filterUtils.mouseOverFilterChange(this, "out", type);
             this.removeChild(this.children[0]);
         });
     }
@@ -1105,63 +1265,16 @@ guiUtils = function() {
             return;
         }
     }
-    //#endregion
 
     return {
-        writeGreaterSimContext: writeGreaterSimContext,
-        buildListHeader: buildListHeader,
-        populateSimList: populateSimList,
-        populateLotList: populateLotList,
-        writeToLabel: writeToLabel,
-        fillButtonGraphics: fillButtonGraphics,
-        getIndex: getIndex,
-        updateBookmarkButton: updateBookmarkButton,
-        writeSimThumbnail: writeSimThumbnail,
-        writeLotThumbnail: writeLotThumbnail,
-        writeBookmarkSims: writeBookmarkSims,
-        writeSimsInLot: writeSimsInLot
-    }
-}();
-
-filterUtils = function() {
-
-    // Process min/max window button on click
-    function minWindow(type) {
-
-        if (type == "sim") {
-
-            if (GUI_FILTER_SIM_ICON.classList.contains("window-minable")) {
-
-                GUI_FILTER_SIM_ICON.classList.remove("window-minable");
-                GUI_FILTER_SIM_ICON.classList.add("window-maxable");
-            }
-            else {
-
-                GUI_FILTER_SIM_ICON.classList.remove("window-maxable");
-                GUI_FILTER_SIM_ICON.classList.add("window-minable");
-            }
-            if (GUI_FILTER_SIM_ICON_ARRAY.style.display === "none") GUI_FILTER_SIM_ICON_ARRAY.style.display = "flex";
-            else GUI_FILTER_SIM_ICON_ARRAY.style.display = "none";
-        }
-        else if (type == "lot") {
-
-            if (GUI_FILTER_LOT_ICON.classList.contains("window-minable")) {
-
-                GUI_FILTER_LOT_ICON.classList.remove("window-minable");
-                GUI_FILTER_LOT_ICON.classList.add("window-maxable");
-            }
-            else {
-
-                GUI_FILTER_LOT_ICON.classList.add("window-minable");
-                GUI_FILTER_LOT_ICON.classList.remove("window-maxable");
-            }
-            if (GUI_FILTER_LOT_ICON_ARRAY.style.display === "none") GUI_FILTER_LOT_ICON_ARRAY.style.display = "flex";
-            else GUI_FILTER_LOT_ICON_ARRAY.style.display = "none";
-        }
-        domUtils.sizeLists();
-    }
-    return {
-        minWindow: minWindow
+        minWindow: minWindow,
+        writeFilterToTable: writeFilterToTable,
+        returnFilterSimList: returnFilterSimList,
+        returnFilterLotList: returnFilterLotList,
+        filterButtonClick: filterButtonClick,
+        mouseOverFilterChange: mouseOverFilterChange,
+        addFilterClasses: addFilterClasses,
+        fillButtonGraphics: fillButtonGraphics
     }
 }();
 

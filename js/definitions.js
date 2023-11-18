@@ -195,9 +195,10 @@ const GUI_SEARCH_SIM_PANEL = document.getElementById("sim-search-panel");
 const GUI_SEARCH_LOT = document.getElementById("lot-search-input");
 const GUI_SEARCH_LOT_PANEL = document.getElementById("lot-search-panel");
 
-
 const GUI_FILTER_SIM_ICON = document.getElementById("sim-filter-min-image");
 const GUI_FILTER_SIM_ICON_ARRAY = document.getElementById("sim-filter-array");
+const GUI_FILTER_SIM_PANEL = document.getElementById("sim-filter-panel");
 const GUI_FILTER_LOT_ICON = document.getElementById("lot-filter-min-image");
 const GUI_FILTER_LOT_ICON_ARRAY = document.getElementById("lot-filter-array");
+const GUI_FILTER_LOT_PANEL = document.getElementById("lot-filter-panel");
 //#endregion

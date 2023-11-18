@@ -2,7 +2,7 @@
 
     Refactor TODO:
         - Condense css
-        - filters 
+        - filters (done, test)
         - Easter eggs (WIP)
         - Change localstorage keys (WIP)
         - Resizing lot/sim/bookmark lists (WIP)
