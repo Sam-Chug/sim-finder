@@ -141,6 +141,15 @@ const SMO_AVERAGE_BASE_PAYOUT = 31.7;
 const SMO_AVERAGE_COMPLETION_TIME = 242.25;
 
 const JOB_AVERAGE_PAY_SECOND = [0, 2, 5.2, 0, 5.9, 5.9];
+
+const CLUB_START_TIME = 19;
+const CLUB_END_TIME = 4;
+
+const DINER_START_TIME = 10;
+const DINER_END_TIME = 19;
+
+const FACTORY_START_TIME = 8;
+const FACTORY_END_TIME = 17;
 //#endregion
 
 // Converts search id to lot category id

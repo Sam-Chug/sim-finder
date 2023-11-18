@@ -518,9 +518,9 @@ function returnJobsOpen () {
     var jobsOpen = [];
     
     // Feathers shift-end by one hour to account for any late shifts
-    if (simHour >= 8 && simHour <= 17) jobsOpen.push(1);
-    if (simHour >= 10 && simHour <= 19) jobsOpen.push(2);
-    if (simHour >= 19 || simHour <= 4) jobsOpen.push(4, 5);
+    if (simHour >= FACTORY_START_TIME && simHour <= FACTORY_END_TIME) jobsOpen.push(1);
+    if (simHour >= DINER_START_TIME && simHour <= DINER_END_TIME) jobsOpen.push(2);
+    if (simHour >= CLUB_START_TIME || simHour <= CLUB_END_TIME) jobsOpen.push(4, 5);
 
     return jobsOpen;
 }

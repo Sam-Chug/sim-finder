@@ -11,7 +11,27 @@ simUtils = function() {
     }
 }();
 
+domUtils = function() {
+
+    function getIndexInParent(element) {
+
+        return Array.from(element.parentNode.children).indexOf(element);
+    }
+
+    return {
+        getIndexInParent: getIndexInParent
+    }
+}();
+
 guiUtils = function() {
+
+    function writeToLabel(contentString, content, target) {
+
+        const location = document.getElementById(target);
+        const labelText = contentString + content;
+        
+        location.textContent = labelText;
+    }
 
     //#region Build sim/lot lists
     function buildListHeader(columnLeftText, columnRightText) {
@@ -48,6 +68,8 @@ guiUtils = function() {
             let simAge = document.createElement("p");
             simAge.textContent = `${simUtils.returnSimAge(simList[i].date)} Days`;
 
+            addIndexClickHandler(simNode, "sim");
+
             simNode.appendChild(simName);
             simNode.appendChild(simAge);
             GUI_ONLINESIMS.appendChild(simNode);
@@ -70,20 +92,34 @@ guiUtils = function() {
             let lotPop = document.createElement("p");
             lotPop.textContent = lotList[i].avatars_in_lot + " sims";
 
+            addIndexClickHandler(lotNode, "lot");
+
             lotNode.appendChild(lotName);
             lotNode.appendChild(lotPop);
             GUI_ONLINELOTS.appendChild(lotNode);
         }
     }
-    //#endregion
 
-    function writeToLabel(contentString, content, target) {
+    function addIndexClickHandler(element, type) {
 
-        const location = document.getElementById(target);
-        const labelText = contentString + content;
-        
-        location.textContent = labelText;
+        if (type == "sim") {
+
+            element.addEventListener("click", function() {
+
+                let index = domUtils.getIndexInParent(this) - 1;
+                console.log(`sim ${index}`);
+            });
+        }
+        else if (type == "lot") {
+
+            element.addEventListener("click", function() {
+
+                let index = domUtils.getIndexInParent(this) - 1;
+                console.log(`lot ${index}`);
+            });
+        }
     }
+    //#endregion
 
     //#region Filter Icons
     // Populate filter buttons
