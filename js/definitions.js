@@ -191,7 +191,10 @@ const GUI_MARKET_BREAKDOWN = document.getElementById("market-breakdown");
 const GUI_MARKET_HOTSPOTS = document.getElementById("market-hotspots");
 
 const GUI_SEARCH_SIM = document.getElementById("sim-search-input");
+const GUI_SEARCH_SIM_PANEL = document.getElementById("sim-search-panel");
 const GUI_SEARCH_LOT = document.getElementById("lot-search-input");
+const GUI_SEARCH_LOT_PANEL = document.getElementById("lot-search-panel");
+
 
 const GUI_FILTER_SIM_ICON = document.getElementById("sim-filter-min-image");
 const GUI_FILTER_SIM_ICON_ARRAY = document.getElementById("sim-filter-array");

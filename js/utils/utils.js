@@ -200,29 +200,24 @@ domUtils = function() {
     }
 
     // Auto size lists to fit screen
-    // TODO: CSS Bottom px instead of crazy measurements
     function sizeLists() {
+
+        // TODO: CSS Bottom px instead of crazy measurements
 
         const windowHeight = window.innerHeight;
 
-        const simSearch = document.getElementById("sim-search-panel");
         const simFilter = document.getElementById("sim-filter-panel");
-        const simList = document.getElementById("sims-table");
-        var height = Math.max(windowHeight - (simSearch.offsetHeight + simFilter.offsetHeight) - 145, 416);
+        var height = Math.max(windowHeight - (GUI_SEARCH_SIM_PANEL.offsetHeight + simFilter.offsetHeight) - 145, 416);
         height = Math.min(height, 1016);
         var heightPX = height + "px";
-        simList.style.maxHeight = heightPX;
+        GUI_ONLINESIMS.style.maxHeight = heightPX;
 
-
-        const lotSearch = document.getElementById("lot-search-panel");
         const lotFilter = document.getElementById("lot-filter-panel");
-        const bookList = document.getElementById("bookmark-table");
-        const lotList = document.getElementById("lots-table");
-        var height = Math.max((windowHeight - (lotSearch.offsetHeight + lotFilter.offsetHeight) - 261) / 2, 150);
+        var height = Math.max((windowHeight - (GUI_SEARCH_LOT_PANEL.offsetHeight + lotFilter.offsetHeight) - 261) / 2, 150);
         height = Math.min(height, 450);
         var heightPX = height + "px";
-        lotList.style.maxHeight = heightPX;
-        bookList.style.maxHeight = heightPX;
+        GUI_ONLINELOTS.style.maxHeight = heightPX;
+        GUI_BOOKMARK_LIST.style.maxHeight = heightPX;
     }
 
     return {
