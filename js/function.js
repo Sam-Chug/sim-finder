@@ -1490,6 +1490,9 @@ apiUtils = function() {
 
     async function getAPIData (apiLink) {
 
+        // Stupid catch for landed-hidden sims
+        if (apiLink.includes("(Maybe)")) apiLink = apiLink.replace("(Maybe)", "");
+
         let obj;
         const res = await fetch(apiLink);
         obj = await res.json();
