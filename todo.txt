@@ -20,6 +20,8 @@
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Export bookmarks
         - Choose to sort sims by age or by name
+        - "Unlocatable" sims
+            - Privacy on but not landed_hidden
     
     Possible Features
         - Make easier to use on mobile
