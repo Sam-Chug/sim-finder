@@ -89,7 +89,6 @@ simUtils = function() {
     }
 
     // Return short sim from sims currently online, from avatar id
-    // TODO: Take just simID as argument
     function returnShortSimFromLong(longSim) {
 
         // Null returns error object
@@ -203,9 +202,7 @@ domUtils = function() {
     // Auto size lists to fit screen
     function sizeLists() {
 
-        // TODO: CSS Bottom px instead of crazy measurements
-
-        const windowHeight = window.innerHeight;
+        let windowHeight = window.innerHeight;
 
         var height = Math.max(windowHeight - (GUI_SEARCH_SIM_PANEL.offsetHeight + GUI_FILTER_SIM_PANEL.offsetHeight) - 145, 416);
         height = Math.min(height, 1016);
@@ -728,7 +725,7 @@ guiUtils = function() {
         // Write number of sims in lot
         GUI_SIMS_IN_LOT_LABEL.textContent = `Sims In Lot: ${population}`;
 
-        // TODO: make new styling for more compressed sim listing
+        // Reset lists
         GUI_SIMS_IN_LOT_SIMS.innerHTML = "";
         GUI_SIMS_IN_LOT_ROOMMATES.innerHTML = "";
 
@@ -800,8 +797,6 @@ guiUtils = function() {
 
         // Write extra text for number of hidden sims
         if (population - allCount > 0) {
-
-            // TODO: This shouldn't change on text hover
 
             // Extra space
             let extraText = ""
@@ -880,17 +875,16 @@ guiUtils = function() {
 
     function addIndexClickHandler(element, type) {
 
-        // Move selection graphic to index
-        domUtils.resetListSelection();
-
-        // TODO: Refactor repeating code
-        if (type == "sim") {
+        if (type == "sim" || type == "bookmark") {
 
             element.addEventListener("click", function() {
 
                 // Grab index of sim in list
                 let index = domUtils.getIndexInParent(this);
                 let simName = getSimNameFromList(this.parentElement, index);
+
+                // Reset selection
+                domUtils.resetListSelection();
 
                 // Write sim bio
                 this.classList.add("sim-list-node-selected");
@@ -905,22 +899,12 @@ guiUtils = function() {
                 let index = domUtils.getIndexInParent(this);
                 let lotName = getSimNameFromList(this.parentElement, index);
 
+                // Reset selection
+                domUtils.resetListSelection();
+
                 // Write lot bio
                 this.classList.add("sim-list-node-selected");
                 guiUtils.getIndex("lot", lotName);
-            });
-        }
-        else if (type == "bookmark") {
-
-            element.addEventListener("click", function() {
-
-                // Grab index of sim in list
-                let index = domUtils.getIndexInParent(this);
-                let simName = getSimNameFromList(this.parentElement, index);
-
-                // Write sim bio
-                this.classList.add("sim-list-node-selected");
-                guiUtils.getIndex("sim", simName);
             });
         }
         else if (type == "sim-in-lot") {
@@ -930,6 +914,9 @@ guiUtils = function() {
                 // Grab index of sim in list
                 let index = domUtils.getIndexInParent(this);
                 let simName = getSimNameFromList(this.parentElement, index);
+
+                // Reset selection
+                domUtils.resetListSelection();
 
                 // Write sim bio
                 this.classList.add("sim-in-lot-list-node-selected");

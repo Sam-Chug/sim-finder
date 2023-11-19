@@ -4,12 +4,6 @@
         - Condense css
         - Easter eggs (WIP)
         - Change localstorage keys (WIP)
-
-    Refactor TEST:
-        - Lot/sim search (done, test)
-        - Market watch (done, test)
-        - Bookmarks (done, test)
-        - filters (done, test)
         
     System:
         - Sim/lot windows cleanly generated from data object
@@ -22,6 +16,7 @@
         - Choose to sort sims by age or by name
         - "Unlocatable" sims
             - Privacy on but not landed_hidden
+        - Standardize all text size to match sim/lot lists
     
     Possible Features
         - Make easier to use on mobile
