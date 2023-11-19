@@ -152,6 +152,17 @@ body {
 /* #endregion */
 
 /* #region Lists */
+#sim-list-node-static {
+    width: 100%;
+
+    padding: 0px;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #sim-list-node {
     width: 100%;
 
@@ -177,6 +188,27 @@ body {
 }
 
 .sim-list-node-selected {
+    background-color: #fac98c;
+    color: black;
+    text-shadow: none;
+}
+
+#sim-in-lot-list-node {
+    width: 100%;
+
+    padding: 0px;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#sim-in-lot-list-node:hover {
+    color: white;
+}
+
+.sim-in-lot-list-node-selected {
     background-color: #fac98c;
     color: black;
     text-shadow: none;

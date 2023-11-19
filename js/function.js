@@ -196,6 +196,7 @@ domUtils = function() {
         const elements = document.querySelectorAll("*");
         elements.forEach((element) => {
             element.classList.remove("sim-list-node-selected");
+            element.classList.remove("sim-in-lot-list-node-selected");
         });
     }
 
@@ -344,14 +345,20 @@ guiUtils = function() {
         location.textContent = labelText;
     }
 
+    function getSimNameFromList(listElement, index) {
+
+        let simName = listElement.children[index].children[0].textContent;
+        return simName;
+    }
+
     //#region Populate Lot/Sim bios
     // TODO: RENAME FUNCTION
-    async function getIndex(type, index) {
+    async function getIndex(type, selectedName) {
 
         if (type == "sim") {
     
             // Get sim name from index
-            let simName = GUI_ONLINESIMS.children[index].children[0].textContent;
+            let simName = selectedName;
 
             // Selected sim data
             let selectedSimShort;
@@ -367,8 +374,7 @@ guiUtils = function() {
             else {
 
                 // Else, grab long offline data
-                // TODO: Switch to apiUtils function
-                selectedSimLong = await grabAPI("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+                selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
             }
 
@@ -378,7 +384,7 @@ guiUtils = function() {
         else if (type == "lot") {
             
             // Get lot name from index
-            let lotName = GUI_ONLINELOTS.children[index].children[0].textContent;
+            let lotName = selectedName;
 
             // Selected lot data
             let selectedLotShort;
@@ -401,34 +407,6 @@ guiUtils = function() {
             // Write lot data
             writeLotThumbnail(selectedLotShort, selectedLotLong, "");
             writeSimsInLot(selectedLotLong, selectedLotShort.avatars_in_lot);
-        }
-        else if (type == "bookmark") {
-
-            // Get sim name from bookmark list
-            let simName = GUI_BOOKMARK_LIST.children[index].children[0].textContent;
-
-            // TODO: This is all the same as the sim case, refactor
-            // Selected sim data
-            let selectedSimShort;
-            let selectedSimLong = simDataHolder.simLongList.avatars.filter(obj => { return obj.name === simName; });
-            selectedSimLong = selectedSimLong[0];
-
-            // Check if sim is online
-            if (simUtils.isSimOnline(simName)) {
-
-                // If sim is online, grab short data
-                selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
-            }
-            else {
-
-                // Else, grab long offline data
-                // TODO: Switch to apiUtils function
-                selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
-                selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
-            }
-
-            // Send data to sim bio writer
-            writeGreaterSimContext(selectedSimShort, selectedSimLong, simUtils.returnExistenceState(selectedSimShort));
         }
         return;
     }
@@ -526,100 +504,6 @@ guiUtils = function() {
                 GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
                 break;
         }
-    }
-
-    // Write list of sims in selected lot
-    function writeSimsInLot (selectedLot, population) {
-
-        // Show sims in lot
-        GUI_SIMS_IN_LOT.style.display = "flex";
-
-        // Reset sims in lot text
-        GUI_SIMS_IN_LOT_SIMS.textContent = "";
-        GUI_SIMS_IN_LOT_ROOMMATES.textContent = "";
-
-        // Create elements for sims at lot text
-        // TODO: Build list of elements, each clickable as are in sim list
-        const simsContent = document.createElement("p");
-        const simsHeader = document.createElement("p");
-
-        simsHeader.classList.add("column-header");
-        simsHeader.textContent = "Sims:\n";
-        
-        let allCount = 0;   // Known sims at lot
-        let knownCount = 0; // Excludes roommates
-
-        // For sims online
-        let simListText = "";
-        for (let i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
-
-            // If sim is a roommate, save for later
-            // TODO: Cache list of roommates for speed?
-            let simID = simDataHolder.simShortList.avatars[i].avatar_id;
-            if (selectedLot.roommates.includes(simID)) continue;
-
-            // If sim at lot and not roommate
-            if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
-
-                // Add sim's name to list
-                simListText += simDataHolder.simShortList.avatars[i].name + "\n";
-
-                allCount++;
-                knownCount++;
-            }
-        }
-
-        // Create elements for roommates at lot text
-        const roommatesContent = document.createElement("p");
-        const roommatesHeader = document.createElement("p");
-        roommatesHeader.classList.add("column-header");
-        roommatesHeader.textContent = "Roommates:\n";
-
-        // For sims online
-        let roomListText = "";
-        for (i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
-
-            // If sim is roommate of lot
-            let simID = simDataHolder.simShortList.avatars[i].avatar_id
-            if (selectedLot.roommates.includes(simID)) {
-
-                // Lot is online, hidden roommate sim may be there
-                if (simDataHolder.simShortList.avatars[i].privacy_mode == 1) {
-
-                    roomListText += `${simDataHolder.simShortList.avatars[i].name} (Maybe)\n`;
-                }
-                // Else the sim is there
-                else if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
-
-                    roomListText += `${simDataHolder.simShortList.avatars[i].name}\n`
-                    allCount++;
-                }
-            }
-        }
-
-        // Write extra text for number of hidden sims
-        if (population - allCount > 0) {
-
-            if (knownCount > 0) simListText += "\n";
-            
-            // If the known count of sims is 0
-            if (knownCount == 0) simListText += `${population - allCount}  Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
-
-            // Else write an "And" if there are known sims
-            else simListText += `And ${population - allCount} More Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
-        }
-
-        // Write number of sims in lot
-        GUI_SIMS_IN_LOT_LABEL.textContent = `Sims In Lot: ${population}`;
-
-        // Append text to sims/roommates in lot
-        simsContent.textContent = simListText;
-        GUI_SIMS_IN_LOT_SIMS.appendChild(simsHeader);
-        GUI_SIMS_IN_LOT_SIMS.appendChild(simsContent);
-
-        roommatesContent.textContent = roomListText;
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesContent);
     }
 
     // Write info to lot thumbnail box
@@ -835,6 +719,105 @@ guiUtils = function() {
         }
     }
 
+    // Write list of sims in selected lot
+    function writeSimsInLot (selectedLot, population) {
+
+        // Show sims in lot
+        GUI_SIMS_IN_LOT.style.display = "flex";
+        
+        // Write number of sims in lot
+        GUI_SIMS_IN_LOT_LABEL.textContent = `Sims In Lot: ${population}`;
+
+        // TODO: make new styling for more compressed sim listing
+        GUI_SIMS_IN_LOT_SIMS.innerHTML = "";
+        GUI_SIMS_IN_LOT_ROOMMATES.innerHTML = "";
+
+        let simListHeader = buildListHeader("Sims", "");
+        simListHeader.id = "sim-in-lot-list-node";
+        GUI_SIMS_IN_LOT_SIMS.appendChild(simListHeader);
+
+        let allCount = 0;   // Known sims at lot
+        let knownCount = 0; // Excludes roommates
+
+        // For sims online
+        for (let i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
+
+            // If sim is a roommate, save for later
+            let simID = simDataHolder.simShortList.avatars[i].avatar_id;
+            if (selectedLot.roommates.includes(simID)) continue;
+
+            // If sim at lot and not roommate
+            if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
+
+                let simName = simDataHolder.simShortList.avatars[i].name;
+                let simNode = createListNode(simName, "");
+                simNode.id = "sim-in-lot-list-node";
+                
+                addIndexClickHandler(simNode, "sim-in-lot");
+                GUI_SIMS_IN_LOT_SIMS.appendChild(simNode);
+
+                allCount++;
+                knownCount++;
+            }
+        }
+
+        // Create elements for roommates at lot text
+        let roommatesHeader = buildListHeader("Roommates", "");
+        roommatesHeader.id = "sim-in-lot-list-node";
+        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
+
+        // For sims online
+        for (i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
+
+            // If sim is roommate of lot
+            let simID = simDataHolder.simShortList.avatars[i].avatar_id
+            if (selectedLot.roommates.includes(simID)) {
+
+                // Lot is online, hidden roommate sim may be there
+                if (simDataHolder.simShortList.avatars[i].privacy_mode == 1) {
+
+                    let simName = simDataHolder.simShortList.avatars[i].name;
+                    let simNode = createListNode(simName + " (Maybe)", "");
+                    simNode.id = "sim-in-lot-list-node";
+                    
+                    addIndexClickHandler(simNode, "sim-in-lot");
+                    GUI_SIMS_IN_LOT_ROOMMATES.appendChild(simNode);
+                }
+                // Else the sim is there
+                else if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
+
+                    let simName = simDataHolder.simShortList.avatars[i].name;
+                    let simNode = createListNode(simName, "");
+                    simNode.id = "sim-in-lot-list-node";
+                    
+                    addIndexClickHandler(simNode, "sim-in-lot");
+                    GUI_SIMS_IN_LOT_ROOMMATES.appendChild(simNode);
+
+                    allCount++;
+                }
+            }
+        }
+
+        // Write extra text for number of hidden sims
+        if (population - allCount > 0) {
+
+            // TODO: This shouldn't change on text hover
+
+            // Extra space
+            let extraText = ""
+            if (knownCount > 0) extraText += "\n";
+            
+            // Handle plurals
+            if (knownCount == 0) extraText += `${population - allCount}  Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
+            else extraText += `And ${population - allCount} More Hidden Sim` + (((population - allCount) == 1) ? "" : "s");
+
+            // Create node and append to list
+            let hiddenNode = createListNode(extraText, "");
+            hiddenNode.id = "sim-list-node-static";
+            GUI_SIMS_IN_LOT_SIMS.appendChild(hiddenNode);
+        }
+    }
+
     function writeBookmarkSims (simList) {
 
         // Reset bookmark list, append header
@@ -897,19 +880,21 @@ guiUtils = function() {
 
     function addIndexClickHandler(element, type) {
 
+        // Move selection graphic to index
+        domUtils.resetListSelection();
+
+        // TODO: Refactor repeating code
         if (type == "sim") {
 
             element.addEventListener("click", function() {
 
                 // Grab index of sim in list
                 let index = domUtils.getIndexInParent(this);
-
-                // Move selection graphic to index
-                domUtils.resetListSelection();
-                this.classList.add("sim-list-node-selected");
+                let simName = getSimNameFromList(this.parentElement, index);
 
                 // Write sim bio
-                guiUtils.getIndex("sim", index);
+                this.classList.add("sim-list-node-selected");
+                guiUtils.getIndex("sim", simName);
             });
         }
         else if (type == "lot") {
@@ -918,13 +903,11 @@ guiUtils = function() {
 
                 // Grab index of lot in list
                 let index = domUtils.getIndexInParent(this);
-
-                // Move selection graphic to index
-                domUtils.resetListSelection();
-                this.classList.add("sim-list-node-selected");
+                let lotName = getSimNameFromList(this.parentElement, index);
 
                 // Write lot bio
-                guiUtils.getIndex("lot", index);
+                this.classList.add("sim-list-node-selected");
+                guiUtils.getIndex("lot", lotName);
             });
         }
         else if (type == "bookmark") {
@@ -933,13 +916,24 @@ guiUtils = function() {
 
                 // Grab index of sim in list
                 let index = domUtils.getIndexInParent(this);
-
-                // Move selection graphic to index
-                domUtils.resetListSelection();
-                this.classList.add("sim-list-node-selected");
+                let simName = getSimNameFromList(this.parentElement, index);
 
                 // Write sim bio
-                guiUtils.getIndex("bookmark", index);
+                this.classList.add("sim-list-node-selected");
+                guiUtils.getIndex("sim", simName);
+            });
+        }
+        else if (type == "sim-in-lot") {
+
+            element.addEventListener("click", function() {
+
+                // Grab index of sim in list
+                let index = domUtils.getIndexInParent(this);
+                let simName = getSimNameFromList(this.parentElement, index);
+
+                // Write sim bio
+                this.classList.add("sim-in-lot-list-node-selected");
+                guiUtils.getIndex("sim", simName);
             });
         }
     }
