@@ -147,8 +147,6 @@ body {
     padding: 0 10px 3px 10px;
     margin: 12px 6px;
 }
-
-
 /* #endregion */
 
 /* #region Lists */
@@ -218,7 +216,6 @@ body {
     color: white;
 }
 
-/* REFACTOR VV */
 .div-sim-table {
     display: flex;
     flex-direction: column;
@@ -249,25 +246,6 @@ body {
     box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.35) inset, 
                 0px -1px 1px 3px rgba(0, 0, 0, 0.35),
                 0px 3px 1px 3px rgba(255, 255, 255, 0.15);
-}
-
-.list-table thead tr th {
-    color:white;
-    font-weight: bold;
-    padding: 6px 10px;
-}
-
-.list-table td:nth-child(1), .list-table thead tr th:nth-child(1) {
-    text-align: left;
-}
-
-.list-table td:nth-child(2), .list-table thead tr th:nth-child(2) {
-    width: 1%;
-    text-align: right;
-}
-
-.list-table tr td {
-    padding: 3px 10px;
 }
 /* #endregion */
 
@@ -543,7 +521,6 @@ body {
 
     background-color: #32455b;
     color: #fff89d;
-    font-size: clamp(1em, calc(1.1 * 1vw), 1.1em);
 
     border-radius: 10px;
     border-collapse: collapse;
@@ -565,9 +542,9 @@ body {
 
     border: 8px solid #395273;
     border-radius: 50%;
-    padding: 0 207px;
+    padding: 0 180px;
     
-    min-height: 250px;
+    min-height: 220px;
 }
 
 .thumbnail-offline {
@@ -575,7 +552,6 @@ body {
     background-image: linear-gradient(0, #8a7c7b, #615756);
 }
 
-/* this is fucked, whoopsies 🤪 */
 .thumbnail-image {
     width: 100%;
     height: 100%;
@@ -584,10 +560,10 @@ body {
 
 .thumbnail-image img {
     position: absolute;
-    top: -72px;
-    left: 3px;
-    
-    width: 420px;
+    top: -75px;
+    left: -2px;
+
+    width: 400px;
 }
 /* #endregion */
 
@@ -784,27 +760,6 @@ body {
     cursor: default;
     flex: 1;
     min-width: fit-content;
-    font-size: clamp(1em, calc(1.1 * 1vw), 1.1em);
-}
-/* #endregion */
-
-/* #region Neighborhood Watch */
-.div-nhood-watch {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    gap: 0em;
-}
-
-.div-nhood-watch-title {
-    align-self: center;
-}
-
-.div-nhood-context {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: -18px;
 }
 /* #endregion */
 
@@ -825,13 +780,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: -25px;
+    margin-top: -21px;
 }
 
 .list-sims-in-lot {
     width: 50%;
     margin: 25px;
-    max-height: 250px;
+    max-height: 180px;
     overflow-y: scroll;
 }
 /* #endregion */
@@ -1078,10 +1033,6 @@ body {
 .search-button:active {
     background: url(../images/buttons/search-button-click.png) no-repeat;
 }
-/* #endregion */
-
-/* #region EMPTY */
-
 /* #endregion */
 
 /* #region Animations */
