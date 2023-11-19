@@ -548,11 +548,7 @@ guiUtils = function() {
         // If town hall, skip roommates
         if (selectedLotShort.category == 11) {
 
-            // TODO: Check necessity of these elements
-            descTarget.appendChild(lotDesc);
-            descTarget.appendChild(lotOwnerTitle);
-            descTarget.appendChild(lotOwner);
-            descTarget.appendChild(lotRoommateTitle);
+            GUI_LOT_DESCRIPTION.appendChild(lotDesc);
             return;
         }
 
