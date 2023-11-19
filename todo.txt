@@ -1,7 +1,6 @@
 - Rewrite TODO:
 
     Refactor TODO:
-        - Condense css
         - Easter eggs (WIP)
         - Change localstorage keys (WIP)
         
