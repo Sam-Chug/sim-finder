@@ -1,32 +1,30 @@
-/*
-CONVERT TO DEFINED CCOLORS
+/* #region Color Variables */
+:root {
+    --bg-fallback: #7ca1bf;
 
-sim font: #fff89d
-sim offline font: #969696
+    --sim-font: #fff89d;
+    --sim-offline-font: #969696;
+    --list-index-selected-bg: #fac98c;
 
-table selection bg: #fac98c
+    --inset-bg: #32455b;
+    --inset-bg-dark: #2f4158;
+    --block-gradient-light: #96bad0;
+    --block-gradient-dark: #5f88af;
+    --outset-title-bg: #5077a3;
 
-inset bg #32455b
-gradient light #96bad0
-gradient dark #527aa4
+    --bg-dark-gradient-light: #5f88af;
+    --bg-dark-gradient-dark: #476a8d;
 
-bg dark gradient dark #476a8d
-bg dark gradient light #5f88af
-inset bg darker #2f4158
+    --bg-thumbnail-light: #00bedc;
+    --bg-thumbnail-dark: #002594;
+    --bg-thumbnail-border: #395273;
+    --bg-thumbnail-fallback: #016abb;
 
-bg fallback #7ca1bf
-
-bg thumbnail light #00bedc
-bg thumbnail dark #002594
-bg thumbnail fallback #016abb
-bg thumbnail border #395273
-
-bg thumbnail offline light: #8a7c7b
-bg thumbnail offline dark: #615756
-bg thumbnail offline fallback: #736766
-
-outset title bg #5077a3
-*/
+    --bg-thumbnail-offline-light: #8a7c7b;
+    --bg-thumbnail-offline-dark: #615756;
+    --bg-thumbnail-offline-fallback: #736766;
+}
+/* #endregion */
 
 /* #region Page Basics */
 @font-face {
@@ -36,12 +34,12 @@ outset title bg #5077a3
 
 body {
     font-family: 'FreeSO Font', cursive;
-    background-color: #7ca1bf;
-    background-image: linear-gradient(90deg, #476a8d, #5f88af);
+    background-color: var(--bg-fallback);
+    background-image: linear-gradient(90deg, var(--bg-dark-gradient-dark), var(--bg-dark-gradient-light));
     background-attachment: fixed;
     text-shadow: 0px 2px 1px black;
 
-    color:#fff89d;
+    color: var(--sim-font);
     font-size: 100%;
 }
 
@@ -83,7 +81,7 @@ body {
 
 /* #region Sim States */
 .user-offline {
-    color: #969696;
+    color: var(--sim-offline-font);
 }
 
 .mouse-over-list-index, .column-header {
@@ -94,7 +92,7 @@ body {
 /* #region UI Building */
 .block-background {
     border-radius: 45px;
-    background-image: linear-gradient(90deg, #96bad0, #5f88af);
+    background-image: linear-gradient(90deg, var(--block-gradient-light), var(--block-gradient-dark));
 
     box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.4) inset,
                 4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
@@ -116,7 +114,7 @@ body {
     border-collapse: collapse;
     overflow: hidden;
 
-    background-color: #2f4158;
+    background-color: var(--inset-bg-dark);
     box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
                 0px -1px 1px 3px rgba(0, 0, 0, 0.35),
                 0px 3px 1px 3px rgba(255, 255, 255, 0.15);
@@ -137,7 +135,7 @@ body {
     border-collapse: collapse;
     overflow: hidden;
 
-    background-color: #5077a3;
+    background-color: var(--outset-title-bg);
     box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
                 5px 5px 3px 1px rgba(255, 255, 255, 0.5) inset,
                 3px 3px 3px 1px rgba(0, 0, 0, 0.6);
@@ -182,11 +180,11 @@ body {
 }
 
 .sim-list-node-offline {
-    color: #969696;
+    color: var(--sim-offline-font);
 }
 
 .sim-list-node-selected {
-    background-color: #fac98c;
+    background-color: var(--list-index-selected-bg);
     color: black;
     text-shadow: none;
 }
@@ -207,7 +205,7 @@ body {
 }
 
 .sim-in-lot-list-node-selected {
-    background-color: #fac98c;
+    background-color: var(--list-index-selected-bg);
     color: black;
     text-shadow: none;
 }
@@ -233,8 +231,8 @@ body {
     display: block;
     margin: 10px 20px 35px 20px;
 
-    background-color: #32455b;
-    color: #fff89d;
+    background-color: var(--inset-bg);
+    color: var(--sim-font);
     font-size: 0.9em;
     white-space: nowrap;
     
@@ -519,8 +517,8 @@ body {
     letter-spacing: 0.5px;
     white-space: pre;
 
-    background-color: #32455b;
-    color: #fff89d;
+    background-color: var(--inset-bg);
+    color: var(--sim-font);
 
     border-radius: 10px;
     border-collapse: collapse;
@@ -537,10 +535,10 @@ body {
                 -1px -1px 2px 2px rgba(0, 0, 0, 0.3),
                 1px 1px 2px 1px rgba(255, 255, 255, 0.7);
 
-    background-color: #016abb;
-    background-image: linear-gradient(0, #00bedc, #002594);
+    background-color: var(--bg-thumbnail-fallback);
+    background-image: linear-gradient(0, var(--bg-thumbnail-light), var(--bg-thumbnail-dark));
 
-    border: 8px solid #395273;
+    border: 8px solid var(--bg-thumbnail-border);
     border-radius: 50%;
     padding: 0 180px;
     
@@ -548,8 +546,8 @@ body {
 }
 
 .thumbnail-offline {
-    background-color: #736766;
-    background-image: linear-gradient(0, #8a7c7b, #615756);
+    background-color: var(--bg-thumbnail-offline-fallback);
+    background-image: linear-gradient(0, var(--bg-thumbnail-offline-light), var(--bg-thumbnail-offline-dark));
 }
 
 .thumbnail-image {
@@ -602,10 +600,10 @@ body {
                 -1px -1px 2px 2px rgba(0, 0, 0, 0.3),
                 1px 1px 2px 1px rgba(255, 255, 255, 0.7);
 
-    background-color: #016abb;
-    background-image: linear-gradient(0, #00bedc, #002594);
+    background-color: var(--bg-thumbnail-fallback);
+    background-image: linear-gradient(0, var(--bg-thumbnail-light), var(--bg-thumbnail-dark));
 
-    border: 8px solid #395273;
+    border: 8px solid var(--bg-thumbnail-border);
     border-radius: 50%;
     
     height: 275px;
@@ -615,8 +613,8 @@ body {
 }
 
 .thumbnail-offline {
-    background-color: #736766;
-    background-image: linear-gradient(0, #8a7c7b, #615756);
+    background-color: var(--bg-thumbnail-offline-fallback);
+    background-image: linear-gradient(0, var(--bg-thumbnail-offline-light), var(--bg-thumbnail-offline-dark));
 }
 
 .div-sim-thumbnail img {
@@ -642,8 +640,8 @@ body {
     min-width: 313px;
     max-width: 490px;
 
-    background-color: #32455b;
-    color: #fff89d;
+    background-color: var(--inset-bg);
+    color: var(--sim-font);
     font-size: clamp(1em, 1vw, 1.65em);
 
     border-radius: 10px;
@@ -672,7 +670,7 @@ body {
     box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.4) inset,
                 2px 2px 2px 1px rgba(255, 255, 255, 0.3) inset;
 
-    background: #016abb;
+    background: var(--bg-thumbnail-fallback);
     border-radius: 5px;
 }
 
@@ -879,7 +877,7 @@ body {
 
     border-radius: 25px;
     
-    background-color: #2f4158;
+    background-color: var(--inset-bg-dark);
     box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
                 0px -1px 1px 3px rgba(0, 0, 0, 0.35),
                 0px 3px 1px 3px rgba(255, 255, 255, 0.15);
@@ -901,7 +899,7 @@ body {
     border-collapse: collapse;
     overflow: hidden;
 
-    background-color: #5077a3;
+    background-color: var(--outset-title-bg);
     box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
                 5px 5px 3px 1px rgba(255, 255, 255, 0.5) inset,
                 3px 3px 3px 1px rgba(0, 0, 0, 0.6);
@@ -986,7 +984,7 @@ body {
 
 .search-bar {
     font-family: 'FreeSO Font', cursive;
-    color:#fff89d;
+    color: var(--sim-font);
     letter-spacing: 0.05em;
     font-size: 1.3em;
     text-align: center;
@@ -997,7 +995,7 @@ body {
     border-collapse: collapse;
     overflow: hidden;
 
-    background-color: #2f4158;
+    background-color: var(--inset-bg-dark);
     box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
                 0px -1px 1px 3px rgba(0, 0, 0, 0.35),
                 0px 3px 1px 3px rgba(255, 255, 255, 0.15);
