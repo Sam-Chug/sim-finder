@@ -17,6 +17,7 @@
         - "Unlocatable" sims
             - Privacy on but not landed_hidden
         - Standardize all text size to match sim/lot lists
+        - Rightmost column's text should not resize at all
     
     Possible Features
         - Make easier to use on mobile
