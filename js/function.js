@@ -699,6 +699,10 @@ guiUtils = function() {
 
             let simNode = createListNode(simList[i].name, `${simUtils.returnSimAge(simList[i].date)} Days`);
             addIndexClickHandler(simNode, "sim");
+
+            // If Reagan, add easter egg
+            if (simList[i].name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
+
             GUI_ONLINESIMS.appendChild(simNode);
         }
     }
@@ -841,9 +845,12 @@ guiUtils = function() {
         // Append and style online sims
         for (sim of onlineSims) {
             
-            // TODO: Reagan easter egg probably gets caught here
             let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
             addIndexClickHandler(simNode, "bookmark");
+
+            // If Reagan, add easter egg
+            if (sim.name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
+
             GUI_BOOKMARK_LIST.append(simNode);
         }
 
