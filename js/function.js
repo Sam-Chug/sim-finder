@@ -417,7 +417,7 @@ guiUtils = function() {
     function writeSimThumbnail (selectedSimShort, selectedSimLong) {
 
         writeToLabel(selectedSimLong.name, "", "sim-title");
-        selSimID = selectedSimShort.avatar_id;
+        selSimID = selectedSimLong.avatar_id;
 
         // TODO: REFACTOR, ADD NEW CONTENT
         if (selectedSimLong.gender == 0) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-m.png?v0.2.1a";
@@ -1615,6 +1615,7 @@ storageUtils = function() {
 
             // Get data from new bookmark list, fetch in case sim was offline
             let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([selSimID]));
+            console.log(addSim.avatars[0]);
             simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
         }
         // If removing bookmark
