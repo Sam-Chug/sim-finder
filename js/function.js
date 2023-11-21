@@ -257,22 +257,11 @@ eggUtils = function() {
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim.description);
-        console.log(styleObj);
         if (!styleObj.usesStyle) return;
 
-        GUI_SIM_LABEL
-        GUI_SIM_VIEW
-        GUI_SIM_THUMBNAIL
-        
-        // Block styling
-        if (styleObj.styles.block != "") {
-
-            GUI_SIM_VIEW.classList.add(styleObj.styles.block);
-        }
-        if (styleObj.styles.label != "") {
-
-            GUI_SIM_LABEL.classList.add(styleObj.styles.label);
-        }
+        // Set styles
+        if (styleObj.styles.block != "") GUI_SIM_VIEW.classList.add(styleObj.styles.block);
+        if (styleObj.styles.label != "") GUI_SIM_LABEL.classList.add(styleObj.styles.label);
     }
 
     return {

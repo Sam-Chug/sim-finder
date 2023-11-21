@@ -1,14 +1,9 @@
 - Rewrite TODO:
 
     Refactor TODO:
-        - Easter eggs (WIP)
         - Change localstorage keys (WIP)
         
     System:
-        - Sim/lot windows cleanly generated from data object
-            - Generated from wherever a sim or lot node is clicked
-        
-        - Fix clock 12:00 am/pm
         - Upgrade versioning system
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Export bookmarks

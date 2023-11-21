@@ -362,7 +362,6 @@ body {
 
 .block-red {
     background-image: linear-gradient(90deg, rgb(210, 67, 67), rgb(183, 56, 56));
-
 }
 
 .block-bone {
@@ -375,6 +374,28 @@ body {
 
 .label-pink {
     background-color: pink;
+    color:rgb(75, 75, 75);
+}
+
+.label-seagreen {
+    background-color: seagreen;
+}
+
+.label-dark {
+    background-color: rgb(75, 75, 75);
+}
+
+.label-red {
+    background-color: rgb(210, 67, 67);
+}
+
+.label-bone {
+    background-color: rgb(242, 237, 223);
+    color:rgb(75, 75, 75);
+}
+
+.label-purple {
+    background-color: rgb(121, 121, 162);
 }
 
 @keyframes move {

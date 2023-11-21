@@ -233,12 +233,27 @@ const EGG_BLOCK_STYLE = {
     },
     bpr: {
         cssClass: `block-purple`
-    },
+    }
 };
 
 const EGG_LABEL_STYLE = {
     lp: {
         cssClass: 'label-pink'
+    },
+    lsg: {
+        cssClass: `label-seagreen`
+    },
+    ldg: {
+        cssClass: `label-dark`
+    },
+    lr: {
+        cssClass: `label-red`
+    },
+    lw: {
+        cssClass: `label-bone`
+    },
+    lpr: {
+        cssClass: `label-purple`
     }
 };
 //#endregion
