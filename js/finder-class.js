@@ -61,10 +61,19 @@ class StyleObject{
             if (styleList[i].charAt(0) == "b") {
 
                 // Check if block style list contains requested style
-                if (!EGG_BLOCK_STYLE.hasOwnProperty(styleList[i])) return;
+                if (!EGG_BLOCK_STYLE.hasOwnProperty(styleList[i])) continue;
 
                 // Set style
                 this.styles.block = EGG_BLOCK_STYLE[styleList[i]].cssClass;
+            }
+            // Label styles
+            if (styleList[i].charAt(0) == "l") {
+
+                // Check if block style list contains requested style
+                if (!EGG_LABEL_STYLE.hasOwnProperty(styleList[i])) continue;
+
+                // Set style
+                this.styles.label = EGG_LABEL_STYLE[styleList[i]].cssClass;
             }
         }
     }

@@ -247,11 +247,10 @@ eggUtils = function() {
         if (selectedSim.name == EGG_REAGAN) {
 
             GUI_SIM_LABEL.classList.add("rainbow-title");
+            GUI_SIM_VIEW.classList.add("block-gold");
+
             GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
             GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
-
-            GUI_SIM_VIEW.classList.add("block-gold");
-            GUI_SIM_VIEW.classList.remove("block-background");
 
             return;
         }
@@ -268,8 +267,11 @@ eggUtils = function() {
         // Block styling
         if (styleObj.styles.block != "") {
 
-            GUI_SIM_VIEW.classList.remove("block-background");
             GUI_SIM_VIEW.classList.add(styleObj.styles.block);
+        }
+        if (styleObj.styles.label != "") {
+
+            GUI_SIM_LABEL.classList.add(styleObj.styles.label);
         }
     }
 
