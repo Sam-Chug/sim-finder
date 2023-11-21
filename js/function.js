@@ -236,6 +236,12 @@ eggUtils = function() {
 
         GUI_SIM_LABEL.classList.add("outset-title", "sim-title");
         GUI_SIM_VIEW.classList.add("div-sim-view", "block-background");
+
+        GUI_SIM_BIO.className = "";
+        GUI_SIM_DESCRIPTION.className = "";
+
+        GUI_SIM_BIO.classList.add("thumbnail-bio-holder", "scrollbar");
+        GUI_SIM_DESCRIPTION.classList.add("thumbnail-desc-holder");
     }
 
     function reaganEgg() {
@@ -261,11 +267,17 @@ eggUtils = function() {
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim.description);
+        console.log(styleObj);
         if (!styleObj.usesStyle) return;
 
         // Set styles
         if (styleObj.styles.block != "") GUI_SIM_VIEW.classList.add(styleObj.styles.block);
         if (styleObj.styles.label != "") GUI_SIM_LABEL.classList.add(styleObj.styles.label);
+        if (styleObj.styles.inset != "") {
+
+            GUI_SIM_BIO.classList.add(styleObj.styles.inset);
+            GUI_SIM_DESCRIPTION.classList.add(styleObj.styles.inset);
+        }
     }
 
     return {

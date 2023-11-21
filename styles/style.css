@@ -374,7 +374,8 @@ body {
 
 .label-pink {
     background-color: pink;
-    color: rgb(242, 237, 223);
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 2px 1px black;
 }
 
 .label-seagreen {
@@ -392,10 +393,39 @@ body {
 .label-bone {
     background-color: rgb(242, 237, 223);
     color:rgb(75, 75, 75);
+    text-shadow: 0px 2px 1px white;
 }
 
 .label-purple {
     background-color: rgb(121, 121, 162);
+}
+
+.inset-pink {
+    background-color: rgb(184, 113, 125) !important;
+    color: rgb(242, 237, 223) !important;
+    text-shadow: 0px 2px 1px white !important;
+}
+
+.inset-seagreen {
+    background-color: rgb(32, 85, 55) !important;
+}
+
+.inset-dark {
+    background-color: rgb(48, 48, 48) !important;
+}
+
+.inset-red {
+    background-color: rgb(135, 45, 45) !important;
+}
+
+.inset-bone {
+    background-color: rgb(190, 184, 171) !important;
+    color: rgb(75, 75, 75) !important;
+    text-shadow: 0px 2px 1px white !important;
+}
+
+.inset-purple {
+    background-color: rgb(94, 94, 120) !important;
 }
 
 @keyframes move {
@@ -633,15 +663,12 @@ body {
 
     font-weight: 50;
 
-    width: 18.8vw;
-    height: 12vw;
-    min-height: 200px;
-    min-width: 313px;
-    max-width: 490px;
+    height: 200px;
+    width: 313px;
 
     background-color: var(--inset-bg);
     color: var(--sim-font);
-    font-size: clamp(1em, 1vw, 1.65em);
+    font-size: 1em;
 
     border-radius: 10px;
     border-collapse: collapse;

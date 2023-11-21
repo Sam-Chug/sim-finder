@@ -29,7 +29,8 @@ class StyleObject{
             head: "",
             body: "",
             label: "",
-            block: ""
+            block: "",
+            inset: "",
         }
 
         // Check if sim uses style
@@ -67,13 +68,21 @@ class StyleObject{
                 this.styles.block = EGG_BLOCK_STYLE[styleList[i]].cssClass;
             }
             // Label styles
-            if (styleList[i].charAt(0) == "l") {
+            else if (styleList[i].charAt(0) == "l") {
 
                 // Check if block style list contains requested style
                 if (!EGG_LABEL_STYLE.hasOwnProperty(styleList[i])) continue;
 
                 // Set style
                 this.styles.label = EGG_LABEL_STYLE[styleList[i]].cssClass;
+            }
+            else if (styleList[i].charAt(0) == "i") {
+
+                // Check if block style list contains requested style
+                if (!EGG_INSET_STYLE.hasOwnProperty(styleList[i])) continue;
+
+                // Set style
+                this.styles.inset = EGG_INSET_STYLE[styleList[i]].cssClass;
             }
         }
     }

@@ -256,4 +256,25 @@ const EGG_LABEL_STYLE = {
         cssClass: `label-purple`
     }
 };
+
+const EGG_INSET_STYLE = {
+    ip: {
+        cssClass: 'inset-pink'
+    },
+    isg: {
+        cssClass: `inset-seagreen`
+    },
+    idg: {
+        cssClass: `inset-dark`
+    },
+    ir: {
+        cssClass: `inset-red`
+    },
+    iw: {
+        cssClass: `inset-bone`
+    },
+    ipr: {
+        cssClass: `inset-purple`
+    }
+};
 //#endregion
