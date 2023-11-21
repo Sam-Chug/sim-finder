@@ -238,6 +238,15 @@ eggUtils = function() {
         GUI_SIM_VIEW.classList.add("div-sim-view", "block-background");
     }
 
+    function reaganEgg() {
+
+        GUI_SIM_LABEL.classList.add("rainbow-title");
+        GUI_SIM_VIEW.classList.add("block-gold");
+
+        GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
+        GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
+    }   
+
     function handleCustomStyles(selectedSim) {
 
         // Reset previous styles
@@ -246,13 +255,8 @@ eggUtils = function() {
         // Do reagan
         if (selectedSim.name == EGG_REAGAN) {
 
-            GUI_SIM_LABEL.classList.add("rainbow-title");
-            GUI_SIM_VIEW.classList.add("block-gold");
-
-            GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
-            GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
-
-            return;
+            //reaganEgg();
+            //return;
         }
 
         // Get sim's custom styles
