@@ -212,3 +212,26 @@ const SIDEBAR_JOB_CLUB = document.getElementById("job-club");
 const SIDEBAR_JOB_FACTORY = document.getElementById("job-robot");
 const SIDEBAR_CLOCK = document.getElementById("sim-clock");
 //#endregion
+
+//#region Easter egg style lists
+const EGG_BLOCK_STYLE = {
+    bp: {
+        cssClass: `.block-pink`
+    },
+    bsg: {
+        cssClass: `.block-seagreen`
+    },
+    bdg: {
+        cssClass: `.block-dark`
+    },
+    br: {
+        cssClass: `.block-red`
+    },
+    bw: {
+        cssClass: `.block-bone`
+    },
+    bpr: {
+        cssClass: `.block-purple`
+    },
+};
+//#endregion

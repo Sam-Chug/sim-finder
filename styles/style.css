@@ -342,7 +342,7 @@ body {
                 3px 3px 2px 1px rgba(0, 0, 0, 0.6);
 }
 
-.golden-block {
+.block-gold {
     border-radius: 45px;
     background-image: linear-gradient(90deg, #d4af37, #aa8714);
     
@@ -350,7 +350,7 @@ body {
                 6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
 }
 
-.pink-block {
+.block-pink {
     border-radius: 45px;
     background-image: linear-gradient(90deg, pink, rgb(255, 132, 153));
     
@@ -358,7 +358,7 @@ body {
                 6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
 }
 
-.seagreen-block {
+.block-seagreen {
     border-radius: 45px;
     background-image: linear-gradient(90deg, seagreen, rgb(23, 103, 57));
 
@@ -366,7 +366,7 @@ body {
                 4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
 }
 
-.dark-block {
+.block-dark {
     border-radius: 45px;
     background-image: linear-gradient(90deg, rgb(75, 75, 75), rgb(49, 49, 49));
 
@@ -374,7 +374,7 @@ body {
                 4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
 }
 
-.red-block {
+.block-red {
     border-radius: 45px;
     background-image: linear-gradient(90deg, rgb(210, 67, 67), rgb(183, 56, 56));
 
@@ -383,7 +383,7 @@ body {
 
 }
 
-.bone-block {
+.block-bone {
     border-radius: 45px;
     background-image: linear-gradient(90deg, rgb(242, 237, 223), rgb(218, 211, 190));
 
@@ -391,7 +391,7 @@ body {
                 4px 4px 5px 3px rgba(255, 255, 255, 0.65) inset;
 }
 
-.purple-block {
+.block-purple {
     border-radius: 45px;
     background-image: linear-gradient(90deg, rgb(121, 121, 162), rgb(79, 79, 135));
 

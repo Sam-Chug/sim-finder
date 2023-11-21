@@ -263,7 +263,8 @@ eggUtils = function() {
 
             // Sim's panel
             case 0:
-                const simStyles = returnStyleMarker(value.description);
+                let simStyles = returnStyleMarker(value.description);
+                console.log(simStyles);
                 resetSimThumbnailStyles();
 
                 var title = document.getElementById("sim-title");
@@ -275,7 +276,7 @@ eggUtils = function() {
                     title.classList.add("rainbow-title");
                     image.classList.add("rainbow-image");
 
-                    block.classList.add("golden-block");
+                    block.classList.add("block-gold");
                     block.classList.remove("block-background");
                 }
                 else if (simStyles.includes("bp")) {
@@ -470,8 +471,8 @@ guiUtils = function() {
         else if (selectedSimLong.gender == 1) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-f.png?v0.2.1a";
 
         // TODO: EASTER EGGS
-        //doEasterEggs(0, selectedSimLong);
-        //doEasterEggs(1, selectedSimLong);
+        eggUtils.doEasterEggs(0, selectedSimLong);
+        eggUtils.doEasterEggs(1, selectedSimLong);
 
         // Write sim's bio text
         GUI_SIM_BIO.textContent = selectedSimLong.description;

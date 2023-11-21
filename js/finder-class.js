@@ -24,26 +24,62 @@ class StyleObject{
         // Sim only
         this.avatarHead;
 
-        // Lots + Sims
-        this.labelStyle;
-        this.blockStyle;
-        this.insetTextStyle;
-        this.insetBackgroundStyle;
+        // Style list
+        this.styles = {
+            head: "",
+            body: "",
+            label: "",
+            block: ""
+        }
 
-        this.checkIfUsesStyle();
+        // Check if sim uses style
+        this.checkIfUsesStyle(simDescription);
         if (!this.usesStyle) return;
-
+        
+        // Build object of sim styles
+        this.handleSimStyles(simDescription);
     }
 
-    checkIfUsesStyle() {
+    checkIfUsesStyle(simDescription) {
 
         // Get if uses style
         if (simDescription.includes("sifi:")) this.usesStyle = true;
     }
 
-    returnStyleList() {
+    handleSimStyles(simDescription) {
 
+        let styleList = returnStyleList(simDescription);
+        this.getSelectedStyles(styleList);
+    }
 
+    // Find styles from list
+    getSelectedStyles(styleList) {
+
+        for (let i = 0; i < styleList.length; i++) {
+
+            if (styleList[i].charAt(0) == "b") {
+
+                
+                this.styles.block = styleList[i];
+            }
+        }
+    }
+
+    returnStyleList(simDescription) {
+
+        let startIndex = simDescription.indexOf("sifi:") + 5;
+        let endIndex = 0;
+
+        for (let i = startIndex; i < simDescription.length; i++) {
+
+            if (simDescription[i] == ":") {
+
+                endIndex = i;
+                break;
+            }
+        }
+        let styleList = simDescription.substring(startIndex, endIndex);
+        return styleList.split(",");
     }
 }
 
