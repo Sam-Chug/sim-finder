@@ -173,7 +173,7 @@ const GUI_BOOKMARK_BUTTON = document.getElementById('bookmark-checkbox');
 const GUI_BOOKMARK_LIST = document.getElementById("bookmark-table");
 
 const GUI_SIM_VIEW = document.getElementById('sim-viewer');
-const GUI_SIM_LABEL = document.getElementById("sim-title");
+const GUI_SIM_LABEL = document.getElementById('sim-title');
 const GUI_SIM_THUMBNAIL = document.getElementById('sim-thumbnail-image');
 const GUI_SIM_THUMBNAIL_BG = document.getElementById('sim-thumbnail-bg');
 const GUI_SIM_BIO = document.getElementById('sim-bio');
@@ -214,24 +214,25 @@ const SIDEBAR_CLOCK = document.getElementById("sim-clock");
 //#endregion
 
 //#region Easter egg style lists
+const EGG_REAGAN = "Reaganomics Lamborghini";
 const EGG_BLOCK_STYLE = {
     bp: {
-        cssClass: `.block-pink`
+        cssClass: `block-pink`
     },
     bsg: {
-        cssClass: `.block-seagreen`
+        cssClass: `block-seagreen`
     },
     bdg: {
-        cssClass: `.block-dark`
+        cssClass: `block-dark`
     },
     br: {
-        cssClass: `.block-red`
+        cssClass: `block-red`
     },
     bw: {
-        cssClass: `.block-bone`
+        cssClass: `block-bone`
     },
     bpr: {
-        cssClass: `.block-purple`
+        cssClass: `block-purple`
     },
 };
 //#endregion

@@ -48,7 +48,7 @@ class StyleObject{
 
     handleSimStyles(simDescription) {
 
-        let styleList = returnStyleList(simDescription);
+        let styleList = this.returnStyleList(simDescription);
         this.getSelectedStyles(styleList);
     }
 
@@ -57,10 +57,14 @@ class StyleObject{
 
         for (let i = 0; i < styleList.length; i++) {
 
+            // Block styles
             if (styleList[i].charAt(0) == "b") {
 
-                
-                this.styles.block = styleList[i];
+                // Check if block style list contains requested style
+                if (!EGG_BLOCK_STYLE.hasOwnProperty(styleList[i])) return;
+
+                // Set style
+                this.styles.block = EGG_BLOCK_STYLE[styleList[i]].cssClass;
             }
         }
     }

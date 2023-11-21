@@ -238,98 +238,44 @@ eggUtils = function() {
         GUI_SIM_VIEW.classList.add("div-sim-view", "block-background");
     }
 
-    // Parse sim bio for style markers
-    function returnStyleMarker(styleString) {
+    function handleCustomStyles(selectedSim) {
 
-        let startIndex = styleString.indexOf("sifi:") + 5;
-        let endIndex = 0;
+        // Reset previous styles
+        resetSimThumbnailStyles();
 
-        for (let i = startIndex; i < styleString.length; i++) {
-            
-            if (styleString[i] == ":") {
+        // Do reagan
+        if (selectedSim.name == EGG_REAGAN) {
 
-                endIndex = i;
-                break;
-            }
+            GUI_SIM_LABEL.classList.add("rainbow-title");
+            GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
+            GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
+
+            GUI_SIM_VIEW.classList.add("block-gold");
+            GUI_SIM_VIEW.classList.remove("block-background");
+
+            return;
         }
-        let styleText = styleString.substring(startIndex, endIndex);
-        return styleText.split(",");
-    }
 
-    // Easter Eggs
-    function doEasterEggs(eggID, value) {
+        // Get sim's custom styles
+        let styleObj = new StyleObject(selectedSim.description);
+        console.log(styleObj);
+        if (!styleObj.usesStyle) return;
 
-        switch (eggID){
+        GUI_SIM_LABEL
+        GUI_SIM_VIEW
+        GUI_SIM_THUMBNAIL
+        
+        // Block styling
+        if (styleObj.styles.block != "") {
 
-            // Sim's panel
-            case 0:
-                let simStyles = returnStyleMarker(value.description);
-                console.log(simStyles);
-                resetSimThumbnailStyles();
-
-                var title = document.getElementById("sim-title");
-                var block = document.getElementById("sim-viewer");
-                var image = document.getElementById("sim-thumbnail-image");
-
-                if (value.name == "Reaganomics Lamborghini") {
-
-                    title.classList.add("rainbow-title");
-                    image.classList.add("rainbow-image");
-
-                    block.classList.add("block-gold");
-                    block.classList.remove("block-background");
-                }
-                else if (simStyles.includes("bp")) {
-
-                    block.classList.remove("block-background");
-                    block.classList.add("pink-block");
-                }
-                else if (simStyles.includes("bsg")) {
-
-                    block.classList.remove("block-background");
-                    block.classList.add("seagreen-block");
-                }
-                else if (simStyles.includes("bdg")) {
-
-                    block.classList.remove("block-background");
-                    block.classList.add("dark-block");
-                }
-                else if (simStyles.includes("br")) {
-
-                    block.classList.remove("block-background");
-                    block.classList.add("red-block");
-                }
-                else if (simStyles.includes("bw")) {
-
-                    block.classList.remove("block-background");
-                    block.classList.add("bone-block");
-                }
-                else if (simStyles.includes("bpr")) {
-
-                    block.classList.remove("block-background");
-                    block.classList.add("purple-block");
-                }
-
-                break;
-
-            // Rea sim head
-            case 1:
-                var image = document.getElementById("sim-thumbnail-image");
-                if (value.name == "Reaganomics Lamborghini"){
-            
-                    image.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
-                }
-                break;
-
-            default:
-                break;
+            GUI_SIM_VIEW.classList.remove("block-background");
+            GUI_SIM_VIEW.classList.add(styleObj.styles.block);
         }
     }
 
     return {
         resetSimThumbnailStyles: resetSimThumbnailStyles,
-        returnStyleMarker: returnStyleMarker,
-        doEasterEggs: doEasterEggs
+        handleCustomStyles: handleCustomStyles
     }
 }();
 
@@ -471,8 +417,7 @@ guiUtils = function() {
         else if (selectedSimLong.gender == 1) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-f.png?v0.2.1a";
 
         // TODO: EASTER EGGS
-        eggUtils.doEasterEggs(0, selectedSimLong);
-        eggUtils.doEasterEggs(1, selectedSimLong);
+        eggUtils.handleCustomStyles(selectedSimLong);
 
         // Write sim's bio text
         GUI_SIM_BIO.textContent = selectedSimLong.description;
