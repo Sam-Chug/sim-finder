@@ -287,27 +287,27 @@ body {
 }
 
 .window-minable {
-    background: url(../images/buttons/min-window-button.png) 0 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.1a) 0 0;
 }
 
 .window-minable:hover {
-    background: url(../images/buttons/min-window-button.png) 82px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.1a) 82px 0;
 }
 
 .window-minable:active {
-    background: url(../images/buttons/min-window-button.png) 41px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.1a) 41px 0;
 }
 
 .window-maxable {
-    background: url(../images/buttons/min-window-button.png) 0 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.1a) 0 41px;
 }
 
 .window-maxable:hover {
-    background: url(../images/buttons/min-window-button.png) 82px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.1a) 82px 41px;
 }
 
 .window-maxable:active {
-    background: url(../images/buttons/min-window-button.png) 41px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.1a) 41px 41px;
 }
 /* #endregion */
 
@@ -738,15 +738,15 @@ body {
 
     width: 40px;
     height: 40px;
-    background: url(../images/buttons/question-button.png) 0px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.1a) 0px 0px;
 }
 
 .buttom-sim-help-image:hover {
-    background: url(../images/buttons/question-button.png) 80px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.1a) 80px 0px;
 }
 
 .buttom-sim-help-image:active {
-    background: url(../images/buttons/question-button.png) 40px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.1a) 40px 0px;
 }
 /* #endregion */
 
@@ -954,17 +954,17 @@ body {
 
 .expand-sidebar-image {
     transform: translate(-8px, -3px);
-    background: url(../images/buttons/expand-arrow.png) 0px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.1a) 0px 0px;
     width: 30px;
     height: 30px;
 }
 
 .expand-sidebar-image:hover {
-    background: url(../images/buttons/expand-arrow.png) 60px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.1a) 60px 0px;
 }
 
 .expand-sidebar-image:active {
-    background: url(../images/buttons/expand-arrow.png) 30px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.1a) 30px 0px;
 }
 
 .job-holder {
@@ -1041,7 +1041,7 @@ body {
 
 .search-button {
     border-radius: 50%;
-    background: url(../images/buttons/search-button.png) no-repeat;
+    background: url(../images/buttons/search-button.png?v0.2.1a) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1051,11 +1051,11 @@ body {
 }
 
 .search-button:hover {
-    background: url(../images/buttons/search-button-hover.png) no-repeat;
+    background: url(../images/buttons/search-button-hover.png?v0.2.1a) no-repeat;
 }
 
 .search-button:active {
-    background: url(../images/buttons/search-button-click.png) no-repeat;
+    background: url(../images/buttons/search-button-click.png?v0.2.1a) no-repeat;
 }
 /* #endregion */
 

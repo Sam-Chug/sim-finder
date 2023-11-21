@@ -4,7 +4,6 @@
         - Change localstorage keys (WIP)
         
     System:
-        - Upgrade versioning system
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Export bookmarks
         - Choose to sort sims by age or by name
