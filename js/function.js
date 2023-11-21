@@ -1450,7 +1450,7 @@ marketWatchUtils = function() {
                             `SMO Total $/Hr: $${marketObj.moneyPerHourSMO.toLocaleString("en-US")}\n` + 
                             `${marketObj.simsSMO} Sims at ${marketObj.moneyLots.length} Money Lots\n\n` +
                             `Job Total $/Hr: $${marketObj.moneyPerHourJob.toLocaleString("en-US")}\n` +
-                            `${marketObj.simsWorking} Sims at ${simUtils.returnJobsOpen().length} Job(s)\n\n\n` + 
+                            `${marketObj.simsWorking} Sims at ${simUtils.returnJobsOpen().length} Job(s)\n\n` + 
                             "(Values Heavily Estimated)";
         GUI_MARKET_BREAKDOWN.textContent = breakdownText;
 

@@ -16,6 +16,37 @@ class SimData{
     }
 };
 
+class StyleObject{
+    constructor(simDescription) {
+
+        this.usesStyle;
+
+        // Sim only
+        this.avatarHead;
+
+        // Lots + Sims
+        this.labelStyle;
+        this.blockStyle;
+        this.insetTextStyle;
+        this.insetBackgroundStyle;
+
+        this.checkIfUsesStyle();
+        if (!this.usesStyle) return;
+
+    }
+
+    checkIfUsesStyle() {
+
+        // Get if uses style
+        if (simDescription.includes("sifi:")) this.usesStyle = true;
+    }
+
+    returnStyleList() {
+
+
+    }
+}
+
 class MarketObject{
     constructor(simLong, simShort, lotShort) {
 
