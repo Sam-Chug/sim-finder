@@ -403,7 +403,7 @@ body {
 .inset-pink {
     background-color: rgb(184, 113, 125) !important;
     color: rgb(242, 237, 223) !important;
-    text-shadow: 0px 2px 1px white !important;
+    text-shadow: 0px 2px 1px black !important;
 }
 
 .inset-seagreen {
