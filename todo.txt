@@ -1,5 +1,13 @@
 - Rewrite TODO:
 
+    New Features:
+        - Click sim or lot label to copy to clipboard
+        - New custom styles, for label and description
+        - Style tweaks
+        - Fixed noon AM/PM bug
+        
+
+
     System:
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Export bookmark button

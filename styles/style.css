@@ -824,6 +824,7 @@ body {
 
 /* #region Sidebar */
 .sidebar-holder {
+    z-index: 50;
     display: block;
     width: 200px;
     position: fixed;
