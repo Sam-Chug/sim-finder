@@ -1,11 +1,8 @@
 - Rewrite TODO:
 
-    Refactor TODO:
-        - Change localstorage keys (WIP)
-        
     System:
         - Change "idList" to "simfinder-bookmarks" in localStorage
-        - Export bookmarks
+        - Export bookmark button
         - Choose to sort sims by age or by name
         - "Unlocatable" sims
             - Privacy on but not landed_hidden
