@@ -722,6 +722,8 @@ body {
 }
 
 .button-sim-help {
+    position: relative;
+    z-index: 20;
     background-color: transparent;
     border: none;
     border-radius: 50%;
