@@ -216,10 +216,16 @@ domUtils = function() {
         GUI_BOOKMARK_LIST.style.maxHeight = heightPX;
     }
 
+    function copyTextToClipboard(e) {
+
+        navigator.clipboard.writeText(e.textContent);
+    }
+
     return {
         getIndexInParent: getIndexInParent,
         resetListSelection: resetListSelection,
-        sizeLists: sizeLists
+        sizeLists: sizeLists,
+        copyTextToClipboard: copyTextToClipboard
     }
 }();
 
@@ -246,11 +252,14 @@ eggUtils = function() {
 
     function reaganEgg() {
 
-        GUI_SIM_LABEL.classList.add("rainbow-title");
+        GUI_SIM_LABEL.classList.add("label-gold");
         GUI_SIM_VIEW.classList.add("block-gold");
 
         GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
         GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
+
+        GUI_SIM_BIO.classList.add("inset-gold");
+        GUI_SIM_DESCRIPTION.classList.add("inset-gold");
     }   
 
     function handleCustomStyles(selectedSim) {
@@ -261,8 +270,8 @@ eggUtils = function() {
         // Do reagan
         if (selectedSim.name == EGG_REAGAN) {
 
-            //reaganEgg();
-            //return;
+            reaganEgg();
+            return;
         }
 
         // Get sim's custom styles
