@@ -239,6 +239,21 @@ domUtils = function() {
         GUI_BOOKMARK_LIST.style.maxHeight = heightPX;
     }
 
+    // Brute force because my css is bad
+    function centerListLabels() {
+
+        let simLabel = document.getElementById("sims-online-count-label");
+        let simLabelRect = simLabel.getBoundingClientRect();
+        let simListPanelRect = document.getElementById("sim-list-panel").getBoundingClientRect();
+
+        let lotLabel = document.getElementById("lots-online-count-label");
+        let lotLabelRect = lotLabel.getBoundingClientRect();
+        let lotListPanelRect = document.getElementById("lot-list-panel").getBoundingClientRect();
+
+        simLabel.style.marginLeft = `calc(50% - ${simLabelRect.width / 2}px)`;
+        lotLabel.style.marginLeft = `calc(50% - ${lotLabelRect.width / 2}px)`;
+    }
+
     function copyTextToClipboard(e) {
 
         navigator.clipboard.writeText(e.textContent);
@@ -248,7 +263,8 @@ domUtils = function() {
         getIndexInParent: getIndexInParent,
         resetListSelection: resetListSelection,
         sizeLists: sizeLists,
-        copyTextToClipboard: copyTextToClipboard
+        copyTextToClipboard: copyTextToClipboard,
+        centerListLabels: centerListLabels
     }
 }();
 
