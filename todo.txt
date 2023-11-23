@@ -8,6 +8,7 @@
         - A couple new sim filters
         - Hopefully fixed innacurate sim ages and birthdays
         - A birthday cake will now appear next to sims and lots on their birthday (see if this even works)
+        - Representation for our ursine friends
 
     System:
         - Change "idList" to "simfinder-bookmarks" in localStorage
@@ -49,6 +50,8 @@
                 - separate each and end with ":"
 
             - Sims:
+                - https://sims1database.tumblr.com/archive <- database of an assortment of sims, m/f, many outfits
+                    - Missing some heads though
                 - Defaults to a randomly chosen head, based on sim ID
                 - Sim avatar gif
                 - Experiment with font color, inset text holder color

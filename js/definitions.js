@@ -217,9 +217,15 @@ const SIDEBAR_JOB_FACTORY = document.getElementById("job-robot");
 const SIDEBAR_CLOCK = document.getElementById("sim-clock");
 //#endregion
 
-//#region Easter egg style lists
-const EGG_REAGAN = "Reaganomics Lamborghini";
-const EGG_BLOCK_STYLE = {
+//#region Sim style lists
+const CUSTOM_STYLE_SIMHEADS = {
+    male: "./images/sim-faces/simface-m.png?v0.2.1a",
+    female: "./images/sim-faces/simface-f.png?v0.2.1a",
+    reagan: "./images/sim-faces/simface-rea.png?v0.2.1a",
+    bear: "./images/sim-faces/simface-b.png?v0.2.1a"
+};
+const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
+const CUSTOM_STYLE_BLOCK = {
     bp: {
         cssClass: `block-pink`
     },
@@ -240,7 +246,7 @@ const EGG_BLOCK_STYLE = {
     }
 };
 
-const EGG_LABEL_STYLE = {
+const CUSTOM_STYLE_LABEL = {
     lp: {
         cssClass: 'label-pink'
     },
@@ -261,7 +267,7 @@ const EGG_LABEL_STYLE = {
     }
 };
 
-const EGG_INSET_STYLE = {
+const CUSTOM_STYLE_INSET = {
     ip: {
         cssClass: 'inset-pink'
     },

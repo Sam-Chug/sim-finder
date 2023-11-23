@@ -17,13 +17,14 @@ class SimData{
 };
 
 class StyleObject{
-    constructor(simDescription) {
+    constructor(simData) {
 
         this.usesStyle;
         this.usesShorthand;
 
         // Sim only
         this.avatarHead;
+        this.setSimHead(simData);
 
         // Style list
         this.styles = {
@@ -35,11 +36,19 @@ class StyleObject{
         }
 
         // Check if sim uses style
-        this.checkIfUsesStyle(simDescription);
+        this.checkIfUsesStyle(simData.description);
         if (!this.usesStyle) return;
         
         // Build object of sim styles
-        this.handleSimStyles(simDescription);
+        this.handleSimStyles(simData.description);
+    }
+
+    setSimHead(simData) {
+
+        // If bear sim, set to bear
+        if (simData.name.toLowerCase().includes("bear")) this.avatarHead = CUSTOM_STYLE_SIMHEADS.bear;
+        else if (simData.gender == 0) this.avatarHead = CUSTOM_STYLE_SIMHEADS.male;
+        else if (simData.gender == 1) this.avatarHead = CUSTOM_STYLE_SIMHEADS.female;
     }
 
     checkIfUsesStyle(simDescription) {
@@ -69,21 +78,21 @@ class StyleObject{
             if (styleList[i].charAt(0) == "b") {
 
                 // Check if block style list contains requested style
-                if (!EGG_BLOCK_STYLE.hasOwnProperty(styleList[i])) continue;
-                this.styles.block = EGG_BLOCK_STYLE[styleList[i]].cssClass;
+                if (!CUSTOM_STYLE_BLOCK.hasOwnProperty(styleList[i])) continue;
+                this.styles.block = CUSTOM_STYLE_BLOCK[styleList[i]].cssClass;
             }
             // Label styles
             else if (styleList[i].charAt(0) == "l") {
 
                 // Check if block style list contains requested style
-                if (!EGG_LABEL_STYLE.hasOwnProperty(styleList[i])) continue;
-                this.styles.label = EGG_LABEL_STYLE[styleList[i]].cssClass;
+                if (!CUSTOM_STYLE_LABEL.hasOwnProperty(styleList[i])) continue;
+                this.styles.label = CUSTOM_STYLE_LABEL[styleList[i]].cssClass;
             }
             else if (styleList[i].charAt(0) == "i") {
 
                 // Check if block style list contains requested style
-                if (!EGG_INSET_STYLE.hasOwnProperty(styleList[i])) continue;
-                this.styles.inset = EGG_INSET_STYLE[styleList[i]].cssClass;
+                if (!CUSTOM_STYLE_INSET.hasOwnProperty(styleList[i])) continue;
+                this.styles.inset = CUSTOM_STYLE_INSET[styleList[i]].cssClass;
             }
         }
     }

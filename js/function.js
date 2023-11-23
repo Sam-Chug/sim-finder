@@ -279,7 +279,7 @@ eggUtils = function() {
         GUI_SIM_VIEW.classList.add("block-gold");
 
         GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
-        GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-rea.png?v0.2.1a";
+        GUI_SIM_THUMBNAIL.src = CUSTOM_STYLE_SIMHEADS.reagan;
 
         GUI_SIM_BIO.classList.add("inset-gold");
         GUI_SIM_DESCRIPTION.classList.add("inset-gold");
@@ -291,14 +291,14 @@ eggUtils = function() {
         resetSimThumbnailStyles();
 
         // Do reagan
-        if (selectedSim.name == EGG_REAGAN) {
+        if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
 
             reaganEgg();
             return;
         }
 
         // Get sim's custom styles
-        let styleObj = new StyleObject(selectedSim.description);
+        let styleObj = new StyleObject(selectedSim);
         if (!styleObj.usesStyle) return;
 
         // Set styles
@@ -451,9 +451,9 @@ guiUtils = function() {
         writeToLabel(selectedSimLong.name + ((isBirthday) ? " 🎂" : ""), "", "sim-title");
         selSimID = selectedSimLong.avatar_id;
 
-        // TODO: REFACTOR, ADD NEW CONTENT
-        if (selectedSimLong.gender == 0) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-m.png?v0.2.1a";
-        else if (selectedSimLong.gender == 1) GUI_SIM_THUMBNAIL.src = "./images/sim-faces/simface-f.png?v0.2.1a";
+        // Set head graphic
+        let headStyle = new StyleObject(selectedSimLong);
+        GUI_SIM_THUMBNAIL.src = headStyle.avatarHead;
 
         // TODO: EASTER EGGS
         eggUtils.handleCustomStyles(selectedSimLong);
