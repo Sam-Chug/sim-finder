@@ -2,19 +2,41 @@ simUtils = function() {
 
     function returnSimAge(joinDate) {
 
-        const now = Math.round(Date.now() / 1000);
-        return Math.round((now - joinDate) / 86400);
+        let utcNow = new Date().getTime();
+        let now = Math.round(utcNow / 1000);
+        return Math.floor((now - joinDate) / 86400);
+    }
+
+    function checkIfSimBirthday(simUnix) {
+
+        let utcNow = new Date().getTime();
+        let dateObjectNow = returnDateObjectFromUNIX(utcNow);
+        let simDateObject = returnDateObjectFromUNIX(simUnix);
+
+        if (dateObjectNow.day == simDateObject.day && dateObjectNow.month == simDateObject.month) return true;
+        else return false;
     }
 
     // Return format date string from unix timestamp
-    function returnDateStringFromUNIX (unixTime) {
+    function returnDateObjectFromUNIX (unixTime) {
 
-        const d = new Date(unixTime * 1000);
-        const yyyy = ("" + d.getFullYear()).slice(2);
-        const mm = ("0" + (d.getMonth() + 1)).slice(-2);
-        const dd = ("0" + (d.getDate())).slice(-2);
+        let utcNow = new Date(new Date().getTime());
+        utcNow.setDate(utcNow.getDate() - returnSimAge(unixTime));
 
-        return mm + "/" + dd + "/" + yyyy;
+        let yyyy = ("" + utcNow.getFullYear()).slice(2);
+        let mm = ("0" + (utcNow.getMonth() + 1)).slice(-2);
+        let dd = ("0" + (utcNow.getDate())).slice(-2);
+
+        return {
+            month: mm,
+            day: dd,
+            year: yyyy
+        }
+    }
+
+    function returnTextDateFromDateObject(dateObject) {
+
+        return dateObject.month + "/" + dateObject.day + "/" + dateObject.year;
     }
 
     // Return sim time [HH, MM] in a 24 hour format
@@ -166,7 +188,7 @@ simUtils = function() {
     }
 
     return {
-        returnDateStringFromUNIX: returnDateStringFromUNIX,
+        returnDateObjectFromUNIX: returnDateObjectFromUNIX,
         returnSimAge: returnSimAge,
         isSimOnline: isSimOnline,
         returnShortSimFromLong: returnShortSimFromLong,
@@ -178,8 +200,9 @@ simUtils = function() {
         returnOpenState: returnOpenState,
         returnJobsOpen: returnJobsOpen,
         returnSimTime: returnSimTime,
-        returnDateStringFromUNIX: returnDateStringFromUNIX,
-        returnNeighborhood: returnNeighborhood
+        returnNeighborhood: returnNeighborhood,
+        returnTextDateFromDateObject: returnTextDateFromDateObject,
+        checkIfSimBirthday: checkIfSimBirthday
     }
 }();
 
@@ -276,7 +299,6 @@ eggUtils = function() {
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim.description);
-        console.log(styleObj);
         if (!styleObj.usesStyle) return;
 
         // Set styles
@@ -440,8 +462,8 @@ guiUtils = function() {
 
         // Sim description basics
         var descContent = `Age: ${simUtils.returnSimAge(selectedSimLong.date)} Days\n` + 
+                          `Joined: ${simUtils.returnTextDateFromDateObject(simUtils.returnDateObjectFromUNIX(selectedSimLong.date))}\n` +
                           `ID: ${selectedSimLong.avatar_id}\n` + 
-                          `Joined: ${simUtils.returnDateStringFromUNIX(selectedSimLong.date)}\n` +
                           `Job: ${JOB_TITLES[selectedSimLong.current_job]}\n`;
 
         // Is sim mayor of a neighborhood?
@@ -492,7 +514,7 @@ guiUtils = function() {
 
         // Basic lot info
         lotDesc.textContent = `Category: ${LOT_CATEGORY[selectedLotLong.category]}\n` + 
-                              `Established: ${simUtils.returnDateStringFromUNIX(selectedLotLong.created_date)}\n` + 
+                              `Established: ${simUtils.returnTextDateFromDateObject(simUtils.returnDateObjectFromUNIX(selectedLotLong.created_date))}\n` + 
                               `Neighborhood: ${simUtils.returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
                               `Admit Mode: ${ADMIT_MODES[selectedLotLong.admit_mode]}\n` + 
                               `${SKILL_MODES[selectedLotLong.skill_mode]}\n\n`;
@@ -1637,7 +1659,6 @@ storageUtils = function() {
 
             // Get data from new bookmark list, fetch in case sim was offline
             let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([selSimID]));
-            console.log(addSim.avatars[0]);
             simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
         }
         // If removing bookmark

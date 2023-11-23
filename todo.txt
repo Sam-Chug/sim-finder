@@ -6,6 +6,7 @@
         - Style tweaks
         - Fixed noon AM/PM bug
         - A couple new sim filters
+        - Hopefully fixed innacurate som ages and birthdays
 
 
     System:
