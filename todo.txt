@@ -51,9 +51,8 @@
             - Sims:
                 - Defaults to a randomly chosen head, based on sim ID
                 - Sim avatar gif
-                - Sim window color
-                - Sim title color
                 - Experiment with font color, inset text holder color
+                    - Static for now
                 
             - Lots:
                 - Lot window color

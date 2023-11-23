@@ -9,7 +9,7 @@ simUtils = function() {
 
     function checkIfSimBirthday(simUnix) {
 
-        let utcNow = new Date().getTime();
+        let utcNow = Date.now() / 1000;
         let dateObjectNow = returnDateObjectFromUNIX(utcNow);
         let simDateObject = returnDateObjectFromUNIX(simUnix);
 
@@ -1495,6 +1495,9 @@ apiUtils = function() {
 
         // Stupid catch for landed-hidden sims
         if (apiLink.includes("(Maybe)")) apiLink = apiLink.replace("(Maybe)", "");
+
+        // Stupid catch for birthday sims
+        if (apiLink.includes("🎂")) apiLink = apiLink.replace("🎂", "");
 
         let obj;
         const res = await fetch(apiLink);
