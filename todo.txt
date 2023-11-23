@@ -6,8 +6,8 @@
         - Style tweaks
         - Fixed noon AM/PM bug
         - A couple new sim filters
-        - Hopefully fixed innacurate som ages and birthdays
-
+        - Hopefully fixed innacurate sim ages and birthdays
+        - A birthday cake will now appear next to sims and lots on their birthday (see if this even works)
 
     System:
         - Change "idList" to "simfinder-bookmarks" in localStorage
@@ -61,10 +61,6 @@
 
         - "Hot" Lots
             - Highlight top 3 lots in a category if online
-
-        - Sim birthdays
-            - Every 100 & 365 day increment
-            - Cake slice emoji next to name
 
         - Current elections, if possible
 

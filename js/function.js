@@ -447,7 +447,8 @@ guiUtils = function() {
     // Build sim thumbnail
     function writeSimThumbnail (selectedSimShort, selectedSimLong) {
 
-        writeToLabel(selectedSimLong.name, "", "sim-title");
+        let isBirthday = simUtils.checkIfSimBirthday(selectedSimLong.date);
+        writeToLabel(selectedSimLong.name + ((isBirthday) ? " 🎂" : ""), "", "sim-title");
         selSimID = selectedSimLong.avatar_id;
 
         // TODO: REFACTOR, ADD NEW CONTENT
@@ -498,7 +499,8 @@ guiUtils = function() {
         }
         
         // Lot label
-        writeToLabel(selectedLotLong.name, "", "thumbnail-title");
+        let isBirthday = simUtils.checkIfSimBirthday(selectedLotLong.created_date);
+        writeToLabel(selectedLotLong.name + ((isBirthday) ? " 🎂" : ""), "", "thumbnail-title");
 
         // Reset description, get thumbnail from API
         GUI_LOT_DESCRIPTION.textContent = "";
@@ -677,7 +679,9 @@ guiUtils = function() {
 
         for (let i = 0; i < simList.length; i++) {
 
-            let simNode = createListNode(simList[i].name, `${simUtils.returnSimAge(simList[i].date)} Days`);
+            let isBirthday = simUtils.checkIfSimBirthday(simList[i].date);
+
+            let simNode = createListNode(simList[i].name + ((isBirthday) ? " 🎂" : ""), `${simUtils.returnSimAge(simList[i].date)} Days`);
             addIndexClickHandler(simNode, "sim");
 
             // If Reagan, add easter egg
@@ -694,7 +698,9 @@ guiUtils = function() {
         
         for (i = 0; i < lotList.length; i++) {
         
-            let lotNode = createListNode(lotList[i].name, lotList[i].avatars_in_lot + " sims");
+            let isBirthday = simUtils.checkIfSimBirthday(lotList.created_date);
+
+            let lotNode = createListNode(lotList[i].name + ((isBirthday) ? " 🎂" : ""), lotList[i].avatars_in_lot + " sims");
             addIndexClickHandler(lotNode, "lot");
             GUI_ONLINELOTS.appendChild(lotNode);
         }
