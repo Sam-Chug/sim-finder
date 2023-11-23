@@ -977,10 +977,17 @@ filterUtils = function() {
                 }
                 break;
 
-            case "JOB_CLUB":
+            case "JOB_CLUB_DJ":
 
                 for (i = 0; i < simLongList.avatars.length; i++) {
-                    if (simLongList.avatars[i].current_job > 3) longList.push(simLongList.avatars[i]);
+                    if (simLongList.avatars[i].current_job == 4) longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "JOB_CLUB_DANCER":
+
+                for (i = 0; i < simLongList.avatars.length; i++) {
+                    if (simLongList.avatars[i].current_job == 5) longList.push(simLongList.avatars[i]);
                 }
                 break;
 
@@ -988,14 +995,6 @@ filterUtils = function() {
 
                 for (i = 0; i < simLongList.avatars.length; i++) {
                     if (simLongList.avatars[i].current_job == 1) longList.push(simLongList.avatars[i]);
-                }
-                break;
-
-            case "LANDED":
-
-                for (let i = 0; i < simShortList.avatars.length; i++) {
-                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
-                    if (existence == "LANDED") longList.push(simLongList.avatars[i]);
                 }
                 break;
 
@@ -1023,11 +1022,29 @@ filterUtils = function() {
                 }
                 break;
 
+            case "UNFOUND":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+
+                    let isPrivate = simShortList.avatars[i].privacy_mode;
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (isPrivate && existence != "LANDED_HIDDEN") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
             case "FLOATING":
 
                 for (let i = 0; i < simShortList.avatars.length; i++) {
                     let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
                     if (existence == "FLOATING") longList.push(simLongList.avatars[i]);
+                }
+                break;
+
+            case "LANDED":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    let existence = simUtils.returnExistenceState(simShortList.avatars[i]);
+                    if (existence == "LANDED") longList.push(simLongList.avatars[i]);
                 }
                 break;
 
@@ -1074,7 +1091,7 @@ filterUtils = function() {
             addFilterClasses(button, "lot");
             lotFilterArray.appendChild(button);
         }
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 11; i++) {
     
             let button = document.createElement("button");
     
@@ -1174,9 +1191,8 @@ filterUtils = function() {
         
                 count++;
             }
-            if (sameButton) {
-                writeFilterToTable("lot", "REMOVE");
-            }
+            // If already selected, deselect and reset filter
+            if (sameButton) writeFilterToTable("lot", "REMOVE");
             else {
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
@@ -1198,10 +1214,7 @@ filterUtils = function() {
         
                 count++;
             }
-            if (sameButton) {
-    
-                writeFilterToTable("sim", "REMOVE");
-            }
+            if (sameButton) writeFilterToTable("sim", "REMOVE");
             else {
     
                 var x = (index % 4) * 71;

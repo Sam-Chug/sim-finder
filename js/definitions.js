@@ -98,25 +98,29 @@ const NEIGHBORHOOD = [
 
 const SIM_SEARCH = [
     "JOB_DINER",
-    "JOB_CLUB",
+    "JOB_CLUB_DJ",
+    "JOB_CLUB_DANCER",
     "JOB_ROBOT",
-    "LANDED",
     "SHOWN",
     "HIDDEN",
     "FOUND",
+    "UNFOUND",
     "FLOATING",
+    "LANDED",
     "WORKING"
 ]
 
 const SIM_FILTER_TOOLTIP = [
     "Job: Diner",
-    "Job: Club",
+    "Job: Club - DJ",
+    "Job: Club - Dancer",
     "Job: Robot Factory",
-    "Landed at Lot",
     "Privacy Mode: Off",
     "Privacy Mode: On",
     "Located Private Sims",
+    "Unlocatable Sims",
     "Floating",
+    "Landed at Lot",
     "Working"
 ]
 
