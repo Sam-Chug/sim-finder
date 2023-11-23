@@ -12,10 +12,6 @@
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Export bookmark button
         - Choose to sort sims by age or by name
-        - "Unlocatable" sims
-            - Privacy on but not landed_hidden
-        - Standardize all text size to match sim/lot lists
-        - Rightmost column's text should not resize at all
     
     Possible Features
         - Make easier to use on mobile
@@ -25,6 +21,8 @@
 
     Side Features:
         - Lot renderer/object finder
+        - Music box creator
+        - Improved roof art generator
 
     Fluff:
         - Upgrade from sim head to ingame sim bio gif
