@@ -503,8 +503,9 @@ guiUtils = function() {
         writeToLabel(selectedLotLong.name + ((isBirthday) ? " 🎂" : ""), "", "thumbnail-title");
 
         // Reset description, get thumbnail from API
-        let randomCacheBust = Math.floor(Math.random() * 10000000);
+        // TODO: Refactor how lot descriptions are structured html-wise
         GUI_LOT_DESCRIPTION.textContent = "";
+        let randomCacheBust = Math.floor(Math.random() * 10000000);
         GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`;
         console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`);
 
@@ -533,7 +534,7 @@ guiUtils = function() {
         }
 
         // If town hall, skip roommates
-        if (selectedLotShort.category == 11) {
+        if (selectedLotShort.category == 11 || selectedLotLong.category == 11) {
 
             GUI_LOT_DESCRIPTION.appendChild(lotDesc);
             return;
