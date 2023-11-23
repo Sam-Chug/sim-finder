@@ -503,9 +503,10 @@ guiUtils = function() {
         writeToLabel(selectedLotLong.name + ((isBirthday) ? " 🎂" : ""), "", "thumbnail-title");
 
         // Reset description, get thumbnail from API
+        let randomCacheBust = Math.floor(Math.random() * 10000000);
         GUI_LOT_DESCRIPTION.textContent = "";
-        GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + ".png?v0.2.1a";
-        console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + ".png?v0.2.1a");
+        GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`;
+        console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`);
 
         // Create lot bio elements
         const lotDesc = document.createElement("p");
