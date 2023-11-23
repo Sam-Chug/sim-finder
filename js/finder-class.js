@@ -20,6 +20,7 @@ class StyleObject{
     constructor(simDescription) {
 
         this.usesStyle;
+        this.usesShorthand;
 
         // Sim only
         this.avatarHead;
@@ -45,6 +46,12 @@ class StyleObject{
 
         // Get if uses style
         if (simDescription.includes("sifi:")) this.usesStyle = true;
+        // New shorthand
+        if (simDescription.includes("sf:")) {
+
+            this.usesStyle = true;
+            this.usesShorthand = true;
+        }
     }
 
     handleSimStyles(simDescription) {
@@ -63,8 +70,6 @@ class StyleObject{
 
                 // Check if block style list contains requested style
                 if (!EGG_BLOCK_STYLE.hasOwnProperty(styleList[i])) continue;
-
-                // Set style
                 this.styles.block = EGG_BLOCK_STYLE[styleList[i]].cssClass;
             }
             // Label styles
@@ -72,16 +77,12 @@ class StyleObject{
 
                 // Check if block style list contains requested style
                 if (!EGG_LABEL_STYLE.hasOwnProperty(styleList[i])) continue;
-
-                // Set style
                 this.styles.label = EGG_LABEL_STYLE[styleList[i]].cssClass;
             }
             else if (styleList[i].charAt(0) == "i") {
 
                 // Check if block style list contains requested style
                 if (!EGG_INSET_STYLE.hasOwnProperty(styleList[i])) continue;
-
-                // Set style
                 this.styles.inset = EGG_INSET_STYLE[styleList[i]].cssClass;
             }
         }
@@ -89,7 +90,11 @@ class StyleObject{
 
     returnStyleList(simDescription) {
 
-        let startIndex = simDescription.indexOf("sifi:") + 5;
+        // TODO: fix this
+        let indexShift = (this.usesShorthand) ? 3 : 5;
+        let styleIndicator = (this.usesShorthand) ? "sf:" : "sifi:";
+
+        let startIndex = simDescription.indexOf(styleIndicator) + indexShift;
         let endIndex = 0;
 
         for (let i = startIndex; i < simDescription.length; i++) {
