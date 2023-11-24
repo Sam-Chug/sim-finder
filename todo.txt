@@ -30,9 +30,10 @@
         - Upgrade from sim head to ingame sim bio gif
             - Pick from a set of 10, 5m 5f
 
-        - Lot bio closer in design to how the ingame bios look
-            - Symbol for lot type
-            - Sims in lot count
+        - Lot bio closer in design to how the ingame bios look\
+            - Move roommates to sims-in-lot
+                - Show online/offline roomies
+            - Leaves ample space for lot bio
 
         - Clean up sim bio
             - Merge date joined and age
