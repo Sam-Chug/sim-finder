@@ -312,7 +312,7 @@ body {
 }
 /* #endregion */
 
-/* #region Easter Eggs */
+/* #region Custom Styles */
 .rainbow-text {
     background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
     -webkit-background-clip: text;
@@ -322,7 +322,7 @@ body {
     animation: move 3s linear infinite;
 }
 
-.rainbow-image {
+.reagan-image {
     z-index: 3;
     animation: 2.5s pulse infinite;
     animation-timing-function: ease-in-out;
@@ -640,7 +640,7 @@ body {
     border: 8px solid var(--bg-thumbnail-border);
     border-radius: 50%;
     
-    height: 275px;
+    height: 251px;
     width: 175px;
 
     padding: 25px;
@@ -653,9 +653,9 @@ body {
 
 .div-sim-thumbnail img {
     position: absolute;
-    top: 55px;
-    left: 20px;
-    width: 200px;
+    top: 48px;
+    left: 25px;
+    width: 190px;
     z-index: 4;
 }
 

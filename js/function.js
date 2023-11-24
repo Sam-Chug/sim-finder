@@ -349,7 +349,7 @@ eggUtils = function() {
         GUI_SIM_LABEL.classList.add("label-gold");
         GUI_SIM_VIEW.classList.add("block-gold");
 
-        GUI_SIM_THUMBNAIL.classList.add("rainbow-image");
+        GUI_SIM_THUMBNAIL.classList.add("reagan-image");
         GUI_SIM_THUMBNAIL.src = CUSTOM_STYLE_SIMHEADS.reagan;
 
         GUI_SIM_BIO.classList.add("inset-gold");

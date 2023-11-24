@@ -8,9 +8,8 @@
         - A couple new sim filters
         - Hopefully fixed innacurate sim ages and birthdays
         - A birthday cake will now appear next to sims and lots on their birthday
-            - Fix so day 0 sims dont have one
         - Representation for our ursine friends
-        - Ability to sort lists alphabetically (needs testing)
+        - Ability to sort lists alphabetically
 
     System:
         - Change "idList" to "simfinder-bookmarks" in localStorage
