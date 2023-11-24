@@ -1,5 +1,4 @@
 const simDataHolder = new SimData();
-var selSimID;
 
 document.addEventListener("DOMContentLoaded", async e => {
 

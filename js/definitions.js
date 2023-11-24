@@ -215,6 +215,9 @@ const SIDEBAR_JOB_DINER = document.getElementById("job-diner");
 const SIDEBAR_JOB_CLUB = document.getElementById("job-club");
 const SIDEBAR_JOB_FACTORY = document.getElementById("job-robot");
 const SIDEBAR_CLOCK = document.getElementById("sim-clock");
+
+const GUI_SORT_SIM_NAMES = document.getElementById("sort-sims-by-name");
+const GUI_SORT_LOT_NAMES = document.getElementById("sort-lots-by-name");
 //#endregion
 
 //#region Sim style lists

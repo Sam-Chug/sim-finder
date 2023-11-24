@@ -13,6 +13,17 @@ class SimData{
 
         // Market data
         this.marketData;
+
+        // Keep track of selected sim for bookmarking
+        this.selSimID;
+
+        // Current filter
+        this.simFilter = "REMOVE";
+        this.lotFilter = "REMOVE";
+
+        // Keep track of how entities are sorted
+        this.simSort = "age";
+        this.lotSort = "pop";
     }
 };
 

@@ -141,6 +141,53 @@ simUtils = function() {
         }
     }
 
+    function sortEntityList(entityType) {
+
+        if (entityType == "sim") {
+
+            if (simDataHolder.simSort == "age") {
+
+                simDataHolder.simShortList.avatars.sort((a, b) => a.name.localeCompare(b.name));
+                simDataHolder.simLongList.avatars.sort((a, b) => a.name.localeCompare(b.name));
+                
+                GUI_SORT_SIM_NAMES.style.background = `url(../images/buttons/name-sort-selected.png?v0.2.1a)`;
+                simDataHolder.simSort = "name";
+            }
+            else if (simDataHolder.simSort == "name") {
+
+                simDataHolder.simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+                simDataHolder.simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+
+                GUI_SORT_SIM_NAMES.style.background = `url(../images/buttons/name-sort.png?v0.2.1a)`;
+                simDataHolder.simSort = "age";
+            }
+            let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_SEARCH[simDataHolder.simFilter];
+            filterUtils.writeFilterToTable("sim", simFilter);
+            //guiUtils.populateSimList(simDataHolder.simLongList.avatars);
+        }
+        else if (entityType == "lot") {
+
+            if (simDataHolder.lotSort == "pop") {
+
+                simDataHolder.lotShortList.lots.sort((a, b) => a.name.localeCompare(b.name));
+                simDataHolder.lotLongList.lots.sort((a, b) => a.name.localeCompare(b.name));
+
+                GUI_SORT_LOT_NAMES.style.background = `url(../images/buttons/name-sort-selected.png?v0.2.1a)`;
+                simDataHolder.lotSort = "name";
+            }
+            else if (simDataHolder.lotSort == "name") {
+
+                simDataHolder.lotLongList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
+                simDataHolder.lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
+
+                GUI_SORT_LOT_NAMES.style.background = `url(../images/buttons/name-sort.png?v0.2.1a)`;
+                simDataHolder.lotSort = "pop";
+            }
+            filterUtils.writeFilterToTable("lot", simDataHolder.lotFilter);
+            //guiUtils.populateLotList(simDataHolder.lotShortList.lots);
+        }
+    }
+
     // Return if sim floating, hidden, or possibly landed
     function returnExistenceState(selectedSimShort) {
 
@@ -202,7 +249,8 @@ simUtils = function() {
         returnSimTime: returnSimTime,
         returnNeighborhood: returnNeighborhood,
         returnTextDateFromDateObject: returnTextDateFromDateObject,
-        checkIfSimBirthday: checkIfSimBirthday
+        checkIfSimBirthday: checkIfSimBirthday,
+        sortEntityList: sortEntityList
     }
 }();
 
@@ -465,7 +513,7 @@ guiUtils = function() {
 
         let isBirthday = simUtils.checkIfSimBirthday(selectedSimLong.date);
         writeToLabel(selectedSimLong.name + ((isBirthday) ? " 🎂" : ""), "", "sim-title");
-        selSimID = selectedSimLong.avatar_id;
+        simDataHolder.selSimID = selectedSimLong.avatar_id;
 
         // Set head graphic
         let headStyle = new StyleObject(selectedSimLong);
@@ -997,7 +1045,6 @@ filterUtils = function() {
 
             if (filter == "REMOVE") guiUtils.populateSimList(simDataHolder.simLongList.avatars);
             else guiUtils.populateSimList(filterUtils.returnFilterSimList(filter));
-
         } 
         else if(type == "lot") {
 
@@ -1112,6 +1159,7 @@ filterUtils = function() {
     function returnFilterLotList (filter) {
 
         let shortList = new Array();
+
         for (let i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
 
             if (simDataHolder.lotShortList.lots[i].category == LOT_SEARCH_ID[filter]) shortList.push(simDataHolder.lotShortList.lots[i]);
@@ -1238,13 +1286,18 @@ filterUtils = function() {
                 count++;
             }
             // If already selected, deselect and reset filter
-            if (sameButton) writeFilterToTable("lot", "REMOVE");
+            if (sameButton) {
+
+                writeFilterToTable("lot", "REMOVE");
+                simDataHolder.lotFilter = "REMOVE";
+            }
             else {
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
                 button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.1a) " + -x + "px " + -y + "px";
                 button.classList.add("lot-filter-active");
                 writeFilterToTable("lot", index);
+                simDataHolder.lotFilter = index;
             }
             return;
         }
@@ -1260,7 +1313,11 @@ filterUtils = function() {
         
                 count++;
             }
-            if (sameButton) writeFilterToTable("sim", "REMOVE");
+            if (sameButton) {
+
+                writeFilterToTable("sim", "REMOVE");
+                simDataHolder.simFilter = "REMOVE";
+            }
             else {
     
                 var x = (index % 4) * 71;
@@ -1268,10 +1325,12 @@ filterUtils = function() {
                 button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.1a) " + -x + "px " + -y + "px";
                 button.classList.add("sim-filter-active");
                 writeFilterToTable("sim", SIM_SEARCH[index]);
+                simDataHolder.simFilter = index;
             }
             return;
         }
     }
+    //#endregion
 
     return {
         minWindow: minWindow,
@@ -1682,22 +1741,22 @@ storageUtils = function() {
         if (GUI_BOOKMARK_BUTTON.checked) {
 
             // Add bookmark to list
-            storageUtils.addBookmark(selSimID);
+            storageUtils.addBookmark(simDataHolder.selSimID);
 
             // Get data from new bookmark list, fetch in case sim was offline
-            let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([selSimID]));
+            let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([simDataHolder.selSimID]));
             simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
         }
         // If removing bookmark
         else {
 
             // Remove bookmark
-            storageUtils.deleteBookmark(selSimID);
+            storageUtils.deleteBookmark(simDataHolder.selSimID);
 
             // Remove sim from bookmark list
             for (let i = 0; i < simDataHolder.bookmarkList.avatars.length; i++) {
 
-                if (simDataHolder.bookmarkList.avatars[i].avatar_id == selSimID) {
+                if (simDataHolder.bookmarkList.avatars[i].avatar_id == simDataHolder.selSimID) {
 
                     simDataHolder.bookmarkList.avatars.splice(i, 1);
                     break;
