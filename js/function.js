@@ -1358,6 +1358,7 @@ searchUtils = function() {
 
         // Search sim's name in api
         let simName = GUI_SEARCH_SIM.value;
+        if (simName == "") return;
         let simLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
 
         // Alert if sim doesn't exist
@@ -1380,6 +1381,7 @@ searchUtils = function() {
 
         // Search lot in api
         let lotName = GUI_SEARCH_LOT.value;
+        if (lotName == "") return;
         let lotLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
 
         // Alert if lot doesn't exist

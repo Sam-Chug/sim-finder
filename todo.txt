@@ -33,7 +33,7 @@
         - Lot bio closer in design to how the ingame bios look\
             - Move roommates to sims-in-lot
                 - Show online/offline roomies
-            - Leaves ample space for lot bio
+            - Lot bio to lot thumbnail
 
         - Clean up sim bio
             - Merge date joined and age
