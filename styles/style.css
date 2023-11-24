@@ -1088,11 +1088,11 @@ body {
 }
 
 .sort-button:hover {
-    background: url(../images/buttons/name-sort-hover.png) no-repeat;
+    background: url(../images/buttons/name-sort-hover.png?v0.2.1a) no-repeat;
 }
 
 .sort-button:active {
-    background: url(../images/buttons/name-sort-selected.png) no-repeat;
+    background: url(../images/buttons/name-sort-selected.png?v0.2.1a) no-repeat;
 }
 /* #endregion */
 
