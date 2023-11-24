@@ -12,9 +12,16 @@ simUtils = function() {
         let utcNow = Date.now() / 1000;
         let dateObjectNow = returnDateObjectFromUNIX(utcNow);
         let simDateObject = returnDateObjectFromUNIX(simUnix);
+        let simDayAge = returnSimAge(simUnix);
 
+        // Make sure sim isnt old day old
+        if (simDayAge == 0) return false;
+        // Catch 1000 day milestones
+        if (simDayAge % 1000 == 0) return true;
+
+        // Check if today is sim's birthday
         if (dateObjectNow.day == simDateObject.day && dateObjectNow.month == simDateObject.month) return true;
-        else return false;
+        return false;
     }
 
     // Return format date string from unix timestamp
