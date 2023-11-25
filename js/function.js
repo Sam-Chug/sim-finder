@@ -862,7 +862,7 @@ guiUtils = function() {
         if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
 
         // Add click handler and append to list
-        addIndexClickHandler(ownerNode, "sim-in-lot");
+        if (!isTownHall) addIndexClickHandler(ownerNode, "sim-in-lot");
         GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
 
         // Create elements for roommates at lot text
