@@ -418,6 +418,7 @@ eggUtils = function() {
 
     return {
         resetSimThumbnailStyles: resetSimThumbnailStyles,
+        resetLotThumbnailStyles: resetLotThumbnailStyles,
         handleCustomSimStyles: handleCustomSimStyles,
         handleCustomLotStyles: handleCustomLotStyles
     }
@@ -649,6 +650,7 @@ guiUtils = function() {
 
         // Set lot image to unknown
         GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.1a";
+        eggUtils.resetLotThumbnailStyles();
 
         // Get lot description and label
         let lotDescription = "";
