@@ -6,7 +6,7 @@
         - New custom styles, for label and description
         - Finally added lot bios
         - Added custom styles for lots that match sim's custom styles
-        - Style tweaks
+        - Various layout tweaks
         - Fixed noon AM/PM bug
         - A couple new sim filters
         - Hopefully fixed innacurate sim ages and birthdays
@@ -15,7 +15,8 @@
         - Ability to sort lists alphabetically
 
     System:
-        - Lot info should always be the same size, 5 lines
+        - Rename all "short" data to "online"
+        - Rename all "long" data to "cache"
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Export/import bookmarks button
     
@@ -54,10 +55,6 @@
                 - Sim avatar gif
                 - Experiment with font color, inset text holder color
                     - Static for now
-                
-            - Lots:
-                - Lot window color
-                - Lot title color
 
 short sim list
 https://api.freeso.org/userapi/avatars/online
