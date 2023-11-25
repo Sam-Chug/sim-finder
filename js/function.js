@@ -566,6 +566,9 @@ guiUtils = function() {
         if ((existence != "LANDED" && existence != "LANDED_HIDDEN") && existence != "") {
 
             writeAbsentLotThumbnail(existence, selectedSimLong);
+            GUI_LOT_BIO.textContent = "";
+            GUI_LOT_BIO.style.display = "none";
+
             return;
         }
         
@@ -597,6 +600,10 @@ guiUtils = function() {
 
         // Append elements to lot bio
         GUI_LOT_DESCRIPTION.appendChild(lotDesc);
+
+        // TODO: Refactor this into another function
+        GUI_LOT_BIO.textContent = selectedLotLong.description;
+        GUI_LOT_BIO.style.display = "block";
     }
 
     // If roommate not located, write contextual lot bio
@@ -764,9 +771,9 @@ guiUtils = function() {
             }
         }
 
-        let isTownHall = (selectedLot.category == 11);
-        let mayor;
         // If townhall, get mayor instead of owner
+        let mayor;
+        let isTownHall = (selectedLot.category == 11);
         if (isTownHall) {
 
             let townhallObj = apiUtils.getAPIData(`https://api.freeso.org/userapi/neighborhoods/${selectedLot.neighborhood_id}`);

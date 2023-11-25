@@ -3,6 +3,7 @@
     New Features:
         - Click sim or lot label to copy to clipboard
         - New custom styles, for label and description
+        - Finally added lot bios
         - Style tweaks
         - Fixed noon AM/PM bug
         - A couple new sim filters
@@ -30,17 +31,10 @@
         - Upgrade from sim head to ingame sim bio gif
             - Pick from a set of 10, 5m 5f
 
-        - Lot bio closer in design to how the ingame bios look\
-            - Move roommates to sims-in-lot
-                - Show online/offline roomies
-            - Lot bio to lot thumbnail
-
-        - Clean up sim bio
-            - Merge date joined and age
-            - Remove privacy mode?
-                - Obvious if sim hidden or not
-            - Remove location?
-                - Redundant, opens lot window along with sim
+        - Support for custom style colors
+            - Use 3 character hex
+            - Limit inside color range (#222 - #ddd)
+                - Text color is either sim-yellow or grey, depending on averaged custom color whiteness
 
         - Much more comprehensive user-style codes
             - More compact style indicators:
@@ -61,11 +55,6 @@
             - Lots:
                 - Lot window color
                 - Lot title color
-
-        - "Hot" Lots
-            - Highlight top 3 lots in a category if online
-
-        - Current elections, if possible
 
 short sim list
 https://api.freeso.org/userapi/avatars/online

@@ -186,6 +186,7 @@ const GUI_SIM_DESCRIPTION = document.getElementById('sim-desc');
 const GUI_LOT_THUMBNAIL = document.getElementById("lot-thumbnail-image");
 const GUI_LOT_THUMBNAIL_BG = document.getElementById('lot-thumbnail-bg');
 const GUI_LOT_DESCRIPTION = document.getElementById("thumbnail-desc-content");
+const GUI_LOT_BIO = document.getElementById("thumbnail-lot-bio");
 
 const GUI_SIMS_IN_LOT_LABEL = document.getElementById("lot-sims-in-lot-title");
 const GUI_SIMS_IN_LOT = document.getElementById('show-sims-in-lot');
