@@ -721,6 +721,9 @@ guiUtils = function() {
     // Write list of sims in selected lot
     async function writeSimsInLot (selectedLot, population) {
 
+        // TODO: Adding support for townhalls has bloated this quite a bit
+        // Refactor whenever I figure this out
+
         // Show sims in lot
         GUI_SIMS_IN_LOT.style.display = "flex";
         
@@ -731,6 +734,7 @@ guiUtils = function() {
         GUI_SIMS_IN_LOT_SIMS.innerHTML = "";
         GUI_SIMS_IN_LOT_ROOMMATES.innerHTML = "";
 
+        // Build list for sims at lot
         let simListHeader = buildListHeader("Sims", "");
         simListHeader.id = "sim-in-lot-list-node";
         GUI_SIMS_IN_LOT_SIMS.appendChild(simListHeader);
@@ -760,25 +764,44 @@ guiUtils = function() {
             }
         }
 
+        let isTownHall = (selectedLot.category == 11);
+        let mayor;
+        // If townhall, get mayor instead of owner
+        if (isTownHall) {
+
+            let townhallObj = apiUtils.getAPIData(`https://api.freeso.org/userapi/neighborhoods/${selectedLot.neighborhood_id}`);
+
+            // Get mayor
+            if (townhallObj.mayor_id != null) mayor = apiUtils.getAPIData(`https://api.freeso.org/userapi/avatars?ids=${townhallObj.mayor_id}`);
+            else mayor = {
+                name: "The Llama",
+                location: "Yo mama's house",
+                privacy_mode: 69
+            }
+        }
+
         // Get roommates and existence states
         let roommates = await apiUtils.getAPIData(apiUtils.buildRoommateLink(selectedLot));
         let roommatesShort = new Array();
-        for (let i = 0; i < roommates.avatars.length; i++) {
+        if (!("error" in roommates)) {
 
-            // Find online presence of sim
-            let roomieShort = simUtils.returnShortSimFromLong(roommates.avatars[i]);
-            roommatesShort.push(roomieShort);
+            for (let i = 0; i < roommates.avatars.length; i++) {
 
-            // Get roommates existence state
-            roommates.avatars[i].existenceState = simUtils.returnExistenceState(roomieShort);
+                // Find online presence of sim
+                let roomieShort = simUtils.returnShortSimFromLong(roommates.avatars[i]);
+                roommatesShort.push(roomieShort);
+    
+                // Get roommates existence state
+                roommates.avatars[i].existenceState = simUtils.returnExistenceState(roomieShort);
+            }
         }
-
-        // Get owner and existence state
-        let owner = simUtils.returnOwnerFromRoommateList(roommates, selectedLot.owner_id);
+        
+        // Get owner and existence state, check if mayor
+        let owner = (isTownHall) ? mayor : simUtils.returnOwnerFromRoommateList(roommates, selectedLot.owner_id);
         owner.existenceState = simUtils.returnExistenceState(simUtils.returnShortSimFromLong(owner));
 
         // Add owner header to roommate list
-        let ownerHeader = buildListHeader("Owner", "");
+        let ownerHeader = buildListHeader((isTownHall) ? "Mayor": "Owner", "");
         ownerHeader.id = "sim-in-lot-list-node";
         GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerHeader);
 
@@ -796,44 +819,47 @@ guiUtils = function() {
         GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
 
         // Create elements for roommates at lot text
-        if (roommates.avatars.length > 1) {
+        if (!("error" in roommates)) {
 
-            // Add spacing
-            GUI_SIMS_IN_LOT_ROOMMATES.appendChild(createListNode("", ""));
+            if (roommates.avatars.length > 1) {
 
-            // Create roommate header if roommates exist
-            let roommatesHeader = buildListHeader("Roommates", "");
-            roommatesHeader.id = "sim-in-lot-list-node";
-            GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
-        }
-        
-        // Compile roommates
-        for (let i = 0; i < roommates.avatars.length; i++) {
-
-            // Skip owner
-            if (roommates.avatars[i].avatar_id == owner.avatar_id) continue;
-            let existenceState = roommates.avatars[i].existenceState;
-
-            // Create roommate node
-            let roommateNode = createListNode(roommates.avatars[i].name, "");
-            roommateNode.id = "sim-in-lot-list-node";
-            addIndexClickHandler(roommateNode, "sim-in-lot");
-
-            // Conditional existence stylinh
-            if (existenceState == "LANDED_HIDDEN") roommateNode.children[0].textContent += " (Maybe Hosting)";
-            if (existenceState == "OFFLINE") roommateNode.classList.add("sim-list-node-offline");
-
-            // Check if sim at lot
-            if (existenceState == "LANDED" && roommatesShort[i].location == selectedLot.location) {
-
-                roommateNode.children[0].textContent += " (Hosting)";
-                allCount++;
+                // Add spacing
+                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(createListNode("", ""));
+    
+                // Create roommate header if roommates exist
+                let roommatesHeader = buildListHeader("Roommates", "");
+                roommatesHeader.id = "sim-in-lot-list-node";
+                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
             }
 
-            // Append roommate node to list
-            GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommateNode);
-        }
+            // Compile roommates
+            for (let i = 0; i < roommates.avatars.length; i++) {
 
+                // Skip owner
+                if (roommates.avatars[i].avatar_id == owner.avatar_id) continue;
+                let existenceState = roommates.avatars[i].existenceState;
+
+                // Create roommate node
+                let roommateNode = createListNode(roommates.avatars[i].name, "");
+                roommateNode.id = "sim-in-lot-list-node";
+                addIndexClickHandler(roommateNode, "sim-in-lot");
+
+                // Conditional existence stylinh
+                if (existenceState == "LANDED_HIDDEN") roommateNode.children[0].textContent += " (Maybe Hosting)";
+                if (existenceState == "OFFLINE") roommateNode.classList.add("sim-list-node-offline");
+
+                // Check if sim at lot
+                if (existenceState == "LANDED" && roommatesShort[i].location == selectedLot.location) {
+
+                    roommateNode.children[0].textContent += " (Hosting)";
+                    allCount++;
+                }
+
+                // Append roommate node to list
+                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommateNode);
+            }
+        }
+        
         // Write extra text for number of hidden sims
         if (population - allCount > 0) {
 
