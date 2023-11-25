@@ -13,8 +13,9 @@
         - Ability to sort lists alphabetically
 
     System:
+        - Lot info should always be the same size, 5 lines
         - Change "idList" to "simfinder-bookmarks" in localStorage
-        - Export bookmark button
+        - Export/import bookmarks button
     
     Possible Features
         - Make easier to use on mobile

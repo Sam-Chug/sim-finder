@@ -598,16 +598,13 @@ body {
     width: 400px;
 }
 
-.lot-thumbnail-text-container {
-}
-
 .lot-thumbnail-info-text {
-    height: auto;
+    height: 105px;
 }
 
 .lot-thumbnail-bio {
-    min-height: 200px;
-    min-width: 283px;
+    height: 200px !important;
+    width: 290px !important;
 }
 /* #endregion */
 
