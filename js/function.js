@@ -780,7 +780,7 @@ guiUtils = function() {
     }
 
     // Write list of sims in selected lot
-    function writeSimsInLot (selectedLot, population) {
+    async function writeSimsInLot (selectedLot, population) {
 
         // Show sims in lot
         GUI_SIMS_IN_LOT.style.display = "flex";
@@ -821,41 +821,77 @@ guiUtils = function() {
             }
         }
 
+        // Get roommates and existence states
+        let roommates = await apiUtils.getAPIData(apiUtils.buildRoommateLink(selectedLot));
+        for (let i = 0; i < roommates.avatars.length; i++) {
+
+            // Get existence state of roommate
+            roommates.avatars[i].existenceState = simUtils.returnExistenceState(simUtils.returnShortSimFromLong(roommates.avatars[i]));
+        }
+
+        // Get owner and existence state
+        let owner = simUtils.returnOwnerFromRoommateList(roommates, selectedLot.owner_id);
+        owner.existenceState = simUtils.returnExistenceState(simUtils.returnShortSimFromLong(owner));
+
+        // Add owner header to roommate list
+        let ownerHeader = buildListHeader("Owner", "");
+        ownerHeader.id = "sim-in-lot-list-node";
+        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerHeader);
+
+        // Add node for owner sim
+        let ownerNode = createListNode(owner.name, "");
+        ownerNode.id = "sim-in-lot-list-node";
+
+        // Conditional existence text
+        if (owner.existenceState == "OFFLINE") ownerNode.classList.add("sim-list-node-offline");
+        if (owner.existenceState == "LANDED") ownerNode.children[0].textContent += " (Hosting)";
+        if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe)";
+
+        // Add click handler and append to list
+        addIndexClickHandler(ownerNode, "sim-in-lot");
+        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
+
         // Create elements for roommates at lot text
-        let roommatesHeader = buildListHeader("Roommates", "");
-        roommatesHeader.id = "sim-in-lot-list-node";
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
+        if (roommates.avatars.length > 1) {
 
-        // For sims online
-        for (i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
+            // Add spacing
+            GUI_SIMS_IN_LOT_ROOMMATES.appendChild(createListNode("", ""));
 
-            // If sim is roommate of lot
-            let simID = simDataHolder.simShortList.avatars[i].avatar_id
-            if (selectedLot.roommates.includes(simID)) {
+            // Create roommate header if roommates exist
+            let roommatesHeader = buildListHeader("Roommates", "");
+            roommatesHeader.id = "sim-in-lot-list-node";
+            GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
+        }
+        
+        // Compile roommates
+        for (let i = 0; i < roommates.avatars.length; i++) {
 
-                // Lot is online, hidden roommate sim may be there
-                if (simDataHolder.simShortList.avatars[i].privacy_mode == 1) {
+            // Skip owner
+            if (roommates.avatars[i].avatar_id == owner.avatar_id) continue;
+            let existenceState = roommates.avatars[i].existenceState;
 
-                    let simName = simDataHolder.simShortList.avatars[i].name;
-                    let simNode = createListNode(simName + " (Maybe)", "");
-                    simNode.id = "sim-in-lot-list-node";
-                    
-                    addIndexClickHandler(simNode, "sim-in-lot");
-                    GUI_SIMS_IN_LOT_ROOMMATES.appendChild(simNode);
-                }
-                // Else the sim is there
-                else if (simDataHolder.simShortList.avatars[i].location == selectedLot.location) {
+            // Create roommate node
+            let roommateNode = createListNode(roommates.avatars[i].name, "");
+            roommateNode.id = "sim-in-lot-list-node";
+            addIndexClickHandler(roommateNode, "sim-in-lot");
 
-                    let simName = simDataHolder.simShortList.avatars[i].name;
-                    let simNode = createListNode(simName, "");
-                    simNode.id = "sim-in-lot-list-node";
-                    
-                    addIndexClickHandler(simNode, "sim-in-lot");
-                    GUI_SIMS_IN_LOT_ROOMMATES.appendChild(simNode);
+            // Conditional existence stylinh
+            if (existenceState == "LANDED_HIDDEN") roommateNode.children[0].textContent += " (Maybe)";
+            if (existenceState == "OFFLINE") roommateNode.classList.add("sim-list-node-offline");
 
+            // Check if sim at lot
+            if (existenceState == "LANDED") {
+
+                // TODO: This loops through all online sims a second time, could cache earlier when getting existence states
+                if (simUtils.returnShortSimFromLong(roommates.avatars[i]).location == selectedLot.location) {
+
+                    roommateNode.children[0].textContent += " (Hosting)";
                     allCount++;
                 }
             }
+
+            // Append roommate node to list
+            GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommateNode);
         }
 
         // Write extra text for number of hidden sims
@@ -1579,11 +1615,10 @@ apiUtils = function() {
 
     async function getAPIData (apiLink) {
 
-        // Stupid catch for landed-hidden sims
+        // Catches for conditionals I'm too stupid to fix in a good way
         if (apiLink.includes("(Maybe)")) apiLink = apiLink.replace("(Maybe)", "");
-
-        // Stupid catch for birthday sims
         if (apiLink.includes("🎂")) apiLink = apiLink.replace("🎂", "");
+        if (apiLink.includes("(Hosting)")) apiLink = apiLink.replace("(Hosting)", "");
 
         let obj;
         const res = await fetch(apiLink);

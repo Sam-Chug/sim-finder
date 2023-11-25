@@ -817,7 +817,7 @@ body {
 .list-sims-in-lot {
     width: 50%;
     margin: 25px;
-    max-height: 180px;
+    max-height: 216px;
     overflow-y: scroll;
 }
 /* #endregion */
