@@ -611,47 +611,6 @@ guiUtils = function() {
             return;
         }
 
-        // Get roommates of lot and owner
-        let roommates = await apiUtils.getAPIData(apiUtils.buildRoommateLink(selectedLotLong));
-        let owner = simUtils.returnOwnerFromRoommateList(roommates, selectedLotLong.owner_id);
-
-        // Write lot owner and roommate elements
-        // TODO: Refactor
-        lotOwnerTitle.textContent = "Owner: ";
-        lotRoommateTitle.textContent = "\nRoommates: ";
-        lotOwner.textContent = owner.name;
-        lotOwner.classList.add("user-offline");
-
-        // If owner online, remove offline styling
-        for (i = 0; i < simDataHolder.simShortList.avatars.length; i++) {
-
-            let simID = simDataHolder.simShortList.avatars[i].avatar_id;
-            if (owner.avatar_id == simID) lotOwner.classList.remove("user-offline");
-        }
-
-        // Search roommates
-        for (i = 0; i < roommates.avatars.length; i++) {
-
-            // Skip roommate if roommate is lot owner
-            if (roommates.avatars[i].avatar_id != owner.avatar_id) {
-
-                // Check if roommate online
-                const listRoommate = document.createElement("p");
-                listRoommate.classList.add("user-offline");
-                listRoommate.textContent = roommates.avatars[i].name;
-
-                // If roommate online, remove offline styling
-                for (j = 0; j < simDataHolder.simShortList.avatars.length; j++) {
-
-                    let simID = simDataHolder.simShortList.avatars[j].avatar_id;
-                    if (roommates.avatars[i].avatar_id == simID) listRoommate.classList.remove("user-offline");
-                }
-
-                // Append roommate to roommate list element
-                lotRoommates.appendChild(listRoommate);
-            }
-        }
-
         // Append elements to lot bio
         GUI_LOT_DESCRIPTION.appendChild(lotDesc);
         GUI_LOT_DESCRIPTION.appendChild(lotOwnerTitle);
