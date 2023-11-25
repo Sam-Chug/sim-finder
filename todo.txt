@@ -30,6 +30,7 @@
         - Lot renderer/object finder
         - Music box creator
         - Improved roof art generator
+        - DJ helper
 
     Fluff:
         - Upgrade from sim head to ingame sim bio gif
