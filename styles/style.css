@@ -597,6 +597,18 @@ body {
 
     width: 400px;
 }
+
+.lot-thumbnail-text-container {
+}
+
+.lot-thumbnail-info-text {
+    height: auto;
+}
+
+.lot-thumbnail-bio {
+    min-height: 200px;
+    min-width: 283px;
+}
 /* #endregion */
 
 /* #region Sim Thumbnail */

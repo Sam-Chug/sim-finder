@@ -582,41 +582,21 @@ guiUtils = function() {
 
         // Create lot bio elements
         const lotDesc = document.createElement("p");
-        const lotOwnerTitle = document.createElement("p");
-        const lotRoommateTitle = document.createElement("p");
-        const lotOwner = document.createElement("p");
-        const lotRoommates = document.createElement("p");
 
         // Basic lot info
         lotDesc.textContent = `Category: ${LOT_CATEGORY[selectedLotLong.category]}\n` + 
                               `Established: ${simUtils.returnTextDateFromDateObject(simUtils.returnDateObjectFromUNIX(selectedLotLong.created_date))}\n` + 
                               `Neighborhood: ${simUtils.returnNeighborhood(selectedLotLong.neighborhood_id)}\n` +
                               `Admit Mode: ${ADMIT_MODES[selectedLotLong.admit_mode]}\n` + 
-                              `${SKILL_MODES[selectedLotLong.skill_mode]}\n\n`;
+                              `${SKILL_MODES[selectedLotLong.skill_mode]}`;
 
         // Set thumbnail background and lot population
-        if ("error" in simUtils.returnOpenState(selectedLotShort)) {
-
-            GUI_LOT_THUMBNAIL_BG.classList.add("thumbnail-offline");
-        }
-        else if (!("error" in simUtils.returnOpenState(selectedLotShort))) {
-
-            GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
-        }
-
-        // If town hall, skip roommates
-        if (selectedLotShort.category == 11 || selectedLotLong.category == 11) {
-
-            GUI_LOT_DESCRIPTION.appendChild(lotDesc);
-            return;
-        }
+        let lotOffline = ("error" in simUtils.returnOpenState(selectedLotShort));
+        if (lotOffline) GUI_LOT_THUMBNAIL_BG.classList.add("thumbnail-offline");
+        else GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
 
         // Append elements to lot bio
         GUI_LOT_DESCRIPTION.appendChild(lotDesc);
-        GUI_LOT_DESCRIPTION.appendChild(lotOwnerTitle);
-        GUI_LOT_DESCRIPTION.appendChild(lotOwner);
-        GUI_LOT_DESCRIPTION.appendChild(lotRoommateTitle);
-        GUI_LOT_DESCRIPTION.appendChild(lotRoommates);
     }
 
     // If roommate not located, write contextual lot bio
@@ -809,7 +789,7 @@ guiUtils = function() {
         // Conditional existence text
         if (owner.existenceState == "OFFLINE") ownerNode.classList.add("sim-list-node-offline");
         if (owner.existenceState == "LANDED") ownerNode.children[0].textContent += " (Hosting)";
-        if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe)";
+        if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
 
         // Add click handler and append to list
         addIndexClickHandler(ownerNode, "sim-in-lot");
@@ -840,7 +820,7 @@ guiUtils = function() {
             addIndexClickHandler(roommateNode, "sim-in-lot");
 
             // Conditional existence stylinh
-            if (existenceState == "LANDED_HIDDEN") roommateNode.children[0].textContent += " (Maybe)";
+            if (existenceState == "LANDED_HIDDEN") roommateNode.children[0].textContent += " (Maybe Hosting)";
             if (existenceState == "OFFLINE") roommateNode.classList.add("sim-list-node-offline");
 
             // Check if sim at lot
@@ -1576,7 +1556,7 @@ apiUtils = function() {
     async function getAPIData (apiLink) {
 
         // Catches for conditionals I'm too stupid to fix in a good way
-        if (apiLink.includes("(Maybe)")) apiLink = apiLink.replace("(Maybe)", "");
+        if (apiLink.includes("(Maybe Hosting)")) apiLink = apiLink.replace("(Maybe Hosting)", "");
         if (apiLink.includes("🎂")) apiLink = apiLink.replace("🎂", "");
         if (apiLink.includes("(Hosting)")) apiLink = apiLink.replace("(Hosting)", "");
 
