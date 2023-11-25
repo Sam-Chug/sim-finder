@@ -30,12 +30,15 @@ class SimData{
 class StyleObject{
     constructor(simData) {
 
+        // Check if data is sim or lot
+        this.isSim = ("avatar_id" in simData);
+
         this.usesStyle;
         this.usesShorthand;
 
         // Sim only
         this.avatarHead;
-        this.setSimHead(simData);
+        if (this.isSim) this.setSimHead(simData);
 
         // Style list
         this.styles = {

@@ -344,6 +344,21 @@ eggUtils = function() {
         GUI_SIM_DESCRIPTION.classList.add("thumbnail-desc-holder");
     }
 
+    function resetLotThumbnailStyles() {
+
+        GUI_LOT_LABEL.className = "";
+        GUI_LOT_VIEW.className = "";
+        
+        GUI_LOT_LABEL.classList.add("outset-title", "thumb-1-1");
+        GUI_LOT_VIEW.classList.add("div-thumbnail", "block-background");
+
+        GUI_LOT_DESCRIPTION.className = "";
+        GUI_LOT_BIO.className = "";
+
+        GUI_LOT_DESCRIPTION.classList.add("thumbnail-desc-holder", "thumb-2", "lot-thumbnail-info-text");
+        GUI_LOT_BIO.classList.add("thumbnail-desc-holder", "thumb-2", "thumbnail-bio-holder", "scrollbar", "lot-thumbnail-bio");
+    }
+
     function reaganEgg() {
 
         GUI_SIM_LABEL.classList.add("label-gold");
@@ -356,7 +371,26 @@ eggUtils = function() {
         GUI_SIM_DESCRIPTION.classList.add("inset-gold");
     }   
 
-    function handleCustomStyles(selectedSim) {
+    function handleCustomLotStyles(selectedLot) {
+
+        // Reset previous styles
+        resetLotThumbnailStyles();
+
+        // Get lot custom styles
+        let styleObj = new StyleObject(selectedLot);
+        if (!styleObj.usesStyle) return;
+
+        // Set styles
+        if (styleObj.styles.block != "") GUI_LOT_VIEW.classList.add(styleObj.styles.block);
+        if (styleObj.styles.label != "") GUI_LOT_LABEL.classList.add(styleObj.styles.label);
+        if (styleObj.styles.inset != "") {
+
+            GUI_LOT_BIO.classList.add(styleObj.styles.inset);
+            GUI_LOT_DESCRIPTION.classList.add(styleObj.styles.inset);
+        }
+    }
+
+    function handleCustomSimStyles(selectedSim) {
 
         // Reset previous styles
         resetSimThumbnailStyles();
@@ -384,7 +418,8 @@ eggUtils = function() {
 
     return {
         resetSimThumbnailStyles: resetSimThumbnailStyles,
-        handleCustomStyles: handleCustomStyles
+        handleCustomSimStyles: handleCustomSimStyles,
+        handleCustomLotStyles: handleCustomLotStyles
     }
 }();
 
@@ -527,7 +562,7 @@ guiUtils = function() {
         GUI_SIM_THUMBNAIL.src = headStyle.avatarHead;
 
         // TODO: EASTER EGGS
-        eggUtils.handleCustomStyles(selectedSimLong);
+        eggUtils.handleCustomSimStyles(selectedSimLong);
 
         // Write sim's bio text
         GUI_SIM_BIO.textContent = selectedSimLong.description;
@@ -572,6 +607,9 @@ guiUtils = function() {
             return;
         }
         
+        // Do custom styles
+        eggUtils.handleCustomLotStyles(selectedLotLong);
+
         // Lot label
         let isBirthday = simUtils.checkIfSimBirthday(selectedLotLong.created_date);
         writeToLabel(selectedLotLong.name + ((isBirthday) ? " 🎂" : ""), "", "thumbnail-title");
@@ -654,7 +692,7 @@ guiUtils = function() {
     }
 
     // Change bookmark button styles
-    function updateBookmarkButton (selID) {
+    function updateBookmarkButton(selID) {
 
         let bookSims = storageUtils.returnLocalStorage(STORAGE_KEY);
         let isBookmarked = false;
@@ -726,7 +764,7 @@ guiUtils = function() {
     }
 
     // Write list of sims in selected lot
-    async function writeSimsInLot (selectedLot, population) {
+    async function writeSimsInLot(selectedLot, population) {
 
         // TODO: Adding support for townhalls has bloated this quite a bit
         // Refactor whenever I figure this out

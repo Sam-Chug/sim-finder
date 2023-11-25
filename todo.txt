@@ -1,9 +1,11 @@
 - Rewrite TODO:
 
+    //Rea's Frontroom Casino
     New Features:
         - Click sim or lot label to copy to clipboard
         - New custom styles, for label and description
         - Finally added lot bios
+        - Added custom styles for lots that match sim's custom styles
         - Style tweaks
         - Fixed noon AM/PM bug
         - A couple new sim filters
