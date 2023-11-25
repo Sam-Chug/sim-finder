@@ -823,10 +823,15 @@ guiUtils = function() {
 
         // Get roommates and existence states
         let roommates = await apiUtils.getAPIData(apiUtils.buildRoommateLink(selectedLot));
+        let roommatesShort = new Array();
         for (let i = 0; i < roommates.avatars.length; i++) {
 
-            // Get existence state of roommate
-            roommates.avatars[i].existenceState = simUtils.returnExistenceState(simUtils.returnShortSimFromLong(roommates.avatars[i]));
+            // Find online presence of sim
+            let roomieShort = simUtils.returnShortSimFromLong(roommates.avatars[i]);
+            roommatesShort.push(roomieShort);
+
+            // Get roommates existence state
+            roommates.avatars[i].existenceState = simUtils.returnExistenceState(roomieShort);
         }
 
         // Get owner and existence state
@@ -880,14 +885,10 @@ guiUtils = function() {
             if (existenceState == "OFFLINE") roommateNode.classList.add("sim-list-node-offline");
 
             // Check if sim at lot
-            if (existenceState == "LANDED") {
+            if (existenceState == "LANDED" && roommatesShort[i].location == selectedLot.location) {
 
-                // TODO: This loops through all online sims a second time, could cache earlier when getting existence states
-                if (simUtils.returnShortSimFromLong(roommates.avatars[i]).location == selectedLot.location) {
-
-                    roommateNode.children[0].textContent += " (Hosting)";
-                    allCount++;
-                }
+                roommateNode.children[0].textContent += " (Hosting)";
+                allCount++;
             }
 
             // Append roommate node to list
