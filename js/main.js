@@ -10,10 +10,14 @@ simFinderMain = function() {
     async function start() {
 
         // Fetch online data
+        console.time("Fetching data from API");
         await getOnlineData();
+        console.timeEnd("Fetching data from API");
 
         // Populate GUI
+        console.time("Populating GUI")
         populateGui();
+        console.timeEnd("Populating GUI");
     }
 
     // Get data from api
