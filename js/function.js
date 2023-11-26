@@ -34,8 +34,6 @@ simUtils = function() {
         let mm = ("0" + (utcNow.getMonth() + 1)).slice(-2);
         let dd = ("0" + (utcNow.getDate())).slice(-2);
 
-        console.log(mm, dd, yyyy);
-
         return {
             month: mm,
             day: dd,

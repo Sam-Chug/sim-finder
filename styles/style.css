@@ -266,7 +266,7 @@ body {
     transform: translate(-50%, -60px);
     position: absolute;
     white-space: nowrap;
-    z-index: 5;
+    z-index: 50;
     
     animation-name: fadeIn;
     -webkit-animation-name: fadeIn;
@@ -496,7 +496,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 .filter-min {
