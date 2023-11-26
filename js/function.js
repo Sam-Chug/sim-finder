@@ -34,6 +34,8 @@ simUtils = function() {
         let mm = ("0" + (utcNow.getMonth() + 1)).slice(-2);
         let dd = ("0" + (utcNow.getDate())).slice(-2);
 
+        console.log(mm, dd, yyyy);
+
         return {
             month: mm,
             day: dd,
@@ -1822,6 +1824,44 @@ storageUtils = function() {
         return simIDObject;
     }
 
+    function exportLocalStorage(storageKey) {
+
+        let saveObject = returnLocalStorage(storageKey);
+        let saveString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(saveObject));
+
+        let downloadAnchorNode = document.createElement("a");
+        downloadAnchorNode.setAttribute("href", saveString);
+        downloadAnchorNode.setAttribute("download", `SimFinder Bookmarks ${Date.now()}.json`);
+        document.body.appendChild(downloadAnchorNode);
+
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+
+    function importLocalStorage(storageKey) {
+
+        // Open file dialog
+        let fileInput = document.createElement("input");
+        fileInput.setAttribute("type", "file");
+        fileInput.click();
+        fileInput.onchange = e => {
+
+            // Read chosen file
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = readerEvent => {
+
+                // Set to bookmark key
+                let content = readerEvent.target.result;
+                localStorage.setItem(storageKey, content);
+
+                // Reload page
+                location.reload();
+            }
+        }
+    }
+
     // When bookmark button clicked
     async function handleBookmarkCheck() {
 
@@ -1864,6 +1904,8 @@ storageUtils = function() {
         changeStorageKey: changeStorageKey,
         returnLocalStorage: returnLocalStorage,
         deleteBookmark: deleteBookmark,
-        addBookmark: addBookmark
+        addBookmark: addBookmark,
+        importLocalStorage: importLocalStorage,
+        exportLocalStorage: exportLocalStorage
     }
 }();
