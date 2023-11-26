@@ -314,12 +314,43 @@ domUtils = function() {
         navigator.clipboard.writeText(e.textContent);
     }
 
+    function siteColorMode(state) {
+
+        if (state == "default") {
+
+            DOM_ROOT.style.setProperty("--bg-fallback", "#7ca1bf");
+
+            DOM_ROOT.style.setProperty("--inset-bg", "#32455b");
+            DOM_ROOT.style.setProperty("--inset-bg-dark", "#2f4158");
+            DOM_ROOT.style.setProperty("--block-gradient-light", "#96bad0");
+            DOM_ROOT.style.setProperty("--block-gradient-dark", "#5f88af");
+            DOM_ROOT.style.setProperty("--outset-title-bg", "#5077a3");
+
+            DOM_ROOT.style.setProperty("--bg-dark-gradient-light", "#5f88af");
+            DOM_ROOT.style.setProperty("--bg-dark-gradient-dark", "#476a8d");
+        }
+        else if (state == "darkmode") {
+
+            DOM_ROOT.style.setProperty("--bg-fallback", "#7c7c7c");
+
+            DOM_ROOT.style.setProperty("--inset-bg", "#222222");
+            DOM_ROOT.style.setProperty("--inset-bg-dark", "#111111");
+            DOM_ROOT.style.setProperty("--block-gradient-light", "#444444");
+            DOM_ROOT.style.setProperty("--block-gradient-dark", "#333333");
+            DOM_ROOT.style.setProperty("--outset-title-bg", "#555555");
+
+            DOM_ROOT.style.setProperty("--bg-dark-gradient-light", "#222222");
+            DOM_ROOT.style.setProperty("--bg-dark-gradient-dark", "#111111");
+        }
+    }
+
     return {
         getIndexInParent: getIndexInParent,
         resetListSelection: resetListSelection,
         sizeLists: sizeLists,
         copyTextToClipboard: copyTextToClipboard,
-        centerListLabels: centerListLabels
+        centerListLabels: centerListLabels,
+        siteColorMode: siteColorMode
     }
 }();
 

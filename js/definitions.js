@@ -221,6 +221,8 @@ const SIDEBAR_CLOCK = document.getElementById("sim-clock");
 
 const GUI_SORT_SIM_NAMES = document.getElementById("sort-sims-by-name");
 const GUI_SORT_LOT_NAMES = document.getElementById("sort-lots-by-name");
+
+const DOM_ROOT = document.querySelector(":root");
 //#endregion
 
 //#region Sim style lists
