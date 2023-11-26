@@ -179,14 +179,14 @@
 
                     <div class="bookmark-header-container">
 
-                        <button title="Export Bookmarks" id="sidebar-button" class="bookmark-button" onclick="storageUtils.exportLocalStorage(STORAGE_KEY)">
-                            <div class="export-arrow"></div>
+                        <button title="Export Bookmarks" id="sidebar-button" class="bookmark-button">
+                            <div class="export-arrow" onclick="storageUtils.exportLocalStorage(STORAGE_KEY)"></div>
                         </button>
 
                         <div class="inset-title">Bookmarks</div>
 
-                        <button title="Import Bookmarks" id="sidebar-button" class="bookmark-button" onclick="storageUtils.importLocalStorage(STORAGE_KEY)">
-                            <div class="import-arrow"></div>
+                        <button title="Import Bookmarks" id="sidebar-button" class="bookmark-button">
+                            <div class="import-arrow" onclick="storageUtils.importLocalStorage(STORAGE_KEY)"></div>
                         </button>
 
                     </div>

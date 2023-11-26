@@ -1824,12 +1824,15 @@ storageUtils = function() {
 
     function exportLocalStorage(storageKey) {
 
+        let dateObj = simUtils.returnDateObjectFromUNIX(Date.now() / 1000);
+        let dateString = `${dateObj.month}-${dateObj.day}-${dateObj.year}`
+
         let saveObject = returnLocalStorage(storageKey);
         let saveString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(saveObject));
 
         let downloadAnchorNode = document.createElement("a");
         downloadAnchorNode.setAttribute("href", saveString);
-        downloadAnchorNode.setAttribute("download", `SimFinder Bookmarks ${Date.now()}.json`);
+        downloadAnchorNode.setAttribute("download", `SimFinder Bookmarks ${dateString}.json`);
         document.body.appendChild(downloadAnchorNode);
 
         downloadAnchorNode.click();
