@@ -25,7 +25,7 @@ simUtils = function() {
     }
 
     // Return format date string from unix timestamp
-    function returnDateObjectFromUNIX (unixTime) {
+    function returnDateObjectFromUNIX(unixTime) {
 
         let utcNow = new Date(new Date().getTime());
         utcNow.setDate(utcNow.getDate() - returnSimAge(unixTime));
@@ -47,7 +47,7 @@ simUtils = function() {
     }
 
     // Return sim time [HH, MM] in a 24 hour format
-    function returnSimTime () {
+    function returnSimTime() {
 
         var date = Date.now() / 1000;
         var minutes = Math.floor((date % 7200) / 5);
@@ -58,7 +58,7 @@ simUtils = function() {
     }
 
     // Neighborhood id's are wonky, return correct from id
-    function returnNeighborhood (nhood_id) {
+    function returnNeighborhood(nhood_id) {
 
         if (nhood_id == 0) return "Unknown";
         if (nhood_id == 1) return NEIGHBORHOOD[0];
@@ -75,7 +75,7 @@ simUtils = function() {
     }
 
     // Return if lot is open or closed
-    function returnOpenState (lotLong) {
+    function returnOpenState(lotLong) {
     
         for (i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
             
@@ -105,7 +105,7 @@ simUtils = function() {
         return {error: "lot not found"};
     }
 
-    function returnJobsOpen () {
+    function returnJobsOpen() {
 
         const simHour = returnSimTime()[0];
         var jobsOpen = [];
@@ -552,7 +552,7 @@ guiUtils = function() {
     }
 
     // Build sim thumbnail
-    function writeSimThumbnail (selectedSimShort, selectedSimLong) {
+    function writeSimThumbnail(selectedSimShort, selectedSimLong) {
 
         let isBirthday = simUtils.checkIfSimBirthday(selectedSimLong.date);
         writeToLabel(selectedSimLong.name + ((isBirthday) ? " 🎂" : ""), "", "sim-title");
@@ -596,7 +596,7 @@ guiUtils = function() {
     }
 
     // Write info to lot thumbnail box
-    async function writeLotThumbnail (selectedLotShort, selectedLotLong, existence, selectedSimLong) {
+    async function writeLotThumbnail(selectedLotShort, selectedLotLong, existence, selectedSimLong) {
 
         // If sim not landed at a lot, contextually fill lot bio
         if ((existence != "LANDED" && existence != "LANDED_HIDDEN") && existence != "") {
@@ -925,7 +925,7 @@ guiUtils = function() {
         }
     }
 
-    function writeBookmarkSims (simList) {
+    function writeBookmarkSims(simList) {
 
         // Reset bookmark list, append header
         GUI_BOOKMARK_LIST.innerHTML = "";
@@ -1095,7 +1095,7 @@ filterUtils = function() {
     }
 
     // Filter array and send to list
-    function writeFilterToTable (type, filter) {
+    function writeFilterToTable(type, filter) {
 
         if (type == "sim") {
 
@@ -1110,7 +1110,7 @@ filterUtils = function() {
     }
 
     // Return filtered sim list from selected filter
-    function returnFilterSimList (filter) {
+    function returnFilterSimList(filter) {
 
         let longList = new Array();
 
@@ -1212,7 +1212,7 @@ filterUtils = function() {
     }
 
     // Return filtered lot list from selected filter
-    function returnFilterLotList (filter) {
+    function returnFilterLotList(filter) {
 
         let shortList = new Array();
 
@@ -1225,7 +1225,7 @@ filterUtils = function() {
 
     //#region Filter Icons
     // Populate filter buttons
-    function fillButtonGraphics () {
+    function fillButtonGraphics() {
 
         const lotFilterArray = document.getElementById("lot-filter-array");
         const simFilterArray = document.getElementById("sim-filter-array");
@@ -1255,7 +1255,7 @@ filterUtils = function() {
     }
 
     // Add classes to filter buttons
-    function addFilterClasses (element, type) {
+    function addFilterClasses(element, type) {
 
         element.classList.add("filter-button");
         if (type == "sim") element.id = "sim-filter-button";
@@ -1286,7 +1286,7 @@ filterUtils = function() {
     }
 
     // On mouseover filter button
-    function mouseOverFilterChange (button, action, type) {
+    function mouseOverFilterChange(button, action, type) {
 
         const index = Array.from(button.parentElement.children).indexOf(button);
     
@@ -1322,7 +1322,7 @@ filterUtils = function() {
     }
 
     // On click filter button
-    function filterButtonClick (button, type) {
+    function filterButtonClick(button, type) {
 
         const index = Array.from(button.parentElement.children).indexOf(button);
         filterArray = button.parentElement;
@@ -1575,7 +1575,7 @@ sidebarUtils = function() {
 
 marketWatchUtils = function() {
 
-    function returnMarketObject (simLong, simShort, lotShort) {
+    function returnMarketObject(simLong, simShort, lotShort) {
 
         let marketObject = new MarketObject(simLong, simShort, lotShort);
         return marketObject;
@@ -1655,7 +1655,7 @@ apiUtils = function() {
         return simIdString;
     }
 
-    function buildLongSimLink (simList) {
+    function buildLongSimLink(simList) {
 
         let simIdString = "https://api.freeso.org/userapi/avatars?ids=";
         for (i = 0; i < simList.avatars.length; i++) {
@@ -1667,7 +1667,7 @@ apiUtils = function() {
         return simIdString;
     }
 
-    function buildLongLotLink (lotList) {
+    function buildLongLotLink(lotList) {
 
         let lotIDString = "https://api.freeso.org/userapi/lots?ids=";
         for (i = 0; i < lotList.lots.length; i++) {
@@ -1680,7 +1680,7 @@ apiUtils = function() {
     }
 
     // Builds api link from lot's roommates
-    function buildRoommateLink (longLot) {
+    function buildRoommateLink(longLot) {
 
         let roommateIDString = "https://api.freeso.org/userapi/avatars?ids=";
         for (i = 0; i < longLot.roommates.length; i++) {
