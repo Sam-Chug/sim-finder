@@ -27,6 +27,13 @@ class SimData{
     }
 };
 
+class UserSetting{
+    constructor(load) {
+
+        // If I ever impliment dark mode this will have to load and store user settings
+    }
+}
+
 class StyleObject{
     constructor(simData) {
 
