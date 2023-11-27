@@ -436,8 +436,8 @@ eggUtils = function() {
         resetSimThumbnailStyles();
 
         // Test any custom style
-        testCustomStyle("p");
-        return;
+        //testCustomStyle("p");
+        //return;
 
         // Do reagan
         if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
