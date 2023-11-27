@@ -67,6 +67,7 @@ simFinderMain = function() {
 
         // Generate filter buttons
         filterUtils.fillButtonGraphics();
+        domUtils.buildButtonTooltips();
 
         // Fill sim/lot lists
         guiUtils.populateSimList(simDataHolder.simLongList.avatars);

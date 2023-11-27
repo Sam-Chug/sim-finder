@@ -174,7 +174,7 @@ const GUI_ONLINESIMS = document.getElementById('sims-table');
 const GUI_ONLINELOTS = document.getElementById('lots-table');
 
 const GUI_BOOKMARK_BUTTON = document.getElementById('bookmark-checkbox');
-const GUI_BOOKMARK_LIST = document.getElementById("bookmark-table");
+const GUI_BOOKMARK_LIST = document.getElementById('bookmark-table');
 
 const GUI_SIM_VIEW = document.getElementById('sim-viewer');
 const GUI_SIM_LABEL = document.getElementById('sim-title');
@@ -182,33 +182,36 @@ const GUI_SIM_THUMBNAIL = document.getElementById('sim-thumbnail-image');
 const GUI_SIM_THUMBNAIL_BG = document.getElementById('sim-thumbnail-bg');
 const GUI_SIM_BIO = document.getElementById('sim-bio');
 const GUI_SIM_DESCRIPTION = document.getElementById('sim-desc');
+const GUI_SIM_HELP_BUTTON = document.getElementById('button-sim-help');
 
-const GUI_LOT_VIEW = document.getElementById("lot-viewer");
-const GUI_LOT_THUMBNAIL = document.getElementById("lot-thumbnail-image");
+const GUI_LOT_VIEW = document.getElementById('lot-viewer');
+const GUI_LOT_THUMBNAIL = document.getElementById('lot-thumbnail-image');
 const GUI_LOT_THUMBNAIL_BG = document.getElementById('lot-thumbnail-bg');
 const GUI_LOT_LABEL = document.getElementById('thumbnail-title');
-const GUI_LOT_DESCRIPTION = document.getElementById("thumbnail-desc-content");
-const GUI_LOT_BIO = document.getElementById("thumbnail-lot-bio");
+const GUI_LOT_DESCRIPTION = document.getElementById('thumbnail-desc-content');
+const GUI_LOT_BIO = document.getElementById('thumbnail-lot-bio');
 
-const GUI_SIMS_IN_LOT_LABEL = document.getElementById("lot-sims-in-lot-title");
+const GUI_SIMS_IN_LOT_LABEL = document.getElementById('lot-sims-in-lot-title');
 const GUI_SIMS_IN_LOT = document.getElementById('show-sims-in-lot');
-const GUI_SIMS_IN_LOT_SIMS = document.getElementById("lot-sims-list");
-const GUI_SIMS_IN_LOT_ROOMMATES = document.getElementById("lot-roommates-list");
+const GUI_SIMS_IN_LOT_SIMS = document.getElementById('lot-sims-list');
+const GUI_SIMS_IN_LOT_ROOMMATES = document.getElementById('lot-roommates-list');
 
-const GUI_MARKET_BREAKDOWN = document.getElementById("market-breakdown");
-const GUI_MARKET_HOTSPOTS = document.getElementById("market-hotspots");
+const GUI_MARKET_BREAKDOWN = document.getElementById('market-breakdown');
+const GUI_MARKET_HOTSPOTS = document.getElementById('market-hotspots');
 
-const GUI_SEARCH_SIM = document.getElementById("sim-search-input");
-const GUI_SEARCH_SIM_PANEL = document.getElementById("sim-search-panel");
-const GUI_SEARCH_LOT = document.getElementById("lot-search-input");
-const GUI_SEARCH_LOT_PANEL = document.getElementById("lot-search-panel");
+const GUI_SEARCH_SIM = document.getElementById('sim-search-input');
+const GUI_SEARCH_LOT = document.getElementById('lot-search-input');
+const GUI_SEARCH_SIM_BUTTON = document.getElementById('sim-search-button');
+const GUI_SEARCH_LOT_BUTTON = document.getElementById('lot-search-button');
+const GUI_SEARCH_SIM_PANEL = document.getElementById('sim-search-panel');
+const GUI_SEARCH_LOT_PANEL = document.getElementById('lot-search-panel');
 
-const GUI_FILTER_SIM_ICON = document.getElementById("sim-filter-min-image");
-const GUI_FILTER_SIM_ICON_ARRAY = document.getElementById("sim-filter-array");
-const GUI_FILTER_SIM_PANEL = document.getElementById("sim-filter-panel");
-const GUI_FILTER_LOT_ICON = document.getElementById("lot-filter-min-image");
-const GUI_FILTER_LOT_ICON_ARRAY = document.getElementById("lot-filter-array");
-const GUI_FILTER_LOT_PANEL = document.getElementById("lot-filter-panel");
+const GUI_FILTER_SIM_ICON = document.getElementById('sim-filter-min-image');
+const GUI_FILTER_LOT_ICON = document.getElementById('lot-filter-min-image');
+const GUI_FILTER_SIM_ICON_ARRAY = document.getElementById('sim-filter-array');
+const GUI_FILTER_LOT_ICON_ARRAY = document.getElementById('lot-filter-array');
+const GUI_FILTER_SIM_PANEL = document.getElementById('sim-filter-panel');
+const GUI_FILTER_LOT_PANEL = document.getElementById('lot-filter-panel');
 
 const SIDEBAR = document.getElementById("sidebar");
 const SIDEBAR_EXPAND_BUTTON = document.getElementById("sidebar-button");
@@ -221,6 +224,9 @@ const SIDEBAR_CLOCK = document.getElementById("sim-clock");
 
 const GUI_SORT_SIM_NAMES = document.getElementById("sort-sims-by-name");
 const GUI_SORT_LOT_NAMES = document.getElementById("sort-lots-by-name");
+
+const GUI_EXPORT_BUTTON = document.getElementById("export-button");
+const GUI_IMPORT_BUTTON = document.getElementById("import-button");
 
 const DOM_ROOT = document.querySelector(":root");
 //#endregion

@@ -104,7 +104,7 @@
                         <div id="sims-online-count-label" class="inset-title" style="margin-right: 10px; margin-left: 30px;"></div>
                         <div class="button-center">
 
-                            <button id="sort-sims-by-name" class="sort-button" title="Toggle Alphabetical Sort" onclick="simUtils.sortEntityList('sim')"></button>
+                            <button id="sort-sims-by-name" class="sort-button" onclick="simUtils.sortEntityList('sim')"></button>
 
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                         <div id="lots-online-count-label" class="inset-title" style="margin-right: 10px; margin-left: 30px"></div>
                         <div class="button-center">
 
-                            <button id="sort-lots-by-name" class="sort-button" title="Toggle Alphabetical Sort" onclick="simUtils.sortEntityList('lot')"></button>
+                            <button id="sort-lots-by-name" class="sort-button" onclick="simUtils.sortEntityList('lot')"></button>
 
                         </div>
                     </div>
@@ -179,14 +179,14 @@
 
                     <div class="bookmark-header-container">
 
-                        <button title="Export Bookmarks" id="sidebar-button" class="bookmark-button">
-                            <div class="export-arrow" onclick="storageUtils.exportLocalStorage(STORAGE_KEY)"></div>
+                        <button id="sidebar-button" class="bookmark-button">
+                            <div id="export-button" class="export-arrow" onclick="storageUtils.exportLocalStorage(STORAGE_KEY)"></div>
                         </button>
 
                         <div class="inset-title">Bookmarks</div>
 
-                        <button title="Import Bookmarks" id="sidebar-button" class="bookmark-button">
-                            <div class="import-arrow" onclick="storageUtils.importLocalStorage(STORAGE_KEY)"></div>
+                        <button id="sidebar-button" class="bookmark-button">
+                            <div id="import-button" class="import-arrow" onclick="storageUtils.importLocalStorage(STORAGE_KEY)"></div>
                         </button>
 
                     </div>
@@ -207,9 +207,8 @@
 
                         <div class="button-sim-help-holder">
                             
-                            <button class="button-sim-help" title="Open Sim Panel Formatting Help Page"
-                            onclick="window.open('https://github.com/Sam-Chug/sim-finder/wiki/Custom-Sim-Panel-Styles')">
-                                <div class="buttom-sim-help-image"></div>
+                            <button class="button-sim-help" onclick="window.open('https://github.com/Sam-Chug/sim-finder/wiki/Custom-Sim-Panel-Styles')">
+                                <div id="button-sim-help" class="buttom-sim-help-image"></div>
                             </button>
 
                         </div>

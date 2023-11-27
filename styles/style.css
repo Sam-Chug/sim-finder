@@ -275,6 +275,18 @@ body {
     animation-fill-mode: both;
     -webkit-animation-fill-mode: both;
 }
+
+.low-tooltip {
+    transform: translate(-50%, -30px);
+}
+
+.mid-tooltip {
+    transform: translate(-50%, -50px);
+}
+
+.under-tooltip {
+    transform: translate(-50%, 50px);
+}
 /* #endregion */
 
 /* #region Min/Maximize Filters */

@@ -344,13 +344,79 @@ domUtils = function() {
         }
     }
 
+    function buildButtonTooltips() {
+
+        addTooltipToButton(GUI_EXPORT_BUTTON, "export");
+        addTooltipToButton(GUI_IMPORT_BUTTON, "import");
+
+        addTooltipToButton(GUI_SORT_SIM_NAMES, "sort");
+        addTooltipToButton(GUI_SORT_LOT_NAMES, "sort");
+
+        addTooltipToButton(GUI_SEARCH_SIM_BUTTON, "search");
+        addTooltipToButton(GUI_SEARCH_LOT_BUTTON, "search");
+
+        addTooltipToButton(GUI_FILTER_SIM_ICON, "min");
+        addTooltipToButton(GUI_FILTER_LOT_ICON, "min");
+        
+        addTooltipToButton(GUI_SIM_HELP_BUTTON, "style-help");
+    }
+
+    function addTooltipToButton(element, type) {
+
+        element.addEventListener("mouseover", function() {
+    
+            filterUtils.mouseOverFilterChange(this, "in", type);
+            let tooltip = document.createElement("span");
+            tooltip.classList.add("tooltip");
+            if (type == "export") {
+
+                tooltip.textContent = "Export Bookmarks";
+                tooltip.classList.add("low-tooltip");
+            }
+            else if (type == "import") {
+
+                tooltip.textContent = "Import Bookmarks";
+                tooltip.classList.add("low-tooltip");
+            }
+            else if (type == "search") {
+
+                tooltip.textContent = "Search";
+                tooltip.classList.add("mid-tooltip");
+            }
+            else if (type == "sort") {
+
+                tooltip.textContent = "Toggle Alphabetical Sort";
+                tooltip.classList.add("mid-tooltip");
+            }
+            else if (type == "min") {
+
+                tooltip.textContent = "Toggle Filter List Visibility";
+                tooltip.classList.add("low-tooltip");
+            }
+            else if (type == "style-help") {
+
+                tooltip.textContent = "Open Sim Panel Formatting Help Page";
+                tooltip.classList.add("under-tooltip");
+            }
+
+            this.appendChild(tooltip);
+        });
+
+        element.addEventListener("mouseout", function(){
+    
+            filterUtils.mouseOverFilterChange(this, "out", type);
+            this.removeChild(this.children[0]);
+        });
+    }
+
     return {
         getIndexInParent: getIndexInParent,
         resetListSelection: resetListSelection,
         sizeLists: sizeLists,
         copyTextToClipboard: copyTextToClipboard,
         centerListLabels: centerListLabels,
-        siteColorMode: siteColorMode
+        siteColorMode: siteColorMode,
+        buildButtonTooltips: buildButtonTooltips,
     }
 }();
 
