@@ -13,6 +13,7 @@
         - A birthday cake will now appear next to sims and lots on their birthday
         - Representation for our ursine friends
         - Ability to sort lists alphabetically
+        - Export and import bookmarks
 
     System:
         - Write "loading" to text elements before fetching data and writing it
