@@ -15,6 +15,7 @@
         - Ability to sort lists alphabetically
 
     System:
+        - Write "loading" to text elements before fetching data and writing it
         - Fix reagan rainbow looping incorrectly
         - Rename all "short" data to "online"
         - Rename all "long" data to "cache"

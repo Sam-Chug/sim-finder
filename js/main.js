@@ -2,12 +2,18 @@ const simDataHolder = new SimData();
 
 document.addEventListener("DOMContentLoaded", async e => {
 
+    console.log(`%c Sim Finder ${VERSION_STR} `, "color: yellow; background-color: purple;");
+    console.log(`%c A Website By Reaganomics Lamborghini `, "color: yellow; background-color: purple;"); 
+    console.log(`%c Built With Love <3 `, "color: yellow; background-color: purple;"); 
+
     simFinderMain.start();
 });
 
 simFinderMain = function() {
 
     async function start() {
+
+        console.log("Loading site...");
 
         // Fetch online data
         console.time("Fetching data from API");
@@ -18,6 +24,8 @@ simFinderMain = function() {
         console.time("Populating GUI")
         populateGui();
         console.timeEnd("Populating GUI");
+
+        console.log("Load Complete")
     }
 
     // Get data from api
