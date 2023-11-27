@@ -16,7 +16,6 @@
         - Export and import bookmarks
 
     TODO:
-        - Fix reagan rainbow looping incorrectly
     
     Low Priority:
         - Rename all "short" data to "online"
