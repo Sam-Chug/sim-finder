@@ -29,6 +29,10 @@
         - Improve market watch
 
     Possible Features
+        - Save rolling average of data saved in localstorage to pull from later
+            - May not be most accurate but is at least something
+            - Possible uses:
+                - Last seen online
         - Make easier to use on mobile
             - Renders very large, could be much smaller
         - Automatically ping api, update per minute
