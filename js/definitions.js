@@ -232,6 +232,7 @@ const CUSTOM_STYLE_SIMHEADS = {
     reagan: "./images/sim-faces/simface-rea.png?v0.2.1a",
     bear: "./images/sim-faces/simface-b.png?v0.2.1a"
 };
+const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.1a"
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 const CUSTOM_STYLE_BLOCK = {
     bp: {
