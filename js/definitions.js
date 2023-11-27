@@ -1,5 +1,5 @@
 //#region Strings
-const VERSION_STR = "v0.2.1b";
+const VERSION_STR = "v0.2.1c";
 
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
@@ -17,7 +17,7 @@ const JOB_STRINGS = [
     "Unemployed",
     "Factory",
     "Restaurant",
-    "Unused",
+    "Dog Sitting",
     "Club",
     "Club"
 ]
@@ -233,12 +233,12 @@ const DOM_ROOT = document.querySelector(":root");
 
 //#region Sim style lists
 const CUSTOM_STYLE_SIMHEADS = {
-    male: "./images/sim-faces/simface-m.png?v0.2.1b",
-    female: "./images/sim-faces/simface-f.png?v0.2.1b",
-    reagan: "./images/sim-faces/simface-rea.png?v0.2.1b",
-    bear: "./images/sim-faces/simface-b.png?v0.2.1b"
+    male: "./images/sim-faces/simface-m.png?v0.2.1c",
+    female: "./images/sim-faces/simface-f.png?v0.2.1c",
+    reagan: "./images/sim-faces/simface-rea.png?v0.2.1c",
+    bear: "./images/sim-faces/simface-b.png?v0.2.1c"
 };
-const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.1b"
+const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.1c"
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 const CUSTOM_STYLE_BLOCK = {
     bp: {
