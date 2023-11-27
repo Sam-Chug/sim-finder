@@ -8,7 +8,7 @@ const JOB_TITLES = [
     "Unemployed",
     "Robot Factory",
     "Restaurant",
-    "Unused",
+    "Dog Sitting",
     "Nightclub - DJ",
     "Nightclub - Dancer"
 ];
