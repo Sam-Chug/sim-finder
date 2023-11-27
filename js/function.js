@@ -402,6 +402,15 @@ eggUtils = function() {
         GUI_SIM_DESCRIPTION.classList.add("inset-gold");
     }   
 
+    function testCustomStyle(color) {
+
+        // Test specified style
+        GUI_SIM_VIEW.classList.add(CUSTOM_STYLE_BLOCK[`b${color}`].cssClass);
+        GUI_SIM_LABEL.classList.add(CUSTOM_STYLE_LABEL[`l${color}`].cssClass);
+        GUI_SIM_BIO.classList.add(CUSTOM_STYLE_INSET[`i${color}`].cssClass);
+        GUI_SIM_DESCRIPTION.classList.add(CUSTOM_STYLE_INSET[`i${color}`].cssClass);
+    }
+
     function handleCustomLotStyles(selectedLot) {
 
         // Reset previous styles
@@ -426,11 +435,14 @@ eggUtils = function() {
         // Reset previous styles
         resetSimThumbnailStyles();
 
+        // Test any custom style
+        testCustomStyle("p");
+        return;
+
         // Do reagan
         if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
 
             reaganEgg();
-            return;
         }
 
         // Get sim's custom styles

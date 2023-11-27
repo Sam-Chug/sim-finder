@@ -13,6 +13,7 @@ simFinderMain = function() {
     async function start() {
 
         console.log("Loading site...");
+        console.time("Load Complete");
 
         // Fetch online data
         console.time("Fetching data from API");
@@ -24,7 +25,7 @@ simFinderMain = function() {
         populateGui();
         console.timeEnd("Populating GUI");
 
-        console.log("Load Complete")
+        console.timeEnd("Load Complete")
     }
 
     // Get data from api
