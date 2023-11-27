@@ -15,14 +15,14 @@
         - Ability to sort lists alphabetically
         - Export and import bookmarks
 
-    System:
-        - Write "loading" to text elements before fetching data and writing it
+    TODO:
         - Fix reagan rainbow looping incorrectly
+    
+    Low Priority:
         - Rename all "short" data to "online"
         - Rename all "long" data to "cache"
         - Change "idList" to "simfinder-bookmarks" in localStorage
-        - Export/import bookmarks button
-    
+
     Possible Features
         - Make easier to use on mobile
             - Renders very large, could be much smaller
