@@ -1129,6 +1129,7 @@ body {
     width: 41px;
     height: 42px;
     margin-top: 9px;
+    margin-right: -20px;
 
     border-radius: 50%;
     box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
@@ -1149,6 +1150,7 @@ body {
     width: 41px;
     height: 42px;
     margin-top: 9px;
+    margin-left: -20px;
 
     border-radius: 50%;
     box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
