@@ -65,7 +65,7 @@ simFinderMain = function() {
     // Write online sims/lots to lists
     function populateGui() {
 
-        // Generate filter buttons
+        // Generate elements
         filterUtils.fillButtonGraphics();
         domUtils.buildButtonTooltips();
 

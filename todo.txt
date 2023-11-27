@@ -1,21 +1,10 @@
 - Rewrite TODO:
 
     Patchnotes:
-        - Click sim or lot label to copy to clipboard
-        - Finally added lot bios
-        - Various layout tweaks
 
-        - A couple new sim filters
-        - New custom styles, for label and description
-        - Added custom styles for lots that match sim's custom styles
-        
-        - Fixed noon AM/PM bug
-        - Hopefully fixed innacurate sim ages and birthdays
-        - A birthday cake will now appear next to sims and lots on their birthday
 
-        - Representation for our ursine friends
-        - Ability to sort lists alphabetically
-        - Export and import bookmarks
+    Bugs:
+        - Cake doesnt appear in birthday sim's name label
 
     TODO:
         - Some functions are still out of place
