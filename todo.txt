@@ -17,8 +17,6 @@
         - Representation for our ursine friends
         - Ability to sort lists alphabetically
         - Export and import bookmarks
-            - TODO: Add error handling
-            - test with null sim (searching non-existant sim in search bar)
 
     TODO:
     
@@ -26,6 +24,8 @@
         - Rename all "short" data to "online"
         - Rename all "long" data to "cache"
         - Change "idList" to "simfinder-bookmarks" in localStorage
+        - Bookmark checkbox graphic
+        - Improve market watch
 
     Possible Features
         - Make easier to use on mobile
@@ -87,22 +87,3 @@ https://api.freeso.org/userapi/city/1/lots/name/M.O.M.I.%20Headquarters
 
 return obj of top lots
 https://api.freeso.org/userapi/city/1/lots/top100/all
-
-FIX (priority sort):
-- fix bookmark checkbox graphic
-
-TODO:
-- new lot thumbnail:
-    - show category icon
-    - number of sims in box like ingame
-    - add lot description
-
-In Progress:
-- More custom sim themes
-
-With New Database:
-- Neighborhood watch
-- Sim last online time
-- Improve market watch
-
-Patch Notes:

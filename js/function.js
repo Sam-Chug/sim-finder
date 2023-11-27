@@ -1871,12 +1871,51 @@ storageUtils = function() {
 
                 // Set to bookmark key
                 let content = readerEvent.target.result;
-                localStorage.setItem(storageKey, content);
+                
+                // Try converting content string to json
+                let contentObject;
+                try {
 
-                // Reload page
-                location.reload();
+                    contentObject = JSON.parse(content);
+                }
+                catch (error) {
+
+                    alert("The file you are importing is invalid. Reverting to previous bookmarks.");
+                }
+
+                // Check validity of imported bookmarks
+                let validImport = checkImportValidity(contentObject);
+
+                // If import valid
+                if (validImport) {
+
+                    // Set item and reload page
+                    localStorage.setItem(storageKey, content);
+                    alert("Bookmarks imported, press OK to reload page.");
+                    location.reload();
+                }
+                // Else, alert user
+                else {
+
+                    alert("The file you are importing is invalid. Reverting to previous bookmarks.");
+                }
             }
         }
+    }
+
+    function checkImportValidity(importObj) {
+
+        // Check if import has idList attribute
+        if (!importObj.hasOwnProperty("simID")) return false;
+
+        // Check if all entries in idList are integers
+        for (let i = 0; i < importObj.simID.length; i++) {
+
+            if (!Number.isInteger(importObj.simID[i])) return false;
+        }
+
+        // Return true if checks are passed
+        return true;
     }
 
     // When bookmark button clicked
