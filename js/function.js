@@ -889,8 +889,12 @@ guiUtils = function() {
 
         // Conditional existence text
         if (owner.existenceState == "OFFLINE") ownerNode.classList.add("sim-list-node-offline");
-        if (owner.existenceState == "LANDED") ownerNode.children[0].textContent += " (Hosting)";
-        if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
+        else if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
+        else if (owner.existenceState == "LANDED") {
+
+            ownerNode.children[0].textContent += " (Hosting)";
+            allCount++;
+        }
 
         // Add click handler and append to list
         if (!isTownHall) addIndexClickHandler(ownerNode, "sim-in-lot");
