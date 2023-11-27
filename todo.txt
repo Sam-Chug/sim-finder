@@ -17,6 +17,10 @@
         - Ability to sort lists alphabetically
         - Export and import bookmarks
 
+    TODO:
+        - Some functions are still out of place
+            - Move all GUI/writing functions to GUI etc
+
     Low Priority TODO:
         - Rename all "short" data to "online"
         - Rename all "long" data to "cache"

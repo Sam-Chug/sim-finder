@@ -192,7 +192,7 @@ class MarketObject{
     
                     // Equation courtesy of Gurra's SMO Spreadsheet (link)
                     // Assumes given SMO is at 150% payout
-                    let payout = SMO_AVERAGE_BASE_PAYOUT * (1 + 0.2 * lockAvg) * (1 + 0.134 * Math.min(this.moneyLots[j].lotObj.avatars_in_lot, 9)) * 150 / 100;
+                    let payout = SMO_AVERAGE_BASE_PAYOUT * (1 + 0.2 * lockAvg) * (1 + (2 / 15) * Math.min(this.moneyLots[j].lotObj.avatars_in_lot, 9)) * 150 / 100;
                     payout = Math.floor((payout / SMO_AVERAGE_COMPLETION_TIME) * 3600)
     
                     // Tally SMO money per hour, sims doing SMOs, and smo money per hour per money lot
