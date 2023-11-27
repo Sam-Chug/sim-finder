@@ -3,17 +3,22 @@
     //Rea's Frontroom Casino
     New Features:
         - Click sim or lot label to copy to clipboard
-        - New custom styles, for label and description
         - Finally added lot bios
-        - Added custom styles for lots that match sim's custom styles
         - Various layout tweaks
-        - Fixed noon AM/PM bug
+
         - A couple new sim filters
+        - New custom styles, for label and description
+        - Added custom styles for lots that match sim's custom styles
+        
+        - Fixed noon AM/PM bug
         - Hopefully fixed innacurate sim ages and birthdays
         - A birthday cake will now appear next to sims and lots on their birthday
+
         - Representation for our ursine friends
         - Ability to sort lists alphabetically
         - Export and import bookmarks
+            - TODO: Add error handling
+            - test with null sim (searching non-existant sim in search bar)
 
     TODO:
     
