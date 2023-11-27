@@ -729,7 +729,7 @@ guiUtils = function() {
         GUI_LOT_DESCRIPTION.textContent = "";
         let randomCacheBust = Math.floor(Math.random() * 10000000);
         GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`;
-        console.log("Pinged: " + "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`);
+        console.log("%cGrabbing Lot Image:\n\n", "color: black; background-color: lightgreen;", "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`);
 
         // Create lot bio elements
         const lotDesc = document.createElement("p");
@@ -1734,7 +1734,7 @@ apiUtils = function() {
         const res = await fetch(apiLink);
         obj = await res.json();
 
-        console.log("Pinged: " + apiLink);
+        console.log("%cGrabbing Last Sim Finder Commit:\n\n", "color: white; background-color: darkgreen;", apiLink);
 
         return obj;
     }
@@ -1750,7 +1750,7 @@ apiUtils = function() {
         const res = await fetch(apiLink);
         obj = await res.json();
     
-        console.log("Pinged: " + apiLink);
+        console.log("%cPinging Api:\n\n", "color: white; background-color: green;", apiLink);
     
         return obj;
     }

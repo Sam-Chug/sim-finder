@@ -2,7 +2,7 @@ const simDataHolder = new SimData();
 
 document.addEventListener("DOMContentLoaded", async e => {
 
-    console.log(`%c Sim Finder ${VERSION_STR} `, "color: yellow; background-color: purple;");
+    console.log(`%c Sim Finder ${VERSION_STR} `, "color: yellow; background-color: purple; font-size: 1.9em;");
     console.log(`%c A Website By Reaganomics Lamborghini `, "color: yellow; background-color: purple;");
 
     simFinderMain.start();
