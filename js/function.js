@@ -951,7 +951,8 @@ guiUtils = function() {
         
         // Get owner and existence state, check if mayor
         let owner = (isTownHall) ? mayor : simUtils.returnOwnerFromRoommateList(roommates, selectedLot.owner_id);
-        owner.existenceState = simUtils.returnExistenceState(simUtils.returnShortSimFromLong(owner));
+        let ownerShort = simUtils.returnShortSimFromLong(owner);
+        owner.existenceState = simUtils.returnExistenceState(ownerShort);
 
         // Add owner header to roommate list
         let ownerHeader = buildListHeader((isTownHall) ? "Mayor": "Owner", "");
@@ -967,8 +968,12 @@ guiUtils = function() {
         else if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
         else if (owner.existenceState == "LANDED") {
 
-            ownerNode.children[0].textContent += " (Hosting)";
-            allCount++;
+            // If sim is landed, check if they are at lot
+            if (ownerShort.location == selectedLot.location) {
+
+                ownerNode.children[0].textContent += " (Hosting)";
+                allCount++;
+            }
         }
 
         // Add click handler and append to list
