@@ -1,11 +1,10 @@
 - Rewrite TODO:
 
     Patchnotes:
-
+        - Fixed owner always being counted as hosting when online, even when not at lot
 
     Bugs:
         - Cake doesnt appear in birthday sim's name label
-        - Incorrect roommate/owner count when owner hosting
         - Sim dates slightly incorrect
 
     TODO:

@@ -966,14 +966,11 @@ guiUtils = function() {
         // Conditional existence text
         if (owner.existenceState == "OFFLINE") ownerNode.classList.add("sim-list-node-offline");
         else if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
-        else if (owner.existenceState == "LANDED") {
+        else if (owner.existenceState == "LANDED" && ownerShort.location == selectedLot.location) {
 
             // If sim is landed, check if they are at lot
-            if (ownerShort.location == selectedLot.location) {
-
-                ownerNode.children[0].textContent += " (Hosting)";
-                allCount++;
-            }
+            ownerNode.children[0].textContent += " (Hosting)";
+            allCount++;
         }
 
         // Add click handler and append to list
