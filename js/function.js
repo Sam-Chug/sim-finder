@@ -422,8 +422,6 @@ domUtils = function() {
 
 eggUtils = function() {
 
-    // TODO: Redo all of this in more easily modular way
-
     // Reset sim thumbnail styles
     function resetSimThumbnailStyles() {
 
@@ -671,7 +669,7 @@ guiUtils = function() {
         let headStyle = new StyleObject(selectedSimLong);
         GUI_SIM_THUMBNAIL.src = headStyle.avatarHead;
 
-        // TODO: EASTER EGGS
+        // Handle custom styles
         eggUtils.handleCustomSimStyles(selectedSimLong);
 
         // Write sim's bio text
@@ -725,7 +723,6 @@ guiUtils = function() {
         writeToLabel(selectedLotLong.name + ((isBirthday) ? " 🎂" : ""), "", "thumbnail-title");
 
         // Reset description, get thumbnail from API
-        // TODO: Refactor how lot descriptions are structured html-wise
         GUI_LOT_DESCRIPTION.textContent = "";
         let randomCacheBust = Math.floor(Math.random() * 10000000);
         GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`;
@@ -749,7 +746,7 @@ guiUtils = function() {
         // Append elements to lot bio
         GUI_LOT_DESCRIPTION.appendChild(lotDesc);
 
-        // TODO: Refactor this into another function
+        // Un-hide lot bio
         GUI_LOT_BIO.textContent = selectedLotLong.description;
         GUI_LOT_BIO.style.display = "block";
     }

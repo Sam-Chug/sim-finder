@@ -120,7 +120,6 @@ class StyleObject{
 
     returnStyleList(simDescription) {
 
-        // TODO: fix this
         let indexShift = (this.usesShorthand) ? 3 : 5;
         let styleIndicator = (this.usesShorthand) ? "sf:" : "sifi:";
 

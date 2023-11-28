@@ -66,6 +66,7 @@ simFinderMain = function() {
     function populateGui() {
 
         // Generate elements
+        // TODO: Move these to page start - causes error if hovered in pre-api grab
         filterUtils.fillButtonGraphics();
         domUtils.buildButtonTooltips();
 

@@ -5,6 +5,8 @@
 
     Bugs:
         - Cake doesnt appear in birthday sim's name label
+        - Incorrect roommate/owner count when owner hosting
+        - Sim dates slightly incorrect
 
     TODO:
         - Some functions are still out of place
