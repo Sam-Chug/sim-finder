@@ -946,9 +946,14 @@ guiUtils = function() {
     
                 // Get roommates existence state
                 roommates.avatars[i].existenceState = simUtils.returnExistenceState(roomieShort);
+
+                if (roomieShort.location == selectedLot.location) allCount++;
             }
         }
         
+        // Decide if should write (Maybe) on hidden sims
+        let writeHidden = (allCount != population);
+
         // Get owner and existence state, check if mayor
         let owner = (isTownHall) ? mayor : simUtils.returnOwnerFromRoommateList(roommates, selectedLot.owner_id);
         let ownerShort = simUtils.returnShortSimFromLong(owner);
@@ -963,21 +968,17 @@ guiUtils = function() {
         let ownerNode = createListNode(owner.name, "");
         ownerNode.id = "sim-in-lot-list-node";
 
-        // Conditional existence text
+        // Conditionals for owner
         if (owner.existenceState == "OFFLINE") ownerNode.classList.add("sim-list-node-offline");
-        else if (owner.existenceState == "LANDED_HIDDEN") ownerNode.children[0].textContent += " (Maybe Hosting)";
-        else if (owner.existenceState == "LANDED" && ownerShort.location == selectedLot.location) {
-
-            // If sim is landed, check if they are at lot
-            ownerNode.children[0].textContent += " (Hosting)";
-            allCount++;
-        }
+        else if (owner.existenceState == "LANDED_HIDDEN" && writeHidden) ownerNode.children[0].textContent += " (Maybe Hosting)";
+        else if (ownerShort.location == selectedLot.location) ownerNode.children[0].textContent += " (Hosting)";
 
         // Add click handler and append to list
         if (!isTownHall) addIndexClickHandler(ownerNode, "sim-in-lot");
         GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
 
         // Create elements for roommates at lot text
+        // Catch for townhalls
         if (!("error" in roommates)) {
 
             if (roommates.avatars.length > 1) {
@@ -1003,16 +1004,10 @@ guiUtils = function() {
                 roommateNode.id = "sim-in-lot-list-node";
                 addIndexClickHandler(roommateNode, "sim-in-lot");
 
-                // Conditional existence stylinh
-                if (existenceState == "LANDED_HIDDEN") roommateNode.children[0].textContent += " (Maybe Hosting)";
+                // Conditional existence styling
+                if (existenceState == "LANDED_HIDDEN" && writeHidden) roommateNode.children[0].textContent += " (Maybe Hosting)";
                 if (existenceState == "OFFLINE") roommateNode.classList.add("sim-list-node-offline");
-
-                // Check if sim at lot
-                if (existenceState == "LANDED" && roommatesShort[i].location == selectedLot.location) {
-
-                    roommateNode.children[0].textContent += " (Hosting)";
-                    allCount++;
-                }
+                if (roommatesShort[i].location == selectedLot.location) roommateNode.children[0].textContent += " (Hosting)";
 
                 // Append roommate node to list
                 GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommateNode);
@@ -1020,7 +1015,7 @@ guiUtils = function() {
         }
         
         // Write extra text for number of hidden sims
-        if (population - allCount > 0) {
+        if (population - allCount != 0 && writeHidden) {
 
             // Extra space
             let extraText = ""

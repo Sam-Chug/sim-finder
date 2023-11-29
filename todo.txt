@@ -2,16 +2,17 @@
 
     Patchnotes:
         - Fixed owner always being counted as hosting when online, even when not at lot
+        - slightly better hidden/unhidden roommate detection in sim list
 
     Bugs:
-        - Cake doesnt appear in birthday sim's name label
-        - Sim dates slightly incorrect
+        - Sim dates still slightly incorrect
 
     TODO:
         - Some functions are still out of place
             - Move all GUI/writing functions to GUI etc
 
     Low Priority TODO:
+        - Remove (Maybe Hosting) if all sims accounted for
         - Rename all "short" data to "online"
         - Rename all "long" data to "cache"
         - Change "idList" to "simfinder-bookmarks" in localStorage
