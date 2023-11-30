@@ -8,6 +8,8 @@
         - Sim dates still slightly incorrect
 
     TODO:
+        - More colors
+            - Pinpoint colors that are lacking
         - Offline lots should still display roomies in sims-in-lot panel
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
