@@ -1,20 +1,29 @@
 class SimData{
     constructor() {
 
-        // Sim/lot data
+        //#region Sim/Lot data
+        // Live data from online sims
         this.simShortList;
+
+        // Cached data from all sims, holds data not necessary for immediate live play (mostly)
         this.simLongList;
 
+        // Live data from online lots
         this.lotShortList;
+
+        // Cached data from all lots, holds data not necessary for immediate live play (mostly)
         this.lotLongList;
+        //#endregion
         
         // Sim bookmark list
+        // List of sim's cached long data grabbed from api upon website opening
         this.bookmarkList;
 
         // Market data
+        // Contains current market information
         this.marketData;
 
-        // Keep track of selected sim for bookmarking
+        // Keep track of selected sim ID for bookmarking
         this.selSimID;
 
         // Current filter
