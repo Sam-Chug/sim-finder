@@ -300,27 +300,27 @@ body {
 }
 
 .window-minable {
-    background: url(../images/buttons/min-window-button.png?v0.2.1c) 0 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.1d) 0 0;
 }
 
 .window-minable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.1c) 82px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.1d) 82px 0;
 }
 
 .window-minable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.1c) 41px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.1d) 41px 0;
 }
 
 .window-maxable {
-    background: url(../images/buttons/min-window-button.png?v0.2.1c) 0 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.1d) 0 41px;
 }
 
 .window-maxable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.1c) 82px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.1d) 82px 41px;
 }
 
 .window-maxable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.1c) 41px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.1d) 41px 41px;
 }
 /* #endregion */
 
@@ -767,15 +767,15 @@ body {
 
     width: 40px;
     height: 40px;
-    background: url(../images/buttons/question-button.png?v0.2.1c) 0px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.1d) 0px 0px;
 }
 
 .buttom-sim-help-image:hover {
-    background: url(../images/buttons/question-button.png?v0.2.1c) 80px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.1d) 80px 0px;
 }
 
 .buttom-sim-help-image:active {
-    background: url(../images/buttons/question-button.png?v0.2.1c) 40px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.1d) 40px 0px;
 }
 /* #endregion */
 
@@ -984,17 +984,17 @@ body {
 
 .expand-sidebar-image {
     transform: translate(-8px, -3px);
-    background: url(../images/buttons/expand-arrow.png?v0.2.1c) 0px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.1d) 0px 0px;
     width: 30px;
     height: 30px;
 }
 
 .expand-sidebar-image:hover {
-    background: url(../images/buttons/expand-arrow.png?v0.2.1c) 60px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.1d) 60px 0px;
 }
 
 .expand-sidebar-image:active {
-    background: url(../images/buttons/expand-arrow.png?v0.2.1c) 30px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.1d) 30px 0px;
 }
 
 .job-holder {
@@ -1071,7 +1071,7 @@ body {
 
 .search-button {
     border-radius: 50%;
-    background: url(../images/buttons/search-button.png?v0.2.1c) no-repeat;
+    background: url(../images/buttons/search-button.png?v0.2.1d) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1081,11 +1081,11 @@ body {
 }
 
 .search-button:hover {
-    background: url(../images/buttons/search-button-hover.png?v0.2.1c) no-repeat;
+    background: url(../images/buttons/search-button-hover.png?v0.2.1d) no-repeat;
 }
 
 .search-button:active {
-    background: url(../images/buttons/search-button-click.png?v0.2.1c) no-repeat;
+    background: url(../images/buttons/search-button-click.png?v0.2.1d) no-repeat;
 }
 /* #endregion */
 
@@ -1100,7 +1100,7 @@ body {
     position: relative;
     top: 20px;
     border-radius: 50%;
-    background: url(../images/buttons/name-sort.png?v0.2.1c) no-repeat;
+    background: url(../images/buttons/name-sort.png?v0.2.1d) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1110,11 +1110,11 @@ body {
 }
 
 .sort-button:hover {
-    background: url(../images/buttons/name-sort-hover.png?v0.2.1c) no-repeat;
+    background: url(../images/buttons/name-sort-hover.png?v0.2.1d) no-repeat;
 }
 
 .sort-button:active {
-    background: url(../images/buttons/name-sort-selected.png?v0.2.1c) no-repeat;
+    background: url(../images/buttons/name-sort-selected.png?v0.2.1d) no-repeat;
 }
 /* #endregion */
 
@@ -1137,7 +1137,7 @@ body {
 }
 
 .export-arrow {
-    background: url(../images/buttons/export-arrow.png?v0.2.1c) 0px 0px;
+    background: url(../images/buttons/export-arrow.png?v0.2.1d) 0px 0px;
     width: 41px;
     height: 42px;
     margin-top: 9px;
@@ -1150,15 +1150,15 @@ body {
 }
 
 .export-arrow:hover {
-    background: url(../images/buttons/export-arrow.png?v0.2.1c) 0px 84px;
+    background: url(../images/buttons/export-arrow.png?v0.2.1d) 0px 84px;
 }
 
 .export-arrow:active {
-    background: url(../images/buttons/export-arrow.png?v0.2.1c) 0px 42px;
+    background: url(../images/buttons/export-arrow.png?v0.2.1d) 0px 42px;
 }
 
 .import-arrow {
-    background: url(../images/buttons/export-arrow.png?v0.2.1c) 41px 0px;
+    background: url(../images/buttons/export-arrow.png?v0.2.1d) 41px 0px;
     width: 41px;
     height: 42px;
     margin-top: 9px;
@@ -1171,11 +1171,11 @@ body {
 }
 
 .import-arrow:hover {
-    background: url(../images/buttons/export-arrow.png?v0.2.1c) 41px 84px;
+    background: url(../images/buttons/export-arrow.png?v0.2.1d) 41px 84px;
 }
 
 .import-arrow:active {
-    background: url(../images/buttons/export-arrow.png?v0.2.1c) 41px 42px;
+    background: url(../images/buttons/export-arrow.png?v0.2.1d) 41px 42px;
 }
 /* #endregion */
 
