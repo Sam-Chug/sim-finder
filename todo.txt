@@ -8,16 +8,24 @@
         - Sim dates still slightly incorrect
 
     TODO:
+        - Offline lots should still display roomies in sims-in-lot panel
+        - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
+            - Figure out which head to use
+        - Light/dark mode
+            - Need to impliment into GUI somewhere (sidebar?)
         - Some functions are still out of place
             - Move all GUI/writing functions to GUI etc
+        - Keep track of API stats
 
     Low Priority TODO:
+        - Clean up css
         - Remove (Maybe Hosting) if all sims accounted for
-        - Rename all "short" data to "online"
-        - Rename all "long" data to "cache"
+        - Rename all "short" data to "online", all "long" data to "cache"
+            - Issue is some cache data is immediately useful for online judgements
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Bookmark checkbox graphic
         - Improve market watch
+            - Could impliment the rare/event dates list
 
     Possible Features
         - Save rolling average of data saved in localstorage to pull from later
