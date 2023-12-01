@@ -8,8 +8,20 @@
         - Sim dates still slightly incorrect
 
     TODO:
+        - Add themes for holidays
+            - Should be togglable
+            - Christmas - Snowflakes falling
+            - Maybe just change backgrounds?
         - More colors
             - Pinpoint colors that are lacking
+            - Orange
+            - Yellow
+                - Make different from gold
+            - Navy/baby blue
+            - Silver
+                - Christmas Colors
+                    - Maroon
+                    - Dark Green
         - Offline lots should still display roomies in sims-in-lot panel
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
