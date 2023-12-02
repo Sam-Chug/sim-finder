@@ -12,7 +12,7 @@
     Bugs:
         - Sim dates still slightly incorrect
 
-    TODO:
+    v0.2.2a TODO:
         - Add brushed texture to Reagan block style
         - Get style example screenshots for:
             - Orange "o"
@@ -25,7 +25,7 @@
             - Figure out which head to use
                 - Raccoon?
         - Light/dark mode
-            - Need to impliment into GUI somewhere (sidebar?)
+            - Need to impliment into GUI somewhere (sidebar, docked to top right, ?)
         - Some functions are still out of place
             - Move all GUI/writing functions to GUI etc
 
