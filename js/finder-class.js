@@ -36,6 +36,9 @@ class SimData{
 
         // Keep track of API pings
         this.apiStats = new APIStats();
+
+        // User settings
+        this.userSetting = new UserSetting();
     }
 };
 
@@ -79,7 +82,7 @@ class APIStats{
 class UserSetting{
     constructor(load) {
 
-        // If I ever impliment dark mode this will have to load and store user settings
+        this.colorMode = (load === undefined || load.colorMode === undefined) ? "lightmode" : load.colorMode;
     }
 }
 

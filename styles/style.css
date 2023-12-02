@@ -1268,6 +1268,40 @@ body {
 }
 /* #endregion */
 
+/* #region Color Mode */
+.colormode-toggle-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: 64px;
+    width: 64px;
+    border-radius: 25px;
+}
+
+.light-button {
+    border-radius: 50%;
+    background: url(../images/buttons/lightmode-button.png) 0px 0px;
+    height: 38px;
+    width: 38px;
+    border: none;
+    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
+                4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
+                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
+    
+    position: absolute;
+    top: 11px;
+    left: 12px;
+}
+
+.light-button:hover {
+    background: url(../images/buttons/lightmode-button.png) -76px 0px;
+}
+
+.light-button:active {
+    background: url(../images/buttons/lightmode-button.png) -38px 0px;
+}
+/* #endregion */
+
 /* #region Animations */
 @keyframes fadeIn {
     0% {opacity: 0;}

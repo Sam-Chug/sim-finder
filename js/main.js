@@ -15,6 +15,10 @@ simFinderMain = function() {
         console.log("Loading site...");
         console.time("Load Complete");
 
+        // Grab or init user settings
+        simDataHolder.userSetting = storageUtils.returnSettings();
+        domUtils.siteColorMode(simDataHolder.userSetting.colorMode);
+
         // Fetch online data
         console.time("Fetching data from API");
         await getOnlineData();

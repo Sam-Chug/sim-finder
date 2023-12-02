@@ -315,11 +315,9 @@ domUtils = function() {
 
         let simLabel = document.getElementById("sims-online-count-label");
         let simLabelRect = simLabel.getBoundingClientRect();
-        let simListPanelRect = document.getElementById("sim-list-panel").getBoundingClientRect();
 
         let lotLabel = document.getElementById("lots-online-count-label");
         let lotLabelRect = lotLabel.getBoundingClientRect();
-        let lotListPanelRect = document.getElementById("lot-list-panel").getBoundingClientRect();
 
         simLabel.style.marginLeft = `calc(50% - ${simLabelRect.width / 2}px)`;
         lotLabel.style.marginLeft = `calc(50% - ${lotLabelRect.width / 2}px)`;
@@ -330,9 +328,27 @@ domUtils = function() {
         navigator.clipboard.writeText(e.textContent);
     }
 
+    function swapColorMode() {
+
+        // Change user settings and swap color modes
+        if (simDataHolder.userSetting.colorMode == "lightmode") {
+
+            simDataHolder.userSetting.colorMode = "darkmode";
+            siteColorMode("darkmode");
+        }
+        else if (simDataHolder.userSetting.colorMode == "darkmode") {
+
+            simDataHolder.userSetting.colorMode = "lightmode";
+            siteColorMode("lightmode");
+        }
+
+        // Update storage
+        storageUtils.saveStorage(SETTINGS_KEY, JSON.stringify(simDataHolder.userSetting));
+    }
+
     function siteColorMode(state) {
 
-        if (state == "default") {
+        if (state == "lightmode") {
 
             DOM_ROOT.style.setProperty("--bg-fallback", "#7ca1bf");
 
@@ -433,6 +449,7 @@ domUtils = function() {
         centerListLabels: centerListLabels,
         siteColorMode: siteColorMode,
         buildButtonTooltips: buildButtonTooltips,
+        swapColorMode: swapColorMode
     }
 }();
 
@@ -1847,6 +1864,30 @@ apiUtils = function() {
 
 storageUtils = function() {
 
+    // TODO: This is messy, try to merge with setDefaultStorage
+    function setDefaultSettings() {
+
+        // Check if user settings empty
+        if (!checkIfSettingsEmpty()) return;
+        localStorage.removeItem(SETTINGS_KEY);
+
+        // Set default user settings
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(new UserSetting()));
+    }
+
+    function returnSettings() {
+
+        if (checkIfSettingsEmpty()) setDefaultSettings();
+
+        let settingObject = JSON.parse(localStorage.getItem(SETTINGS_KEY));
+        return settingObject;
+    }
+
+    function checkIfSettingsEmpty() {
+
+        return (JSON.parse(localStorage.getItem(SETTINGS_KEY) == null));
+    }
+
     function checkIfStorageEmpty(storageKey) {
 
         // If storage empty or sim ID list is empty
@@ -2057,6 +2098,9 @@ storageUtils = function() {
         deleteBookmark: deleteBookmark,
         addBookmark: addBookmark,
         importLocalStorage: importLocalStorage,
-        exportLocalStorage: exportLocalStorage
+        exportLocalStorage: exportLocalStorage,
+        setDefaultSettings: setDefaultSettings,
+        returnSettings: returnSettings,
+        saveStorage: saveStorage
     }
 }();

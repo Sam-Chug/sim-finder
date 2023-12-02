@@ -225,6 +225,8 @@ const LOT_FILTER_TOOLTIP = [
 //#region Misc
 const STORAGE_KEY = "idList"; //simfinder-id-list
 const STORAGE_KEY_OLD = "idList";
+
+const SETTINGS_KEY = "simfinder-settings";
 //#endregion
 
 //#region Market Watch Constants
