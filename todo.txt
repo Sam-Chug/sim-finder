@@ -8,6 +8,7 @@
         - Wrench next to staff's name
         - Print API ping stats in console
         - New custom styles
+        - Light/dark mode button
 
     Bugs:
         - Sim dates still slightly incorrect
@@ -25,12 +26,11 @@
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
-        - Light/dark mode
-            - Need to impliment into GUI somewhere (sidebar, docked to top right, ?)
-        - Some functions are still out of place
-            - Move all GUI/writing functions to GUI etc
+       
 
     Low Priority TODO:
+        - Some functions are still out of place
+            - Move all GUI/writing functions to GUI etc
         - Bookmark text should match custom style's text color
             - Add class based on block style
         - Add background themes for holidays
