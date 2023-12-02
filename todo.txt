@@ -3,6 +3,7 @@
     Patchnotes:
         - Fixed owner always being counted as hosting when online, even when not at lot
         - slightly better hidden/unhidden roommate detection in sim list
+        - 
 
     Bugs:
         - Sim dates still slightly incorrect
