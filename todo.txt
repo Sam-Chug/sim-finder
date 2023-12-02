@@ -14,6 +14,7 @@
 
     v0.2.2a TODO:
         - Custom style panel images
+            - Paid feature (check with mods)
         - Get style example screenshots for:
             - Orange "o"
             - Yellow "y"
