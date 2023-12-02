@@ -516,7 +516,7 @@ eggUtils = function() {
         resetSimThumbnailStyles();
 
         // Test any custom style
-        //testCustomStyle("p");
+        //testCustomStyle("o");
         //return;
 
         // Do reagan

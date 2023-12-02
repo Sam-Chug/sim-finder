@@ -342,6 +342,24 @@ const CUSTOM_STYLE_BLOCK = {
     },
     bpr: {
         cssClass: `block-purple`
+    },
+    bo: {
+        cssClass: `block-orange`
+    },
+    by: {
+        cssClass: `block-yellow`
+    },
+    bnb: {
+        cssClass: `block-blue`
+    },
+    bs: {
+        cssClass: `block-silver`
+    },
+    bm: {
+        cssClass: `block-maroon`
+    },
+    bg: {
+        cssClass: `block-darkgreen`
     }
 };
 
@@ -363,6 +381,24 @@ const CUSTOM_STYLE_LABEL = {
     },
     lpr: {
         cssClass: `label-purple`
+    },
+    lo: {
+        cssClass: `label-orange`
+    },
+    ly: {
+        cssClass: `label-yellow`
+    },
+    lnb: {
+        cssClass: `label-blue`
+    },
+    ls: {
+        cssClass: `label-silver`
+    },
+    lm: {
+        cssClass: `label-maroon`
+    },
+    lg: {
+        cssClass: `label-darkgreen`
     }
 };
 
@@ -384,6 +420,24 @@ const CUSTOM_STYLE_INSET = {
     },
     ipr: {
         cssClass: `inset-purple`
+    },
+    io: {
+        cssClass: `inset-orange`
+    },
+    iy: {
+        cssClass: `inset-yellow`
+    },
+    inb: {
+        cssClass: `inset-blue`
+    },
+    is: {
+        cssClass: `inset-silver`
+    },
+    im: {
+        cssClass: `inset-maroon`
+    },
+    ig: {
+        cssClass: `inset-darkgreen`
     }
 };
 //#endregion
