@@ -254,6 +254,8 @@ const FILTER_ICON_CACHE = {
 //#endregion
 
 //#region DOM cache
+const DOM_ROOT = document.querySelector(':root');
+
 const GUI_ONLINESIMS = document.getElementById('sims-table');
 const GUI_ONLINELOTS = document.getElementById('lots-table');
 
@@ -297,22 +299,20 @@ const GUI_FILTER_LOT_ICON_ARRAY = document.getElementById('lot-filter-array');
 const GUI_FILTER_SIM_PANEL = document.getElementById('sim-filter-panel');
 const GUI_FILTER_LOT_PANEL = document.getElementById('lot-filter-panel');
 
-const SIDEBAR = document.getElementById("sidebar");
-const SIDEBAR_EXPAND_BUTTON = document.getElementById("sidebar-button");
-const SIDEBAR_CONTAINER = document.getElementById("sidebar-holder");
-const SIDEBAR_INFO = document.getElementById("sidebar-site-info");
-const SIDEBAR_JOB_DINER = document.getElementById("job-diner");
-const SIDEBAR_JOB_CLUB = document.getElementById("job-club");
-const SIDEBAR_JOB_FACTORY = document.getElementById("job-robot");
-const SIDEBAR_CLOCK = document.getElementById("sim-clock");
+const SIDEBAR = document.getElementById('sidebar');
+const SIDEBAR_EXPAND_BUTTON = document.getElementById('sidebar-button');
+const SIDEBAR_CONTAINER = document.getElementById('sidebar-holder');
+const SIDEBAR_INFO = document.getElementById('sidebar-site-info');
+const SIDEBAR_JOB_DINER = document.getElementById('job-diner');
+const SIDEBAR_JOB_CLUB = document.getElementById('job-club');
+const SIDEBAR_JOB_FACTORY = document.getElementById('job-robot');
+const SIDEBAR_CLOCK = document.getElementById('sim-clock');
 
-const GUI_SORT_SIM_NAMES = document.getElementById("sort-sims-by-name");
-const GUI_SORT_LOT_NAMES = document.getElementById("sort-lots-by-name");
+const GUI_SORT_SIM_NAMES = document.getElementById('sort-sims-by-name');
+const GUI_SORT_LOT_NAMES = document.getElementById('sort-lots-by-name');
 
-const GUI_EXPORT_BUTTON = document.getElementById("export-button");
-const GUI_IMPORT_BUTTON = document.getElementById("import-button");
-
-const DOM_ROOT = document.querySelector(":root");
+const GUI_EXPORT_BUTTON = document.getElementById('export-button');
+const GUI_IMPORT_BUTTON = document.getElementById('import-button');
 //#endregion
 
 //#region Sim style lists
