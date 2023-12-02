@@ -70,9 +70,9 @@ class APIStats{
     printAPIStats() {
 
         console.log("%cAPI Ping Stats", "color: white; background-color: darkblue");
-        console.log(`Total API Calls: ${this.totalCalls}`);
-        console.log(`Time since page open: ${Math.round(this.minutesOpen())} minutes`);
-        console.log(`Calls per minute: ${Math.round(this.callsPerMinute())}`);
+        console.log(`Total API calls: ${this.totalCalls}`);
+        console.log(`Time since page open: ${Math.round(this.minutesOpen())} minute${(Math.round(this.minutesOpen()) == 1) ? "" : "s"}`);
+        console.log(`Calls/minute: ${Math.round(this.callsPerMinute())}`);
     }
 }
 
