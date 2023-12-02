@@ -1341,6 +1341,13 @@ filterUtils = function() {
                 }
                 break;
 
+            case "STAFF":
+
+                for (let i = 0; i < simShortList.avatars.length; i++) {
+                    if (simUtils.isSimStaffMember(simShortList.avatars[i].name)) longList.push(simLongList.avatars[i]);
+                }
+                break;
+
             default:
                 break;
         }
@@ -1377,7 +1384,7 @@ filterUtils = function() {
             addFilterClasses(button, "lot");
             lotFilterArray.appendChild(button);
         }
-        for (let i = 0; i < 11; i++) {
+        for (let i = 0; i < 12; i++) {
     
             let button = document.createElement("button");
     

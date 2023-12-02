@@ -185,7 +185,8 @@ const SIM_FILTER_KEYS = [
     "UNFOUND",
     "FLOATING",
     "LANDED",
-    "WORKING"
+    "WORKING",
+    "STAFF"
 ]
 
 // Strings for sim filter tooltips
@@ -200,7 +201,8 @@ const SIM_FILTER_TOOLTIP = [
     "Unlocatable Sims",
     "Floating",
     "Landed at Lot",
-    "Working"
+    "Working",
+    "Online Staff"
 ]
 
 // Strings for lot filter tooltips
