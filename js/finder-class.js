@@ -33,8 +33,34 @@ class SimData{
         // Keep track of how entities are sorted
         this.simSort = "age";
         this.lotSort = "pop";
+
+        // Keep track of API pings
+        this.apiStats = new APIStats();
     }
 };
+
+class APIStats{
+    constructor() {
+
+        this.totalCalls = 0;
+        this.timeOpened = Date.now();
+    }
+
+    callsPerMinute() {
+
+        return this.totalCalls / minutesOpen();
+    }
+
+    minutesOpen() {
+
+        return (Date.now() - this.timeOpened) / 60000;
+    }
+
+    incrementAPICalls() {
+
+        this.totalCalls++;
+    }
+}
 
 class UserSetting{
     constructor(load) {
