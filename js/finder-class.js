@@ -44,11 +44,14 @@ class APIStats{
 
         this.totalCalls = 0;
         this.timeOpened = Date.now();
+
+        // For every n calls, print API call stats in console
+        this.debugIncrement = 10;
     }
 
     callsPerMinute() {
 
-        return this.totalCalls / minutesOpen();
+        return this.totalCalls / this.minutesOpen();
     }
 
     minutesOpen() {
@@ -59,6 +62,17 @@ class APIStats{
     incrementAPICalls() {
 
         this.totalCalls++;
+
+        // If hit debug increment, print API stats to console
+        if (this.totalCalls % this.debugIncrement == 0) this.printAPIStats();
+    }
+
+    printAPIStats() {
+
+        console.log("%cAPI Ping Stats", "color: white; background-color: darkblue");
+        console.log(`Total API Pings: ${this.totalCalls}`);
+        console.log(`Time since page open: ${Math.round(this.minutesOpen())} minutes`);
+        console.log(`Calls per minute: ${Math.round(this.callsPerMinute())}`);
     }
 }
 

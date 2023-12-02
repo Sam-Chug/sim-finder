@@ -5,6 +5,7 @@
         - slightly better hidden/unhidden roommate detection in sim list
         - Show sims in lot on offline lots to view roommates
         - Added filter for online staff
+        - Print API ping stats in console
 
     Bugs:
         - Sim dates still slightly incorrect
@@ -31,7 +32,6 @@
             - Need to impliment into GUI somewhere (sidebar?)
         - Some functions are still out of place
             - Move all GUI/writing functions to GUI etc
-        - Keep track of API ping stats
 
     Low Priority TODO:
         - Clean up css
