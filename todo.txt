@@ -13,7 +13,7 @@
         - Sim dates still slightly incorrect
 
     v0.2.2a TODO:
-        - Add brushed texture to Reagan block style
+        - Custom style panel images
         - Get style example screenshots for:
             - Orange "o"
             - Yellow "y"
