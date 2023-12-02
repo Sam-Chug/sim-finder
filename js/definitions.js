@@ -319,12 +319,12 @@ const GUI_IMPORT_BUTTON = document.getElementById('import-button');
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 
 const CUSTOM_STYLE_SIMHEADS = {
-    male: "./images/sim-faces/simface-m.png?v0.2.1d",
-    female: "./images/sim-faces/simface-f.png?v0.2.1d",
-    reagan: "./images/sim-faces/simface-rea.png?v0.2.1d",
-    bear: "./images/sim-faces/simface-b.png?v0.2.1d"
+    male: "./images/sim-faces/simface-m.png?v0.2.2a",
+    female: "./images/sim-faces/simface-f.png?v0.2.2a",
+    reagan: "./images/sim-faces/simface-rea.png?v0.2.2a",
+    bear: "./images/sim-faces/simface-b.png?v0.2.2a"
 };
-const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.1d"
+const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.2a"
 
 const CUSTOM_STYLE_BLOCK = {
     bp: {
