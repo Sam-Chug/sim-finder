@@ -1270,7 +1270,7 @@ body {
 
 /* #region Color Mode */
 .colormode-toggle-container {
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     right: 10px;
     height: 64px;
