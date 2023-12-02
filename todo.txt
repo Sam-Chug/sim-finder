@@ -23,8 +23,10 @@
             - Green "g"
             
     Low Priority TODO:
-        - Custom style panel images
-            - Paid feature (check with mods)
+        - Support for custom style colors
+            - Use 3 character hex
+            - Limit inside color range (#222 - #ddd)
+                - Text color is either sim-yellow or grey, depending on averaged custom color whiteness
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
@@ -55,37 +57,14 @@
             - Renders very large, could be much smaller
         - Automatically ping api, update per minute
             - Could get annoying updating while trying to click on index in list
+        - Custom style panel images
+            - Paid feature (check with mods)
 
     Side Features:
         - Lot renderer/object finder
         - Music box creator
         - Improved roof art generator
         - DJ helper
-
-    Fluff:
-        - Upgrade from sim head to ingame sim bio gif
-            - Pick from a set of 10, 5m 5f
-
-        - Support for custom style colors
-            - Use 3 character hex
-            - Limit inside color range (#222 - #ddd)
-                - Text color is either sim-yellow or grey, depending on averaged custom color whiteness
-
-        - Much more comprehensive user-style codes
-            - More compact style indicators:
-                - start - "sf:"
-                - avatar - "a_"
-                - header - "h_"
-                - body - "b_"
-                - separate each and end with ":"
-
-            - Sims:
-                - https://sims1database.tumblr.com/archive <- database of an assortment of sims, m/f, many outfits
-                    - Missing some heads though
-                - Defaults to a randomly chosen head, based on sim ID
-                - Sim avatar gif
-                - Experiment with font color, inset text holder color
-                    - Static for now
 
 short sim list
 https://api.freeso.org/userapi/avatars/online
