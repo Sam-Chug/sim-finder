@@ -336,7 +336,7 @@ body {
 
 .reagan-image {
     z-index: 3;
-    animation: 2.5s pulse infinite;
+    animation: 3s pulse infinite;
     animation-timing-function: ease-in-out;
     border-radius: 100%;
     box-shadow: 0px 0px 5px 5px rgba(255, 233, 163, 0.5),
@@ -345,7 +345,7 @@ body {
 
 .label-gold {
     color: rgba(0, 0, 0, 0.55);
-    background: #d4af37;
+    background: url(../images/panel/gold-texture.png?v0.2.1d), #d4af37;
     text-shadow: -1px -1px rgba(0, 0, 0, 0.35);
     font-style: italic;
     box-shadow: -2px -3px 2px 2px rgba(0, 0, 0, 0.5) inset,
@@ -541,9 +541,9 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(0.9); }
+    0% { transform: scale(0.95); }
     50% { transform: scale(1); }
-    100% { transform: scale(0.9); }
+    100% { transform: scale(0.95); }
 }
 /* #endregion */
 
