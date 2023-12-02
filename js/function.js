@@ -1,5 +1,6 @@
 simUtils = function() {
 
+    //#region Sim time functions
     function returnSimAge(joinDate) {
 
         let utcNow = new Date().getTime();
@@ -56,13 +57,55 @@ simUtils = function() {
 
         return [simHour, simMin];
     }
+    //#endregion
 
     // Neighborhood id's are wonky, return correct from id
-    function returnNeighborhood(nhood_id) {
+    
+    //#region Sim/lot state finders
+    // Return if sim floating, hidden, or possibly landed
+    function returnExistenceState(selectedSimShort) {
 
-        if (nhood_id == 0) return "Unknown";
-        if (nhood_id == 1) return NEIGHBORHOOD[0];
-        else return NEIGHBORHOOD[nhood_id - 34];
+        // If null simShort, they must be offline
+        if ("error" in selectedSimShort) return "OFFLINE";
+
+        const privacyMode = selectedSimShort.privacy_mode;
+        const location = selectedSimShort.location;
+
+        // If sim is at a non-zero location
+        if (location != 0) {
+
+            // Check if sim is at a job lot
+            var isWorking = true;
+            for (let i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
+
+                if (simDataHolder.lotShortList.lots[i].location == location) {
+                    isWorking = false;
+                    break;
+                }
+            }
+
+            // Is sim at job lot?
+            if (isWorking) return "WORKING";
+            // Else, sim at regular lot
+            else return "LANDED";
+        }
+
+        // If location is zero and sim is not hidden, they must be floating
+        else if (location == 0 && privacyMode == 0) return "FLOATING"
+
+        // If sim has privacy mode on
+        else if (privacyMode == 1) {
+
+            // Check if lot they live at is open
+            for (i = 0; i < simDataHolder.lotLongList.lots.length; i++) {
+
+                // If lot sim lives at is online, they might be there
+                if (simDataHolder.lotLongList.lots[i].roommates.includes(selectedSimShort.avatar_id)) return "LANDED_HIDDEN";
+            }
+
+            // Else, their location is unknown
+            return "HIDDEN";
+        } 
     }
 
     function isSimOnline(simName) {
@@ -84,7 +127,9 @@ simUtils = function() {
         }
         return {error:"lot not online"};
     }
+    //#endregion
 
+    //#region Short/long sim/lot finders
     // Return long lot object from list using location
     function returnLongLotFromLocation(location) {
 
@@ -103,18 +148,6 @@ simUtils = function() {
             if (simDataHolder.lotShortList.lots[i].location == location) return simDataHolder.lotShortList.lots[i];
         }
         return {error: "lot not found"};
-    }
-
-    function returnJobsOpen() {
-
-        const simHour = returnSimTime()[0];
-        var jobsOpen = [];
-        
-        if (simHour >= FACTORY_START_TIME && simHour <= FACTORY_END_TIME) jobsOpen.push(1);
-        if (simHour >= DINER_START_TIME && simHour <= DINER_END_TIME) jobsOpen.push(2);
-        if (simHour >= CLUB_START_TIME || simHour <= CLUB_END_TIME) jobsOpen.push(4, 5);
-    
-        return jobsOpen;
     }
 
     // Return short sim from sims currently online, from avatar id
@@ -146,6 +179,34 @@ simUtils = function() {
 
             if (roommates.avatars[i].avatar_id == owner_id) return roommates.avatars[i];
         }
+    }
+    //#endregion
+
+    function isSimStaffMember(simName) {
+
+        for (let i = 0; i < STAFF_NAMES.length; i++) {
+
+            if (STAFF_NAMES[i].match(simName)) return true;
+        }
+    }
+
+    function returnNeighborhood(nhood_id) {
+
+        if (nhood_id == 0) return "Unknown";
+        if (nhood_id == 1) return NEIGHBORHOOD[0];
+        else return NEIGHBORHOOD[nhood_id - 34];
+    }
+
+    function returnJobsOpen() {
+
+        const simHour = returnSimTime()[0];
+        var jobsOpen = [];
+        
+        if (simHour >= FACTORY_START_TIME && simHour <= FACTORY_END_TIME) jobsOpen.push(1);
+        if (simHour >= DINER_START_TIME && simHour <= DINER_END_TIME) jobsOpen.push(2);
+        if (simHour >= CLUB_START_TIME || simHour <= CLUB_END_TIME) jobsOpen.push(4, 5);
+    
+        return jobsOpen;
     }
 
     function sortEntityList(entityType) {
@@ -195,52 +256,6 @@ simUtils = function() {
         }
     }
 
-    // Return if sim floating, hidden, or possibly landed
-    function returnExistenceState(selectedSimShort) {
-
-        // If null simShort, they must be offline
-        if ("error" in selectedSimShort) return "OFFLINE";
-
-        const privacyMode = selectedSimShort.privacy_mode;
-        const location = selectedSimShort.location;
-
-        // If sim is at a non-zero location
-        if (location != 0) {
-
-            // Check if sim is at a job lot
-            var isWorking = true;
-            for (let i = 0; i < simDataHolder.lotShortList.lots.length; i++) {
-
-                if (simDataHolder.lotShortList.lots[i].location == location) {
-                    isWorking = false;
-                    break;
-                }
-            }
-
-            // Is sim at job lot?
-            if (isWorking) return "WORKING";
-            // Else, sim at regular lot
-            else return "LANDED";
-        }
-
-        // If location is zero and sim is not hidden, they must be floating
-        else if (location == 0 && privacyMode == 0) return "FLOATING"
-
-        // If sim has privacy mode on
-        else if (privacyMode == 1) {
-
-            // Check if lot they live at is open
-            for (i = 0; i < simDataHolder.lotLongList.lots.length; i++) {
-
-                // If lot sim lives at is online, they might be there
-                if (simDataHolder.lotLongList.lots[i].roommates.includes(selectedSimShort.avatar_id)) return "LANDED_HIDDEN";
-            }
-
-            // Else, their location is unknown
-            return "HIDDEN";
-        } 
-    }
-
     return {
         returnDateObjectFromUNIX: returnDateObjectFromUNIX,
         returnSimAge: returnSimAge,
@@ -257,7 +272,8 @@ simUtils = function() {
         returnNeighborhood: returnNeighborhood,
         returnTextDateFromDateObject: returnTextDateFromDateObject,
         checkIfSimBirthday: checkIfSimBirthday,
-        sortEntityList: sortEntityList
+        sortEntityList: sortEntityList,
+        isSimStaffMember: isSimStaffMember
     }
 }();
 
