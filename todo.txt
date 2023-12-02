@@ -14,8 +14,6 @@
         - Sim dates still slightly incorrect
 
     v0.2.2a TODO:
-        - Custom style panel images
-            - Paid feature (check with mods)
         - Get style example screenshots for:
             - Orange "o"
             - Yellow "y"
@@ -23,12 +21,13 @@
             - Silver "s"
             - Maroon "m"
             - Green "g"
+            
+    Low Priority TODO:
+        - Custom style panel images
+            - Paid feature (check with mods)
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
-       
-
-    Low Priority TODO:
         - Some functions are still out of place
             - Move all GUI/writing functions to GUI etc
         - Bookmark text should match custom style's text color
