@@ -3,7 +3,7 @@
     Patchnotes:
         - Fixed owner always being counted as hosting when online, even when not at lot
         - slightly better hidden/unhidden roommate detection in sim list
-        - 
+        - Show sims in lot on offline lots to view roommates
 
     Bugs:
         - Sim dates still slightly incorrect
@@ -23,7 +23,6 @@
                 - Christmas Colors
                     - Maroon
                     - Dark Green
-        - Offline lots should still display roomies in sims-in-lot panel
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
         - Light/dark mode

@@ -1551,13 +1551,10 @@ searchUtils = function() {
         let lotShort = simUtils.returnShortLotFromLocation(lotLong.location);
         guiUtils.writeLotThumbnail(lotShort, lotLong, "");
 
-        // If lot online, write sims in lot
-        if (!("error" in lotShort)) {
-
-            GUI_SIMS_IN_LOT.style.display = "flex";
-            guiUtils.writeSimsInLot(lotLong, lotShort.avatars_in_lot);
-        }
-        else GUI_SIMS_IN_LOT.style.display = "none";
+        // Write sims in lot
+        let lotPopulation = (("error") in lotShort) ? 0 : lotShort.avatars_in_lot;
+        GUI_SIMS_IN_LOT.style.display = "flex";
+        guiUtils.writeSimsInLot(lotLong, lotPopulation);
 
         // Hide irrelevant gui elements
         GUI_SIM_VIEW.style.display = "none";
