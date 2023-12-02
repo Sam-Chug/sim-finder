@@ -168,7 +168,7 @@ simUtils = function() {
                 GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.1d)`;
                 simDataHolder.simSort = "age";
             }
-            let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_SEARCH[simDataHolder.simFilter];
+            let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_FILTER_KEYS[simDataHolder.simFilter];
             filterUtils.writeFilterToTable("sim", simFilter);
             //guiUtils.populateSimList(simDataHolder.simLongList.avatars);
         }
@@ -1487,7 +1487,7 @@ filterUtils = function() {
                 var y = Math.floor(index / 4) * 71;
                 button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.1d) " + -x + "px " + -y + "px";
                 button.classList.add("sim-filter-active");
-                writeFilterToTable("sim", SIM_SEARCH[index]);
+                writeFilterToTable("sim", SIM_FILTER_KEYS[index]);
                 simDataHolder.simFilter = index;
             }
             return;

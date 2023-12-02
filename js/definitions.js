@@ -4,6 +4,77 @@ const VERSION_STR = "v0.2.1d";
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
 
+// List of known staff sims
+const STAFF_NAMES = [
+    "M.O.M.I. Fawn",
+    "M.O.M.I. Raeven",
+    "D.A.D.D.I. Pyrosim",
+    "D.A.D.D.I. S1ndle",
+    "D.A.D.D.I. Robo-Santa",
+    "D.A.D.D.I. Dotequals",
+    "D.A.D.D.I. Andrew",
+    "D.A.D.D.I. Architect",
+    "D.A.D.D.I. Matt",
+    "D.A.D.D.I. Véliocasse",
+    "D.A.D.D.I. Nodster",
+    "C.O.U.S.I.N. Hira",
+    "C.O.U.S.I.N. Amoreena",
+    "C.O.U.S.I.N. jwolfes",
+    "C.O.U.S.I.N. Sassylas",
+    "SKELETON COP",
+    "GRAVY TRAIN GRID",
+    "FOSSIL FLOATING POINT",
+    "ROBO ROBOT",
+    "CLOWN COMPUTER",
+    "MIME MACHINE",
+    "ARIES IS THE BEST",
+    "ARIES OPERATIONS",
+    "GEMINI OPERATIONS",
+    "burglar cop",
+    "Nodster",
+    "Aquila",
+    "Véliofat",
+    "not Vélio alt",
+    "Véliocasse",
+    "AOG",
+    "El Presidente Bob",
+    "Rémy Sim",
+    "fish cop",
+    "Fawn",
+    "Tiggs",
+    "burkle corp",
+    "amore",
+    "Nahte",
+    "Simown",
+    "NodBot",
+    "Matt",
+    "Alana",
+    "J M D Thomas E Montana",
+    "Admin",
+    "El Bandito",
+    "Bob#666",
+    "FreeSO",
+    "just a roomie",
+    "just another roomie",
+    "Trabis Thrall One",
+    "Trabis Thrall Two",
+    "Trabis Thrall Three",
+    "I needed one more roomie",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+];
+
+// List of job names for sim info blocks
 const JOB_TITLES = [
     "Unemployed",
     "Robot Factory",
@@ -13,6 +84,7 @@ const JOB_TITLES = [
     "Nightclub - Dancer"
 ];
 
+// Label for the lot title when sim is at work
 const JOB_STRINGS = [
     "Unemployed",
     "Factory",
@@ -22,6 +94,7 @@ const JOB_STRINGS = [
     "Club"
 ]
 
+// List of lot categories for lot info blocks
 const LOT_CATEGORY = [
     "None",
     "Money",
@@ -37,12 +110,14 @@ const LOT_CATEGORY = [
     "Community"
 ];
 
+// Lot skill mode strings for lot info blocks
 const SKILL_MODES = [
     "Skill Gameplay Enabled",
     "Visitor Skills Disabled",
     "Skill Gameplay Disabled"
 ];
 
+// Lot admit mode strings for lot info blocks
 const ADMIT_MODES = [
     "Admit All",
     "Admit List",
@@ -53,12 +128,14 @@ const ADMIT_MODES = [
     "Community - Private"
 ];
 
+// Bulletin strings, unused
 const BULLETIN_TYPE = [
     "Mayor Post",
     "System Message",
     "Community Post"
 ];
 
+// Neighborhood names in order of neighborhood id
 const NEIGHBORHOOD = [
     "Trio Lake", //1
     "The Sunrise Riviera", //35
@@ -96,7 +173,8 @@ const NEIGHBORHOOD = [
     "Multilevel Metropolis"
 ];
 
-const SIM_SEARCH = [
+// Sim filter keys
+const SIM_FILTER_KEYS = [
     "JOB_DINER",
     "JOB_CLUB_DJ",
     "JOB_CLUB_DANCER",
@@ -110,6 +188,7 @@ const SIM_SEARCH = [
     "WORKING"
 ]
 
+// Strings for sim filter tooltips
 const SIM_FILTER_TOOLTIP = [
     "Job: Diner",
     "Job: Club - DJ",
@@ -124,19 +203,20 @@ const SIM_FILTER_TOOLTIP = [
     "Working"
 ]
 
+// Strings for lot filter tooltips
 const LOT_FILTER_TOOLTIP = [
-    "Most Popular Places with the Welcome Category",
-    "Most Popular Places with the Money Category",
-    "Most Popular Places with the Skills Category",
-    "Most Popular Places with the Services Category",
-    "Most Popular Places with the Entertainment Category",
-    "Most Popular Places with the Romance Category",
-    "Most Popular Places with the Stores Category",
-    "Most Popular Places with the Games Category",
-    "Most Popular Places with the Offbeat Category",
-    "Most Popular Places with the Residence Category",
+    "Most Popular Places with Welcome Category",
+    "Most Popular Places with Money Category",
+    "Most Popular Places with Skills Category",
+    "Most Popular Places with Services Category",
+    "Most Popular Places with Entertainment Category",
+    "Most Popular Places with Romance Category",
+    "Most Popular Places with Stores Category",
+    "Most Popular Places with Games Category",
+    "Most Popular Places with Offbeat Category",
+    "Most Popular Places with Residence Category",
     "Places with the Community Category",
-    "Most Popular Places with the No Category"
+    "Most Popular Places with no Category"
 ]
 //#endregion
 
