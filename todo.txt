@@ -5,6 +5,7 @@
         - slightly better hidden/unhidden roommate detection in sim list
         - Show sims in lot on offline lots to view roommates
         - Added filter for online staff
+        - Wrench next to staff's name
         - Print API ping stats in console
 
     Bugs:
