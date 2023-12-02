@@ -30,6 +30,8 @@
             - Move all GUI/writing functions to GUI etc
 
     Low Priority TODO:
+        - Bookmark text should match custom style's text color
+            - Add class based on block style
         - Add background themes for holidays
             - Should be togglable
             - Christmas - Snowflakes falling
