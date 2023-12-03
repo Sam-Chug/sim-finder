@@ -1,5 +1,5 @@
 //#region Strings
-const VERSION_STR = "v0.2.1d";
+const VERSION_STR = "v0.2.2a";
 
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
