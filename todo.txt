@@ -37,6 +37,8 @@
         - Remove (Maybe Hosting) if all sims accounted for
             - Create possibility tree and figure this out
         - Change "idList" to "simfinder-bookmarks" in localStorage
+        - Make easier to use on mobile
+            - Layout is very large, could be much smaller
 
     Paid Feature Ideas:
         - Custom style panel images
@@ -51,10 +53,7 @@
             - May not be most accurate but is at least something
             - Possible uses:
                 - Last seen online
-        - Make easier to use on mobile
-            - Layout is very large, could be much smaller
         
-
     Side Features:
         - Lot renderer/object finder
         - Music box creator
