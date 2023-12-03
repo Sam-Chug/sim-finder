@@ -391,6 +391,7 @@ domUtils = function() {
         addTooltipToButton(GUI_FILTER_LOT_ICON, "min");
         
         addTooltipToButton(GUI_SIM_HELP_BUTTON, "style-help");
+        addTooltipToButton(GUI_COLORMODE_BUTTON, "colormode");
     }
 
     function addTooltipToButton(element, type) {
@@ -400,6 +401,7 @@ domUtils = function() {
             filterUtils.mouseOverFilterChange(this, "in", type);
             let tooltip = document.createElement("span");
             tooltip.classList.add("tooltip");
+
             if (type == "export") {
 
                 tooltip.textContent = "Export Bookmarks";
@@ -430,7 +432,11 @@ domUtils = function() {
                 tooltip.textContent = "Open Sim Panel Formatting Help Page";
                 tooltip.classList.add("under-tooltip");
             }
+            else if (type == "colormode") {
 
+                tooltip.textContent = "Toggle Light";
+                tooltip.classList.add("mid-tooltip");
+            }
             this.appendChild(tooltip);
         });
 

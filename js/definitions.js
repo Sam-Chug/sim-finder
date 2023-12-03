@@ -315,6 +315,7 @@ const GUI_EXPORT_BUTTON = document.getElementById('export-button');
 const GUI_IMPORT_BUTTON = document.getElementById('import-button');
 
 const GUI_BOOKMARK_LABEL = document.getElementById('bookmark-label');
+const GUI_COLORMODE_BUTTON = document.getElementById('colormode-button');
 //#endregion
 
 //#region Sim style lists
