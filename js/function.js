@@ -505,6 +505,8 @@ eggUtils = function() {
 
         GUI_SIM_BIO.classList.add("inset-gold");
         GUI_SIM_DESCRIPTION.classList.add("inset-gold");
+
+        GUI_BOOKMARK_LABEL.classList.add("bookmark-gold");
     }   
 
     function testCustomStyle(color) {
