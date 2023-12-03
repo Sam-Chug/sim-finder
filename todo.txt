@@ -14,6 +14,7 @@
         - Sim dates still slightly incorrect
 
     v0.2.2a TODO:
+        - Bookmark style
         - Get style example screenshots for:
             - Orange "o"
             - Yellow "y"
