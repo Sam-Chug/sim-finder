@@ -458,16 +458,15 @@ eggUtils = function() {
     // Reset sim thumbnail styles
     function resetSimThumbnailStyles() {
 
-        GUI_SIM_LABEL.className = "";
         GUI_SIM_VIEW.className = "";
-        GUI_SIM_THUMBNAIL.className = "";
 
+        GUI_SIM_LABEL.className = "";
+        GUI_SIM_THUMBNAIL.className = "";
         GUI_SIM_LABEL.classList.add("outset-title", "sim-title");
         GUI_SIM_VIEW.classList.add("div-sim-view", "block-background");
 
         GUI_SIM_BIO.className = "";
         GUI_SIM_DESCRIPTION.className = "";
-
         GUI_SIM_BIO.classList.add("thumbnail-bio-holder", "scrollbar");
         GUI_SIM_DESCRIPTION.classList.add("thumbnail-desc-holder");
 
