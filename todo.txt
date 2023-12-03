@@ -16,8 +16,8 @@
         - Darkmode overrites default sim/lot classes
             - Maybe keep this? Working as intended, just unintended result
 
-
     v0.2.3a TODO:
+        - Better meta tag image
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
