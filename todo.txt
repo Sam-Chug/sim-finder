@@ -15,13 +15,6 @@
 
     v0.2.2a TODO:
         - Bookmark style
-        - Get style example screenshots for:
-            - Orange "o"
-            - Yellow "y"
-            - Navy blue "nb"
-            - Silver "s"
-            - Maroon "m"
-            - Green "g"
             
     Low Priority TODO:
         - Support for custom style colors

@@ -106,6 +106,7 @@ class StyleObject{
             label: "",
             block: "",
             inset: "",
+            bookmarkLabel: ""
         }
 
         // Check if sim uses style
@@ -153,6 +154,7 @@ class StyleObject{
                 // Check if block style list contains requested style
                 if (!CUSTOM_STYLE_BLOCK.hasOwnProperty(styleList[i])) continue;
                 this.styles.block = CUSTOM_STYLE_BLOCK[styleList[i]].cssClass;
+                this.styles.bookmarkLabel = CUSTOM_STYLE_BLOCK[styleList[i]].bookmarkLabelClass;
             }
             // Label styles
             else if (styleList[i].charAt(0) == "l") {

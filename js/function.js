@@ -470,6 +470,9 @@ eggUtils = function() {
 
         GUI_SIM_BIO.classList.add("thumbnail-bio-holder", "scrollbar");
         GUI_SIM_DESCRIPTION.classList.add("thumbnail-desc-holder");
+
+        GUI_BOOKMARK_LABEL.className = "";
+        GUI_BOOKMARK_LABEL.classList.add("bookmark-label");
     }
 
     function resetLotThumbnailStyles() {
@@ -548,6 +551,7 @@ eggUtils = function() {
 
         // Set styles
         if (styleObj.styles.block != "") GUI_SIM_VIEW.classList.add(styleObj.styles.block);
+        if (styleObj.styles.bookmarkLabel != "") GUI_BOOKMARK_LABEL.classList.add(styleObj.styles.bookmarkLabel);
         if (styleObj.styles.label != "") GUI_SIM_LABEL.classList.add(styleObj.styles.label);
         if (styleObj.styles.inset != "") {
 

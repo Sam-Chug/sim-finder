@@ -313,6 +313,8 @@ const GUI_SORT_LOT_NAMES = document.getElementById('sort-lots-by-name');
 
 const GUI_EXPORT_BUTTON = document.getElementById('export-button');
 const GUI_IMPORT_BUTTON = document.getElementById('import-button');
+
+const GUI_BOOKMARK_LABEL = document.getElementById('bookmark-label');
 //#endregion
 
 //#region Sim style lists
@@ -328,40 +330,52 @@ const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0
 
 const CUSTOM_STYLE_BLOCK = {
     bp: {
-        cssClass: `block-pink`
+        cssClass: `block-pink`,
+        bookmarkLabelClass: `bookmark-pink`
     },
     bsg: {
-        cssClass: `block-seagreen`
+        cssClass: `block-seagreen`,
+        bookmarkLabelClass: ``
     },
     bdg: {
-        cssClass: `block-dark`
+        cssClass: `block-dark`,
+        bookmarkLabelClass: ``
     },
     br: {
-        cssClass: `block-red`
+        cssClass: `block-red`,
+        bookmarkLabelClass: ``
     },
     bw: {
-        cssClass: `block-bone`
+        cssClass: `block-bone`,
+        bookmarkLabelClass: `bookmark-bone`
     },
     bpr: {
-        cssClass: `block-purple`
+        cssClass: `block-purple`,
+        bookmarkLabelClass: ``
     },
     bo: {
-        cssClass: `block-orange`
+        cssClass: `block-orange`,
+        bookmarkLabelClass: `bookmark-orange`
     },
     by: {
-        cssClass: `block-yellow`
+        cssClass: `block-yellow`,
+        bookmarkLabelClass: `bookmark-yellow`
     },
     bnb: {
-        cssClass: `block-blue`
+        cssClass: `block-blue`,
+        bookmarkLabelClass: ``
     },
     bs: {
-        cssClass: `block-silver`
+        cssClass: `block-silver`,
+        bookmarkLabelClass: ``
     },
     bm: {
-        cssClass: `block-maroon`
+        cssClass: `block-maroon`,
+        bookmarkLabelClass: `bookmark-maroon`
     },
     bg: {
-        cssClass: `block-darkgreen`
+        cssClass: `block-darkgreen`,
+        bookmarkLabelClass: `bookmark-green`
     }
 };
 
