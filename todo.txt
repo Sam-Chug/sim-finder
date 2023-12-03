@@ -9,12 +9,12 @@
         - Print API ping stats in console
         - New custom styles
         - Light/dark mode button
+        - Bookmark label button text color matches label text color
 
     Bugs:
         - Sim dates still slightly incorrect
 
     v0.2.2a TODO:
-        - Bookmark style
             
     Low Priority TODO:
         - Support for custom style colors
