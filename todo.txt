@@ -13,10 +13,11 @@
 
     Bugs:
         - Sim dates still slightly incorrect
+        - Darkmode overrites default sim/lot classes
+            - Maybe keep this? Working as intended, just unintended result
 
-    v0.2.2a TODO:
-            
-    Low Priority TODO:
+
+    v0.2.3a TODO:
         - Support for custom style colors
             - Use 3 character hex
             - Limit inside color range (#222 - #ddd)
@@ -24,6 +25,11 @@
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
+        - Custom style panel images
+            - Paid feature (check with mods)
+        - Cache lot's roommates after pinging the first time
+
+    Low Priority TODO:
         - Some functions are still out of place
             - Move all GUI/writing functions to GUI etc
         - Bookmark text should match custom style's text color
@@ -51,8 +57,7 @@
             - Renders very large, could be much smaller
         - Automatically ping api, update per minute
             - Could get annoying updating while trying to click on index in list
-        - Custom style panel images
-            - Paid feature (check with mods)
+        
 
     Side Features:
         - Lot renderer/object finder
