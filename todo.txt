@@ -18,35 +18,33 @@
 
 
     v0.2.3a TODO:
-        - Support for custom style colors
-            - Use 3 character hex
-            - Limit inside color range (#222 - #ddd)
-                - Text color is either sim-yellow or grey, depending on averaged custom color whiteness
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
-        - Custom style panel images
-            - Paid feature (check with mods)
         - Cache lot's roommates after pinging the first time
+        - Look into paid features
+        - Disable market watch (for now)
 
     Low Priority TODO:
-        - Some functions are still out of place
+        - Some functions are still out of place (constant refactor)
             - Move all GUI/writing functions to GUI etc
-        - Bookmark text should match custom style's text color
-            - Add class based on block style
+        - Clean up css (constant refactor)
+            - Many scrambled and unused classes
         - Add background themes for holidays
             - Should be togglable
             - Christmas - Snowflakes falling
             - Maybe just change backgrounds?
-        - Clean up css
-            - Many scrambled and unused classes
         - Remove (Maybe Hosting) if all sims accounted for
             - Create possibility tree and figure this out
-        - Rename all "short" data to "online", all "long" data to "cache"
-            - Issue is some cache data is immediately useful for online judgements
         - Change "idList" to "simfinder-bookmarks" in localStorage
-        - Improve market watch
-            - Could impliment the rare/event dates list
+
+    Paid Feature Ideas:
+        - Custom style panel images
+            - Paid feature (check with mods)
+        - Support for custom style colors
+            - Use 3 character hex
+            - Limit inside color range (#222 - #ddd)
+                - Text color is either sim-yellow or grey, depending on averaged custom color whiteness
 
     Possible Features
         - Save rolling average of data saved in localstorage to pull from later
@@ -54,9 +52,7 @@
             - Possible uses:
                 - Last seen online
         - Make easier to use on mobile
-            - Renders very large, could be much smaller
-        - Automatically ping api, update per minute
-            - Could get annoying updating while trying to click on index in list
+            - Layout is very large, could be much smaller
         
 
     Side Features:
