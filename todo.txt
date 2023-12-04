@@ -54,6 +54,10 @@
             - Possible uses:
                 - Last seen online
         
+    Rolling Storage TODO:
+        - What to save
+            
+
     Side Features:
         - Lot renderer/object finder
         - Music box creator
