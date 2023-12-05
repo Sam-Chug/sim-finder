@@ -978,12 +978,18 @@ guiUtils = function() {
         // If townhall, get mayor instead of owner
         let mayor;
         let isTownHall = (selectedLot.category == 11);
+        let townhallObj;
         if (isTownHall) {
 
-            let townhallObj = apiUtils.getAPIData(`https://api.freeso.org/userapi/neighborhoods/${selectedLot.neighborhood_id}`);
+            // Get townhall object
+            townhallObj = await apiUtils.getAPIData(`https://api.freeso.org/userapi/neighborhoods/${selectedLot.neighborhood_id}`);
 
             // Get mayor
-            if (townhallObj.mayor_id != null) mayor = apiUtils.getAPIData(`https://api.freeso.org/userapi/avatars?ids=${townhallObj.mayor_id}`);
+            if (townhallObj.mayor_id != null) {
+
+                let avatarLong = await apiUtils.getAPIData(`https://api.freeso.org/userapi/avatars?ids=${townhallObj.mayor_id}`);
+                mayor = avatarLong.avatars[0];
+            }
             else mayor = {
                 name: "The Llama",
                 location: "Yo mama's house",
@@ -1034,7 +1040,7 @@ guiUtils = function() {
         else if (selectedLot.ownerShort.location == selectedLot.location) ownerNode.children[0].textContent += " (Hosting)";
 
         // Add click handler and append to list
-        if (!isTownHall) addIndexClickHandler(ownerNode, "sim-in-lot");
+        if (!isTownHall || townhallObj.mayor_id != null) addIndexClickHandler(ownerNode, "sim-in-lot");
         GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
 
         // Create elements for roommates at lot text

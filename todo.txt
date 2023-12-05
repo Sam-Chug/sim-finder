@@ -2,6 +2,7 @@
 
     Patchnotes v0.2.3a:
         - Roommates data cached on first fetch instead of being fetched every time lot is viewed
+        - Fixed townhall mayors not being listed
 
     Bugs:
         - Sim dates still slightly incorrect
