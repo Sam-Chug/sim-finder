@@ -1,19 +1,16 @@
 - Rewrite TODO:
 
-    Patchnotes:
+    Patchnotes v0.2.3a:
         - Roommates data cached on first fetch instead of being fetched every time lot is viewed
 
     Bugs:
         - Sim dates still slightly incorrect
-        - Darkmode overrites default sim/lot classes
-            - Maybe keep this? Working as intended, just unintended result
 
     v0.2.2b TODO:
         - Better meta tag image
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
-        - Cache lot's roommates after pinging the first time
 
     Low Priority TODO:
         - Some functions are still out of place (constant refactor)
