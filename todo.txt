@@ -5,12 +5,17 @@
 
     Bugs:
         - Sim dates still slightly incorrect
+        - Investigate possible memory leak
+            - JS heaps very large sometimes (80mb)
+            - Page memory very high (300mb)
+        
 
     v0.2.2b TODO:
         - Better meta tag image
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
+        - Cache lot images instead of new fetch each time?
 
     Low Priority TODO:
         - Some functions are still out of place (constant refactor)
