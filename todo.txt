@@ -16,14 +16,12 @@
         - Darkmode overrites default sim/lot classes
             - Maybe keep this? Working as intended, just unintended result
 
-    v0.2.3a TODO:
+    v0.2.2b TODO:
         - Better meta tag image
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
         - Cache lot's roommates after pinging the first time
-        - Look into paid features
-        - Disable market watch (for now)
 
     Low Priority TODO:
         - Some functions are still out of place (constant refactor)
@@ -41,6 +39,7 @@
             - Layout is very large, could be much smaller
 
     Paid Feature Ideas:
+        - Querey mods about paid features
         - Custom style panel images
             - Paid feature (check with mods)
         - Support for custom style colors
@@ -56,7 +55,9 @@
         
     Rolling Storage TODO:
         - What to save
-            
+            - Last time online
+            - Location while logged
+            - Sim ID
 
     Side Features:
         - Lot renderer/object finder
