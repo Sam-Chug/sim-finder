@@ -3,6 +3,7 @@
     Patchnotes v0.2.3a:
         - Roommates data cached on first fetch instead of being fetched every time lot is viewed
         - Fixed townhall mayors not being listed
+        - New custom style key for random styles
 
     Bugs:
         - Sim dates still slightly incorrect
@@ -17,7 +18,6 @@
             - Figure out which head to use
                 - Raccoon?
         - Cache lot images instead of new fetch each time?
-        - "Random" setting for custom styles
 
     Low Priority TODO:
         - Some functions are still out of place (constant refactor)
@@ -35,7 +35,8 @@
             - Layout is very large, could be much smaller
 
     Paid Feature Ideas:
-        - Querey mods about paid features
+        - Query mods about paid features
+        - Animated colors for all elements
         - Custom style panel images
             - Paid feature (check with mods)
         - Support for custom style colors

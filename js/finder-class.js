@@ -169,7 +169,21 @@ class StyleObject{
                 if (!CUSTOM_STYLE_INSET.hasOwnProperty(styleList[i])) continue;
                 this.styles.inset = CUSTOM_STYLE_INSET[styleList[i]].cssClass;
             }
+            else if (styleList[i].charAt(0) == "r") {
+
+                this.styles.block = this.pickRandomStyle(CUSTOM_STYLE_BLOCK).cssClass;
+                this.styles.bookmarkLabel = this.pickRandomStyle(CUSTOM_STYLE_BLOCK).bookmarkLabelClass;
+
+                this.styles.label = this.pickRandomStyle(CUSTOM_STYLE_LABEL).cssClass;
+                this.styles.inset = this.pickRandomStyle(CUSTOM_STYLE_INSET).cssClass;
+            }
         }
+    }
+
+    pickRandomStyle(styleList) {
+
+        let keys = Object.keys(styleList);
+        return styleList[keys[keys.length * Math.random() << 0]];
     }
 
     returnStyleList(simDescription) {
