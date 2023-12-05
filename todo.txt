@@ -1,15 +1,7 @@
 - Rewrite TODO:
 
     Patchnotes:
-        - Fixed owner always being counted as hosting when online, even when not at lot
-        - slightly better hidden/unhidden roommate detection in sim list
-        - Show sims in lot on offline lots to view roommates
-        - Added filter for online staff
-        - Wrench next to staff's name
-        - Print API ping stats in console
-        - New custom styles
-        - Light/dark mode button
-        - Bookmark label button text color matches label text color
+        - Roommates data cached on first fetch instead of being fetched every time lot is viewed
 
     Bugs:
         - Sim dates still slightly incorrect
