@@ -2,6 +2,7 @@
 
     Patchnotes v0.2.3a:
         - Roommates data cached on first fetch instead of being fetched every time lot is viewed
+        - Offline sim data now cached on first fetch instead of being fetched every time a single offline sim is revisited
         - Fixed townhall mayors not being listed
         - New custom style key for random styles
 

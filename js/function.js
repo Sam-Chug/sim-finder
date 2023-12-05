@@ -671,7 +671,20 @@ guiUtils = function() {
             else {
 
                 // Else, grab long offline data
-                selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+                if (!simUtils.checkIfSimInLongCache(simName)) {
+
+                    // If sim not in long cache, fetch from API and add to cache
+                    selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+                    simDataHolder.offlineLongSimList.push(selectedSimLong);
+                    console.log(simDataHolder.offlineLongSimList);
+                }
+                else {
+
+                    // If cached, grab sim data from cache
+                    selectedSimLong = simUtils.returnSimFromLongCache(simName);
+                }
+                
+                // Get sim short if available
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
             }
 
