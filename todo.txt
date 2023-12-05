@@ -17,6 +17,7 @@
             - Figure out which head to use
                 - Raccoon?
         - Cache lot images instead of new fetch each time?
+        - "Random" setting for custom styles
 
     Low Priority TODO:
         - Some functions are still out of place (constant refactor)
