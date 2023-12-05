@@ -2,6 +2,7 @@ class SimData{
     constructor() {
 
         //#region Sim/Lot data
+
         // Live data from online sims
         this.simShortList;
 
@@ -13,6 +14,11 @@ class SimData{
 
         // Cached data from all lots, holds data not necessary for immediate live play (mostly)
         this.lotLongList;
+
+        // Cache offline long sims
+        this.offlineLongSimList = new Array();
+        this.offlineLongLotList = new Array();
+
         //#endregion
         
         // Sim bookmark list

@@ -59,9 +59,17 @@ simUtils = function() {
     }
     //#endregion
 
-    // Neighborhood id's are wonky, return correct from id
-    
     //#region Sim/lot state finders
+
+    // Check if sim is in list of known staff sims
+    function isSimStaffMember(simName) {
+
+        for (let i = 0; i < STAFF_NAMES.length; i++) {
+
+            if (STAFF_NAMES[i].match(simName)) return true;
+        }
+    }
+
     // Return if sim floating, hidden, or possibly landed
     function returnExistenceState(selectedSimShort) {
 
@@ -182,14 +190,57 @@ simUtils = function() {
     }
     //#endregion
 
-    function isSimStaffMember(simName) {
+    //#region Lot/Sim cache
 
-        for (let i = 0; i < STAFF_NAMES.length; i++) {
+    // TODO: combine these two functions?
+    // Check if sim is in offline long cache
+    function checkIfSimInLongCache(simName) {
 
-            if (STAFF_NAMES[i].match(simName)) return true;
+        simName = simName.toLowerCase()
+        for (let i = 0; i < simDataHolder.offlineLongSimList.length; i++) {
+
+            if (simName == simDataHolder.offlineLongSimList[i].name.toLowerCase()) return true;
         }
+        return false;
     }
 
+    // Return sim from offline cache
+    function returnSimFromLongCache(simName) {
+
+        let simLong;
+        simName = simName.toLowerCase();
+        for (let i = 0; i < simDataHolder.offlineLongSimList.length; i++) {
+
+            if (simName == simDataHolder.offlineLongSimList[i].name.toLowerCase()) simLong = simDataHolder.offlineLongSimList[i];
+        }
+        return simLong;
+    }
+
+    // Check if lot is in offline long cache
+    function checkIfLotInLongCache(lotName) {
+
+        lotName = lotName.toLowerCase();
+        for (let i = 0; i < simDataHolder.offlineLongLotList.length; i++) {
+
+            if (lotName == simDataHolder.offlineLongLotList[i].name.toLowerCase()) return true;
+        }
+        return false;
+    }
+
+    // Return lot from offline cache
+    function returnLotFromLongCache(lotName) {
+
+        let lotLong;
+        lotName = lotName.toLowerCase();
+        for (let i = 0; i < simDataHolder.offlineLongLotList.length; i++) {
+
+            if (lotName == simDataHolder.offlineLongLotList[i].name.toLowerCase()) lotLong = simDataHolder.offlineLongLotList[i];
+        }
+        return lotLong;
+    }
+    //#endregion
+
+    // Neighborhood id's are wonky, return correct from id
     function returnNeighborhood(nhood_id) {
 
         if (nhood_id == 0) return "Unknown";
@@ -197,6 +248,7 @@ simUtils = function() {
         else return NEIGHBORHOOD[nhood_id - 34];
     }
 
+    // Return array of currently active jobs
     function returnJobsOpen() {
 
         const simHour = returnSimTime()[0];
@@ -209,6 +261,7 @@ simUtils = function() {
         return jobsOpen;
     }
 
+    // Sort lots/sims by name or age
     function sortEntityList(entityType) {
 
         if (entityType == "sim") {
@@ -273,7 +326,11 @@ simUtils = function() {
         returnTextDateFromDateObject: returnTextDateFromDateObject,
         checkIfSimBirthday: checkIfSimBirthday,
         sortEntityList: sortEntityList,
-        isSimStaffMember: isSimStaffMember
+        isSimStaffMember: isSimStaffMember,
+        checkIfSimInLongCache: checkIfSimInLongCache,
+        returnSimFromLongCache: returnSimFromLongCache,
+        checkIfLotInLongCache: checkIfLotInLongCache,
+        returnLotFromLongCache: returnLotFromLongCache
     }
 }();
 
@@ -1588,7 +1645,20 @@ searchUtils = function() {
         // Search sim's name in api
         let simName = GUI_SEARCH_SIM.value;
         if (simName == "") return;
-        let simLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+
+        // Check if simlong in cache
+        let simLong;
+        if (!simUtils.checkIfSimInLongCache(simName)) {
+
+            // If sim not cached, fetch from API and add to cache
+            simLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+            simDataHolder.offlineLongSimList.push(simLong);
+        }
+        else {
+
+            // If sim cached, return from cache
+            simLong = simUtils.returnSimFromLongCache(simName);
+        }
 
         // Alert if sim doesn't exist
         if ("error" in simLong) {
@@ -1611,7 +1681,20 @@ searchUtils = function() {
         // Search lot in api
         let lotName = GUI_SEARCH_LOT.value;
         if (lotName == "") return;
-        let lotLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
+
+        let lotLong;
+        if (!simUtils.checkIfLotInLongCache(lotName)) {
+
+            // If lot not cached, fetch from API and add to cache
+            lotLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
+            simDataHolder.offlineLongLotList.push(lotLong);
+            console.log(simDataHolder.offlineLongLotList)
+        }
+        else {
+
+            // If cached, return from cache
+            lotLong = simUtils.returnLotFromLongCache(lotName);
+        }
 
         // Alert if lot doesn't exist
         if ("error" in lotLong) {
