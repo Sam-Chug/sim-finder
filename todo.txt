@@ -9,9 +9,6 @@
     Bugs:
         - Sim dates still slightly incorrect
             - Possibly timezone related
-        - Investigate possible memory leak
-            - JS heaps very large sometimes (80mb)
-            - Page memory very high (300mb)
         
     v0.2.2b TODO:
         - Better meta tag image
