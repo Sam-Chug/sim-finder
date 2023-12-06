@@ -177,8 +177,10 @@ class StyleObject{
             }
             else if (styleList[i].charAt(0) == "r") {
 
-                this.styles.block = this.pickRandomStyle(CUSTOM_STYLE_BLOCK).cssClass;
-                this.styles.bookmarkLabel = this.pickRandomStyle(CUSTOM_STYLE_BLOCK).bookmarkLabelClass;
+                let panelStyle = this.pickRandomStyle(CUSTOM_STYLE_BLOCK);
+
+                this.styles.block = panelStyle.cssClass;
+                this.styles.bookmarkLabel = panelStyle.bookmarkLabelClass;
 
                 this.styles.label = this.pickRandomStyle(CUSTOM_STYLE_LABEL).cssClass;
                 this.styles.inset = this.pickRandomStyle(CUSTOM_STYLE_INSET).cssClass;

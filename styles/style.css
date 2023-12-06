@@ -432,6 +432,7 @@ body {
 
 .bookmark-orange {
     color: white;
+    text-shadow: none;
 }
 
 .bookmark-yellow {
