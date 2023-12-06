@@ -10,7 +10,7 @@
         - Sim dates still slightly incorrect
             - Possibly timezone related
         
-    v0.2.2c TODO:
+    v0.2.2d TODO:
         - Better meta tag image
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
