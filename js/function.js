@@ -676,7 +676,6 @@ guiUtils = function() {
                     // If sim not in long cache, fetch from API and add to cache
                     selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
                     simDataHolder.offlineLongSimList.push(selectedSimLong);
-                    console.log(simDataHolder.offlineLongSimList);
                 }
                 else {
 
@@ -1701,7 +1700,6 @@ searchUtils = function() {
             // If lot not cached, fetch from API and add to cache
             lotLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
             simDataHolder.offlineLongLotList.push(lotLong);
-            console.log(simDataHolder.offlineLongLotList)
         }
         else {
 
