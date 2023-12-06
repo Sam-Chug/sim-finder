@@ -851,6 +851,11 @@ body {
     border-radius: 5px;
 }
 
+::-webkit-scrollbar-corner {
+
+    background: transparent
+}
+
 .bookmark-checkbox {
     width: 25px;
     height: 25px;
