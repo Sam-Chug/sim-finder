@@ -843,7 +843,6 @@ body {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-
     box-shadow: -2px -2px 2px 1px rgba(0, 0, 0, 0.4) inset,
                 2px 2px 2px 1px rgba(255, 255, 255, 0.3) inset;
 
@@ -852,7 +851,6 @@ body {
 }
 
 ::-webkit-scrollbar-corner {
-
     background: transparent
 }
 
