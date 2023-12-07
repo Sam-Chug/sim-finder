@@ -11,6 +11,7 @@
             - Possibly timezone related
         
     v0.2.3a TODO:
+        - Analytics tag for sim ID's viewed?
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
