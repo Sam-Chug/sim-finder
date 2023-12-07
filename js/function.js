@@ -1662,8 +1662,17 @@ searchUtils = function() {
         let simLong;
         if (!simUtils.checkIfSimInLongCache(simName)) {
 
-            // If sim not cached, fetch from API and add to cache
+            // If sim not cached, fetch from API
             simLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+
+            // Alert if sim doesn't exist
+            if ("error" in simLong) {
+
+                alert("Cannot find sim \"" + simName + "\"");
+                return;
+            }
+
+            // Push to cache
             simDataHolder.offlineLongSimList.push(simLong);
         }
         else {
@@ -1672,12 +1681,7 @@ searchUtils = function() {
             simLong = simUtils.returnSimFromLongCache(simName);
         }
 
-        // Alert if sim doesn't exist
-        if ("error" in simLong) {
-
-            alert("Cannot find sim \"" + simName + "\"");
-            return;
-        }
+        
 
         // Get searched sim data
         let simShort = simUtils.returnShortSimFromLong(simLong);
@@ -1697,21 +1701,23 @@ searchUtils = function() {
         let lotLong;
         if (!simUtils.checkIfLotInLongCache(lotName)) {
 
-            // If lot not cached, fetch from API and add to cache
+            // If lot not cached, fetch from API
             lotLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/lots/name/" + lotName.replace(" ", "%20"));
+
+            // Alert if lot doesn't exist
+            if ("error" in lotLong) {
+
+                alert("Cannot find lot \"" + lotName + "\"");
+                return;
+            }
+
+            // Push to cache
             simDataHolder.offlineLongLotList.push(lotLong);
         }
         else {
 
             // If cached, return from cache
             lotLong = simUtils.returnLotFromLongCache(lotName);
-        }
-
-        // Alert if lot doesn't exist
-        if ("error" in lotLong) {
-
-            alert("Cannot find lot \"" + lotName + "\"");
-            return;
         }
 
         // Get lot data
