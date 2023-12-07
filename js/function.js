@@ -708,6 +708,7 @@ guiUtils = function() {
                     
                     selectedLotShort = simDataHolder.lotShortList.lots[i];
                     selectedLotLong = simUtils.returnLongLotFromLocation(selectedLotShort.location);
+                    apiUtils.sendEntityAnalytics("lot", selectedLotLong.name, selectedLotLong.lot_id);
                     break;
                 }
             }
@@ -1926,7 +1927,7 @@ apiUtils = function() {
 
     function sendEntityAnalytics(entityType, entityName, entityID) {
 
-        gtag ('event', 'api_search', {
+        gtag ('event', 'click', {
             'entityType' : entityType,
             'entityName' : entityName,
             'entityID' : entityID
@@ -1935,7 +1936,7 @@ apiUtils = function() {
 
     function sendBookmarkAnalytics(bookmarked, entityName, entityID) {
 
-        gtag ('event', 'sim_bookmark', {
+        gtag ('event', 'click', {
             'bookmarked' : bookmarked,
             'entityName' : entityName,
             'entityID' : entityID
