@@ -1,5 +1,5 @@
 //#region Strings
-const VERSION_STR = "v0.2.2g";
+const VERSION_STR = "v0.2.2h";
 
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
@@ -322,12 +322,12 @@ const GUI_COLORMODE_BUTTON = document.getElementById('colormode-button');
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 
 const CUSTOM_STYLE_SIMHEADS = {
-    male: "./images/sim-faces/simface-m.png?v0.2.2g",
-    female: "./images/sim-faces/simface-f.png?v0.2.2g",
-    reagan: "./images/sim-faces/simface-rea.png?v0.2.2g",
-    bear: "./images/sim-faces/simface-b.png?v0.2.2g"
+    male: "./images/sim-faces/simface-m.png?v0.2.2h",
+    female: "./images/sim-faces/simface-f.png?v0.2.2h",
+    reagan: "./images/sim-faces/simface-rea.png?v0.2.2h",
+    bear: "./images/sim-faces/simface-b.png?v0.2.2h"
 };
-const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.2g"
+const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.2h"
 
 const CUSTOM_STYLE_BLOCK = {
     bp: {
