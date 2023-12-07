@@ -667,6 +667,7 @@ guiUtils = function() {
 
                 // If sim is online, grab short data
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
+                apiUtils.sendEntityAnalytics("sim", selectedSimShort.name, selectedSimShort.avatar_id);
             }
             else {
 
@@ -675,6 +676,7 @@ guiUtils = function() {
 
                     // If sim not in long cache, fetch from API and add to cache
                     selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
+                    apiUtils.sendEntityAnalytics("sim", selectedSimLong.name, selectedSimLong.avatar_id);
                     simDataHolder.offlineLongSimList.push(selectedSimLong);
                 }
                 else {
@@ -1673,6 +1675,7 @@ searchUtils = function() {
             }
 
             // Push to cache
+            apiUtils.sendEntityAnalytics("sim", simLong.name, simLong.avatar_id);
             simDataHolder.offlineLongSimList.push(simLong);
         }
         else {
@@ -1712,6 +1715,7 @@ searchUtils = function() {
             }
 
             // Push to cache
+            apiUtils.sendEntityAnalytics("lot", lotLong.name, lotLong.lot_id);
             simDataHolder.offlineLongLotList.push(lotLong);
         }
         else {
@@ -1920,6 +1924,24 @@ apiUtils = function() {
         return obj;
     }
 
+    function sendEntityAnalytics(entityType, entityName, entityID) {
+
+        gtag('event', 'api_search', {
+            'entityType' : entityType,
+            'entityName' : entityName,
+            'entityID' : entityID
+        });
+    }
+
+    function sendBookmarkAnalytics(bookmarked, entityName, entityID) {
+
+        gtag('event', 'sim_bookmark', {
+            'bookmarked' : bookmarked,
+            'entityName' : entityName,
+            'entityID' : entityID
+        });
+    }
+
     //#region API url building
     // Id list to sim object (for bookmark id list)
     function buildLongSimLinkFromID(idList) {
@@ -1977,7 +1999,9 @@ apiUtils = function() {
         buildLongLotLink: buildLongLotLink,
         buildRoommateLink: buildRoommateLink,
         buildLongSimLinkFromID: buildLongSimLinkFromID,
-        returnGitCommitJson: returnGitCommitJson
+        returnGitCommitJson: returnGitCommitJson,
+        sendEntityAnalytics: sendEntityAnalytics,
+        sendBookmarkAnalytics: sendBookmarkAnalytics
     }
 }();
 
@@ -2184,6 +2208,7 @@ storageUtils = function() {
 
             // Get data from new bookmark list, fetch in case sim was offline
             let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([simDataHolder.selSimID]));
+            apiUtils.sendBookmarkAnalytics(true, addSim.name, addSim.avatar_id);
             simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
         }
         // If removing bookmark
@@ -2196,6 +2221,9 @@ storageUtils = function() {
             for (let i = 0; i < simDataHolder.bookmarkList.avatars.length; i++) {
 
                 if (simDataHolder.bookmarkList.avatars[i].avatar_id == simDataHolder.selSimID) {
+
+                    let delSim = simDataHolder.bookmarkList.avatars[i];
+                    apiUtils.sendBookmarkAnalytics(true, delSim.name, delSim.avatar_id);
 
                     simDataHolder.bookmarkList.avatars.splice(i, 1);
                     break;
