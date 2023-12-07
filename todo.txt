@@ -10,11 +10,10 @@
         - Sim dates still slightly incorrect
             - Possibly timezone related
         
-    v0.2.2e TODO:
+    v0.2.3a TODO:
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
-        - Cache lot images instead of new fetch each time?
         - Recreate sidebar as bar on top of page
             - Sidebar can remain as a sim finder info panel
                 - Contains updates
