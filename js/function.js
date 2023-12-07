@@ -1926,7 +1926,7 @@ apiUtils = function() {
 
     function sendEntityAnalytics(entityType, entityName, entityID) {
 
-        gtag ('event', 'api_search', {
+        gtag ('event', 'api_fetch', {
             'entityType' : entityType,
             'entityName' : entityName,
             'entityID' : entityID
@@ -1935,7 +1935,7 @@ apiUtils = function() {
 
     function sendBookmarkAnalytics(bookmarked, entityName, entityID) {
 
-        gtag ('event', 'sim_bookmark', {
+        gtag ('event', 'bookmark_change', {
             'bookmarked' : bookmarked,
             'entityName' : entityName,
             'entityID' : entityID
