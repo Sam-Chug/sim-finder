@@ -301,27 +301,27 @@ body {
 }
 
 .window-minable {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 0 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 0 0;
 }
 
 .window-minable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 82px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 82px 0;
 }
 
 .window-minable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 41px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 41px 0;
 }
 
 .window-maxable {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 0 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 0 41px;
 }
 
 .window-maxable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 82px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 82px 41px;
 }
 
 .window-maxable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 41px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 41px 41px;
 }
 /* #endregion */
 
@@ -347,7 +347,7 @@ body {
 .label-gold {
     color: rgba(0, 0, 0, 0.55);
     text-shadow: -1px -1px rgba(0, 0, 0, 0.35);
-    background: url(../images/panel/gold-texture.png?v0.2.2h), #d4af37;
+    background: url(../images/panel/gold-texture.png?v0.2.2i), #d4af37;
     font-style: italic;
     box-shadow: -2px -3px 2px 2px rgba(0, 0, 0, 0.5) inset,
                 2px 3px 2px 2px rgba(255, 255, 255, 0.8) inset,
@@ -355,7 +355,7 @@ body {
 }
 
 .block-gold {
-    background-image: url(../images/panel/gold-texture.png?v0.2.2h), linear-gradient(90deg, #d4af37, #aa8714);
+    background-image: url(../images/panel/gold-texture.png?v0.2.2i), linear-gradient(90deg, #d4af37, #aa8714);
     box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
                 6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
 }
@@ -896,15 +896,15 @@ body {
 
     width: 40px;
     height: 40px;
-    background: url(../images/buttons/question-button.png?v0.2.2h) 0px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.2i) 0px 0px;
 }
 
 .buttom-sim-help-image:hover {
-    background: url(../images/buttons/question-button.png?v0.2.2h) 80px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.2i) 80px 0px;
 }
 
 .buttom-sim-help-image:active {
-    background: url(../images/buttons/question-button.png?v0.2.2h) 40px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.2i) 40px 0px;
 }
 /* #endregion */
 
@@ -1113,17 +1113,17 @@ body {
 
 .expand-sidebar-image {
     transform: translate(-8px, -3px);
-    background: url(../images/buttons/expand-arrow.png?v0.2.2h) 0px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.2i) 0px 0px;
     width: 30px;
     height: 30px;
 }
 
 .expand-sidebar-image:hover {
-    background: url(../images/buttons/expand-arrow.png?v0.2.2h) 60px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.2i) 60px 0px;
 }
 
 .expand-sidebar-image:active {
-    background: url(../images/buttons/expand-arrow.png?v0.2.2h) 30px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.2i) 30px 0px;
 }
 
 .job-holder {
@@ -1200,7 +1200,7 @@ body {
 
 .search-button {
     border-radius: 50%;
-    background: url(../images/buttons/search-button.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/search-button.png?v0.2.2i) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1210,11 +1210,11 @@ body {
 }
 
 .search-button:hover {
-    background: url(../images/buttons/search-button-hover.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/search-button-hover.png?v0.2.2i) no-repeat;
 }
 
 .search-button:active {
-    background: url(../images/buttons/search-button-click.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/search-button-click.png?v0.2.2i) no-repeat;
 }
 /* #endregion */
 
@@ -1229,7 +1229,7 @@ body {
     position: relative;
     top: 20px;
     border-radius: 50%;
-    background: url(../images/buttons/name-sort.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/name-sort.png?v0.2.2i) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1239,11 +1239,11 @@ body {
 }
 
 .sort-button:hover {
-    background: url(../images/buttons/name-sort-hover.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/name-sort-hover.png?v0.2.2i) no-repeat;
 }
 
 .sort-button:active {
-    background: url(../images/buttons/name-sort-selected.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/name-sort-selected.png?v0.2.2i) no-repeat;
 }
 /* #endregion */
 
@@ -1266,7 +1266,7 @@ body {
 }
 
 .export-arrow {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 0px 0px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 0px 0px;
     width: 41px;
     height: 42px;
     margin-top: 9px;
@@ -1279,15 +1279,15 @@ body {
 }
 
 .export-arrow:hover {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 0px 84px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 0px 84px;
 }
 
 .export-arrow:active {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 0px 42px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 0px 42px;
 }
 
 .import-arrow {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 41px 0px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 41px 0px;
     width: 41px;
     height: 42px;
     margin-top: 9px;
@@ -1300,11 +1300,11 @@ body {
 }
 
 .import-arrow:hover {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 41px 84px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 41px 84px;
 }
 
 .import-arrow:active {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 41px 42px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 41px 42px;
 }
 /* #endregion */
 
