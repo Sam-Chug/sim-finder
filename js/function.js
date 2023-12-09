@@ -1929,7 +1929,7 @@ apiUtils = function() {
 
     function sendEntityAnalytics(entityType, entityName, entityID) {
 
-        gtag ('event', 'api_fetch', {
+        gtag('event', 'api_fetch', {
             'entityType' : entityType,
             'entityName' : entityName,
             'entityID' : entityID
@@ -1938,10 +1938,10 @@ apiUtils = function() {
 
     function sendBookmarkAnalytics(bookmarked, entityName, entityID) {
 
-        gtag ('event', 'bookmark_change', {
+        gtag('event', 'bookmark_change', {
             'bookmarked' : bookmarked,
-            'entityName' : entityName,
-            'entityID' : entityID
+            'bookmarkedName' : entityName,
+            'bookmarkedID' : entityID
         });
     }
 
