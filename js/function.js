@@ -667,7 +667,7 @@ guiUtils = function() {
 
                 // If sim is online, grab short data
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
-                apiUtils.sendEntityAnalytics("sim", selectedSimShort.name, selectedSimShort.avatar_id);
+                apiUtils.sendSimEntityAnalytics(selectedSimShort.name, selectedSimShort.avatar_id);
             }
             else {
 
@@ -676,7 +676,7 @@ guiUtils = function() {
 
                     // If sim not in long cache, fetch from API and add to cache
                     selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
-                    apiUtils.sendEntityAnalytics("sim", selectedSimLong.name, selectedSimLong.avatar_id);
+                    apiUtils.sendSimEntityAnalytics(selectedSimLong.name, selectedSimLong.avatar_id);
                     simDataHolder.offlineLongSimList.push(selectedSimLong);
                 }
                 else {
@@ -1678,7 +1678,7 @@ searchUtils = function() {
             }
 
             // Push to cache
-            apiUtils.sendEntityAnalytics("sim", simLong.name, simLong.avatar_id);
+            apiUtils.sendSimEntityAnalytics(simLong.name, simLong.avatar_id);
             simDataHolder.offlineLongSimList.push(simLong);
         }
         else {
@@ -1718,7 +1718,7 @@ searchUtils = function() {
             }
 
             // Push to cache
-            apiUtils.sendEntityAnalytics("lot", lotLong.name, lotLong.lot_id);
+            apiUtils.sendLotEntityAnalytics(lotLong.name, lotLong.lot_id);
             simDataHolder.offlineLongLotList.push(lotLong);
         }
         else {
@@ -1927,12 +1927,19 @@ apiUtils = function() {
         return obj;
     }
 
-    function sendEntityAnalytics(entityType, entityName, entityID) {
+    function sendSimEntityAnalytics(fetchedSimName, fetchedSimID) {
 
-        gtag('event', 'api_fetch', {
-            'entityType' : entityType,
-            'entityName' : entityName,
-            'entityID' : entityID
+        gtag('event', 'api_sim_fetch', {
+            'fetchedSimName' : fetchedSimName,
+            'fetchedSimID' : fetchedSimID
+        });
+    }
+
+    function sendLotEntityAnalytics(fetchedLotName, fetchedLotID) {
+
+        gtag('event', 'api_lot_fetch', {
+            'fetchedLotName' : fetchedLotName,
+            'fetchedLotID' : fetchedLotID
         });
     }
 
@@ -2003,8 +2010,9 @@ apiUtils = function() {
         buildRoommateLink: buildRoommateLink,
         buildLongSimLinkFromID: buildLongSimLinkFromID,
         returnGitCommitJson: returnGitCommitJson,
-        sendEntityAnalytics: sendEntityAnalytics,
-        sendBookmarkAnalytics: sendBookmarkAnalytics
+        sendSimEntityAnalytics: sendSimEntityAnalytics,
+        sendBookmarkAnalytics: sendBookmarkAnalytics,
+        sendLotEntityAnalytics: sendLotEntityAnalytics
     }
 }();
 
