@@ -855,10 +855,12 @@ guiUtils = function() {
         writeToLabel(returnLotTitle(selectedLotLong), "", "thumbnail-title");
 
         // Reset description, get thumbnail from API
+        let cacheBust = Math.floor(Math.random() * 10000000);
+        let imageSource = `https://api.freeso.org/userapi/city/1/${selectedLotLong.location}.png?cachebust:${cacheBust}`;
+        console.log("%cFetching Lot Image:\n\n", "color: black; background-color: lightgreen;", imageSource);
+
         GUI_LOT_DESCRIPTION.textContent = "";
-        let randomCacheBust = Math.floor(Math.random() * 10000000);
-        GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`;
-        console.log("%cFetching Lot Image:\n\n", "color: black; background-color: lightgreen;", "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`);
+        GUI_LOT_THUMBNAIL.src = imageSource;
         simDataHolder.apiStats.incrementAPICalls();
 
         // Create lot bio elements
