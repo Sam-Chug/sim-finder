@@ -854,11 +854,12 @@ guiUtils = function() {
         // Lot label
         writeToLabel(returnLotTitle(selectedLotLong), "", "thumbnail-title");
 
-        // Reset description, get thumbnail from API
+        // Grab lot thumbnail from API
         let cacheBust = Math.floor(Math.random() * 10000000);
         let imageSource = `https://api.freeso.org/userapi/city/1/${selectedLotLong.location}.png?cachebust:${cacheBust}`;
         console.log("%cFetching Lot Image:\n\n", "color: black; background-color: lightgreen;", imageSource);
 
+        // Set image
         GUI_LOT_DESCRIPTION.textContent = "";
         GUI_LOT_THUMBNAIL.src = imageSource;
         simDataHolder.apiStats.incrementAPICalls();
