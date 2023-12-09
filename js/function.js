@@ -718,6 +718,7 @@ guiUtils = function() {
             // Write lot data
             writeLotThumbnail(selectedLotShort, selectedLotLong, "");
             writeSimsInLot(selectedLotLong, selectedLotShort.avatars_in_lot);
+            apiUtils.sendLotEntityAnalytics(selectedLotShort.name, selectedLotShort.lot_id);
         }
         return;
     }
