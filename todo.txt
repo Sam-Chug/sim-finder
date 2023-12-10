@@ -11,15 +11,15 @@
             - Possibly timezone related
         
     v0.2.3a TODO:
-        - Analytics tag for sim ID's viewed?
-        - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
-            - Figure out which head to use
-                - Raccoon?
+        - Fix DOM element leak
         - Recreate sidebar as bar on top of page
             - Sidebar can remain as a sim finder info panel
                 - Contains updates
 
     Low Priority TODO:
+        - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
+            - Figure out which head to use
+                - Raccoon?
         - Some functions are still out of place (constant refactor)
             - Move all GUI/writing functions to GUI etc
         - Clean up css (constant refactor)
