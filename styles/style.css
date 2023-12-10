@@ -718,9 +718,10 @@ body {
     align-self: center;
     min-width: 350px;
     width: fit-content;
-    padding: 0px 15px 9px 15px;
-    margin: 12px;
+    padding: 0px 0px 9px 0px;
+    margin: 12px 12px 12px 6px;
     max-height: 36px;
+    width: 400px;
 }
 
 .thumb-1-2 {
@@ -765,9 +766,9 @@ body {
 
     border: 8px solid var(--bg-thumbnail-border);
     border-radius: 50%;
-    padding: 0 180px;
     
-    min-height: 220px;
+    height: 220px;
+    width: 400px;
 }
 
 .thumbnail-offline {

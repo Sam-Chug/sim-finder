@@ -254,11 +254,6 @@ const FILTER_ICON_CACHE = {
 //#endregion
 
 //#region DOM cache
-const DOM_ROOT = document.querySelector(':root');
-
-const GUI_ONLINESIMS = document.getElementById('sims-table');
-const GUI_ONLINELOTS = document.getElementById('lots-table');
-
 const GUI_BOOKMARK_BUTTON = document.getElementById('bookmark-checkbox');
 const GUI_BOOKMARK_LIST = document.getElementById('bookmark-table');
 

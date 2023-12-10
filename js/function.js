@@ -358,12 +358,12 @@ domUtils = function() {
         var height = Math.max(windowHeight - (GUI_SEARCH_SIM_PANEL.offsetHeight + GUI_FILTER_SIM_PANEL.offsetHeight) - 145, 416);
         height = Math.min(height, 1016);
         var heightPX = height + "px";
-        GUI_ONLINESIMS.style.maxHeight = heightPX;
+        document.getElementById('sims-table').style.maxHeight = heightPX;
 
         var height = Math.max((windowHeight - (GUI_SEARCH_LOT_PANEL.offsetHeight + GUI_FILTER_LOT_PANEL.offsetHeight) - 261) / 2, 150);
         height = Math.min(height, 450);
         var heightPX = height + "px";
-        GUI_ONLINELOTS.style.maxHeight = heightPX;
+        document.getElementById('lots-table').style.maxHeight = heightPX;
         GUI_BOOKMARK_LIST.style.maxHeight = heightPX;
     }
 
@@ -405,31 +405,32 @@ domUtils = function() {
 
     function siteColorMode(state) {
 
+        let domRoot = document.querySelector(':root');
         if (state == "lightmode") {
 
-            DOM_ROOT.style.setProperty("--bg-fallback", "#7ca1bf");
+            domRoot.style.setProperty("--bg-fallback", "#7ca1bf");
 
-            DOM_ROOT.style.setProperty("--inset-bg", "#32455b");
-            DOM_ROOT.style.setProperty("--inset-bg-dark", "#2f4158");
-            DOM_ROOT.style.setProperty("--block-gradient-light", "#96bad0");
-            DOM_ROOT.style.setProperty("--block-gradient-dark", "#5f88af");
-            DOM_ROOT.style.setProperty("--outset-title-bg", "#5077a3");
+            domRoot.style.setProperty("--inset-bg", "#32455b");
+            domRoot.style.setProperty("--inset-bg-dark", "#2f4158");
+            domRoot.style.setProperty("--block-gradient-light", "#96bad0");
+            domRoot.style.setProperty("--block-gradient-dark", "#5f88af");
+            domRoot.style.setProperty("--outset-title-bg", "#5077a3");
 
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-light", "#5f88af");
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-dark", "#476a8d");
+            domRoot.style.setProperty("--bg-dark-gradient-light", "#5f88af");
+            domRoot.style.setProperty("--bg-dark-gradient-dark", "#476a8d");
         }
         else if (state == "darkmode") {
 
-            DOM_ROOT.style.setProperty("--bg-fallback", "#7c7c7c");
+            domRoot.style.setProperty("--bg-fallback", "#7c7c7c");
 
-            DOM_ROOT.style.setProperty("--inset-bg", "#222222");
-            DOM_ROOT.style.setProperty("--inset-bg-dark", "#111111");
-            DOM_ROOT.style.setProperty("--block-gradient-light", "#444444");
-            DOM_ROOT.style.setProperty("--block-gradient-dark", "#333333");
-            DOM_ROOT.style.setProperty("--outset-title-bg", "#555555");
+            domRoot.style.setProperty("--inset-bg", "#222222");
+            domRoot.style.setProperty("--inset-bg-dark", "#111111");
+            domRoot.style.setProperty("--block-gradient-light", "#444444");
+            domRoot.style.setProperty("--block-gradient-dark", "#333333");
+            domRoot.style.setProperty("--outset-title-bg", "#555555");
 
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-light", "#222222");
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-dark", "#111111");
+            domRoot.style.setProperty("--bg-dark-gradient-light", "#222222");
+            domRoot.style.setProperty("--bg-dark-gradient-dark", "#111111");
         }
     }
 
@@ -976,8 +977,9 @@ guiUtils = function() {
 
     function populateSimList(simList) {
 
-        GUI_ONLINESIMS.innerHTML = "";
-        GUI_ONLINESIMS.appendChild(buildListHeader("Name", "Age"));
+        let simListContainer = document.getElementById('sims-table');
+        simListContainer.textContent = "";
+        simListContainer.appendChild(buildListHeader("Name", "Age"));
 
         for (let i = 0; i < simList.length; i++) {
 
@@ -987,20 +989,21 @@ guiUtils = function() {
             // If Reagan, add easter egg
             if (simList[i].name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
 
-            GUI_ONLINESIMS.appendChild(simNode);
+            simListContainer.appendChild(simNode);
         }
     }
 
     function populateLotList(lotList) {
 
-        GUI_ONLINELOTS.textContent = "";
-        GUI_ONLINELOTS.appendChild(buildListHeader("Name", "Population"));
+        let lotListContainer = document.getElementById('lots-table');
+        lotListContainer.textContent = "";
+        lotListContainer.appendChild(buildListHeader("Name", "Population"));
         
         for (i = 0; i < lotList.length; i++) {
         
             let lotNode = createListNode(returnLotTitle(lotList[i]), lotList[i].avatars_in_lot + " sims");
             addIndexClickHandler(lotNode, "lot");
-            GUI_ONLINELOTS.appendChild(lotNode);
+            lotListContainer.appendChild(lotNode);
         }
     }
 
@@ -1801,11 +1804,11 @@ sidebarUtils = function() {
     // Format to sim-time and write to clock
     function writeSimClock() {
 
-        // Get sim time
-        const simTime = simUtils.returnSimTime();
-        let hasColon = SIDEBAR_CLOCK.textContent.includes(":");
+        // Animate colon
+        let hasColon = SIDEBAR_CLOCK.innerText.includes(":");
 
-        // Format to 12 hour clock
+        // Get sim time, format to 12 hour clock
+        let simTime = simUtils.returnSimTime();
         let timeDenom = "AM";
         if (simTime[0] >= 12) {
 
@@ -1816,7 +1819,7 @@ sidebarUtils = function() {
         if (simTime[1] < 10) simTime[1] = "0" + simTime[1];
 
         // Write clock to element
-        SIDEBAR_CLOCK.textContent = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
+        SIDEBAR_CLOCK.innerText = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
     }
 
     // Display which jobs are currently active
