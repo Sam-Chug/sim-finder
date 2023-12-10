@@ -512,7 +512,7 @@ domUtils = function() {
                 // Idk why this is messed up
                 tooltip.style.fontSize = "1em";
             }
-            this.appendChild(tooltip);
+            this.append(tooltip);
         });
 
         element.addEventListener("mouseout", function(){
@@ -825,7 +825,7 @@ guiUtils = function() {
         eggUtils.handleCustomSimStyles(selectedSimLong);
 
         // Write sim's bio text
-        GUI_SIM_BIO.textContent = selectedSimLong.description;
+        GUI_SIM_BIO.firstChild.textContent = selectedSimLong.description;
 
         // Sim description basics
         var descContent = `Age: ${simUtils.returnSimAge(selectedSimLong.date)} Days\n` + 
@@ -837,7 +837,7 @@ guiUtils = function() {
         if (selectedSimLong.mayor_nhood != null) descContent += "Mayor of " + simUtils.returnNeighborhood(selectedSimLong.mayor_nhood) + "\n";
 
         // Set sim description to constructed text
-        GUI_SIM_DESCRIPTION.textContent = descContent;
+        GUI_SIM_DESCRIPTION.firstChild.textContent = descContent;
 
         // Set background of sim and lot thumbnail
         switch (simUtils.returnExistenceState(selectedSimShort)) {
@@ -899,7 +899,7 @@ guiUtils = function() {
         else GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
 
         // Append elements to lot bio
-        GUI_LOT_DESCRIPTION.appendChild(lotDesc);
+        GUI_LOT_DESCRIPTION.append(lotDesc);
 
         // Un-hide lot bio
         GUI_LOT_BIO.textContent = selectedLotLong.description;
@@ -986,8 +986,8 @@ guiUtils = function() {
         let rightHead = document.createElement("p");
         rightHead.textContent = columnRightText;
 
-        listHead.appendChild(leftHead);
-        listHead.appendChild(rightHead);
+        listHead.append(leftHead);
+        listHead.append(rightHead);
 
         return listHead;
     }
@@ -995,8 +995,8 @@ guiUtils = function() {
     function populateSimList(simList) {
 
         let simListContainer = document.getElementById('sims-table');
-        simListContainer.textContent = "";
-        simListContainer.appendChild(buildListHeader("Name", "Age"));
+        simListContainer.replaceChildren();
+        simListContainer.append(buildListHeader("Name", "Age"));
 
         for (let i = 0; i < simList.length; i++) {
 
@@ -1006,21 +1006,21 @@ guiUtils = function() {
             // If Reagan, add easter egg
             if (simList[i].name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
 
-            simListContainer.appendChild(simNode);
+            simListContainer.append(simNode);
         }
     }
 
     function populateLotList(lotList) {
 
         let lotListContainer = document.getElementById('lots-table');
-        lotListContainer.textContent = "";
-        lotListContainer.appendChild(buildListHeader("Name", "Population"));
+        lotListContainer.replaceChildren();
+        lotListContainer.append(buildListHeader("Name", "Population"));
         
         for (i = 0; i < lotList.length; i++) {
         
             let lotNode = createListNode(returnLotTitle(lotList[i]), lotList[i].avatars_in_lot + " sims");
             addIndexClickHandler(lotNode, "lot");
-            lotListContainer.appendChild(lotNode);
+            lotListContainer.append(lotNode);
         }
     }
 
@@ -1043,7 +1043,7 @@ guiUtils = function() {
         // Build list for sims at lot
         let simListHeader = buildListHeader("Sims", "");
         simListHeader.id = "sim-in-lot-list-node";
-        GUI_SIMS_IN_LOT_SIMS.appendChild(simListHeader);
+        GUI_SIMS_IN_LOT_SIMS.append(simListHeader);
 
         let allCount = 0;   // Known sims at lot
         let knownCount = 0; // Excludes roommates
@@ -1063,7 +1063,7 @@ guiUtils = function() {
                 simNode.id = "sim-in-lot-list-node";
                 
                 addIndexClickHandler(simNode, "sim-in-lot");
-                GUI_SIMS_IN_LOT_SIMS.appendChild(simNode);
+                GUI_SIMS_IN_LOT_SIMS.append(simNode);
 
                 allCount++;
                 knownCount++;
@@ -1123,7 +1123,7 @@ guiUtils = function() {
         // Add owner header to roommate list
         let ownerHeader = buildListHeader((isTownHall) ? "Mayor": "Owner", "");
         ownerHeader.id = "sim-in-lot-list-node";
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerHeader);
+        GUI_SIMS_IN_LOT_ROOMMATES.append(ownerHeader);
 
         // Add node for owner sim
         let ownerNode = createListNode(selectedLot.ownerLong.name, "");
@@ -1136,7 +1136,7 @@ guiUtils = function() {
 
         // Add click handler and append to list
         if (!isTownHall || townhallObj.mayor_id != null) addIndexClickHandler(ownerNode, "sim-in-lot");
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
+        GUI_SIMS_IN_LOT_ROOMMATES.append(ownerNode);
 
         // Create elements for roommates at lot text
         // Catch for townhalls
@@ -1145,12 +1145,12 @@ guiUtils = function() {
             if (selectedLot.roommateLong.avatars.length > 1) {
 
                 // Add spacing
-                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(createListNode("", ""));
+                GUI_SIMS_IN_LOT_ROOMMATES.append(createListNode("", ""));
     
                 // Create roommate header if roommates exist
                 let roommatesHeader = buildListHeader("Roommates", "");
                 roommatesHeader.id = "sim-in-lot-list-node";
-                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
+                GUI_SIMS_IN_LOT_ROOMMATES.append(roommatesHeader);
             }
 
             // Compile roommates
@@ -1171,7 +1171,7 @@ guiUtils = function() {
                 if (selectedLot.roommatesShort[i].location == selectedLot.location) roommateNode.children[0].textContent += " (Hosting)";
 
                 // Append roommate node to list
-                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommateNode);
+                GUI_SIMS_IN_LOT_ROOMMATES.append(roommateNode);
             }
         }
         
@@ -1189,7 +1189,7 @@ guiUtils = function() {
             // Create node and append to list
             let hiddenNode = createListNode(extraText, "");
             hiddenNode.id = "sim-list-node-static";
-            GUI_SIMS_IN_LOT_SIMS.appendChild(hiddenNode);
+            GUI_SIMS_IN_LOT_SIMS.append(hiddenNode);
         }
     }
 
@@ -1197,7 +1197,7 @@ guiUtils = function() {
 
         // Reset bookmark list, append header
         GUI_BOOKMARK_LIST.innerHTML = "";
-        GUI_BOOKMARK_LIST.appendChild(buildListHeader("Name", "Age"));
+        GUI_BOOKMARK_LIST.append(buildListHeader("Name", "Age"));
     
         // Set sims into online or offline lists
         let onlineSims = new Array();
@@ -1245,14 +1245,14 @@ guiUtils = function() {
         let listNode = document.createElement("div");
         listNode.id = "sim-list-node";
 
-        let elementLeft = document.createElement("p");
+        let elementLeft = document.createElement("div");
         elementLeft.textContent = contentLeft;
 
-        let elementRight = document.createElement("p");
+        let elementRight = document.createElement("div");
         elementRight.textContent = contentRight;
 
-        listNode.appendChild(elementLeft);
-        listNode.appendChild(elementRight);
+        listNode.append(elementLeft);
+        listNode.append(elementRight);
         return listNode;
     }
 
@@ -1514,7 +1514,7 @@ filterUtils = function() {
             button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "lot");
-            lotFilterArray.appendChild(button);
+            lotFilterArray.append(button);
         }
         for (let i = 0; i < 12; i++) {
     
@@ -1525,7 +1525,7 @@ filterUtils = function() {
             button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "sim");
-            simFilterArray.appendChild(button);
+            simFilterArray.append(button);
         }
     }
 
@@ -1550,7 +1550,7 @@ filterUtils = function() {
             if (type == "sim") tooltip.textContent = SIM_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
             if (type == "lot") tooltip.textContent = LOT_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
     
-            this.appendChild(tooltip);
+            this.append(tooltip);
         });
 
         element.addEventListener("mouseout", function(){
@@ -1836,7 +1836,7 @@ sidebarUtils = function() {
         if (simTime[1] < 10) simTime[1] = "0" + simTime[1];
 
         // Write clock to element
-        SIDEBAR_CLOCK.innerText = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
+        SIDEBAR_CLOCK.firstChild.textContent = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
     }
 
     // Display which jobs are currently active
@@ -2156,7 +2156,7 @@ storageUtils = function() {
         let downloadAnchorNode = document.createElement("a");
         downloadAnchorNode.setAttribute("href", saveString);
         downloadAnchorNode.setAttribute("download", `SimFinder Bookmarks ${dateString}.json`);
-        document.body.appendChild(downloadAnchorNode);
+        document.body.append(downloadAnchorNode);
 
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
