@@ -450,9 +450,13 @@ domUtils = function() {
         
         addTooltipToButton(GUI_SIM_HELP_BUTTON, "style-help");
         addTooltipToButton(GUI_COLORMODE_BUTTON, "colormode");
+
+        addTooltipToButton(SIDEBAR_JOB_DINER, "job", "diner");
+        addTooltipToButton(SIDEBAR_JOB_CLUB, "job", "club");
+        addTooltipToButton(SIDEBAR_JOB_FACTORY, "job", "factory");
     }
 
-    function addTooltipToButton(element, type) {
+    function addTooltipToButton(element, type, subType) {
 
         element.addEventListener("mouseover", function() {
     
@@ -494,6 +498,19 @@ domUtils = function() {
 
                 tooltip.textContent = "Toggle Light";
                 tooltip.classList.add("mid-tooltip");
+            }
+            else if (type == "job") {
+                
+                let string = ""
+                if      (subType == "diner") string = "Diner Job Activity"
+                else if (subType == "club") string = "Club Job Activity"
+                else if (subType == "factory") string = "Factory Job Activity"
+
+                tooltip.textContent = string;
+                tooltip.classList.add("under-tooltip");
+
+                // Idk why this is messed up
+                tooltip.style.fontSize = "1em";
             }
             this.appendChild(tooltip);
         });
