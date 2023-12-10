@@ -429,7 +429,7 @@ body {
 /* THEMED BLOCKS */
 .block-candy-cane {
     background-color: #e5e5f7;
-    background: repeating-linear-gradient(-45deg, #f74444, #f74444 50px, #f8f8ef 10px, #f8f8ef 100px);
+    background: repeating-linear-gradient(-45deg, #f74444, #f74444 50px, #f8f8ef 50px, #f8f8ef 100px);
 }
 
 .bookmark-candy-cane {
@@ -931,6 +931,7 @@ body {
 .bookmark-checkbox {
     width: 25px;
     height: 25px;
+
 }
 
 .bookmark-label {
