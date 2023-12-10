@@ -622,10 +622,7 @@ eggUtils = function() {
         //return;
 
         // Do reagan
-        if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
-
-            reaganEgg();
-        }
+        if (selectedSim.name == CUSTOM_STYLE_REAGAN) reaganEgg();
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
@@ -1004,7 +1001,7 @@ guiUtils = function() {
             addIndexClickHandler(simNode, "sim");
 
             // If Reagan, add easter egg
-            if (simList[i].name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
+            if (simList[i].name == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
 
             simListContainer.append(simNode);
         }
@@ -1062,6 +1059,9 @@ guiUtils = function() {
                 let simNode = createListNode(simName, "");
                 simNode.id = "sim-in-lot-list-node";
                 
+                // If Reagan, add easter egg
+                if (simName == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
+
                 addIndexClickHandler(simNode, "sim-in-lot");
                 GUI_SIMS_IN_LOT_SIMS.append(simNode);
 
@@ -1225,7 +1225,7 @@ guiUtils = function() {
             addIndexClickHandler(simNode, "bookmark");
 
             // If Reagan, add easter egg
-            if (sim.name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
+            if (sim.name == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
 
             GUI_BOOKMARK_LIST.append(simNode);
         }
