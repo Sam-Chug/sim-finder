@@ -270,7 +270,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.simLongList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2j)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2k)`;
                 simDataHolder.simSort = "name";
             }
             else if (simDataHolder.simSort == "name") {
@@ -278,7 +278,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
                 simDataHolder.simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2j)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2k)`;
                 simDataHolder.simSort = "age";
             }
             let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_FILTER_KEYS[simDataHolder.simFilter];
@@ -292,7 +292,7 @@ simUtils = function() {
                 simDataHolder.lotShortList.lots.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.lotLongList.lots.sort((a, b) => a.name.localeCompare(b.name));
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2j)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2k)`;
                 simDataHolder.lotSort = "name";
             }
             else if (simDataHolder.lotSort == "name") {
@@ -300,7 +300,7 @@ simUtils = function() {
                 simDataHolder.lotLongList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
                 simDataHolder.lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2j)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2k)`;
                 simDataHolder.lotSort = "pop";
             }
             filterUtils.writeFilterToTable("lot", simDataHolder.lotFilter);
@@ -724,7 +724,6 @@ guiUtils = function() {
                     
                     selectedLotShort = simDataHolder.lotShortList.lots[i];
                     selectedLotLong = simUtils.returnLongLotFromLocation(selectedLotShort.location);
-                    apiUtils.sendEntityAnalytics("lot", selectedLotLong.name, selectedLotLong.lot_id);
                     break;
                 }
             }
@@ -905,7 +904,7 @@ guiUtils = function() {
     function writeAbsentLotThumbnail(existence, selectedSimLong) {
 
         // Set lot image to unknown
-        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.2j";
+        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.2k";
         eggUtils.resetLotThumbnailStyles();
 
         // Get lot description and label
@@ -1509,7 +1508,7 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2k) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "lot");
             lotFilterArray.append(button);
@@ -1520,7 +1519,7 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2k) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "sim");
             simFilterArray.append(button);
@@ -1572,11 +1571,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.2k) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2k) " + -x + "px " + -y + "px";
             }
         }
         else if (type == "sim") {
@@ -1585,11 +1584,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.2k) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2k) " + -x + "px " + -y + "px";
             }
         }
     }
@@ -1610,7 +1609,7 @@ filterUtils = function() {
                 button.classList.remove("lot-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2k) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1623,7 +1622,7 @@ filterUtils = function() {
             else {
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.2k) " + -x + "px " + -y + "px";
                 button.classList.add("lot-filter-active");
                 writeFilterToTable("lot", index);
                 simDataHolder.lotFilter = index;
@@ -1638,7 +1637,7 @@ filterUtils = function() {
                 button.classList.remove("sim-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2k) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1651,7 +1650,7 @@ filterUtils = function() {
     
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.2j) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.2k) " + -x + "px " + -y + "px";
                 button.classList.add("sim-filter-active");
                 writeFilterToTable("sim", SIM_FILTER_KEYS[index]);
                 simDataHolder.simFilter = index;
@@ -1844,14 +1843,14 @@ sidebarUtils = function() {
         let jobsActive = simUtils.returnJobsOpen();
 
         // Set job icon to inactive
-        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 40px 0";
-        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 40px 80px";
-        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 40px 40px";
+        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2k) 40px 0";
+        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2k) 40px 80px";
+        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2k) 40px 40px";
 
         // Set active jobs to active icon
-        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 0 0";
-        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 0 80px";
-        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 0 40px";
+        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2k) 0 0";
+        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2k) 0 80px";
+        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2k) 0 40px";
     }
 
     // Write about info in sidebar info panel 
