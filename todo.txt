@@ -12,12 +12,13 @@
             - Possibly timezone related
         
     v0.2.3a TODO:
-        - Fix DOM element leak
-
-    Low Priority TODO:
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
+            - Admin halo
+
+    Low Priority TODO:
+        
         - Some functions are still out of place (constant refactor)
             - Move all GUI/writing functions to GUI etc
         - Clean up css (constant refactor)

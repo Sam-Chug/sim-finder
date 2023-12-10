@@ -97,6 +97,7 @@ class StyleObject{
 
         // Check if data is sim or lot
         this.isSim = ("avatar_id" in simData);
+        this.isStaff = simUtils.isSimStaffMember(simData.name);
 
         this.usesStyle;
         this.usesShorthand;
@@ -127,6 +128,7 @@ class StyleObject{
 
         // If bear sim, set to bear
         if (simData.name.toLowerCase().includes("bear")) this.avatarHead = CUSTOM_STYLE_SIMHEADS.bear;
+        else if (simData.name == CUSTOM_STYLE_REAGAN) this.avatarHead = CUSTOM_STYLE_SIMHEADS.reagan;
         else if (simData.gender == 0) this.avatarHead = CUSTOM_STYLE_SIMHEADS.male;
         else if (simData.gender == 1) this.avatarHead = CUSTOM_STYLE_SIMHEADS.female;
     }
@@ -152,7 +154,8 @@ class StyleObject{
     // Find styles from list
     getSelectedStyles(styleList) {
 
-        for (let i = 0; i < styleList.length; i++) {
+        let styleLength = Math.min(styleList.length, MAX_STYLES);
+        for (let i = 0; i < styleLength; i++) {
 
             // Block styles
             if (styleList[i].charAt(0) == "b") {

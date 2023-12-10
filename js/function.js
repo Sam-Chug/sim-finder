@@ -191,7 +191,6 @@ simUtils = function() {
     //#endregion
 
     //#region Lot/Sim cache
-
     // TODO: combine these two functions?
     // Check if sim is in offline long cache
     function checkIfSimInLongCache(simName) {
@@ -271,7 +270,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.simLongList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2i)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2j)`;
                 simDataHolder.simSort = "name";
             }
             else if (simDataHolder.simSort == "name") {
@@ -279,7 +278,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
                 simDataHolder.simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2i)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2j)`;
                 simDataHolder.simSort = "age";
             }
             let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_FILTER_KEYS[simDataHolder.simFilter];
@@ -293,7 +292,7 @@ simUtils = function() {
                 simDataHolder.lotShortList.lots.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.lotLongList.lots.sort((a, b) => a.name.localeCompare(b.name));
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2i)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2j)`;
                 simDataHolder.lotSort = "name";
             }
             else if (simDataHolder.lotSort == "name") {
@@ -301,7 +300,7 @@ simUtils = function() {
                 simDataHolder.lotLongList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
                 simDataHolder.lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2i)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2j)`;
                 simDataHolder.lotSort = "pop";
             }
             filterUtils.writeFilterToTable("lot", simDataHolder.lotFilter);
@@ -450,9 +449,13 @@ domUtils = function() {
         
         addTooltipToButton(GUI_SIM_HELP_BUTTON, "style-help");
         addTooltipToButton(GUI_COLORMODE_BUTTON, "colormode");
+
+        addTooltipToButton(SIDEBAR_JOB_DINER, "job", "diner");
+        addTooltipToButton(SIDEBAR_JOB_CLUB, "job", "club");
+        addTooltipToButton(SIDEBAR_JOB_FACTORY, "job", "factory");
     }
 
-    function addTooltipToButton(element, type) {
+    function addTooltipToButton(element, type, subType) {
 
         element.addEventListener("mouseover", function() {
     
@@ -495,7 +498,20 @@ domUtils = function() {
                 tooltip.textContent = "Toggle Light";
                 tooltip.classList.add("mid-tooltip");
             }
-            this.appendChild(tooltip);
+            else if (type == "job") {
+                
+                let string = ""
+                if      (subType == "diner") string = "Diner Job Activity"
+                else if (subType == "club") string = "Club Job Activity"
+                else if (subType == "factory") string = "Factory Job Activity"
+
+                tooltip.textContent = string;
+                tooltip.classList.add("under-tooltip");
+
+                // Idk why this is messed up
+                tooltip.style.fontSize = "1em";
+            }
+            this.append(tooltip);
         });
 
         element.addEventListener("mouseout", function(){
@@ -557,9 +573,8 @@ eggUtils = function() {
 
         GUI_SIM_LABEL.classList.add("label-gold");
         GUI_SIM_VIEW.classList.add("block-gold");
-
+        
         GUI_SIM_THUMBNAIL.classList.add("reagan-image");
-        GUI_SIM_THUMBNAIL.src = CUSTOM_STYLE_SIMHEADS.reagan;
 
         GUI_SIM_BIO.classList.add("inset-gold");
         GUI_SIM_DESCRIPTION.classList.add("inset-gold");
@@ -605,16 +620,16 @@ eggUtils = function() {
         //return;
 
         // Do reagan
-        if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
-
-            reaganEgg();
-        }
+        if (selectedSim.name == CUSTOM_STYLE_REAGAN) reaganEgg();
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
-        if (!styleObj.usesStyle) return;
 
-        // Set styles
+        // Set head
+        GUI_SIM_THUMBNAIL.src = styleObj.avatarHead;
+        if (styleObj.isStaff) GUI_SIM_THUMBNAIL.classList.add("staff-image");
+
+        if (!styleObj.usesStyle) return;
         if (styleObj.styles.block != "") GUI_SIM_VIEW.classList.add(styleObj.styles.block);
         if (styleObj.styles.bookmarkLabel != "") GUI_BOOKMARK_LABEL.classList.add(styleObj.styles.bookmarkLabel);
         if (styleObj.styles.label != "") GUI_SIM_LABEL.classList.add(styleObj.styles.label);
@@ -801,15 +816,11 @@ guiUtils = function() {
         writeToLabel(returnSimTitle(selectedSimLong), "", "sim-title");
         simDataHolder.selSimID = selectedSimLong.avatar_id;
 
-        // Set head graphic
-        let headStyle = new StyleObject(selectedSimLong);
-        GUI_SIM_THUMBNAIL.src = headStyle.avatarHead;
-
         // Handle custom styles
         eggUtils.handleCustomSimStyles(selectedSimLong);
 
         // Write sim's bio text
-        GUI_SIM_BIO.textContent = selectedSimLong.description;
+        GUI_SIM_BIO.firstChild.textContent = selectedSimLong.description;
 
         // Sim description basics
         var descContent = `Age: ${simUtils.returnSimAge(selectedSimLong.date)} Days\n` + 
@@ -821,7 +832,7 @@ guiUtils = function() {
         if (selectedSimLong.mayor_nhood != null) descContent += "Mayor of " + simUtils.returnNeighborhood(selectedSimLong.mayor_nhood) + "\n";
 
         // Set sim description to constructed text
-        GUI_SIM_DESCRIPTION.textContent = descContent;
+        GUI_SIM_DESCRIPTION.firstChild.textContent = descContent;
 
         // Set background of sim and lot thumbnail
         switch (simUtils.returnExistenceState(selectedSimShort)) {
@@ -883,7 +894,7 @@ guiUtils = function() {
         else GUI_LOT_THUMBNAIL_BG.classList.remove("thumbnail-offline");
 
         // Append elements to lot bio
-        GUI_LOT_DESCRIPTION.appendChild(lotDesc);
+        GUI_LOT_DESCRIPTION.append(lotDesc);
 
         // Un-hide lot bio
         GUI_LOT_BIO.textContent = selectedLotLong.description;
@@ -894,7 +905,7 @@ guiUtils = function() {
     function writeAbsentLotThumbnail(existence, selectedSimLong) {
 
         // Set lot image to unknown
-        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.2i";
+        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.2j";
         eggUtils.resetLotThumbnailStyles();
 
         // Get lot description and label
@@ -970,8 +981,8 @@ guiUtils = function() {
         let rightHead = document.createElement("p");
         rightHead.textContent = columnRightText;
 
-        listHead.appendChild(leftHead);
-        listHead.appendChild(rightHead);
+        listHead.append(leftHead);
+        listHead.append(rightHead);
 
         return listHead;
     }
@@ -979,8 +990,8 @@ guiUtils = function() {
     function populateSimList(simList) {
 
         let simListContainer = document.getElementById('sims-table');
-        simListContainer.textContent = "";
-        simListContainer.appendChild(buildListHeader("Name", "Age"));
+        simListContainer.replaceChildren();
+        simListContainer.append(buildListHeader("Name", "Age"));
 
         for (let i = 0; i < simList.length; i++) {
 
@@ -988,23 +999,23 @@ guiUtils = function() {
             addIndexClickHandler(simNode, "sim");
 
             // If Reagan, add easter egg
-            if (simList[i].name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
+            if (simList[i].name == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
 
-            simListContainer.appendChild(simNode);
+            simListContainer.append(simNode);
         }
     }
 
     function populateLotList(lotList) {
 
         let lotListContainer = document.getElementById('lots-table');
-        lotListContainer.textContent = "";
-        lotListContainer.appendChild(buildListHeader("Name", "Population"));
+        lotListContainer.replaceChildren();
+        lotListContainer.append(buildListHeader("Name", "Population"));
         
         for (i = 0; i < lotList.length; i++) {
         
             let lotNode = createListNode(returnLotTitle(lotList[i]), lotList[i].avatars_in_lot + " sims");
             addIndexClickHandler(lotNode, "lot");
-            lotListContainer.appendChild(lotNode);
+            lotListContainer.append(lotNode);
         }
     }
 
@@ -1027,7 +1038,7 @@ guiUtils = function() {
         // Build list for sims at lot
         let simListHeader = buildListHeader("Sims", "");
         simListHeader.id = "sim-in-lot-list-node";
-        GUI_SIMS_IN_LOT_SIMS.appendChild(simListHeader);
+        GUI_SIMS_IN_LOT_SIMS.append(simListHeader);
 
         let allCount = 0;   // Known sims at lot
         let knownCount = 0; // Excludes roommates
@@ -1046,8 +1057,11 @@ guiUtils = function() {
                 let simNode = createListNode(simName, "");
                 simNode.id = "sim-in-lot-list-node";
                 
+                // If Reagan, add easter egg
+                if (simName == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
+
                 addIndexClickHandler(simNode, "sim-in-lot");
-                GUI_SIMS_IN_LOT_SIMS.appendChild(simNode);
+                GUI_SIMS_IN_LOT_SIMS.append(simNode);
 
                 allCount++;
                 knownCount++;
@@ -1107,7 +1121,7 @@ guiUtils = function() {
         // Add owner header to roommate list
         let ownerHeader = buildListHeader((isTownHall) ? "Mayor": "Owner", "");
         ownerHeader.id = "sim-in-lot-list-node";
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerHeader);
+        GUI_SIMS_IN_LOT_ROOMMATES.append(ownerHeader);
 
         // Add node for owner sim
         let ownerNode = createListNode(selectedLot.ownerLong.name, "");
@@ -1120,7 +1134,7 @@ guiUtils = function() {
 
         // Add click handler and append to list
         if (!isTownHall || townhallObj.mayor_id != null) addIndexClickHandler(ownerNode, "sim-in-lot");
-        GUI_SIMS_IN_LOT_ROOMMATES.appendChild(ownerNode);
+        GUI_SIMS_IN_LOT_ROOMMATES.append(ownerNode);
 
         // Create elements for roommates at lot text
         // Catch for townhalls
@@ -1129,12 +1143,12 @@ guiUtils = function() {
             if (selectedLot.roommateLong.avatars.length > 1) {
 
                 // Add spacing
-                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(createListNode("", ""));
+                GUI_SIMS_IN_LOT_ROOMMATES.append(createListNode("", ""));
     
                 // Create roommate header if roommates exist
                 let roommatesHeader = buildListHeader("Roommates", "");
                 roommatesHeader.id = "sim-in-lot-list-node";
-                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommatesHeader);
+                GUI_SIMS_IN_LOT_ROOMMATES.append(roommatesHeader);
             }
 
             // Compile roommates
@@ -1155,7 +1169,7 @@ guiUtils = function() {
                 if (selectedLot.roommatesShort[i].location == selectedLot.location) roommateNode.children[0].textContent += " (Hosting)";
 
                 // Append roommate node to list
-                GUI_SIMS_IN_LOT_ROOMMATES.appendChild(roommateNode);
+                GUI_SIMS_IN_LOT_ROOMMATES.append(roommateNode);
             }
         }
         
@@ -1173,7 +1187,7 @@ guiUtils = function() {
             // Create node and append to list
             let hiddenNode = createListNode(extraText, "");
             hiddenNode.id = "sim-list-node-static";
-            GUI_SIMS_IN_LOT_SIMS.appendChild(hiddenNode);
+            GUI_SIMS_IN_LOT_SIMS.append(hiddenNode);
         }
     }
 
@@ -1181,7 +1195,7 @@ guiUtils = function() {
 
         // Reset bookmark list, append header
         GUI_BOOKMARK_LIST.innerHTML = "";
-        GUI_BOOKMARK_LIST.appendChild(buildListHeader("Name", "Age"));
+        GUI_BOOKMARK_LIST.append(buildListHeader("Name", "Age"));
     
         // Set sims into online or offline lists
         let onlineSims = new Array();
@@ -1209,7 +1223,7 @@ guiUtils = function() {
             addIndexClickHandler(simNode, "bookmark");
 
             // If Reagan, add easter egg
-            if (sim.name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
+            if (sim.name == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
 
             GUI_BOOKMARK_LIST.append(simNode);
         }
@@ -1229,14 +1243,14 @@ guiUtils = function() {
         let listNode = document.createElement("div");
         listNode.id = "sim-list-node";
 
-        let elementLeft = document.createElement("p");
+        let elementLeft = document.createElement("div");
         elementLeft.textContent = contentLeft;
 
-        let elementRight = document.createElement("p");
+        let elementRight = document.createElement("div");
         elementRight.textContent = contentRight;
 
-        listNode.appendChild(elementLeft);
-        listNode.appendChild(elementRight);
+        listNode.append(elementLeft);
+        listNode.append(elementRight);
         return listNode;
     }
 
@@ -1495,10 +1509,10 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "lot");
-            lotFilterArray.appendChild(button);
+            lotFilterArray.append(button);
         }
         for (let i = 0; i < 12; i++) {
     
@@ -1506,10 +1520,10 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "sim");
-            simFilterArray.appendChild(button);
+            simFilterArray.append(button);
         }
     }
 
@@ -1534,7 +1548,7 @@ filterUtils = function() {
             if (type == "sim") tooltip.textContent = SIM_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
             if (type == "lot") tooltip.textContent = LOT_FILTER_TOOLTIP[Array.from(this.parentElement.children).indexOf(this)];
     
-            this.appendChild(tooltip);
+            this.append(tooltip);
         });
 
         element.addEventListener("mouseout", function(){
@@ -1558,11 +1572,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.2j) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
             }
         }
         else if (type == "sim") {
@@ -1571,11 +1585,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.2j) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
             }
         }
     }
@@ -1596,7 +1610,7 @@ filterUtils = function() {
                 button.classList.remove("lot-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1609,7 +1623,7 @@ filterUtils = function() {
             else {
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.2j) " + -x + "px " + -y + "px";
                 button.classList.add("lot-filter-active");
                 writeFilterToTable("lot", index);
                 simDataHolder.lotFilter = index;
@@ -1624,7 +1638,7 @@ filterUtils = function() {
                 button.classList.remove("sim-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2j) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1637,7 +1651,7 @@ filterUtils = function() {
     
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.2i) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.2j) " + -x + "px " + -y + "px";
                 button.classList.add("sim-filter-active");
                 writeFilterToTable("sim", SIM_FILTER_KEYS[index]);
                 simDataHolder.simFilter = index;
@@ -1820,7 +1834,7 @@ sidebarUtils = function() {
         if (simTime[1] < 10) simTime[1] = "0" + simTime[1];
 
         // Write clock to element
-        SIDEBAR_CLOCK.innerText = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
+        SIDEBAR_CLOCK.firstChild.textContent = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
     }
 
     // Display which jobs are currently active
@@ -1830,14 +1844,14 @@ sidebarUtils = function() {
         let jobsActive = simUtils.returnJobsOpen();
 
         // Set job icon to inactive
-        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 40px 0";
-        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 40px 80px";
-        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 40px 40px";
+        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 40px 0";
+        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 40px 80px";
+        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 40px 40px";
 
         // Set active jobs to active icon
-        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 0 0";
-        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 0 80px";
-        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 0 40px";
+        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 0 0";
+        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 0 80px";
+        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2j) 0 40px";
     }
 
     // Write about info in sidebar info panel 
@@ -2140,7 +2154,7 @@ storageUtils = function() {
         let downloadAnchorNode = document.createElement("a");
         downloadAnchorNode.setAttribute("href", saveString);
         downloadAnchorNode.setAttribute("download", `SimFinder Bookmarks ${dateString}.json`);
-        document.body.appendChild(downloadAnchorNode);
+        document.body.append(downloadAnchorNode);
 
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
