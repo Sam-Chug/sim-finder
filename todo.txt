@@ -16,20 +16,18 @@
     v0.2.3a TODO:
 
     Low Priority TODO:
-        
         - Some functions are still out of place (constant refactor)
             - Move all GUI/writing functions to GUI etc
         - Clean up css (constant refactor)
             - Many scrambled and unused classes
-        - Add background themes for holidays
-            - Should be togglable
-            - Christmas - Snowflakes falling
-            - Maybe just change backgrounds?
-        - Remove (Maybe Hosting) if all sims accounted for
-            - Create possibility tree and figure this out
         - Change "idList" to "simfinder-bookmarks" in localStorage
         - Make easier to use on mobile
             - Layout is very large, could be much smaller
+
+    Shelved Ideas:
+        - Remove (Maybe Hosting) if all sims accounted for
+            - Create possibility tree and figure this out
+            - Since I've removed the privacy state from the sim panel, it might be better to keep it
 
     Paid Feature Ideas:
         - Query mods about paid features
@@ -48,11 +46,12 @@
                 - Last seen online
         
     Rolling Storage TODO:
-        - What to save
-            - Last time online
-            - Location while logged
+        - Save structure
             - Sim ID
-
+            - Time last online
+            - Log locations
+                - In future, can show graph of msot common landing spots
+            
     Side Features:
         - Lot renderer/object finder
         - Music box creator

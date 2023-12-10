@@ -385,7 +385,7 @@ body {
     -webkit-text-fill-color: transparent;
     text-shadow: none;
     font-style: italic;
-    animation: move 3s linear infinite;
+    animation: move 3s infinite steps(55);
 }
 
 .staff-image {
