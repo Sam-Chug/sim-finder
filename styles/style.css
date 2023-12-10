@@ -51,7 +51,7 @@ body {
 }
 
 .container *{
-    /* outline: 10px solid red; */
+    /* outline: 2px solid red; */
 }
 
 .column-1 {
@@ -174,7 +174,7 @@ body {
 #sim-list-node * {
     padding: 0px;
     margin: 3px 10px;
-    max-width: 150px;
+    max-width: 200px;
 }
 
 #sim-list-node:hover {
@@ -287,6 +287,58 @@ body {
 
 .under-tooltip {
     transform: translate(-50%, 50px);
+}
+/* #endregion */
+
+/* #region Clock Bar */
+.clock-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0px 15px;
+
+    height: auto;
+    width: min-content;
+}
+
+.sim-clock {
+    cursor: default;
+    
+    width: 145px;
+    margin: 15px 15px 15px 5px;
+    padding: 4px 12px 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    
+    background-color: var(--inset-bg-dark);
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.job-holder {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.job-active {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 50%;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
 }
 /* #endregion */
 
@@ -986,7 +1038,6 @@ body {
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: flex-start;
     min-width: 200px;
     width: 200px;
     border-radius: 0 40px 40px 0;
@@ -1047,13 +1098,13 @@ body {
     -webkit-animation-fill-mode: both;
 }
 
-.sim-clock {
+.version-text-holder {
     display: none;
     cursor: default;
     
     width: 145px;
-    margin: 10px 15px 15px 15px;
-    padding: 4px 12px;
+    margin: 15px 15px 15px 15px;
+    padding: 4px 12px 4px 12px;
 
     font-size: 1.5em;
     text-align: center;
@@ -1108,6 +1159,7 @@ body {
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    margin-bottom: 18px;
     transform-origin: 14px 13px;
 }
 
@@ -1126,26 +1178,38 @@ body {
     background: url(../images/buttons/expand-arrow.png?v0.2.2i) 30px 0px;
 }
 
-.job-holder {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    margin-top: 3px;
-    margin-bottom: 15px;
+@keyframes rotate180 {
+    0% {rotate: 0deg;}
+    100% {rotate: 180deg;}
 }
 
-.job-active {
-    display: none;
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    margin-top: -5px;
-    border-radius: 50%;
+@keyframes rotate180Reverse {
+    0% {rotate: 180deg;}
+    100% {rotate: 0deg;}
+}
 
-    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
-                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
-                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+@keyframes sidebarExpand {
+    0% {}
+    100% {translate: 145px 0;}
+}
+
+@keyframes sidebarRetract {
+    0% {translate: 145px 0}
+    100% {}
+}
+
+@keyframes sidebarHolderSizeExpand {
+    0% {width: 200px;
+        height: 63px;}
+    50% {height: 169px;}
+    100% {width: 345px;}
+}
+
+@keyframes sidebarHolderSizeRetract {
+    0% {width: 345px;
+        height: 169px;}
+    50% {height: 63px;}
+    100% {width: 200px;}
 }
 /* #endregion */
 
@@ -1346,39 +1410,5 @@ body {
 @keyframes fadeIn {
     0% {opacity: 0;}
     100% {opacity: 1;}
-}
-
-@keyframes rotate180 {
-    0% {rotate: 0deg;}
-    100% {rotate: 180deg;}
-}
-
-@keyframes rotate180Reverse {
-    0% {rotate: 180deg;}
-    100% {rotate: 0deg;}
-}
-
-@keyframes sidebarExpand {
-    0% {}
-    100% {translate: 145px 0;}
-}
-
-@keyframes sidebarRetract {
-    0% {translate: 145px 0}
-    100% {}
-}
-
-@keyframes sidebarHolderSizeExpand {
-    0% {width: 200px;
-        height: 63px;}
-    50% {height: 169px;}
-    100% {width: 345px;}
-}
-
-@keyframes sidebarHolderSizeRetract {
-    0% {width: 345px;
-        height: 169px;}
-    50% {height: 63px;}
-    100% {width: 200px;}
 }
 /* #endregion */

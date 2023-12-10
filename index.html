@@ -77,20 +77,10 @@
                         </button>
                     </div>
 
-                    <!-- clock -->
-                    <div id="sim-clock" class="clock-text sim-clock sidebar-hide"></div>
-
-                    <!-- jobs active -->
-                    <div class="job-holder">
-                        <div title="Robot Factory" id="job-robot" class="job-active sidebar-hide"></div>
-                        <div title="Diner" id="job-diner" class="job-active sidebar-hide"></div>
-                        <div title="Club - DJ/Dancer" id="job-club" class="job-active sidebar-hide"></div>
-                    </div>
-
                     <!-- version/info -->
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <p class="sidebar-outset-title sidebar-hide" style="margin-top: 100px;">Info</p>
-                        <p id="sidebar-site-info" class="sim-clock sidebar-hide" style="font-size: 1em; margin-top: 0px; text-align: left; white-space: pre-wrap;"></p>
+                        <p class="sidebar-outset-title sidebar-hide" style="margin-top: 0px;">Info</p>
+                        <p id="sidebar-site-info" class="version-text-holder sidebar-hide" style="font-size: 1em; margin-top: 0px; text-align: left; white-space: pre-wrap;"></p>
                     </div>
 
                 </div>
@@ -240,6 +230,21 @@
 
             <!-- everything else -->
             <div class=column-3>
+
+                <!-- clock/jobs -->
+                <div class="clock-bar-container block-background">
+
+                    <!-- clock -->
+                    <div id="sim-clock" class="clock-text sim-clock"></div>
+
+                    <!-- jobs active -->
+                    <div class="job-holder">
+                        <div title="Robot Factory" id="job-robot" class="job-active"></div>
+                        <div title="Diner" id="job-diner" class="job-active"></div>
+                        <div title="Club - DJ/Dancer" id="job-club" class="job-active"></div>
+                    </div>
+
+                </div>
 
                 <!-- sim view -->
                 <div id="sim-viewer" class="div-sim-view block-background" style="display: none">

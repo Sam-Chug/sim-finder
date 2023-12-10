@@ -1803,7 +1803,8 @@ sidebarUtils = function() {
 
         // Get sim time
         const simTime = simUtils.returnSimTime();
-        
+        let hasColon = SIDEBAR_CLOCK.textContent.includes(":");
+
         // Format to 12 hour clock
         let timeDenom = "AM";
         if (simTime[0] >= 12) {
@@ -1811,16 +1812,11 @@ sidebarUtils = function() {
             timeDenom = "PM";
             simTime[0] %= 12;
         }
-        if (simTime[0] == 0) {
-
-            simTime[0] = 12;
-        }
-        if (simTime[1] < 10) {
-            simTime[1] = "0" + simTime[1];
-        }
+        if (simTime[0] == 0) simTime[0] = 12;
+        if (simTime[1] < 10) simTime[1] = "0" + simTime[1];
 
         // Write clock to element
-        SIDEBAR_CLOCK.textContent = simTime[0] + ":" + simTime[1] + " " + timeDenom;
+        SIDEBAR_CLOCK.textContent = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
     }
 
     // Display which jobs are currently active

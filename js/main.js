@@ -99,6 +99,7 @@ simFinderMain = function() {
         domUtils.sizeLists();
 
         // Start sidebar update
+        sidebarUtils.updateSidebar();
         setInterval(sidebarUtils.updateSidebar, 1000);
         sidebarUtils.writeSidebarInfo();
     }
