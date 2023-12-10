@@ -223,6 +223,8 @@ const LOT_FILTER_TOOLTIP = [
 //#endregion
 
 //#region Misc
+const MAX_STYLES = 10; // Maximum styles to loop through
+
 const STORAGE_KEY = "idList"; //simfinder-id-list
 const STORAGE_KEY_OLD = "idList";
 

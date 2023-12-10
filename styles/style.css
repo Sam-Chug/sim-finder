@@ -388,6 +388,13 @@ body {
     animation: move 3s linear infinite;
 }
 
+.staff-image {
+    z-index: 3;
+    border-radius: 100%;
+    box-shadow: -1px -1px 5px 5px rgb(255, 43, 43, 0.75),
+                1px 1px 5px 5px rgba(255, 43, 43, 0.75) inset;
+}
+
 .reagan-image {
     z-index: 3;
     animation: 3s pulse infinite;

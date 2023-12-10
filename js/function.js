@@ -191,7 +191,6 @@ simUtils = function() {
     //#endregion
 
     //#region Lot/Sim cache
-
     // TODO: combine these two functions?
     // Check if sim is in offline long cache
     function checkIfSimInLongCache(simName) {
@@ -574,9 +573,8 @@ eggUtils = function() {
 
         GUI_SIM_LABEL.classList.add("label-gold");
         GUI_SIM_VIEW.classList.add("block-gold");
-
+        
         GUI_SIM_THUMBNAIL.classList.add("reagan-image");
-        GUI_SIM_THUMBNAIL.src = CUSTOM_STYLE_SIMHEADS.reagan;
 
         GUI_SIM_BIO.classList.add("inset-gold");
         GUI_SIM_DESCRIPTION.classList.add("inset-gold");
@@ -626,9 +624,12 @@ eggUtils = function() {
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
-        if (!styleObj.usesStyle) return;
 
-        // Set styles
+        // Set head
+        GUI_SIM_THUMBNAIL.src = styleObj.avatarHead;
+        if (styleObj.isStaff) GUI_SIM_THUMBNAIL.classList.add("staff-image");
+
+        if (!styleObj.usesStyle) return;
         if (styleObj.styles.block != "") GUI_SIM_VIEW.classList.add(styleObj.styles.block);
         if (styleObj.styles.bookmarkLabel != "") GUI_BOOKMARK_LABEL.classList.add(styleObj.styles.bookmarkLabel);
         if (styleObj.styles.label != "") GUI_SIM_LABEL.classList.add(styleObj.styles.label);
@@ -813,10 +814,6 @@ guiUtils = function() {
 
         writeToLabel(returnSimTitle(selectedSimLong), "", "sim-title");
         simDataHolder.selSimID = selectedSimLong.avatar_id;
-
-        // Set head graphic
-        let headStyle = new StyleObject(selectedSimLong);
-        GUI_SIM_THUMBNAIL.src = headStyle.avatarHead;
 
         // Handle custom styles
         eggUtils.handleCustomSimStyles(selectedSimLong);
