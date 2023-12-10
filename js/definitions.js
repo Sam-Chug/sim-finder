@@ -374,6 +374,10 @@ const CUSTOM_STYLE_BLOCK = {
     bg: {
         cssClass: `block-darkgreen`,
         bookmarkLabelClass: `bookmark-green`
+    },
+    bcc: {
+        cssClass: `block-candy-cane`,
+        bookmarkLabelClass: `bookmark-candy-cane`
     }
 };
 

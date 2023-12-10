@@ -5,17 +5,15 @@
         - Offline sim data now cached on first fetch instead of being fetched every time a single offline sim is revisited
         - Fixed townhall mayors not being listed
         - New custom style key for random styles
+        - New candy cane block style for december
         - Moved sims clock and active jobs to new panel
+        - Head decoration for known staff sims
 
     Bugs:
         - Sim dates still slightly incorrect
             - Possibly timezone related
         
     v0.2.3a TODO:
-        - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
-            - Figure out which head to use
-                - Raccoon?
-            - Admin halo
 
     Low Priority TODO:
         
