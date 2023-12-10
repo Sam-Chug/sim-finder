@@ -5,21 +5,19 @@
         - Offline sim data now cached on first fetch instead of being fetched every time a single offline sim is revisited
         - Fixed townhall mayors not being listed
         - New custom style key for random styles
+        - Moved sims clock and active jobs to new panel
 
     Bugs:
         - Sim dates still slightly incorrect
             - Possibly timezone related
         
     v0.2.3a TODO:
-        - Analytics tag for sim ID's viewed?
+        - Fix DOM element leak
+
+    Low Priority TODO:
         - Special sim-head for mod accounts (M.O.M.I, D.A.D.D.I, etc)
             - Figure out which head to use
                 - Raccoon?
-        - Recreate sidebar as bar on top of page
-            - Sidebar can remain as a sim finder info panel
-                - Contains updates
-
-    Low Priority TODO:
         - Some functions are still out of place (constant refactor)
             - Move all GUI/writing functions to GUI etc
         - Clean up css (constant refactor)

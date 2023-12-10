@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Sim Finder</title>
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico?v0.2.2h">
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico?v0.2.2i">
 
         <meta name="description" content="Sim Dashboard For FreeSO">
         <meta name="keywords" content="sim finder, freeso, the sims online">
@@ -27,20 +27,20 @@
         <meta property="og:title" content="Sim Finder" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sam-chug.github.io/sim-finder/" />
-        <meta property="og:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.2h" />
+        <meta property="og:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.2i" />
         <meta property="og:description" content="Sim Dashboard For FreeSO" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://sam-chug.github.io/sim-finder/" />
         <meta property="twitter:title" content="Sim Finder" />
         <meta property="twitter:description" content="Sim Dashboard For FreeSO" />
-        <meta property="twitter:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.2h" />
+        <meta property="twitter:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.2i" />
 
-        <link href="styles/style.css?v0.2.2h" rel="stylesheet"/>
-        <script defer src="./js/definitions.js?v0.2.2h"></script>
-        <script defer src="./js/finder-class.js?v0.2.2h"></script>
-        <script defer src="./js/function.js?v0.2.2h"></script>
-        <script defer src="./js/main.js?v0.2.2h"></script>
+        <link href="styles/style.css?v0.2.2i" rel="stylesheet"/>
+        <script defer src="./js/definitions.js?v0.2.2i"></script>
+        <script defer src="./js/finder-class.js?v0.2.2i"></script>
+        <script defer src="./js/function.js?v0.2.2i"></script>
+        <script defer src="./js/main.js?v0.2.2i"></script>
 
     </head>
     <body class="scrollbar" onresize="domUtils.sizeLists()">
@@ -71,26 +71,15 @@
 
                     <!-- expand -->
                     <div class="expand-sidebar">
-
                         <button title="Expand Sidebar" id="sidebar-button" class="expand-sidebar-button" onclick="sidebarUtils.expandSidebar()">
                             <div class="expand-sidebar-image"></div>
                         </button>
                     </div>
 
-                    <!-- clock -->
-                    <div id="sim-clock" class="clock-text sim-clock sidebar-hide"></div>
-
-                    <!-- jobs active -->
-                    <div class="job-holder">
-                        <div title="Robot Factory" id="job-robot" class="job-active sidebar-hide"></div>
-                        <div title="Diner" id="job-diner" class="job-active sidebar-hide"></div>
-                        <div title="Club - DJ/Dancer" id="job-club" class="job-active sidebar-hide"></div>
-                    </div>
-
                     <!-- version/info -->
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <p class="sidebar-outset-title sidebar-hide" style="margin-top: 100px;">Info</p>
-                        <p id="sidebar-site-info" class="sim-clock sidebar-hide" style="font-size: 1em; margin-top: 0px; text-align: left; white-space: pre-wrap;"></p>
+                        <p class="sidebar-outset-title sidebar-hide" style="margin-top: -5px;">Info</p>
+                        <p id="sidebar-site-info" class="version-text-holder sidebar-hide" style="font-size: 1em; margin-top: 0px; text-align: left; white-space: pre-wrap;"></p>
                     </div>
 
                 </div>
@@ -241,6 +230,21 @@
             <!-- everything else -->
             <div class=column-3>
 
+                <!-- clock/jobs -->
+                <div class="clock-bar-container block-background">
+
+                    <!-- clock -->
+                    <div id="sim-clock" class="clock-text sim-clock"></div>
+
+                    <!-- jobs active -->
+                    <div class="job-holder">
+                        <div title="Robot Factory" id="job-robot" class="job-active"></div>
+                        <div title="Diner" id="job-diner" class="job-active"></div>
+                        <div title="Club - DJ/Dancer" id="job-club" class="job-active"></div>
+                    </div>
+
+                </div>
+
                 <!-- sim view -->
                 <div id="sim-viewer" class="div-sim-view block-background" style="display: none">
                     
@@ -265,7 +269,7 @@
                         <div class="div-sim-thumbnail">
 
                             <div id="sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
-                            <img id="sim-thumbnail-image" src="./images/sim-faces/simface-f.png?v0.2.2h" alt="No sim image found">
+                            <img id="sim-thumbnail-image" src="./images/sim-faces/simface-f.png?v0.2.2i" alt="No sim image found">
 
                             <!-- TODO: apply custom style to bookmark label -->
                             <input type="checkbox" id="bookmark-checkbox" class="bookmark-checkbox" name="bookmark" onclick="storageUtils.handleBookmarkCheck()">
@@ -296,7 +300,7 @@
     
                             <!-- lot picture -->
                             <div id="lot-thumbnail-bg" class="thumbnail-holder"></div>
-                            <img id="lot-thumbnail-image" src="./images/unknown.png?v0.2.2h" alt="No lot image found">
+                            <img id="lot-thumbnail-image" src="./images/unknown.png?v0.2.2i" alt="No lot image found">
     
                         </div>
                     </div>
@@ -333,9 +337,9 @@
                     <!-- title -->
                     <div class="div-market-watch-title">
 
-                        <img src="./images/buttons/market-watch-graphic.png?v0.2.2h" alt="">
+                        <img src="./images/buttons/market-watch-graphic.png?v0.2.2i" alt="">
                         <p class="outset-title" style="min-width: fit-content">FreeSO Market Analysis</p>
-                        <img src="./images/buttons/market-watch-graphic.png?v0.2.2h" alt="">
+                        <img src="./images/buttons/market-watch-graphic.png?v0.2.2i" alt="">
 
                     </div>
 

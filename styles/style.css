@@ -51,7 +51,7 @@ body {
 }
 
 .container *{
-    /* outline: 10px solid red; */
+    /* outline: 2px solid red; */
 }
 
 .column-1 {
@@ -174,6 +174,7 @@ body {
 #sim-list-node * {
     padding: 0px;
     margin: 3px 10px;
+    max-width: 200px;
 }
 
 #sim-list-node:hover {
@@ -289,6 +290,58 @@ body {
 }
 /* #endregion */
 
+/* #region Clock Bar */
+.clock-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0px 15px;
+
+    height: auto;
+    width: min-content;
+}
+
+.sim-clock {
+    cursor: default;
+    
+    width: 145px;
+    margin: 15px 5px 15px 0px;
+    padding: 4px 12px 4px 12px;
+
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    border-radius: 25px;
+    
+    background-color: var(--inset-bg-dark);
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.job-holder {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.job-active {
+    width: 40px;
+    height: 40px;
+    margin: 5px 0px 5px 10px;
+    border-radius: 50%;
+
+    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
+                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
+                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+}
+/* #endregion */
+
 /* #region Min/Maximize Filters */
 .min-max-button {
     border-radius: 50%;
@@ -300,27 +353,27 @@ body {
 }
 
 .window-minable {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 0 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 0 0;
 }
 
 .window-minable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 82px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 82px 0;
 }
 
 .window-minable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 41px 0;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 41px 0;
 }
 
 .window-maxable {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 0 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 0 41px;
 }
 
 .window-maxable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 82px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 82px 41px;
 }
 
 .window-maxable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.2h) 41px 41px;
+    background: url(../images/buttons/min-window-button.png?v0.2.2i) 41px 41px;
 }
 /* #endregion */
 
@@ -346,7 +399,7 @@ body {
 .label-gold {
     color: rgba(0, 0, 0, 0.55);
     text-shadow: -1px -1px rgba(0, 0, 0, 0.35);
-    background: url(../images/panel/gold-texture.png?v0.2.2h), #d4af37;
+    background: url(../images/panel/gold-texture.png?v0.2.2i), #d4af37;
     font-style: italic;
     box-shadow: -2px -3px 2px 2px rgba(0, 0, 0, 0.5) inset,
                 2px 3px 2px 2px rgba(255, 255, 255, 0.8) inset,
@@ -354,7 +407,7 @@ body {
 }
 
 .block-gold {
-    background-image: url(../images/panel/gold-texture.png?v0.2.2h), linear-gradient(90deg, #d4af37, #aa8714);
+    background-image: url(../images/panel/gold-texture.png?v0.2.2i), linear-gradient(90deg, #d4af37, #aa8714);
     box-shadow: -3px -3px 4px 3px rgba(0, 0, 0, 0.35) inset,
                 6px 6px 6px 4px rgba(255, 255, 255, 0.8) inset;
 }
@@ -665,9 +718,10 @@ body {
     align-self: center;
     min-width: 350px;
     width: fit-content;
-    padding: 0px 15px 9px 15px;
-    margin: 12px;
+    padding: 0px 0px 9px 0px;
+    margin: 12px 12px 12px 6px;
     max-height: 36px;
+    width: 400px;
 }
 
 .thumb-1-2 {
@@ -712,9 +766,9 @@ body {
 
     border: 8px solid var(--bg-thumbnail-border);
     border-radius: 50%;
-    padding: 0 180px;
     
-    min-height: 220px;
+    height: 220px;
+    width: 400px;
 }
 
 .thumbnail-offline {
@@ -895,15 +949,15 @@ body {
 
     width: 40px;
     height: 40px;
-    background: url(../images/buttons/question-button.png?v0.2.2h) 0px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.2i) 0px 0px;
 }
 
 .buttom-sim-help-image:hover {
-    background: url(../images/buttons/question-button.png?v0.2.2h) 80px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.2i) 80px 0px;
 }
 
 .buttom-sim-help-image:active {
-    background: url(../images/buttons/question-button.png?v0.2.2h) 40px 0px;
+    background: url(../images/buttons/question-button.png?v0.2.2i) 40px 0px;
 }
 /* #endregion */
 
@@ -985,7 +1039,6 @@ body {
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: flex-start;
     min-width: 200px;
     width: 200px;
     border-radius: 0 40px 40px 0;
@@ -1046,13 +1099,13 @@ body {
     -webkit-animation-fill-mode: both;
 }
 
-.sim-clock {
+.version-text-holder {
     display: none;
     cursor: default;
     
     width: 145px;
-    margin: 10px 15px 15px 15px;
-    padding: 4px 12px;
+    margin: 15px 15px 15px 15px;
+    padding: 4px 12px 4px 12px;
 
     font-size: 1.5em;
     text-align: center;
@@ -1107,44 +1160,57 @@ body {
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    margin-bottom: 18px;
     transform-origin: 14px 13px;
 }
 
 .expand-sidebar-image {
     transform: translate(-8px, -3px);
-    background: url(../images/buttons/expand-arrow.png?v0.2.2h) 0px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.2i) 0px 0px;
     width: 30px;
     height: 30px;
 }
 
 .expand-sidebar-image:hover {
-    background: url(../images/buttons/expand-arrow.png?v0.2.2h) 60px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.2i) 60px 0px;
 }
 
 .expand-sidebar-image:active {
-    background: url(../images/buttons/expand-arrow.png?v0.2.2h) 30px 0px;
+    background: url(../images/buttons/expand-arrow.png?v0.2.2i) 30px 0px;
 }
 
-.job-holder {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    margin-top: 3px;
-    margin-bottom: 15px;
+@keyframes rotate180 {
+    0% {rotate: 0deg;}
+    100% {rotate: 180deg;}
 }
 
-.job-active {
-    display: none;
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    margin-top: -5px;
-    border-radius: 50%;
+@keyframes rotate180Reverse {
+    0% {rotate: 180deg;}
+    100% {rotate: 0deg;}
+}
 
-    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
-                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
-                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
+@keyframes sidebarExpand {
+    0% {}
+    100% {translate: 145px 0;}
+}
+
+@keyframes sidebarRetract {
+    0% {translate: 145px 0}
+    100% {}
+}
+
+@keyframes sidebarHolderSizeExpand {
+    0% {width: 200px;
+        height: 63px;}
+    50% {height: 169px;}
+    100% {width: 345px;}
+}
+
+@keyframes sidebarHolderSizeRetract {
+    0% {width: 345px;
+        height: 169px;}
+    50% {height: 63px;}
+    100% {width: 200px;}
 }
 /* #endregion */
 
@@ -1199,7 +1265,7 @@ body {
 
 .search-button {
     border-radius: 50%;
-    background: url(../images/buttons/search-button.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/search-button.png?v0.2.2i) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1209,11 +1275,11 @@ body {
 }
 
 .search-button:hover {
-    background: url(../images/buttons/search-button-hover.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/search-button-hover.png?v0.2.2i) no-repeat;
 }
 
 .search-button:active {
-    background: url(../images/buttons/search-button-click.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/search-button-click.png?v0.2.2i) no-repeat;
 }
 /* #endregion */
 
@@ -1228,7 +1294,7 @@ body {
     position: relative;
     top: 20px;
     border-radius: 50%;
-    background: url(../images/buttons/name-sort.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/name-sort.png?v0.2.2i) no-repeat;
     height: 41px;
     width: 41px;
     border: none;
@@ -1238,11 +1304,11 @@ body {
 }
 
 .sort-button:hover {
-    background: url(../images/buttons/name-sort-hover.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/name-sort-hover.png?v0.2.2i) no-repeat;
 }
 
 .sort-button:active {
-    background: url(../images/buttons/name-sort-selected.png?v0.2.2h) no-repeat;
+    background: url(../images/buttons/name-sort-selected.png?v0.2.2i) no-repeat;
 }
 /* #endregion */
 
@@ -1265,7 +1331,7 @@ body {
 }
 
 .export-arrow {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 0px 0px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 0px 0px;
     width: 41px;
     height: 42px;
     margin-top: 9px;
@@ -1278,15 +1344,15 @@ body {
 }
 
 .export-arrow:hover {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 0px 84px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 0px 84px;
 }
 
 .export-arrow:active {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 0px 42px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 0px 42px;
 }
 
 .import-arrow {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 41px 0px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 41px 0px;
     width: 41px;
     height: 42px;
     margin-top: 9px;
@@ -1299,11 +1365,11 @@ body {
 }
 
 .import-arrow:hover {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 41px 84px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 41px 84px;
 }
 
 .import-arrow:active {
-    background: url(../images/buttons/export-arrow.png?v0.2.2h) 41px 42px;
+    background: url(../images/buttons/export-arrow.png?v0.2.2i) 41px 42px;
 }
 /* #endregion */
 
@@ -1345,39 +1411,5 @@ body {
 @keyframes fadeIn {
     0% {opacity: 0;}
     100% {opacity: 1;}
-}
-
-@keyframes rotate180 {
-    0% {rotate: 0deg;}
-    100% {rotate: 180deg;}
-}
-
-@keyframes rotate180Reverse {
-    0% {rotate: 180deg;}
-    100% {rotate: 0deg;}
-}
-
-@keyframes sidebarExpand {
-    0% {}
-    100% {translate: 145px 0;}
-}
-
-@keyframes sidebarRetract {
-    0% {translate: 145px 0}
-    100% {}
-}
-
-@keyframes sidebarHolderSizeExpand {
-    0% {width: 200px;
-        height: 63px;}
-    50% {height: 169px;}
-    100% {width: 345px;}
-}
-
-@keyframes sidebarHolderSizeRetract {
-    0% {width: 345px;
-        height: 169px;}
-    50% {height: 63px;}
-    100% {width: 200px;}
 }
 /* #endregion */

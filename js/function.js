@@ -271,7 +271,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.simLongList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2h)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2i)`;
                 simDataHolder.simSort = "name";
             }
             else if (simDataHolder.simSort == "name") {
@@ -279,7 +279,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
                 simDataHolder.simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2h)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2i)`;
                 simDataHolder.simSort = "age";
             }
             let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_FILTER_KEYS[simDataHolder.simFilter];
@@ -293,7 +293,7 @@ simUtils = function() {
                 simDataHolder.lotShortList.lots.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.lotLongList.lots.sort((a, b) => a.name.localeCompare(b.name));
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2h)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.2i)`;
                 simDataHolder.lotSort = "name";
             }
             else if (simDataHolder.lotSort == "name") {
@@ -301,7 +301,7 @@ simUtils = function() {
                 simDataHolder.lotLongList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
                 simDataHolder.lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2h)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.2i)`;
                 simDataHolder.lotSort = "pop";
             }
             filterUtils.writeFilterToTable("lot", simDataHolder.lotFilter);
@@ -358,12 +358,12 @@ domUtils = function() {
         var height = Math.max(windowHeight - (GUI_SEARCH_SIM_PANEL.offsetHeight + GUI_FILTER_SIM_PANEL.offsetHeight) - 145, 416);
         height = Math.min(height, 1016);
         var heightPX = height + "px";
-        GUI_ONLINESIMS.style.maxHeight = heightPX;
+        document.getElementById('sims-table').style.maxHeight = heightPX;
 
         var height = Math.max((windowHeight - (GUI_SEARCH_LOT_PANEL.offsetHeight + GUI_FILTER_LOT_PANEL.offsetHeight) - 261) / 2, 150);
         height = Math.min(height, 450);
         var heightPX = height + "px";
-        GUI_ONLINELOTS.style.maxHeight = heightPX;
+        document.getElementById('lots-table').style.maxHeight = heightPX;
         GUI_BOOKMARK_LIST.style.maxHeight = heightPX;
     }
 
@@ -405,31 +405,32 @@ domUtils = function() {
 
     function siteColorMode(state) {
 
+        let domRoot = document.querySelector(':root');
         if (state == "lightmode") {
 
-            DOM_ROOT.style.setProperty("--bg-fallback", "#7ca1bf");
+            domRoot.style.setProperty("--bg-fallback", "#7ca1bf");
 
-            DOM_ROOT.style.setProperty("--inset-bg", "#32455b");
-            DOM_ROOT.style.setProperty("--inset-bg-dark", "#2f4158");
-            DOM_ROOT.style.setProperty("--block-gradient-light", "#96bad0");
-            DOM_ROOT.style.setProperty("--block-gradient-dark", "#5f88af");
-            DOM_ROOT.style.setProperty("--outset-title-bg", "#5077a3");
+            domRoot.style.setProperty("--inset-bg", "#32455b");
+            domRoot.style.setProperty("--inset-bg-dark", "#2f4158");
+            domRoot.style.setProperty("--block-gradient-light", "#96bad0");
+            domRoot.style.setProperty("--block-gradient-dark", "#5f88af");
+            domRoot.style.setProperty("--outset-title-bg", "#5077a3");
 
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-light", "#5f88af");
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-dark", "#476a8d");
+            domRoot.style.setProperty("--bg-dark-gradient-light", "#5f88af");
+            domRoot.style.setProperty("--bg-dark-gradient-dark", "#476a8d");
         }
         else if (state == "darkmode") {
 
-            DOM_ROOT.style.setProperty("--bg-fallback", "#7c7c7c");
+            domRoot.style.setProperty("--bg-fallback", "#7c7c7c");
 
-            DOM_ROOT.style.setProperty("--inset-bg", "#222222");
-            DOM_ROOT.style.setProperty("--inset-bg-dark", "#111111");
-            DOM_ROOT.style.setProperty("--block-gradient-light", "#444444");
-            DOM_ROOT.style.setProperty("--block-gradient-dark", "#333333");
-            DOM_ROOT.style.setProperty("--outset-title-bg", "#555555");
+            domRoot.style.setProperty("--inset-bg", "#222222");
+            domRoot.style.setProperty("--inset-bg-dark", "#111111");
+            domRoot.style.setProperty("--block-gradient-light", "#444444");
+            domRoot.style.setProperty("--block-gradient-dark", "#333333");
+            domRoot.style.setProperty("--outset-title-bg", "#555555");
 
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-light", "#222222");
-            DOM_ROOT.style.setProperty("--bg-dark-gradient-dark", "#111111");
+            domRoot.style.setProperty("--bg-dark-gradient-light", "#222222");
+            domRoot.style.setProperty("--bg-dark-gradient-dark", "#111111");
         }
     }
 
@@ -667,7 +668,7 @@ guiUtils = function() {
 
                 // If sim is online, grab short data
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
-                apiUtils.sendEntityAnalytics("sim", selectedSimShort.name, selectedSimShort.avatar_id);
+                apiUtils.sendSimEntityAnalytics(selectedSimShort.name, selectedSimShort.avatar_id);
             }
             else {
 
@@ -676,7 +677,7 @@ guiUtils = function() {
 
                     // If sim not in long cache, fetch from API and add to cache
                     selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
-                    apiUtils.sendEntityAnalytics("sim", selectedSimLong.name, selectedSimLong.avatar_id);
+                    apiUtils.sendSimEntityAnalytics(selectedSimLong.name, selectedSimLong.avatar_id);
                     simDataHolder.offlineLongSimList.push(selectedSimLong);
                 }
                 else {
@@ -719,6 +720,7 @@ guiUtils = function() {
             // Write lot data
             writeLotThumbnail(selectedLotShort, selectedLotLong, "");
             writeSimsInLot(selectedLotLong, selectedLotShort.avatars_in_lot);
+            apiUtils.sendLotEntityAnalytics(selectedLotShort.name, selectedLotShort.lot_id);
         }
         return;
     }
@@ -855,11 +857,14 @@ guiUtils = function() {
         // Lot label
         writeToLabel(returnLotTitle(selectedLotLong), "", "thumbnail-title");
 
-        // Reset description, get thumbnail from API
+        // Grab lot thumbnail from API
+        let cacheBust = Math.floor(Math.random() * 10000000);
+        let imageSource = `https://api.freeso.org/userapi/city/1/${selectedLotLong.location}.png?cachebust:${cacheBust}`;
+        console.log("%cFetching Lot Image:\n\n", "color: black; background-color: lightgreen;", imageSource);
+
+        // Set image
         GUI_LOT_DESCRIPTION.textContent = "";
-        let randomCacheBust = Math.floor(Math.random() * 10000000);
-        GUI_LOT_THUMBNAIL.src = "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`;
-        console.log("%cFetching Lot Image:\n\n", "color: black; background-color: lightgreen;", "https://api.freeso.org/userapi/city/1/" + selectedLotLong.location + `.png?cachebust:${randomCacheBust}`);
+        GUI_LOT_THUMBNAIL.src = imageSource;
         simDataHolder.apiStats.incrementAPICalls();
 
         // Create lot bio elements
@@ -889,7 +894,7 @@ guiUtils = function() {
     function writeAbsentLotThumbnail(existence, selectedSimLong) {
 
         // Set lot image to unknown
-        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.2h";
+        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.2i";
         eggUtils.resetLotThumbnailStyles();
 
         // Get lot description and label
@@ -973,8 +978,9 @@ guiUtils = function() {
 
     function populateSimList(simList) {
 
-        GUI_ONLINESIMS.innerHTML = "";
-        GUI_ONLINESIMS.appendChild(buildListHeader("Name", "Age"));
+        let simListContainer = document.getElementById('sims-table');
+        simListContainer.textContent = "";
+        simListContainer.appendChild(buildListHeader("Name", "Age"));
 
         for (let i = 0; i < simList.length; i++) {
 
@@ -984,20 +990,21 @@ guiUtils = function() {
             // If Reagan, add easter egg
             if (simList[i].name == "Reaganomics Lamborghini") simNode.children[0].classList.add("rainbow-text");
 
-            GUI_ONLINESIMS.appendChild(simNode);
+            simListContainer.appendChild(simNode);
         }
     }
 
     function populateLotList(lotList) {
 
-        GUI_ONLINELOTS.textContent = "";
-        GUI_ONLINELOTS.appendChild(buildListHeader("Name", "Population"));
+        let lotListContainer = document.getElementById('lots-table');
+        lotListContainer.textContent = "";
+        lotListContainer.appendChild(buildListHeader("Name", "Population"));
         
         for (i = 0; i < lotList.length; i++) {
         
             let lotNode = createListNode(returnLotTitle(lotList[i]), lotList[i].avatars_in_lot + " sims");
             addIndexClickHandler(lotNode, "lot");
-            GUI_ONLINELOTS.appendChild(lotNode);
+            lotListContainer.appendChild(lotNode);
         }
     }
 
@@ -1488,7 +1495,7 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2h) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "lot");
             lotFilterArray.appendChild(button);
@@ -1499,7 +1506,7 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2h) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "sim");
             simFilterArray.appendChild(button);
@@ -1551,11 +1558,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.2i) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
             }
         }
         else if (type == "sim") {
@@ -1564,11 +1571,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.2i) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
             }
         }
     }
@@ -1589,7 +1596,7 @@ filterUtils = function() {
                 button.classList.remove("lot-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1602,7 +1609,7 @@ filterUtils = function() {
             else {
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.2i) " + -x + "px " + -y + "px";
                 button.classList.add("lot-filter-active");
                 writeFilterToTable("lot", index);
                 simDataHolder.lotFilter = index;
@@ -1617,7 +1624,7 @@ filterUtils = function() {
                 button.classList.remove("sim-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.2i) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1630,7 +1637,7 @@ filterUtils = function() {
     
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.2h) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.2i) " + -x + "px " + -y + "px";
                 button.classList.add("sim-filter-active");
                 writeFilterToTable("sim", SIM_FILTER_KEYS[index]);
                 simDataHolder.simFilter = index;
@@ -1676,7 +1683,7 @@ searchUtils = function() {
             }
 
             // Push to cache
-            apiUtils.sendEntityAnalytics("sim", simLong.name, simLong.avatar_id);
+            apiUtils.sendSimEntityAnalytics(simLong.name, simLong.avatar_id);
             simDataHolder.offlineLongSimList.push(simLong);
         }
         else {
@@ -1716,7 +1723,7 @@ searchUtils = function() {
             }
 
             // Push to cache
-            apiUtils.sendEntityAnalytics("lot", lotLong.name, lotLong.lot_id);
+            apiUtils.sendLotEntityAnalytics(lotLong.name, lotLong.lot_id);
             simDataHolder.offlineLongLotList.push(lotLong);
         }
         else {
@@ -1798,26 +1805,22 @@ sidebarUtils = function() {
     // Format to sim-time and write to clock
     function writeSimClock() {
 
-        // Get sim time
-        const simTime = simUtils.returnSimTime();
-        
-        // Format to 12 hour clock
+        // Animate colon
+        let hasColon = SIDEBAR_CLOCK.innerText.includes(":");
+
+        // Get sim time, format to 12 hour clock
+        let simTime = simUtils.returnSimTime();
         let timeDenom = "AM";
         if (simTime[0] >= 12) {
 
             timeDenom = "PM";
             simTime[0] %= 12;
         }
-        if (simTime[0] == 0) {
-
-            simTime[0] = 12;
-        }
-        if (simTime[1] < 10) {
-            simTime[1] = "0" + simTime[1];
-        }
+        if (simTime[0] == 0) simTime[0] = 12;
+        if (simTime[1] < 10) simTime[1] = "0" + simTime[1];
 
         // Write clock to element
-        SIDEBAR_CLOCK.textContent = simTime[0] + ":" + simTime[1] + " " + timeDenom;
+        SIDEBAR_CLOCK.innerText = `${simTime[0]}${((hasColon) ? " " : ":")}${simTime[1]} ${timeDenom}`;
     }
 
     // Display which jobs are currently active
@@ -1827,14 +1830,14 @@ sidebarUtils = function() {
         let jobsActive = simUtils.returnJobsOpen();
 
         // Set job icon to inactive
-        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2h) 40px 0";
-        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2h) 40px 80px";
-        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2h) 40px 40px";
+        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 40px 0";
+        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 40px 80px";
+        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 40px 40px";
 
         // Set active jobs to active icon
-        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2h) 0 0";
-        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2h) 0 80px";
-        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2h) 0 40px";
+        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 0 0";
+        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 0 80px";
+        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.2i) 0 40px";
     }
 
     // Write about info in sidebar info panel 
@@ -1925,21 +1928,28 @@ apiUtils = function() {
         return obj;
     }
 
-    function sendEntityAnalytics(entityType, entityName, entityID) {
+    function sendSimEntityAnalytics(fetchedSimName, fetchedSimID) {
 
-        gtag ('event', 'api_fetch', {
-            'entityType' : entityType,
-            'entityName' : entityName,
-            'entityID' : entityID
+        gtag('event', 'api_sim_fetch', {
+            'fetchedSimName' : fetchedSimName,
+            'fetchedSimID' : fetchedSimID
+        });
+    }
+
+    function sendLotEntityAnalytics(fetchedLotName, fetchedLotID) {
+
+        gtag('event', 'api_lot_fetch', {
+            'fetchedLotName' : fetchedLotName,
+            'fetchedLotID' : fetchedLotID
         });
     }
 
     function sendBookmarkAnalytics(bookmarked, entityName, entityID) {
 
-        gtag ('event', 'bookmark_change', {
+        gtag('event', 'bookmark_change', {
             'bookmarked' : bookmarked,
-            'entityName' : entityName,
-            'entityID' : entityID
+            'bookmarkedName' : entityName,
+            'bookmarkedID' : entityID
         });
     }
 
@@ -2001,8 +2011,9 @@ apiUtils = function() {
         buildRoommateLink: buildRoommateLink,
         buildLongSimLinkFromID: buildLongSimLinkFromID,
         returnGitCommitJson: returnGitCommitJson,
-        sendEntityAnalytics: sendEntityAnalytics,
-        sendBookmarkAnalytics: sendBookmarkAnalytics
+        sendSimEntityAnalytics: sendSimEntityAnalytics,
+        sendBookmarkAnalytics: sendBookmarkAnalytics,
+        sendLotEntityAnalytics: sendLotEntityAnalytics
     }
 }();
 
