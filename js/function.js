@@ -1925,11 +1925,9 @@ apiUtils = function() {
     }
 
     async function getAPIData (apiLink) {
-
-        // Catches for conditionals I'm too stupid to fix in a good way
-        if (apiLink.includes("(Maybe Hosting)")) apiLink = apiLink.replace("(Maybe Hosting)", "");
-        if (apiLink.includes("🎂")) apiLink = apiLink.replace("🎂", "");
-        if (apiLink.includes("(Hosting)")) apiLink = apiLink.replace("(Hosting)", "");
+        
+        // Clean link
+        apiLink = cleanLink(apiLink);
 
         let obj;
         const res = await fetch(apiLink);
@@ -1939,6 +1937,17 @@ apiUtils = function() {
         simDataHolder.apiStats.incrementAPICalls();
 
         return obj;
+    }
+
+    function cleanLink(linkText) {
+
+        // Catches for conditionals I'm too stupid to fix in a good way
+        if (linkText.includes("(Maybe Hosting)")) linkText = linkText.replace("(Maybe Hosting)", "");
+        if (linkText.includes("🎂")) linkText = linkText.replace("🎂", "");
+        if (linkText.includes("🔧")) linkText = linkText.replace("🔧", "");
+        if (linkText.includes("(Hosting)")) linkText = linkText.replace("(Hosting)", "");
+
+        return linkText;
     }
 
     function sendSimEntityAnalytics(fetchedSimName, fetchedSimID) {
