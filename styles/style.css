@@ -300,7 +300,7 @@ body {
     padding: 0px 0px;
 
     height: auto;
-    width: 600px;
+    width: auto;
 }
 
 .sim-clock {
@@ -758,7 +758,7 @@ body {
     font-size: 14.4px;
 
     margin: 25px;
-    margin-left: 5px;
+    margin-left: 15px;
     padding: 5px 7px;
 
     white-space: pre-line;
@@ -884,7 +884,7 @@ body {
 
 .thumbnail-bio-holder {
     margin: 25px;
-    margin-left: 5px;
+    margin-left: 15px;
     padding: 5px 12px 5px 7px;
 
     white-space: pre-wrap;
@@ -992,7 +992,7 @@ body {
     align-content: center;
     gap: 0em;
 
-    width: 600px;
+    width: auto;
 }
 
 .div-market-watch-title {
@@ -1033,7 +1033,7 @@ body {
     flex-direction: column;
     justify-content: center;
 
-    width: 600px;
+    width: auto;
 }
 
 .sims-in-lot-title {

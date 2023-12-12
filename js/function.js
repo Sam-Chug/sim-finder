@@ -1903,7 +1903,7 @@ marketWatchUtils = function() {
         for (let i = 0; i < 3 && i < marketObj.moneyLots.length; i++) {
 
             hotspotText += `${(i + 1)}. ${marketObj.moneyLots[i].lotObj.name}\n` + 
-                           ` - $${(marketObj.moneyLots[i].lotMoney).toLocaleString("en-US")} $/Hr Total\n\n`;
+                           ` ~$${(marketObj.moneyLots[i].lotMoney).toLocaleString("en-US")} $/Hr\n\n`;
         }
         hotspotText = hotspotText.slice(0, -1);
         GUI_MARKET_HOTSPOTS.textContent = hotspotText;
