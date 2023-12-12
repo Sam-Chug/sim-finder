@@ -1891,9 +1891,9 @@ marketWatchUtils = function() {
         // Write market breakdown text
         let breakdownText = `$${(marketObj.moneyPerHourJob + marketObj.moneyPerHourSMO).toLocaleString("en-US")} Generated Per Hour\n\n` + 
                             `SMO Total $/Hr: $${marketObj.moneyPerHourSMO.toLocaleString("en-US")}\n` + 
-                            `${marketObj.simsSMO} Sims at ${marketObj.moneyLots.length} Money Lots\n\n` +
+                            `${marketObj.simsSMO} Sims at ${marketObj.moneyLots.length} Money Lot${(marketObj.moneyLots.length > 1) ? "s" : ""}\n\n` +
                             `Job Total $/Hr: $${marketObj.moneyPerHourJob.toLocaleString("en-US")}\n` +
-                            `${marketObj.simsWorking} Sims at ${simUtils.returnJobsOpen().length} Job(s)\n\n` + 
+                            `${marketObj.simsWorking} Sims at ${simUtils.returnJobsOpen().length} Active Job${(simUtils.returnJobsOpen().length > 1) ? "s" : ""}\n\n` + 
                             "(Values Heavily Estimated)";
         GUI_MARKET_BREAKDOWN.textContent = breakdownText;
 

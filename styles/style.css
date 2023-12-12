@@ -294,13 +294,13 @@ body {
 .clock-bar-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
-    padding: 0px 15px;
+    padding: 0px 0px;
 
     height: auto;
-    width: min-content;
+    width: 600px;
 }
 
 .sim-clock {
@@ -748,14 +748,17 @@ body {
     margin: 0 0 15px 0;
 }
 
+
 .thumbnail-desc-holder p {
     margin: 0px;
 }
 
 .thumbnail-desc-holder {
     cursor: default;
+    font-size: 14.4px;
 
     margin: 25px;
+    margin-left: 5px;
     padding: 5px 7px;
 
     white-space: pre-line;
@@ -787,7 +790,7 @@ body {
     border-radius: 50%;
     
     height: 220px;
-    width: 400px;
+    width: 385px;
 }
 
 .thumbnail-offline {
@@ -810,12 +813,12 @@ body {
 }
 
 .lot-thumbnail-info-text {
-    height: 105px;
+    height: 95px;
 }
 
 .lot-thumbnail-bio {
-    height: 200px !important;
-    width: 290px !important;
+    height: 175px !important;
+    width: 265px !important;
 }
 /* #endregion */
 
@@ -881,19 +884,20 @@ body {
 
 .thumbnail-bio-holder {
     margin: 25px;
+    margin-left: 5px;
     padding: 5px 12px 5px 7px;
 
     white-space: pre-wrap;
     font-weight: normal;
 
     font-weight: 50;
-
-    height: 200px;
-    width: 313px;
+    
+    height: 180px;
+    width: 281px;
 
     background-color: var(--inset-bg);
     color: var(--sim-font);
-    font-size: 1em;
+    font-size: 14.4px;
 
     border-radius: 10px;
     border-collapse: collapse;
@@ -987,6 +991,8 @@ body {
     flex-direction: column;
     align-content: center;
     gap: 0em;
+
+    width: 600px;
 }
 
 .div-market-watch-title {
@@ -1013,6 +1019,8 @@ body {
 
 .market-watch-content {
     cursor: default;
+    font-size: 14.4px;
+    margin: 25px;
     flex: 1;
     min-width: fit-content;
 }
@@ -1024,6 +1032,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    width: 600px;
 }
 
 .sims-in-lot-title {
@@ -1042,6 +1052,7 @@ body {
     width: 50%;
     margin: 25px;
     max-height: 216px;
+    font-size: 14.4px;
     overflow-y: scroll;
 }
 /* #endregion */
