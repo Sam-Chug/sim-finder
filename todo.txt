@@ -18,6 +18,9 @@ v0.2.3a TODO:
         - Make it look less awkward
 
 Low Priority TODO:
+    - Make certain elements redirect to a filter
+        - Clicking "hidden sims on lot" -> hidden sim filter
+        - Clicking job icon -> clicked job filter
     - Some functions are still out of place (constant refactor)
         - Move all GUI/writing functions to GUI etc
     - Clean up css (constant refactor)
