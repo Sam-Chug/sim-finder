@@ -225,8 +225,11 @@ const LOT_FILTER_TOOLTIP = [
 //#region Misc
 const MAX_STYLES = 10; // Maximum styles to loop through
 
-const STORAGE_KEY = "idList"; //simfinder-id-list
-const STORAGE_KEY_OLD = "idList";
+//TODO: change to "simfinder-id-list"
+const STORAGE_BOOKMARK_KEY = "idList";
+const STORAGE_BOOKMARK_KEY_OLD = "idList";
+
+const STORAGE_BOOKMARK_CACHE_KEY = "sf-idList-cache";
 
 const SETTINGS_KEY = "simfinder-settings";
 //#endregion

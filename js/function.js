@@ -958,7 +958,7 @@ guiUtils = function() {
     // Change bookmark button styles
     function updateBookmarkButton(selID) {
 
-        let bookSims = storageUtils.returnLocalStorage(STORAGE_KEY);
+        let bookSims = storageUtils.returnLocalStorage(STORAGE_BOOKMARK_KEY);
         let isBookmarked = false;
 
         // Find if sim bookmarked or not
@@ -2124,18 +2124,18 @@ storageUtils = function() {
     function addBookmark(addID) {
 
         // Get bookmark storage, append new bookmark
-        let bookmarkStorage = returnLocalStorage(STORAGE_KEY);
+        let bookmarkStorage = returnLocalStorage(STORAGE_BOOKMARK_KEY);
         bookmarkStorage.simID.push(addID);
         
         // Save local storage
         let storageString = JSON.stringify(bookmarkStorage);
-        saveStorage(STORAGE_KEY, storageString);
+        saveStorage(STORAGE_BOOKMARK_KEY, storageString);
     }
 
     function deleteBookmark(deleteID) {
 
         // Get bookmark storage
-        let bookmarkStorage = returnLocalStorage(STORAGE_KEY);
+        let bookmarkStorage = returnLocalStorage(STORAGE_BOOKMARK_KEY);
 
         // Remove id from bookmarks
         let index = bookmarkStorage.simID.indexOf(deleteID);
@@ -2145,7 +2145,7 @@ storageUtils = function() {
         
         // Save local storage
         let storageString = JSON.stringify(bookmarkStorage);
-        saveStorage(STORAGE_KEY, storageString);
+        saveStorage(STORAGE_BOOKMARK_KEY, storageString);
     }
 
     function returnLocalStorage(storageKey) {

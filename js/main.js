@@ -49,7 +49,7 @@ simFinderMain = function() {
         simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
         // Get bookmarks
-        let bookmarkList = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID(storageUtils.returnLocalStorage(STORAGE_KEY_OLD).simID));
+        let bookmarkList = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID(storageUtils.returnLocalStorage(STORAGE_BOOKMARK_KEY_OLD).simID));
 
         // Put into data holder
         simDataHolder.simShortList = simShortList;

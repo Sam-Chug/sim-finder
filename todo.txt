@@ -14,6 +14,7 @@ Bugs:
         - Possibly timezone related
     
 v0.2.3a TODO:
+    - Reduce bookmark lookups on page launch
     - Center clock bar
         - Make it look less awkward
 
