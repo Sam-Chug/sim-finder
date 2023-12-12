@@ -463,61 +463,68 @@ domUtils = function() {
             let tooltip = document.createElement("span");
             tooltip.classList.add("tooltip");
 
-            if (type == "export") {
+            switch (type) {
 
-                tooltip.textContent = "Export Bookmarks";
-                tooltip.classList.add("low-tooltip");
-            }
-            else if (type == "import") {
+                case "export":
+                    tooltip.textContent = "Export Bookmarks";
+                    tooltip.classList.add("low-tooltip");
+                    break;
 
-                tooltip.textContent = "Import Bookmarks";
-                tooltip.classList.add("low-tooltip");
-            }
-            else if (type == "search") {
+                case "import":
+                    tooltip.textContent = "Import Bookmarks";
+                    tooltip.classList.add("low-tooltip");
+                    break;
 
-                tooltip.textContent = "Search";
-                tooltip.classList.add("mid-tooltip");
-            }
-            else if (type == "sort") {
-
-                tooltip.textContent = "Toggle Alphabetical Sort";
-                tooltip.classList.add("mid-tooltip");
-            }
-            else if (type == "min") {
-
-                tooltip.textContent = "Toggle Filter List Visibility";
-                tooltip.classList.add("low-tooltip");
-            }
-            else if (type == "style-help") {
-
-                tooltip.textContent = "Open Sim Panel Formatting Help Page";
-                tooltip.classList.add("under-tooltip");
-            }
-            else if (type == "colormode") {
-
-                tooltip.textContent = "Toggle Light";
-                tooltip.classList.add("mid-tooltip");
-            }
-            else if (type == "job") {
+                case "search":
+                    tooltip.textContent = "Search";
+                    tooltip.classList.add("mid-tooltip");
+                    break;
                 
-                let string = ""
-                if      (subType == "diner") string = "Diner Job Activity"
-                else if (subType == "club") string = "Club Job Activity"
-                else if (subType == "factory") string = "Factory Job Activity"
+                case "sort":
+                    tooltip.textContent = "Toggle Alphabetical Sort";
+                    tooltip.classList.add("mid-tooltip");
+                    break;
 
-                tooltip.textContent = string;
-                tooltip.classList.add("under-tooltip");
+                case "min":
+                    tooltip.textContent = "Toggle Filters";
+                    tooltip.classList.add("low-tooltip");
+                    break;
 
-                // Idk why this is messed up
-                tooltip.style.fontSize = "1em";
+                case "style-help":
+                    tooltip.textContent = "Open Sim Panel Formatting Help Page";
+                    tooltip.classList.add("under-tooltip");
+                    break;
+
+                case "colormode":
+                    tooltip.textContent = "Toggle Light";
+                    tooltip.classList.add("mid-tooltip");
+                    break;
+
+                case "job":
+                    let string = ""
+                    if      (subType == "diner") string = "Diner Job Activity"
+                    else if (subType == "club") string = "Club Job Activity"
+                    else if (subType == "factory") string = "Factory Job Activity"
+    
+                    tooltip.textContent = string;
+                    tooltip.classList.add("under-tooltip");
+    
+                    // Idk why this is messed up
+                    tooltip.style.fontSize = "1em";
+                    break;
             }
+
+            // Add tooltip to element
             this.append(tooltip);
         });
 
         element.addEventListener("mouseout", function(){
     
-            filterUtils.mouseOverFilterChange(this, "out", type);
-            this.removeChild(this.children[0]);
+            if (this.children.length > 0) {
+
+                filterUtils.mouseOverFilterChange(this, "out", type);
+                this.removeChild(this.children[0]);
+            }
         });
     }
 
