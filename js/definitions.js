@@ -4,6 +4,8 @@ const VERSION_STR = "v0.2.2m";
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
 
+// TODO: Most of these can be replaced with json's with keys
+
 // List of known staff sims
 const STAFF_NAMES = [
     "M.O.M.I. Fawn",
@@ -30,6 +32,7 @@ const STAFF_NAMES = [
     "ARIES IS THE BEST",
     "ARIES OPERATIONS",
     "GEMINI OPERATIONS",
+    "The Grinch",
     "burglar cop",
     "Nodster",
     "Aquila",
