@@ -257,6 +257,14 @@ const GUI_COLORMODE_BUTTON = document.getElementById('colormode-button');
 //#endregion
 
 //#region Sim style lists
+const CONFETTI_DATA = {
+    confetti: {
+        src: "../images/confetti.png",
+        sheetWidth: 3,
+        sheetHeight: 2
+    }
+}
+
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 
 const CUSTOM_STYLE_SIMHEADS = {
@@ -265,8 +273,6 @@ const CUSTOM_STYLE_SIMHEADS = {
     reagan: "./images/sim-faces/simface-rea.png?v0.2.2m",
     bear: "./images/sim-faces/simface-b.png?v0.2.2m"
 };
-const IMAGE_UNKNOWN_SIM = new Image().src = "./images/sim-faces/simface-u.png?v0.2.2m"
-
 const CUSTOM_STYLE_BLOCK = {
     bp: {
         cssClass: `block-pink`,

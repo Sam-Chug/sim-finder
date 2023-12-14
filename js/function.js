@@ -608,7 +608,7 @@ eggUtils = function() {
 
         // Get lot custom styles
         let styleObj = new StyleObject(selectedLot);
-        if (styleObj.isBirthday) eggUtils.spawnConfetti("lot");
+        if (styleObj.isBirthday) eggUtils.spawnConfetti("lot", "confetti");
         if (!styleObj.usesStyle) return;
 
         // Set styles
@@ -637,12 +637,12 @@ eggUtils = function() {
         if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
 
             reaganEgg();
-            spawnConfetti("sim");
+            spawnConfetti("sim", "confetti");
         }
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
-        if (styleObj.isBirthday) spawnConfetti("sim");
+        if (styleObj.isBirthday) spawnConfetti("sim", "confetti");
 
         // Set head
         GUI_SIM_THUMBNAIL.src = styleObj.avatarHead;
@@ -660,12 +660,13 @@ eggUtils = function() {
     }
 
     var confettiObjects = new Array();
-    function spawnConfetti(type) {
+    function spawnConfetti(entity, type) {
 
-        let parentElement = (type == "sim") ? GUI_SIM_VIEW : GUI_LOT_VIEW;
+        let confettiData = CONFETTI_DATA[type];
+        let parentElement = (entity == "sim") ? GUI_SIM_VIEW : GUI_LOT_VIEW;
         let spawnRect = parentElement.getBoundingClientRect();
 
-        let confettiData = {
+        let spawnedConfetti = {
             confettiElements: new Array(),
             timeFired: performance.now()
         }
@@ -688,16 +689,16 @@ eggUtils = function() {
             // Create and assign random image to confetti image
             let confettiImage = document.createElement("div");
             confettiImage.classList.add("confetti-image");
-            let imageX = Math.floor(Math.random() * 3);
-            let imageY = Math.floor(Math.random() * 2);
-            confettiImage.style.background = `url(../images/confetti.png) ${-imageX * 16}px ${-imageY * 16}px`
+            let imageX = Math.floor(Math.random() * confettiData.sheetWidth);
+            let imageY = Math.floor(Math.random() * confettiData.sheetHeight);
+            confettiImage.style.background = `url(${confettiData.src}) ${-imageX * 16}px ${-imageY * 16}px`
 
             // Append to parent element
             confettiNode.append(confettiImage);
             parentElement.append(confettiNode);
-            confettiData.confettiElements.push(confettiNode);
+            spawnedConfetti.confettiElements.push(confettiNode);
         }
-        confettiObjects.push(confettiData);
+        confettiObjects.push(spawnedConfetti);
         setTimeout(() => {
             eggUtils.removeConfetti();
         }, 950);
