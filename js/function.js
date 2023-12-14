@@ -628,6 +628,7 @@ eggUtils = function() {
 
         // Assure sim view is open
         GUI_SIM_VIEW.style.display = "flex";
+
         // Test any custom style
         //testCustomStyle("o");
         //return;
@@ -2008,7 +2009,7 @@ marketWatchUtils = function() {
 
 apiUtils = function() {
 
-    // Return git json so i can get the date
+    //#region API Fetching
     async function returnGitCommitJson() {
 
         const apiLink = "https://api.github.com/repos/sam-chug/sim-finder/branches/master";
@@ -2018,6 +2019,18 @@ apiUtils = function() {
         obj = await res.json();
 
         console.log("%cFetching Last Sim Finder Commit:\n\n", "color: white; background-color: darkgreen;", apiLink);
+        
+        return obj;
+    }
+
+    async function getDBLookupData() {
+
+        const apiLink = "https://raw.githubusercontent.com/Sam-Chug/sim-finder-data/main/staff-names";
+
+        let obj;
+        const res = await fetch(apiLink);
+        obj = await res.json();
+        console.log("%cFetching Sim Finder Lookup Data:\n\n", "color: white; background-color: darkgreen;", apiLink);
         
         return obj;
     }
@@ -2036,6 +2049,7 @@ apiUtils = function() {
 
         return obj;
     }
+    //#endregion
 
     function cleanLink(linkText) {
 
@@ -2048,6 +2062,7 @@ apiUtils = function() {
         return linkText;
     }
 
+    //#region Analytics
     function sendSimEntityAnalytics(fetchedSimName, fetchedSimID) {
 
         gtag('event', 'api_sim_fetch', {
@@ -2072,6 +2087,7 @@ apiUtils = function() {
             'bookmarkedID' : entityID
         });
     }
+    //#endregion
 
     //#region API url building
     // Id list to sim object (for bookmark id list)
@@ -2133,7 +2149,8 @@ apiUtils = function() {
         returnGitCommitJson: returnGitCommitJson,
         sendSimEntityAnalytics: sendSimEntityAnalytics,
         sendBookmarkAnalytics: sendBookmarkAnalytics,
-        sendLotEntityAnalytics: sendLotEntityAnalytics
+        sendLotEntityAnalytics: sendLotEntityAnalytics,
+        getDBLookupData: getDBLookupData
     }
 }();
 

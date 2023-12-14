@@ -15,9 +15,6 @@ Bugs:
     - Confetti animation is odd when spamming
     
 v0.2.3a TODO:
-    - Move staff lookup list to separate repo
-        - So updating staff list won't require a push to master
-    - Add staff + birthday emojis to bookmark list
     - Reduce bookmark lookups on page launch
 
 Low Priority TODO:

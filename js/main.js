@@ -64,6 +64,9 @@ simFinderMain = function() {
             simDataHolder.simShortList, 
             simDataHolder.lotShortList
         );
+
+        let staffObject = await apiUtils.getDBLookupData();
+        STAFF_NAMES = staffObject.staffNames;
     }
 
     // Write online sims/lots to lists
