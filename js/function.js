@@ -605,6 +605,7 @@ eggUtils = function() {
 
         // Get lot custom styles
         let styleObj = new StyleObject(selectedLot);
+        if (styleObj.isBirthday) eggUtils.spawnConfetti("lot");
         if (!styleObj.usesStyle) return;
 
         // Set styles
@@ -631,6 +632,7 @@ eggUtils = function() {
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
+        if (styleObj.isBirthday) eggUtils.spawnConfetti("sim");
 
         // Set head
         GUI_SIM_THUMBNAIL.src = styleObj.avatarHead;
@@ -647,11 +649,90 @@ eggUtils = function() {
         }
     }
 
+    var confettiObjects = new Array();
+    function spawnConfetti(type) {
+
+        let parentElement = (type == "sim") ? GUI_SIM_VIEW : GUI_LOT_VIEW;
+        let spawnRect = parentElement.getBoundingClientRect();
+
+        let confettiData = {
+            confettiElements: new Array(),
+            timeFired: performance.now()
+        }
+
+        for (let i = 0; i < CONFETTI_SPAWN_COUNT; i++) {
+
+            // Create and randomly place confetti container over sim/lot panel
+            let confettiNode = document.createElement("div");
+            confettiNode.classList.add("confetti-container");
+
+            let spawnX = spawnRect.left + (Math.random() * spawnRect.width);
+            let spawnY = spawnRect.top + (Math.random() * spawnRect.height)
+            confettiNode.style.left = `${spawnX}px`;
+            confettiNode.style.top = `${spawnY}px`;
+
+            let centerX = (spawnRect.width / 2) + spawnRect.left;
+            let centerY = (spawnRect.height / 2) + spawnRect.top;
+            confettiNode.style.rotate = `${findConfettiAngle(centerX, centerY, spawnX, spawnY)}deg`;
+
+            // Create and assign random image to confetti image
+            let confettiImage = document.createElement("div");
+            confettiImage.classList.add("confetti-image");
+            let imageX = Math.floor(Math.random() * 3);
+            let imageY = Math.floor(Math.random() * 2);
+            confettiImage.style.background = `url(../images/confetti.png) ${-imageX * 16}px ${-imageY * 16}px`
+
+            // Append to parent element
+            confettiNode.append(confettiImage);
+            parentElement.append(confettiNode);
+            confettiData.confettiElements.push(confettiNode);
+        }
+        confettiObjects.push(confettiData);
+        setTimeout(() => {
+            eggUtils.removeConfetti();
+        }, 950);
+    }
+
+    function removeConfetti() {
+
+        if (confettiObjects.length <= 0) return;
+        else {
+            setTimeout(() => {
+                eggUtils.removeConfetti();
+            }, 950);
+        }
+
+        for (let i = 0; i < confettiObjects[0].confettiElements.length; i++) {
+
+            let element = confettiObjects[0].confettiElements[i];
+
+            element.classList.remove("confetti-container");
+            void element.offsetWidth;
+            element.parentNode.removeChild(element);
+        }
+        confettiObjects.shift();
+        console.log(confettiObjects);
+    }
+
+    // https://stackoverflow.com/questions/9614109/how-to-calculate-an-angle-from-points
+    function findConfettiAngle(cx, cy, px, py) {
+
+        let dy = py - cy;
+        let dx = px - cx;
+
+        let theta = Math.atan2(dy, dx);
+        theta *= 180 / Math.PI;
+
+        return theta;
+    }
+
     return {
         resetSimThumbnailStyles: resetSimThumbnailStyles,
         resetLotThumbnailStyles: resetLotThumbnailStyles,
         handleCustomSimStyles: handleCustomSimStyles,
-        handleCustomLotStyles: handleCustomLotStyles
+        handleCustomLotStyles: handleCustomLotStyles,
+        spawnConfetti: spawnConfetti,
+        removeConfetti: removeConfetti
     }
 }();
 

@@ -378,6 +378,52 @@ body {
 }
 /* #endregion */
 
+/* #region Confetti */
+.confetti-container {
+    position: absolute;
+    z-index: 1000;
+
+    animation: confetti-move 1s steps(48);
+}
+
+.confetti-image {
+    position: relative;
+    z-index: 1000;
+
+    min-width: 16px;
+    min-height: 16px;
+
+    animation: confetti-spin 1s infinite steps(24);
+}
+
+@keyframes confetti-move {
+    0% {
+        transform: translate(0);
+        opacity: 100%;
+    }
+    50% {
+        transform: translate(250px);
+        opacity: 0%;
+    }
+    100% {
+        transform: translate(300px);
+        opacity: 0%;
+    }
+}
+
+@keyframes confetti-spin {
+    0% {
+        rotate: 0deg;
+    }
+    50% {
+        rotate: 180deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+/* #endregion */
+
 /* #region Custom Styles */
 .rainbow-text {
     background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);

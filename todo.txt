@@ -8,13 +8,13 @@ Patchnotes v0.2.3a:
     - New candy cane block style for december
     - Moved sims clock and active jobs out of sidebar and onto page body
     - Head decoration for known staff sims
+    - Added fun confetti for birthday sims/lots
     
 Bugs:
     - Sim dates still slightly incorrect
         - Possibly timezone related
     
 v0.2.3a TODO:
-    - Confetti animation for birthday sims
     - Move staff lookup list to separate repo
         - So updating staff list won't require a push to master
     - Add staff + birthday emojis to bookmark list

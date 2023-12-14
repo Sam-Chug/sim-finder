@@ -226,6 +226,8 @@ const LOT_FILTER_TOOLTIP = [
 //#endregion
 
 //#region Misc
+const CONFETTI_SPAWN_COUNT = 128;
+
 const MAX_STYLES = 10; // Maximum styles to loop through
 
 //TODO: change to "simfinder-id-list"
