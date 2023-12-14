@@ -15,9 +15,11 @@ Bugs:
     - Confetti animation is odd when spamming
     
 v0.2.3a TODO:
-    - Reduce bookmark lookups on page launch
+    
 
 Low Priority TODO:
+    - Reduce bookmark lookups on page launch
+        - Cache name/id pairs of bookmarked sims
     - Make certain elements redirect to a filter
         - Clicking "hidden sims on lot" -> hidden sim filter
         - Clicking job icon -> clicked job filter
