@@ -10,7 +10,8 @@ simUtils = function() {
 
     function checkIfSimBirthday(simUnix) {
 
-        let utcNow = Date.now() / 1000;
+        let utcNow = Math.floor(Date.now() / 1000);
+
         let dateObjectNow = returnDateObjectFromUNIX(utcNow);
         let simDateObject = returnDateObjectFromUNIX(simUnix);
         let simDayAge = returnSimAge(simUnix);
@@ -19,8 +20,6 @@ simUtils = function() {
         if (simDayAge == 0) return false;
         // Catch 1000 day milestones
         if (simDayAge % 1000 == 0) return true;
-
-        console.log(dateObjectNow, simDateObject)
 
         // Check if today is sim's birthday
         if (dateObjectNow.day == simDateObject.day && dateObjectNow.month == simDateObject.month) return true;
@@ -37,11 +36,13 @@ simUtils = function() {
         let mm = ("0" + (utcNow.getMonth() + 1)).slice(-2);
         let dd = ("0" + (utcNow.getDate())).slice(-2);
 
-        return {
+        let timeObject = {
             month: mm,
             day: dd,
             year: yyyy
         }
+
+        return timeObject
     }
 
     function returnTextDateFromDateObject(dateObject) {
@@ -625,16 +626,22 @@ eggUtils = function() {
         // Reset previous styles
         resetSimThumbnailStyles();
 
+        // Assure sim view is open
+        GUI_SIM_VIEW.style.display = "flex";
         // Test any custom style
         //testCustomStyle("o");
         //return;
 
         // Do reagan
-        if (selectedSim.name == CUSTOM_STYLE_REAGAN) reaganEgg();
+        if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
+
+            reaganEgg();
+            spawnConfetti("sim");
+        }
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
-        if (styleObj.isBirthday) eggUtils.spawnConfetti("sim");
+        if (styleObj.isBirthday) spawnConfetti("sim");
 
         // Set head
         GUI_SIM_THUMBNAIL.src = styleObj.avatarHead;
@@ -713,7 +720,6 @@ eggUtils = function() {
             element.parentNode.removeChild(element);
         }
         confettiObjects.shift();
-        console.log(confettiObjects);
     }
 
     // https://stackoverflow.com/questions/9614109/how-to-calculate-an-angle-from-points

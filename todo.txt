@@ -9,11 +9,10 @@ Patchnotes v0.2.3a:
     - Moved sims clock and active jobs out of sidebar and onto page body
     - Head decoration for known staff sims
     - Added fun confetti for birthday sims/lots
+    - (Hopefully) fixed some weird bug with birthdays
     
 Bugs:
-    - Sim dates still slightly incorrect
-        - Possibly timezone related
-        - https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+    - Confetti animation is odd when spamming
     
 v0.2.3a TODO:
     - Move staff lookup list to separate repo

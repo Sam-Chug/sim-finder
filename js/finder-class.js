@@ -101,7 +101,7 @@ class StyleObject{
 
         let createdDate = ("date" in simData) ? simData.date : simData.created_date;
         this.isBirthday = simUtils.checkIfSimBirthday(createdDate);
-
+        
         this.usesStyle;
         this.usesShorthand;
 
