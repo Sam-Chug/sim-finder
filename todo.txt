@@ -8,7 +8,7 @@ Patchnotes v0.2.3a:
     - New candy cane block style for december
     - Moved sims clock and active jobs out of sidebar and onto page body
     - Head decoration for known staff sims
-    - Added fun confetti for birthday sims/lots
+    - Added fun confetti effects for special occasions
     - (Hopefully) fixed some weird bug with birthdays
     
 Bugs:

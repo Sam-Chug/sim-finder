@@ -637,12 +637,13 @@ eggUtils = function() {
         if (selectedSim.name == CUSTOM_STYLE_REAGAN) {
 
             reaganEgg();
-            spawnConfetti("sim", "confetti");
+            spawnConfetti("sim", "reagan");
         }
 
         // Get sim's custom styles
         let styleObj = new StyleObject(selectedSim);
         if (styleObj.isBirthday) spawnConfetti("sim", "confetti");
+        if (styleObj.isStaff) spawnConfetti("sim", "staff");
 
         // Set head
         GUI_SIM_THUMBNAIL.src = styleObj.avatarHead;

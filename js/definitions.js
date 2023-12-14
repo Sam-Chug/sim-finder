@@ -259,8 +259,18 @@ const GUI_COLORMODE_BUTTON = document.getElementById('colormode-button');
 //#region Sim style lists
 const CONFETTI_DATA = {
     confetti: {
-        src: "../images/confetti.png",
+        src: "../images/confetti-sprites/confetti.png",
         sheetWidth: 3,
+        sheetHeight: 2
+    },
+    staff: {
+        src: "../images/confetti-sprites/staff-confetti.png",
+        sheetWidth: 2,
+        sheetHeight: 2
+    },
+    reagan: {
+        src: "../images/confetti-sprites/reagan-confetti.png",
+        sheetWidth: 2,
         sheetHeight: 2
     }
 }
