@@ -1,5 +1,5 @@
 //#region Strings
-const VERSION_STR = "v0.2.3a";
+const VERSION_STR = "v0.2.3b";
 
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
@@ -259,17 +259,17 @@ const GUI_COLORMODE_BUTTON = document.getElementById('colormode-button');
 //#region Sim style lists
 const CONFETTI_DATA = {
     confetti: {
-        src: "../images/confetti-sprites/confetti.png",
+        src: "./images/confetti-sprites/confetti.png",
         sheetWidth: 3,
         sheetHeight: 2
     },
     staff: {
-        src: "../images/confetti-sprites/staff-confetti.png",
+        src: "./images/confetti-sprites/staff-confetti.png",
         sheetWidth: 2,
         sheetHeight: 2
     },
     reagan: {
-        src: "../images/confetti-sprites/reagan-confetti.png",
+        src: "./images/confetti-sprites/reagan-confetti.png",
         sheetWidth: 2,
         sheetHeight: 2
     }
@@ -278,10 +278,10 @@ const CONFETTI_DATA = {
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 
 const CUSTOM_STYLE_SIMHEADS = {
-    male: "./images/sim-faces/simface-m.png?v0.2.3a",
-    female: "./images/sim-faces/simface-f.png?v0.2.3a",
-    reagan: "./images/sim-faces/simface-rea.png?v0.2.3a",
-    bear: "./images/sim-faces/simface-b.png?v0.2.3a"
+    male: "./images/sim-faces/simface-m.png?v0.2.3b",
+    female: "./images/sim-faces/simface-f.png?v0.2.3b",
+    reagan: "./images/sim-faces/simface-rea.png?v0.2.3b",
+    bear: "./images/sim-faces/simface-b.png?v0.2.3b"
 };
 const CUSTOM_STYLE_BLOCK = {
     bp: {
