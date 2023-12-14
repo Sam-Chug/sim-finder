@@ -770,6 +770,7 @@ guiUtils = function() {
     
             // Get sim name from index
             let simName = selectedName;
+            simName = apiUtils.cleanLink(simName);
 
             // Selected sim data
             let selectedSimShort;
@@ -790,7 +791,6 @@ guiUtils = function() {
 
                     // If sim not in long cache, fetch from API and add to cache
                     selectedSimLong = await apiUtils.getAPIData("https://api.freeso.org/userapi/city/1/avatars/name/" + simName.replace(" ", "%20"));
-                    apiUtils.sendSimEntityAnalytics(selectedSimLong.name, selectedSimLong.avatar_id);
                     simDataHolder.offlineLongSimList.push(selectedSimLong);
                 }
                 else {
@@ -801,6 +801,7 @@ guiUtils = function() {
                 
                 // Get sim short if available
                 selectedSimShort = simUtils.returnShortSimFromLong(selectedSimLong);
+                apiUtils.sendSimEntityAnalytics(selectedSimLong.name, selectedSimLong.avatar_id);
             }
 
             // Send data to sim bio writer
@@ -810,6 +811,7 @@ guiUtils = function() {
             
             // Get lot name from index
             let lotName = selectedName;
+            lotName = apiUtils.cleanLink(lotName);
 
             // Selected lot data
             let selectedLotShort;
@@ -1805,8 +1807,6 @@ searchUtils = function() {
             simLong = simUtils.returnSimFromLongCache(simName);
         }
 
-        
-
         // Get searched sim data
         let simShort = simUtils.returnShortSimFromLong(simLong);
         let existence = simUtils.returnExistenceState(simShort);
@@ -2055,10 +2055,10 @@ apiUtils = function() {
     function cleanLink(linkText) {
 
         // Catches for conditionals I'm too stupid to fix in a good way
-        if (linkText.includes("(Maybe Hosting)")) linkText = linkText.replace("(Maybe Hosting)", "");
-        if (linkText.includes("🎂")) linkText = linkText.replace("🎂", "");
-        if (linkText.includes("🔧")) linkText = linkText.replace("🔧", "");
-        if (linkText.includes("(Hosting)")) linkText = linkText.replace("(Hosting)", "");
+        if (linkText.includes("(Maybe Hosting)")) linkText = linkText.replace(" (Maybe Hosting)", "");
+        if (linkText.includes("🎂")) linkText = linkText.replace(" 🎂", "");
+        if (linkText.includes("🔧")) linkText = linkText.replace(" 🔧", "");
+        if (linkText.includes("(Hosting)")) linkText = linkText.replace(" (Hosting)", "");
 
         return linkText;
     }
@@ -2151,7 +2151,8 @@ apiUtils = function() {
         sendSimEntityAnalytics: sendSimEntityAnalytics,
         sendBookmarkAnalytics: sendBookmarkAnalytics,
         sendLotEntityAnalytics: sendLotEntityAnalytics,
-        getDBLookupData: getDBLookupData
+        getDBLookupData: getDBLookupData,
+        cleanLink: cleanLink
     }
 }();
 
