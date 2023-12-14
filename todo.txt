@@ -13,14 +13,13 @@ Patchnotes v0.2.3a:
 Bugs:
     - Sim dates still slightly incorrect
         - Possibly timezone related
+        - https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
     
 v0.2.3a TODO:
     - Move staff lookup list to separate repo
         - So updating staff list won't require a push to master
     - Add staff + birthday emojis to bookmark list
     - Reduce bookmark lookups on page launch
-    - Center clock bar
-        - Make it look less awkward
 
 Low Priority TODO:
     - Make certain elements redirect to a filter

@@ -20,6 +20,8 @@ simUtils = function() {
         // Catch 1000 day milestones
         if (simDayAge % 1000 == 0) return true;
 
+        console.log(dateObjectNow, simDateObject)
+
         // Check if today is sim's birthday
         if (dateObjectNow.day == simDateObject.day && dateObjectNow.month == simDateObject.month) return true;
         return false;
@@ -1306,7 +1308,8 @@ guiUtils = function() {
         // Append and style online sims
         for (sim of onlineSims) {
             
-            let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
+            let simName = returnSimTitle(sim);
+            let simNode = createListNode(simName, simUtils.returnSimAge(sim.date) + " days");
             addIndexClickHandler(simNode, "bookmark");
 
             // If Reagan, add easter egg
@@ -1318,7 +1321,8 @@ guiUtils = function() {
         // Append and style offline sims
         for (sim of offlineSims) {
             
-            let simNode = createListNode(sim.name, simUtils.returnSimAge(sim.date) + " days");
+            let simName = returnSimTitle(sim);
+            let simNode = createListNode(simName, simUtils.returnSimAge(sim.date) + " days");
             simNode.classList.add("sim-list-node-offline");
             addIndexClickHandler(simNode, "bookmark");
             GUI_BOOKMARK_LIST.append(simNode);
