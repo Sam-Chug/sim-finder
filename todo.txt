@@ -14,8 +14,12 @@ Patchnotes v0.2.3b:
 Bugs:
     - Confetti animation is odd when spamming
     
-v0.2.3b TODO:
-    
+v0.2.4 TODO:
+    - Paid features
+        - See Notes below
+    - Style editor
+        - Either in-site or a new repo
+        - GUI editor for custom styles
 
 Low Priority TODO:
     - Reduce bookmark lookups on page launch
@@ -38,7 +42,6 @@ Paid Features:
         - Create simple database to keep track of avatar ids of paying sims
 
     - Plans:
-
         - Plan Structure
             - Sim ID Plan Permissions
                 - Permission to use plans is based on user request
@@ -69,6 +72,8 @@ Paid Features:
                 - $25k
 
     - Feature Ideas:
+        - Custom confetti sprites
+        - Custom sim head (on request)
         - Symbol on profile denoting which tier they are
         - Animated colors for all elements
         - Custom style panel images
