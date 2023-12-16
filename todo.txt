@@ -20,6 +20,8 @@ v0.2.4 TODO:
     - Style editor
         - Either in-site or a new repo
         - GUI editor for custom styles
+    - Hidden sims show up as being in lot, even when all sims at lot are accounted for
+    - Bookmark list and lot list should fight for space, always reach max height if possible
 
 Low Priority TODO:
     - Reduce bookmark lookups on page launch
