@@ -22,6 +22,7 @@ v0.2.4 TODO:
         - GUI editor for custom styles
     - Hidden sims show up as being in lot, even when all sims at lot are accounted for
     - Bookmark list and lot list should fight for space, always reach max height if possible
+    - Refactor "CleanLink" function
 
 Low Priority TODO:
     - Reduce bookmark lookups on page launch
