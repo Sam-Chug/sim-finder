@@ -1,5 +1,5 @@
 //#region Strings
-const VERSION_STR = "v0.2.3b";
+const VERSION_STR = "v0.2.3c";
 
 const SIM_ONLINE_URL = "https://api.freeso.org/userapi/avatars/online";
 const LOTS_ONLINE_URL = "https://api.freeso.org/userapi/city/1/lots/online";
@@ -278,10 +278,10 @@ const CONFETTI_DATA = {
 const CUSTOM_STYLE_REAGAN = "Reaganomics Lamborghini";
 
 const CUSTOM_STYLE_SIMHEADS = {
-    male: "./images/sim-faces/simface-m.png?v0.2.3b",
-    female: "./images/sim-faces/simface-f.png?v0.2.3b",
-    reagan: "./images/sim-faces/simface-rea.png?v0.2.3b",
-    bear: "./images/sim-faces/simface-b.png?v0.2.3b"
+    male: "./images/sim-faces/simface-m.png?v0.2.3c",
+    female: "./images/sim-faces/simface-f.png?v0.2.3c",
+    reagan: "./images/sim-faces/simface-rea.png?v0.2.3c",
+    bear: "./images/sim-faces/simface-b.png?v0.2.3c"
 };
 const CUSTOM_STYLE_BLOCK = {
     bp: {
