@@ -23,6 +23,11 @@ v0.2.4 TODO:
     - Hidden sims show up as being in lot, even when all sims at lot are accounted for
     - Bookmark list and lot list should fight for space, always reach max height if possible
     - Refactor "CleanLink" function
+    - New colors:
+        - Royal purple (felt texture?)
+        - Something special for New Years (stars?)
+    - Move wiki pictures to sim-finder-data repo
+    - Move custom styles to sim-finder-data repo
 
 Low Priority TODO:
     - Reduce bookmark lookups on page launch
