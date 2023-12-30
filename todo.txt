@@ -15,6 +15,7 @@ Bugs:
     - Confetti animation is odd when spamming
     
 v0.2.4 TODO:
+    - Darkmode toggle renders below panel titles
     - Add roommate bonus to market watch (from top lots api page)
     - Show count of how many sims are at the same job lot (out-of-range locations still match up)
     - Paid features
