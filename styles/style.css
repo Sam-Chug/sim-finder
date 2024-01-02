@@ -1458,6 +1458,7 @@ body {
     height: 64px;
     width: 64px;
     border-radius: 25px;
+    z-index: 100;
 }
 
 .light-button {
