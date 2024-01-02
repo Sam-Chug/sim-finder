@@ -67,9 +67,11 @@ simUtils = function() {
     // Check if sim is in list of known staff sims
     function isSimStaffMember(simName) {
 
+        let simLower = simName.toLowerCase();
         for (let i = 0; i < STAFF_NAMES.length; i++) {
 
-            if (STAFF_NAMES[i].match(simName)) return true;
+            let staffLower = STAFF_NAMES[i].toLowerCase();
+            if (simLower === staffLower) return true;
         }
     }
 
