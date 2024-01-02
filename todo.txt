@@ -20,6 +20,7 @@ Bugs:
     - Confetti animation is odd when spamming
     
 v0.2.4 TODO:
+    - Add day age to lots in lot view, or remove birthday emoji from lot list
     - Add roommate bonus to market watch (from top lots api page)
     - Show count of how many sims are at the same job lot (out-of-range locations still match up)
     - Style editor
