@@ -13,6 +13,7 @@ Patchnotes v0.2.3c:
     
 Patchnotes v0.2.4a:
     - Fixed false positive in staff detection
+    - Fix name panel clipboard copy also copying emojis
 
 Bugs:
     - Confetti animation is odd when spamming

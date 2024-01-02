@@ -386,7 +386,7 @@ domUtils = function() {
 
     function copyTextToClipboard(e) {
 
-        navigator.clipboard.writeText(e.textContent);
+        navigator.clipboard.writeText(apiUtils.cleanLink(e.textContent));
     }
 
     function swapColorMode() {
