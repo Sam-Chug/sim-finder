@@ -33,6 +33,7 @@ v0.2.4 TODO:
         - Royal purple (felt texture?)
         - Something special for New Years (stars?)
         - Darker blue
+        - Black
     - Move wiki pictures to sim-finder-data repo
     - Move custom styles to sim-finder-data repo
 
