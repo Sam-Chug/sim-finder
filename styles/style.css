@@ -314,94 +314,6 @@ body {
 }
 /* #endregion */
 
-/* #region Clock Bar */
-.clock-bar-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
-    padding: 0px 0px;
-
-    height: auto;
-    width: auto;
-}
-
-.sim-clock {
-    cursor: default;
-    
-    width: 145px;
-    margin: 15px 5px 15px 0px;
-    padding: 0px 8px 0px 8px;
-
-    font-size: 1.75em;
-    text-align: center;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-
-    border-radius: 25px;
-    
-    background-color: var(--inset-bg-dark);
-    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
-                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
-                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
-}
-
-.job-holder {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-}
-
-.job-active {
-    text-shadow: none;
-    width: 40px;
-    height: 40px;
-    margin: 5px 0px 5px 10px;
-    border-radius: 50%;
-
-    box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.4) inset,
-                0px -1px 1px 3px rgba(0, 0, 0, 0.35),
-                0px 3px 1px 3px rgba(255, 255, 255, 0.15);
-}
-/* #endregion */
-
-/* #region Min/Maximize Filters */
-.min-max-button {
-    border-radius: 50%;
-    box-shadow: -3px -3px 3px 2px rgba(0, 0, 0, 0.4) inset,
-                5px 5px 3px 1px rgba(255, 255, 255, 0.5) inset,
-                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
-    width: 41px;
-    height: 41px;
-}
-
-.window-minable {
-    background: url(../images/buttons/min-window-button.png?v0.2.4a) 0 0;
-}
-
-.window-minable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.4a) 82px 0;
-}
-
-.window-minable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.4a) 41px 0;
-}
-
-.window-maxable {
-    background: url(../images/buttons/min-window-button.png?v0.2.4a) 0 41px;
-}
-
-.window-maxable:hover {
-    background: url(../images/buttons/min-window-button.png?v0.2.4a) 82px 41px;
-}
-
-.window-maxable:active {
-    background: url(../images/buttons/min-window-button.png?v0.2.4a) 41px 41px;
-}
-/* #endregion */
-
 /* #region Confetti */
 .confetti-container {
     position: absolute;
@@ -725,67 +637,6 @@ body {
 }
 /* #endregion */
 
-/* #region Lot Filters */
-.div-lot-filter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: none;
-}
-
-.lot-filter-flex {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    align-self: center;
-    gap: 5px;
-    margin: 5px 18px 18px 18px;
-}
-
-.div-lot-filter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.div-sim-filter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.sim-filter-flex {
-    display: flex;
-    justify-content: flex-start;
-    align-self: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin: 5px 18px 18px 18px;
-}
-
-.filter-button{
-    width: 71px;
-    height: 71px;
-    margin: 0px;
-    border: none;
-}
-
-.filter-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0px;
-}
-
-.filter-min {
-    background: transparent;
-    border: none;
-    border-radius: 50%;
-    align-self: center;
-}
-/* #endregion */
-
 /* #region Lot Thumbnail */
 .div-thumbnail {
     width: fit-content;
@@ -1055,78 +906,6 @@ body {
 }
 /* #endregion */
 
-/* #region Market Watch */
-.div-market-watch {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    gap: 0em;
-
-    width: auto;
-}
-
-.div-market-watch-title {
-    align-self: center;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-}
-
-.div-market-watch-title img {
-    position: relative;
-    top: 15px;
-    width: 50px;
-    height: 31px;
-    margin: 0px 10px;
-}
-
-.div-market-context {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: -18px;
-}
-
-.market-watch-content {
-    cursor: default;
-    font-size: 14.4px;
-    margin: 25px;
-    flex: 1;
-    min-width: fit-content;
-}
-/* #endregion */
-
-/* #region Sims In Lot */
-.div-list-sims-block {
-    cursor: default;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    width: auto;
-}
-
-.sims-in-lot-title {
-    align-self: center;
-    width: fit-content;
-}
-
-.div-sims-in-lot {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: -21px;
-}
-
-.list-sims-in-lot {
-    width: 50%;
-    margin: 25px;
-    max-height: 216px;
-    font-size: 14.4px;
-    overflow-y: scroll;
-}
-/* #endregion */
-
 /* #region Sidebar */
 .sidebar-holder {
     z-index: 50;
@@ -1381,35 +1160,6 @@ body {
 
 .search-button:active {
     background: url(../images/buttons/search-button-click.png?v0.2.4a) no-repeat;
-}
-/* #endregion */
-
-/* #region Sort Entity Names */
-.list-title-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.sort-button {
-    position: relative;
-    top: 20px;
-    border-radius: 50%;
-    background: url(../images/buttons/name-sort.png?v0.2.4a) no-repeat;
-    height: 41px;
-    width: 41px;
-    border: none;
-    box-shadow: -2px -2px 3px 2px rgba(0, 0, 0, 0.4) inset,
-                4px 4px 3px 1px rgba(255, 255, 255, 0.5) inset,
-                1px 1px 2px 1px rgba(0, 0, 0, 0.6);
-}
-
-.sort-button:hover {
-    background: url(../images/buttons/name-sort-hover.png?v0.2.4a) no-repeat;
-}
-
-.sort-button:active {
-    background: url(../images/buttons/name-sort-selected.png?v0.2.4a) no-repeat;
 }
 /* #endregion */
 

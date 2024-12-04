@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", async e => {
 
 simFinderMain = function() {
 
+    // Program start
     async function start() {
 
+        // Time the load of site
         console.log("Loading site...");
         console.time("Load Complete");
 
@@ -20,22 +22,22 @@ simFinderMain = function() {
         domUtils.siteColorMode(simDataHolder.userSetting.colorMode);
 
         // Fetch online data
-        console.time("Fetching data from API");
+        console.time("Fetching Data...");
         await getOfflineData();
-        console.timeEnd("Fetching data from API");
+        console.timeEnd("Fetching Data...");
 
         // Populate GUI
         console.time("Populating GUI")
         populateGui();
         console.timeEnd("Populating GUI");
 
-        console.timeEnd("Load Complete")
+        console.timeEnd("Load Complete");
     }
 
+    // Since the FreeSO API is no longer online, grab data I've collected instead
     async function getOfflineData() {
 
         await shutdownUtils.buildSearchObjects();
-
         simDataHolder.bookmarkList = shutdownUtils.retrieveBookmarkNames();
 
         let staffObject = await apiUtils.getDBLookupData();
@@ -51,6 +53,7 @@ simFinderMain = function() {
         // Write site info
         sidebarUtils.writeSidebarInfo();
 
+        // Set size of bookmark list
         domUtils.sizeLists();
     }
 
