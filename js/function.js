@@ -103,9 +103,16 @@ domUtils = function() {
     }
 
     // Auto size lists to fit screen
-    function sizeLists() {
+    function setDefaults() {
 
+        GUI_SEARCH_SIM.value = "(leave empty for random)";
         GUI_BOOKMARK_LIST.style.maxHeight = "400px";
+
+        GUI_SEARCH_SIM.addEventListener("click", function() {
+            if (GUI_SEARCH_SIM.value == "(leave empty for random)") {
+                GUI_SEARCH_SIM.value = "";
+            }
+        })
     }
 
     // Brute force because my css is bad
@@ -279,7 +286,7 @@ domUtils = function() {
     return {
         getIndexInParent: getIndexInParent,
         resetListSelection: resetListSelection,
-        sizeLists: sizeLists,
+        setDefaults: setDefaults,
         copyTextToClipboard: copyTextToClipboard,
         centerListLabels: centerListLabels,
         siteColorMode: siteColorMode,
@@ -682,11 +689,21 @@ searchUtils = function() {
 
         // Search sim's name in api
         let simName = GUI_SEARCH_SIM.value;
-        if (simName == "") return;
+        if (simName == "" || simName == "(leave empty for random)") {
 
-        let selectedID = 0;
+            while(true) {
+
+                let random = Math.floor(Math.random() * 240000);
+                if (simDataHolder.id_search[random] !== undefined) {
+
+                    simName = simDataHolder.id_search[random];
+                    break;
+                }
+            }
+        }
 
         // Lookup name in database
+        let selectedID = 0;
         if (simDataHolder.name_search[simName] === undefined) {
 
             // If not found, check lowercase list

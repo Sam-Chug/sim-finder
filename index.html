@@ -43,7 +43,7 @@
         <script defer src="./js/main.js?v0.2.4a"></script>
 
     </head>
-    <body class="scrollbar" onresize="domUtils.sizeLists()">
+    <body class="scrollbar" onresize="domUtils.setDefaults()">
         
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWTTRK3Q"
@@ -111,9 +111,9 @@
 
                             <div class="input-center">
 
-                                <input type="text" id="sim-search-input" class="search-bar"
+                                <input type="text" id="sim-search-input" class="search-bar" 
                                 onkeydown="if (event.keyCode == 13) document.getElementById('sim-search-button').click()">
-
+                                
                             </div>
 
                             <div class="button-center">

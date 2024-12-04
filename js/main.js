@@ -57,7 +57,7 @@ simFinderMain = function() {
         sidebarUtils.writeSidebarInfo();
 
         // Set size of bookmark list
-        domUtils.sizeLists();
+        domUtils.setDefaults();
     }
 
     return {
