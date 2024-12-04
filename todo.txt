@@ -3,6 +3,21 @@ Sim Finder Notes
 Known Bugs:
     - Confetti animation is odd when spamming
     
+v0.2.4a Patchnotes:
+    - All features relating to lots have been removed.
+        - I would have loved to archive the thumbnails for all 14,000 lots, but this is too big an ordeal for me.
+    - Features relating to online play have also been removed.
+        - Lot/Sim filters, market watch, job schedules, and the clock, all no longer have a purpose.
+    - So what remains?
+        - You are able to view the sims you have saved in your bookmark list.
+        - In addition, I've archived the data from all 130,000 sims, for your searching pleasure.
+        - This means sim bios, and in addition, custom styles will be saved and will now be permanent.
+        - I've added a "random" feature to the sim search, so you can truly see how just many sims there were in Sunrise Crater.
+
+    It was a lot of fun creating and maintaining the sim-finder for you all to use. There are not a lot of games out there with the level of
+    creativity that FreeSO inspires, and I am very thankful to have been a part of this community. There's really no other place like this.
+        - Yours Truly, Reagan
+
 v0.2.4 TODO:
     - Add day age to lots in lot view, or remove birthday emoji from lot list
     - Add roommate bonus to market watch (from top lots api page)
