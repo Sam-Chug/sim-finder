@@ -40,25 +40,6 @@ simFinderMain = function() {
 
         let staffObject = await apiUtils.getDBLookupData();
         STAFF_NAMES = staffObject.staffNames;
-
-        console.log(simDataHolder);
-    }
-
-    // Get data from api
-    async function getOnlineData() {
-
-        // Get bookmarks
-        let bookmarkList = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID(storageUtils.returnLocalStorage(STORAGE_BOOKMARK_KEY_OLD).simID));
-
-        // Put into data holder
-        simDataHolder.simShortList = simShortList;
-        simDataHolder.simLongList = simLongList;
-        simDataHolder.lotShortList = lotShortList;
-        simDataHolder.lotLongList = lotLongList;
-        simDataHolder.bookmarkList = bookmarkList;
-
-        let staffObject = await apiUtils.getDBLookupData();
-        STAFF_NAMES = staffObject.staffNames;
     }
 
     // Write online sims/lots to lists
@@ -69,10 +50,11 @@ simFinderMain = function() {
 
         // Write site info
         sidebarUtils.writeSidebarInfo();
+
+        domUtils.sizeLists();
     }
 
     return {
-        start: start,
-        getOnlineData: getOnlineData
+        start: start
     }
 }();

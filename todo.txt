@@ -1,5 +1,12 @@
 Sim Finder Notes
 
+Shutdown TODO:
+- Short quote:
+"FreeSO has been shutdown after nearly 8 years of operation.
+I will never forget the time I've spent in Sunrise Crater, and all of the sims that made it such a fun place to be.
+Though there's not much left to see, I've left your bookmarks list, and the sim search. Browse to your heart's content.
+- Reaganomics Lamborghini"
+
 Patchnotes v0.2.4a:
     - Roommates data cached on first fetch instead of being fetched every time lot is viewed
     - Offline sim data now cached on first fetch instead of being fetched every time a single offline sim is revisited

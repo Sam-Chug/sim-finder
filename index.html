@@ -85,102 +85,111 @@
                 </div>
             </div>
 
-            <!-- sim column -->
-            <div class="column-1">
+            <!-- top bar of site, for shutdown notice -->
+            <div class="top-bar">
 
-                <!-- sim search -->
-                <div id="sim-search-panel" class="div-search block-background">
+                <!-- shutdown notice -->
+                <div id="shutdown-notice" class="block-background shutdown-notice">
 
-                    <!-- search inputs -->
-                    <p class="outset-title search-title">Sim Search</p>
-                    <div class="search-flex">
-
-                        <div class="input-center">
-
-                            <input type="text" id="sim-search-input" class="search-bar"
-                            onkeydown="if (event.keyCode == 13) document.getElementById('sim-search-button').click()">
-
-                        </div>
-
-                        <div class="button-center">
-
-                            <button id="sim-search-button" class="search-button" onclick="searchUtils.searchSim()"></button>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- bookmark list -->
-                <div class="div-sim-table block-background">
-
-                    <div class="bookmark-header-container">
-
-                        <button id="sidebar-button" class="bookmark-button">
-                            <div id="export-button" class="export-arrow" onclick="storageUtils.exportLocalStorage(STORAGE_BOOKMARK_KEY)"></div>
-                        </button>
-
-                        <div class="inset-title">Bookmarks</div>
-
-                        <button id="sidebar-button" class="bookmark-button">
-                            <div id="import-button" class="import-arrow" onclick="storageUtils.importLocalStorage(STORAGE_BOOKMARK_KEY)"></div>
-                        </button>
-
-                    </div>
-
-                    <div><table id="bookmark-table" class="list-table scrollbar" style="max-height: 301px;"></table></div>
-
+                    <p class="thumbnail-desc-holder shutdown-notice-text">FreeSO has been shutdown after nearly 8 years of operation. I will never forget the time I've spent in Sunrise Crater, and all of the sims that made it such a fun place to be. Though there's not much left to see, I've left your bookmarks list, and the sim search. Browse to your heart's content.
+    - Reaganomics Lamborghini</p>
                 </div>
             </div>
 
-            <!-- lot column -->
-            <div class="column-2">
+            <!-- column container -->
+            <div class="site-columns">
 
-                
-            </div>
+                <!-- sim column -->
+                <div class="column-1">
 
-            <!-- everything else -->
-            <div class=column-3>
+                    <!-- sim search -->
+                    <div id="sim-search-panel" class="div-search block-background">
 
-                <!-- sim view -->
-                <div id="sim-viewer" class="div-sim-view block-background" style="display: none">
-                    
-                    <!-- sim's name -->
-                    <div class="div-sim-title">
+                        <!-- search inputs -->
+                        <p class="outset-title search-title">Sim Search</p>
+                        <div class="search-flex">
 
-                        <div class="button-sim-help-holder">
-                            
-                            <button class="button-sim-help" onclick="window.open('https://github.com/Sam-Chug/sim-finder/wiki/Custom-Sim-Panel-Styles')">
-                                <div id="button-sim-help" class="buttom-sim-help-image"></div>
+                            <div class="input-center">
+
+                                <input type="text" id="sim-search-input" class="search-bar"
+                                onkeydown="if (event.keyCode == 13) document.getElementById('sim-search-button').click()">
+
+                            </div>
+
+                            <div class="button-center">
+
+                                <button id="sim-search-button" class="search-button" onclick="searchUtils.searchSim()"></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- bookmark list -->
+                    <div class="div-sim-table block-background">
+
+                        <div class="bookmark-header-container">
+
+                            <button id="sidebar-button" class="bookmark-button">
+                                <div id="export-button" class="export-arrow" onclick="storageUtils.exportLocalStorage(STORAGE_BOOKMARK_KEY)"></div>
+                            </button>
+
+                            <div class="inset-title">Bookmarks</div>
+
+                            <button id="sidebar-button" class="bookmark-button">
+                                <div id="import-button" class="import-arrow" onclick="storageUtils.importLocalStorage(STORAGE_BOOKMARK_KEY)"></div>
                             </button>
 
                         </div>
-                        <div id="sim-title" class="outset-title sim-title" title="Click to copy" onclick="domUtils.copyTextToClipboard(this)">No Sim Selected</div>
+
+                        <div><table id="bookmark-table" class="list-table scrollbar" style="max-height: 301px;"></table></div>
 
                     </div>
-                    
-                    <!-- sim image and desc -->
-                    <div class="div-sim-thumbnail-desc">
+                </div>
 
-                        <!-- sim head and bg -->
-                        <div class="div-sim-thumbnail">
+                <!-- lot column -->
+                <div class="column-2">
 
-                            <div id="sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
-                            <img id="sim-thumbnail-image" src="./images/sim-faces/simface-f.png?v0.2.4a" alt="No sim image found">
+                    <!-- sim view -->
+                    <div id="sim-viewer" class="div-sim-view block-background" style="display: none">
+                        
+                        <!-- sim's name -->
+                        <div class="div-sim-title">
 
-                            <!-- TODO: apply custom style to bookmark label -->
-                            <input type="checkbox" id="bookmark-checkbox" class="bookmark-checkbox" name="bookmark" onclick="storageUtils.handleBookmarkCheck()">
-                            <label id="bookmark-label" for="bookmark" class="bookmark-label"
-                            onclick="document.getElementById('bookmark-checkbox').click()">
-                            Bookmark This Sim</label>
+                            <div class="button-sim-help-holder">
+                                
+                                <button class="button-sim-help" onclick="window.open('https://github.com/Sam-Chug/sim-finder/wiki/Custom-Sim-Panel-Styles')">
+                                    <div id="button-sim-help" class="buttom-sim-help-image"></div>
+                                </button>
+
+                            </div>
+                            <div id="sim-title" class="outset-title sim-title" title="Click to copy" onclick="domUtils.copyTextToClipboard(this)">No Sim Selected</div>
 
                         </div>
+                        
+                        <!-- sim image and desc -->
+                        <div class="div-sim-thumbnail-desc">
 
-                        <!-- sim's info and bio -->
-                        <div>
+                            <!-- sim head and bg -->
+                            <div class="div-sim-thumbnail">
 
-                            <div id="sim-desc" class="thumbnail-desc-holder">Unknown</div>
-                            <div id="sim-bio" class="thumbnail-bio-holder scrollbar">Unknown</div>
+                                <div id="sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
+                                <img id="sim-thumbnail-image" src="./images/sim-faces/simface-f.png?v0.2.4a" alt="No sim image found">
 
+                                <!-- TODO: apply custom style to bookmark label -->
+                                <input type="checkbox" id="bookmark-checkbox" class="bookmark-checkbox" name="bookmark" onclick="storageUtils.handleBookmarkCheck()">
+                                <label id="bookmark-label" for="bookmark" class="bookmark-label"
+                                onclick="document.getElementById('bookmark-checkbox').click()">
+                                Bookmark This Sim</label>
+
+                            </div>
+
+                            <!-- sim's info and bio -->
+                            <div>
+
+                                <div id="sim-desc" class="thumbnail-desc-holder">Unknown</div>
+                                <div id="sim-bio" class="thumbnail-bio-holder scrollbar">Unknown</div>
+
+                            </div>
                         </div>
                     </div>
                 </div>

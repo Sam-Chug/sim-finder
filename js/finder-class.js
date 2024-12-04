@@ -1,32 +1,16 @@
 class SimData{
     constructor() {
 
+        // Cached lists for searching quickly
         this.id_search;
         this.name_search;
+        this.name_search_lower;
 
-        //#region Sim/Lot data
-
-        // Live data from online sims
-        this.simShortList;
-
-        // Cached data from all sims, holds data not necessary for immediate live play (mostly)
-        this.simLongList;
-
-        // Cache offline long sims
-        this.offlineLongSimList = new Array();
-
-        //#endregion
-        
-        // Sim bookmark list
-        // List of sim's cached long data grabbed from api upon website opening
+        // Bookmarked sims, saved as avatar_ids
         this.bookmarkList;
 
         // Keep track of selected sim ID for bookmarking
         this.selSimID;
-
-        // Keep track of how entities are sorted
-        this.simSort = "age";
-        this.lotSort = "pop";
 
         // Keep track of API pings
         this.apiStats = new APIStats();
@@ -84,10 +68,10 @@ class StyleObject{
     constructor(simData) {
 
         // Check if data is sim or lot
-        this.isSim = ("avatar_id" in simData);
+        this.isSim = ("id" in simData);
         this.isStaff = simUtils.isSimStaffMember(simData.name);
 
-        let createdDate = ("date" in simData) ? simData.date : simData.created_date;
+        let createdDate = ("date" in simData) ? simData.date : simData.date;
         this.isBirthday = simUtils.checkIfSimBirthday(createdDate);
         
         this.usesStyle;
@@ -108,11 +92,11 @@ class StyleObject{
         }
 
         // Check if sim uses style
-        this.checkIfUsesStyle(simData.description);
+        this.checkIfUsesStyle(simData.about);
         if (!this.usesStyle) return;
         
         // Build object of sim styles
-        this.handleSimStyles(simData.description);
+        this.handleSimStyles(simData.about);
     }
 
     setSimHead(simData) {
@@ -120,8 +104,8 @@ class StyleObject{
         // If bear sim, set to bear
         if (simData.name.toLowerCase().includes("bear")) this.avatarHead = CUSTOM_STYLE_SIMHEADS.bear;
         else if (simData.name == CUSTOM_STYLE_REAGAN) this.avatarHead = CUSTOM_STYLE_SIMHEADS.reagan;
-        else if (simData.gender == 0) this.avatarHead = CUSTOM_STYLE_SIMHEADS.male;
-        else if (simData.gender == 1) this.avatarHead = CUSTOM_STYLE_SIMHEADS.female;
+        else if (simData.gen == 0) this.avatarHead = CUSTOM_STYLE_SIMHEADS.male;
+        else if (simData.gen == 1) this.avatarHead = CUSTOM_STYLE_SIMHEADS.female;
     }
 
     checkIfUsesStyle(simDescription) {
