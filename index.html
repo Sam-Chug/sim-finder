@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Sim Finder</title>
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico?v0.2.3c">
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico?v0.2.4a">
 
         <meta name="description" content="Sim Dashboard For FreeSO">
         <meta name="keywords" content="sim finder, freeso, the sims online">
@@ -27,20 +27,20 @@
         <meta property="og:title" content="Sim Finder" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sam-chug.github.io/sim-finder/" />
-        <meta property="og:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.3c" />
+        <meta property="og:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.4a" />
         <meta property="og:description" content="Sim Dashboard For FreeSO" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://sam-chug.github.io/sim-finder/" />
         <meta property="twitter:title" content="Sim Finder" />
         <meta property="twitter:description" content="Sim Dashboard For FreeSO" />
-        <meta property="twitter:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.3c" />
+        <meta property="twitter:image" content="https://sam-chug.github.io/sim-finder/images/meta-thumbnail.png?v0.2.4a" />
 
-        <link href="styles/style.css?v0.2.3c" rel="stylesheet"/>
-        <script defer src="./js/definitions.js?v0.2.3c"></script>
-        <script defer src="./js/finder-class.js?v0.2.3c"></script>
-        <script defer src="./js/function.js?v0.2.3c"></script>
-        <script defer src="./js/main.js?v0.2.3c"></script>
+        <link href="styles/style.css?v0.2.4a" rel="stylesheet"/>
+        <script defer src="./js/definitions.js?v0.2.4a"></script>
+        <script defer src="./js/finder-class.js?v0.2.4a"></script>
+        <script defer src="./js/function.js?v0.2.4a"></script>
+        <script defer src="./js/main.js?v0.2.4a"></script>
 
     </head>
     <body class="scrollbar" onresize="domUtils.sizeLists()">
@@ -110,101 +110,6 @@
                     </div>
                 </div>
 
-                <!-- sim filter -->
-                <div id="sim-filter-panel" class="div-sim-filter block-background">
-
-                    <!-- sim filter buttons - buttons generated -->
-                    <div class="filter-title">
-
-                        <button id="sim-filter-min-button" class="filter-min" onclick="filterUtils.minWindow('sim')">
-                            
-                            <div id="sim-filter-min-image" class="min-max-button window-minable"></div>
-
-                        </button>
-                        <p class="outset-title search-title">Filter Sims</p>
-
-                    </div>
-                    <div id="sim-filter-array" class="sim-filter-flex inset-title"></div>
-                </div>
-
-                <!-- sim list -->
-                <div id="sim-list-panel" class="div-sim-table block-background">
-                    
-                    <div class="list-title-container">
-
-                        <div id="sims-online-count-label" class="inset-title" style="margin-right: 10px; margin-left: 30px;"></div>
-                        <div class="button-center">
-
-                            <button id="sort-sims-by-name" class="sort-button" onclick="simUtils.sortEntityList('sim')"></button>
-
-                        </div>
-                    </div>
-
-                    <div id="sims-table" class="list-table scrollbar" style="max-height: 650px;"></div>
-                    
-                </div>
-            </div>
-
-            <!-- lot column -->
-            <div class="column-2">
-
-                <!-- lot search -->
-                <div id="lot-search-panel" class="div-search block-background">
-
-                    <!-- search inputs -->
-                    <p class="outset-title search-title">Lot Search</p>
-                    <div class="search-flex">
-
-                        <div class="input-center">
-
-                            <input type="text" id="lot-search-input" class="search-bar"
-                            onkeydown="if (event.keyCode == 13) document.getElementById('lot-search-button').click()">
-
-                        </div>
-
-                        <div class="button-center">
-
-                            <button id="lot-search-button" class="search-button" onclick="searchUtils.searchLot()"></button>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- lot filter -->
-                <div id="lot-filter-panel" class="div-lot-filter block-background">
-
-                    <!-- lot filter buttons - buttons generated -->
-                    <div class="filter-title">
-
-                        <button id="lot-filter-min-button" class="filter-min" onclick="filterUtils.minWindow('lot')">
-
-                            <div id="lot-filter-min-image" class="min-max-button window-minable"></div>
-
-                        </button>
-                        <p class="outset-title search-title">Filter Lots</p>
-                        
-                    </div>
-                    <div id="lot-filter-array" class="lot-filter-flex inset-title"></div>
-                </div>
-
-                <!-- lot list -->
-                <div class="div-lot-table block-background">
-                    
-                    <!-- list title and name sort -->
-                    <div class="list-title-container">
-
-                        <div id="lots-online-count-label" class="inset-title" style="margin-right: 10px; margin-left: 30px"></div>
-                        <div class="button-center">
-
-                            <button id="sort-lots-by-name" class="sort-button" onclick="simUtils.sortEntityList('lot')"></button>
-
-                        </div>
-                    </div>
-                    
-                    <div id="lots-table" class="list-table scrollbar" style="max-height: 281px;"></div>
-
-                </div>
-
                 <!-- bookmark list -->
                 <div class="div-sim-table block-background">
 
@@ -227,23 +132,14 @@
                 </div>
             </div>
 
+            <!-- lot column -->
+            <div class="column-2">
+
+                
+            </div>
+
             <!-- everything else -->
             <div class=column-3>
-
-                <!-- clock/jobs -->
-                <div class="clock-bar-container block-background">
-
-                    <!-- clock -->
-                    <p id="sim-clock" class="clock-text sim-clock">00:00 AM</p>
-
-                    <!-- jobs active -->
-                    <div class="job-holder">
-                        <div id="job-robot" class="job-active"></div>
-                        <div id="job-diner" class="job-active"></div>
-                        <div id="job-club" class="job-active"></div>
-                    </div>
-
-                </div>
 
                 <!-- sim view -->
                 <div id="sim-viewer" class="div-sim-view block-background" style="display: none">
@@ -269,7 +165,7 @@
                         <div class="div-sim-thumbnail">
 
                             <div id="sim-thumbnail-bg" class= "sim-thumbnail-bg"></div>
-                            <img id="sim-thumbnail-image" src="./images/sim-faces/simface-f.png?v0.2.3c" alt="No sim image found">
+                            <img id="sim-thumbnail-image" src="./images/sim-faces/simface-f.png?v0.2.4a" alt="No sim image found">
 
                             <!-- TODO: apply custom style to bookmark label -->
                             <input type="checkbox" id="bookmark-checkbox" class="bookmark-checkbox" name="bookmark" onclick="storageUtils.handleBookmarkCheck()">
@@ -286,68 +182,6 @@
                             <div id="sim-bio" class="thumbnail-bio-holder scrollbar">Unknown</div>
 
                         </div>
-                    </div>
-                </div>
-
-                <!-- selected lot info -->
-                <div id="lot-viewer" class="div-thumbnail block-background">
-
-                    <!-- thumbnail and title div -->
-                    <div class="div-thumbnail-desc thumb-1">
-    
-                        <div id="thumbnail-title" class="outset-title thumb-1-1" title="Click to copy" onclick="domUtils.copyTextToClipboard(this)">No Lot Selected</div>
-                        <div class="thumbnail-image thumb-1-2">
-    
-                            <!-- lot picture -->
-                            <div id="lot-thumbnail-bg" class="thumbnail-holder"></div>
-                            <img id="lot-thumbnail-image" src="./images/unknown.png?v0.2.3c" alt="No lot image found">
-    
-                        </div>
-                    </div>
-                    <div class="lot-thumbnail-text-container">
-
-                        <!-- lot info -->
-                        <div id="thumbnail-desc-content" class="thumbnail-desc-holder thumb-2 lot-thumbnail-info-text">Unknown</div>
-
-                        <!-- lot bio -->
-                        <div id="thumbnail-lot-bio" class="thumbnail-desc-holder thumb-2 thumbnail-bio-holder scrollbar lot-thumbnail-bio" style="display:none">a</div>
-
-                    </div>
-                </div>
-
-                <!-- list sims in selected lot -->
-                <div id="show-sims-in-lot" class="div-list-sims-block block-background" style="display: none">
-
-                    <!-- title -->
-                    <div id="lot-sims-in-lot-title" class="outset-title sims-in-lot-title">Sims In Lot</div>
-                    <div class="div-sims-in-lot">
-
-                        <!-- sim list -->
-                        <div id="lot-sims-list" class="list-sims-in-lot thumbnail-desc-holder scrollbar"></div>
-                        <div id="lot-roommates-list" class="list-sims-in-lot thumbnail-desc-holder scrollbar"></div>
-
-                    </div>
-                </div>
-
-                <!-- market watch -->
-                <div class="div-market-watch block-background">
-
-                    <!-- title -->
-                    <div class="div-market-watch-title">
-
-                        <img src="./images/buttons/market-watch-graphic.png?v0.2.3c" alt="">
-                        <p class="outset-title" style="min-width: fit-content">FreeSO Market Analysis</p>
-                        <img src="./images/buttons/market-watch-graphic.png?v0.2.3c" alt="">
-
-                    </div>
-
-                    <div class="div-market-context">
-
-                        <!-- sims in money lots / total money lots / sims at work count -->
-                        <div id="market-breakdown" class="thumbnail-desc-holder market-watch-content"></div>
-                        <!-- best lots for money -->
-                        <div id="market-hotspots" class="thumbnail-desc-holder market-watch-content"></div>
-
                     </div>
                 </div>
             </div>

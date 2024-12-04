@@ -1,6 +1,9 @@
 class SimData{
     constructor() {
 
+        this.id_search;
+        this.name_search;
+
         //#region Sim/Lot data
 
         // Live data from online sims
@@ -9,15 +12,8 @@ class SimData{
         // Cached data from all sims, holds data not necessary for immediate live play (mostly)
         this.simLongList;
 
-        // Live data from online lots
-        this.lotShortList;
-
-        // Cached data from all lots, holds data not necessary for immediate live play (mostly)
-        this.lotLongList;
-
         // Cache offline long sims
         this.offlineLongSimList = new Array();
-        this.offlineLongLotList = new Array();
 
         //#endregion
         
@@ -25,16 +21,8 @@ class SimData{
         // List of sim's cached long data grabbed from api upon website opening
         this.bookmarkList;
 
-        // Market data
-        // Contains current market information
-        this.marketData;
-
         // Keep track of selected sim ID for bookmarking
         this.selSimID;
-
-        // Current filter
-        this.simFilter = "REMOVE";
-        this.lotFilter = "REMOVE";
 
         // Keep track of how entities are sorted
         this.simSort = "age";

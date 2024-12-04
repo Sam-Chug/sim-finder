@@ -275,7 +275,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.simLongList.avatars.sort((a, b) => a.name.localeCompare(b.name));
                 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.3c)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.4a)`;
                 simDataHolder.simSort = "name";
             }
             else if (simDataHolder.simSort == "name") {
@@ -283,7 +283,7 @@ simUtils = function() {
                 simDataHolder.simShortList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
                 simDataHolder.simLongList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
 
-                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.3c)`;
+                GUI_SORT_SIM_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.4a)`;
                 simDataHolder.simSort = "age";
             }
             let simFilter = (simDataHolder.simFilter == "REMOVE") ? "REMOVE" : SIM_FILTER_KEYS[simDataHolder.simFilter];
@@ -297,7 +297,7 @@ simUtils = function() {
                 simDataHolder.lotShortList.lots.sort((a, b) => a.name.localeCompare(b.name));
                 simDataHolder.lotLongList.lots.sort((a, b) => a.name.localeCompare(b.name));
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.3c)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort-selected.png?v0.2.4a)`;
                 simDataHolder.lotSort = "name";
             }
             else if (simDataHolder.lotSort == "name") {
@@ -305,7 +305,7 @@ simUtils = function() {
                 simDataHolder.lotLongList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
                 simDataHolder.lotShortList.lots.sort(({avatars_in_lot:a}, {avatars_in_lot:b}) => b - a);
 
-                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.3c)`;
+                GUI_SORT_LOT_NAMES.style.background = `url(./images/buttons/name-sort.png?v0.2.4a)`;
                 simDataHolder.lotSort = "pop";
             }
             filterUtils.writeFilterToTable("lot", simDataHolder.lotFilter);
@@ -1007,7 +1007,7 @@ guiUtils = function() {
     function writeAbsentLotThumbnail(existence, selectedSimLong) {
 
         // Set lot image to unknown
-        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.3c";
+        GUI_LOT_THUMBNAIL.src = "./images/unknown.png?v0.2.4a";
         eggUtils.resetLotThumbnailStyles();
 
         // Get lot description and label
@@ -1297,47 +1297,18 @@ guiUtils = function() {
 
         // Reset bookmark list, append header
         GUI_BOOKMARK_LIST.innerHTML = "";
-        GUI_BOOKMARK_LIST.append(buildListHeader("Name", "Age"));
+        GUI_BOOKMARK_LIST.append(buildListHeader("Name", ""));
     
-        // Set sims into online or offline lists
-        let onlineSims = new Array();
-        let offlineSims = new Array();
-        for (let i = 0; i < simList.avatars.length; i++) {
-    
-            let online = false;
-            for (let j = 0; j < simDataHolder.simShortList.avatars.length; j++) {
-                
-                let simID = simDataHolder.simShortList.avatars[j].avatar_id;
-                if (simList.avatars[i].avatar_id == simID) {
-    
-                    onlineSims.push(simList.avatars[i]);
-                    online = true;
-                    break;
-                }
-            }
-            if (!online) offlineSims.push(simList.avatars[i]);
-        }
-
         // Append and style online sims
-        for (sim of onlineSims) {
+        for (sim of simList) {
             
             let simName = returnSimTitle(sim);
-            let simNode = createListNode(simName, simUtils.returnSimAge(sim.date) + " days");
+            let simNode = createListNode(simName, "");
             addIndexClickHandler(simNode, "bookmark");
 
             // If Reagan, add easter egg
             if (sim.name == CUSTOM_STYLE_REAGAN) simNode.children[0].classList.add("rainbow-text");
 
-            GUI_BOOKMARK_LIST.append(simNode);
-        }
-
-        // Append and style offline sims
-        for (sim of offlineSims) {
-            
-            let simName = returnSimTitle(sim);
-            let simNode = createListNode(simName, simUtils.returnSimAge(sim.date) + " days");
-            simNode.classList.add("sim-list-node-offline");
-            addIndexClickHandler(simNode, "bookmark");
             GUI_BOOKMARK_LIST.append(simNode);
         }
     }
@@ -1613,7 +1584,7 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.4a) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "lot");
             lotFilterArray.append(button);
@@ -1624,7 +1595,7 @@ filterUtils = function() {
     
             var x = (i % 4) * 71;
             var y = Math.floor(i / 4) * 71;
-            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+            button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.4a) " + -x + "px " + -y + "px";
     
             addFilterClasses(button, "sim");
             simFilterArray.append(button);
@@ -1676,11 +1647,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.4a) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.4a) " + -x + "px " + -y + "px";
             }
         }
         else if (type == "sim") {
@@ -1689,11 +1660,11 @@ filterUtils = function() {
     
             if (action == "in") {
             
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.4a) " + -x + "px " + -y + "px";
             }
             else if (action == "out") {
     
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.4a) " + -x + "px " + -y + "px";
             }
         }
     }
@@ -1714,7 +1685,7 @@ filterUtils = function() {
                 button.classList.remove("lot-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.4a) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1727,7 +1698,7 @@ filterUtils = function() {
             else {
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-selected.png?v0.2.4a) " + -x + "px " + -y + "px";
                 button.classList.add("lot-filter-active");
                 writeFilterToTable("lot", index);
                 simDataHolder.lotFilter = index;
@@ -1742,7 +1713,7 @@ filterUtils = function() {
                 button.classList.remove("sim-filter-active");
                 var x = (count % 4) * 71;
                 var y = Math.floor(count / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.4a) " + -x + "px " + -y + "px";
         
                 count++;
             }
@@ -1755,7 +1726,7 @@ filterUtils = function() {
     
                 var x = (index % 4) * 71;
                 var y = Math.floor(index / 4) * 71;
-                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.3c) " + -x + "px " + -y + "px";
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-selected.png?v0.2.4a) " + -x + "px " + -y + "px";
                 button.classList.add("sim-filter-active");
                 writeFilterToTable("sim", SIM_FILTER_KEYS[index]);
                 simDataHolder.simFilter = index;
@@ -1946,14 +1917,14 @@ sidebarUtils = function() {
         let jobsActive = simUtils.returnJobsOpen();
 
         // Set job icon to inactive
-        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.3c) 40px 0";
-        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.3c) 40px 80px";
-        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.3c) 40px 40px";
+        SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.4a) 40px 0";
+        SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.4a) 40px 80px";
+        SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.4a) 40px 40px";
 
         // Set active jobs to active icon
-        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.3c) 0 0";
-        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.3c) 0 80px";
-        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.3c) 0 40px";
+        if (jobsActive.includes(1)) SIDEBAR_JOB_FACTORY.style.background = "url(./images/buttons/jobs-active.png?v0.2.4a) 0 0";
+        if (jobsActive.includes(2)) SIDEBAR_JOB_DINER.style.background = "url(./images/buttons/jobs-active.png?v0.2.4a) 0 80px";
+        if (jobsActive.includes(4)) SIDEBAR_JOB_CLUB.style.background = "url(./images/buttons/jobs-active.png?v0.2.4a) 0 40px";
     }
 
     // Write about info in sidebar info panel 
@@ -2156,6 +2127,54 @@ apiUtils = function() {
         sendLotEntityAnalytics: sendLotEntityAnalytics,
         getDBLookupData: getDBLookupData,
         cleanLink: cleanLink
+    }
+}();
+
+shutdownUtils = function() {
+
+    function retrieveBookmarkNames() {
+
+        bookmarkIDList = storageUtils.returnLocalStorage(STORAGE_BOOKMARK_KEY_OLD).simID;
+        console.log(bookmarkIDList);
+
+        // Get sim names
+        let bookmarkedNames = new Array();
+        for (let i = 0; i < bookmarkIDList.length; i++) {
+
+            let simName = simDataHolder.id_search[bookmarkIDList[i]];
+            bookmarkedNames.push({avatar_id: bookmarkIDList[i], name: simName});
+        }
+
+        // Clear undefined names
+        for (let i = bookmarkedNames.length - 1; i >= 0; i--) {
+
+            if (bookmarkedNames[i].name === undefined) bookmarkedNames.splice(i, 1);
+        }
+
+        // Sort array by age
+        bookmarkedNames = bookmarkedNames.sort(({avatar_id:a}, {avatar_id:b}) => a-b);
+
+        return bookmarkedNames;
+    }
+
+    async function buildSearchObjects() {
+
+        await fetch('./sim-data/id-list.txt')
+        .then(response => response.text())
+        .then((data) => {
+            simDataHolder.id_search = JSON.parse(data);
+        });
+
+        await fetch('./sim-data/name-list.txt')
+        .then(response => response.text())
+        .then((data) => {
+            simDataHolder.name_search = JSON.parse(data);
+        });
+    }
+
+    return {
+        retrieveBookmarkNames: retrieveBookmarkNames,
+        buildSearchObjects: buildSearchObjects
     }
 }();
 

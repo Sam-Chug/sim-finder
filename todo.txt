@@ -1,6 +1,6 @@
 Sim Finder Notes
 
-Patchnotes v0.2.3c:
+Patchnotes v0.2.4a:
     - Roommates data cached on first fetch instead of being fetched every time lot is viewed
     - Offline sim data now cached on first fetch instead of being fetched every time a single offline sim is revisited
     - Fixed townhall mayors not being listed
