@@ -645,12 +645,12 @@ searchUtils = function() {
         if (simDataHolder.name_search[simName] === undefined) {
 
             // If not found, check lowercase list
-            if (simDataHolder.name_search_lower[simName] === undefined) {
+            if (simDataHolder.name_search_lower[simName.toLowerCase()] === undefined) {
 
                 alert("Cannot find sim \"" + simName + "\"");
                 return;
             }
-            else selectedID = simDataHolder.name_search_lower[simName];
+            else selectedID = simDataHolder.name_search_lower[simName.toLowerCase()];
         }
         else selectedID = simDataHolder.name_search[simName];
 
