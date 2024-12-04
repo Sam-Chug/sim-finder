@@ -1764,9 +1764,10 @@ storageUtils = function() {
             storageUtils.addBookmark(simDataHolder.selSimID);
 
             // Get data from new bookmark list, fetch in case sim was offline
-            let addSim = await apiUtils.getAPIData(apiUtils.buildLongSimLinkFromID([simDataHolder.selSimID]));
-            apiUtils.sendBookmarkAnalytics(true, addSim.name, addSim.avatar_id);
-            simDataHolder.bookmarkList.avatars.push(addSim.avatars[0]);
+            let addedSimName = simDataHolder.id_search[simDataHolder.selSimID];
+            apiUtils.sendBookmarkAnalytics(true, addedSimName, simDataHolder.selSimID);
+
+            simDataHolder.bookmarkList.push({avatar_id: simDataHolder.selSimID, name: addedSimName});
         }
         // If removing bookmark
         else {
@@ -1775,21 +1776,21 @@ storageUtils = function() {
             storageUtils.deleteBookmark(simDataHolder.selSimID);
 
             // Remove sim from bookmark list
-            for (let i = 0; i < simDataHolder.bookmarkList.avatars.length; i++) {
+            for (let i = 0; i < simDataHolder.bookmarkList.length; i++) {
 
-                if (simDataHolder.bookmarkList.avatars[i].avatar_id == simDataHolder.selSimID) {
+                if (simDataHolder.bookmarkList[i].avatar_id == simDataHolder.selSimID) {
 
-                    let delSim = simDataHolder.bookmarkList.avatars[i];
+                    let delSim = simDataHolder.bookmarkList[i];
                     apiUtils.sendBookmarkAnalytics(true, delSim.name, delSim.avatar_id);
 
-                    simDataHolder.bookmarkList.avatars.splice(i, 1);
+                    simDataHolder.bookmarkList.splice(i, 1);
                     break;
                 }
             }
         }
 
         // Sort sims by id, rewrite bookmark list
-        simDataHolder.bookmarkList.avatars.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
+        simDataHolder.bookmarkList.sort(({avatar_id:a}, {avatar_id:b}) => a - b);
         guiUtils.writeBookmarkSims(simDataHolder.bookmarkList);
     }
 
