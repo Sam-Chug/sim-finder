@@ -1,8 +1,10 @@
 Sim Finder Notes
 
-Known Bugs:
-    - Confetti animation is odd when spamming
-    
+TODO:
+    - Create lowercase name list from regular name list
+    - Experiment from creating regular name list from id list
+        - This would save around 5MB of space
+
 v0.2.4a Patchnotes:
     - All features relating to lots have been removed.
         - I would have loved to archive the thumbnails for all 14,000 lots, but this is too big an ordeal for me.
@@ -14,37 +16,11 @@ v0.2.4a Patchnotes:
         - This means sim bios, and in addition, custom styles will be saved and will now be permanent.
         - I've added a "random" feature to the sim search, so you can truly see how just many sims there were in Sunrise Crater.
 
+    - Added possible bugs
+        - I gutted the code, removing anything I figured was no longer useful.
+        - In doing so, I likely created some edge cases where bugs can happen.
+        - Let me know if anything breaks, I'll do my best to fix it.
+
     It was a lot of fun creating and maintaining the sim-finder for you all to use. There are not a lot of games out there with the level of
     creativity that FreeSO inspires, and I am very thankful to have been a part of this community. There's really no other place like this.
         - Yours Truly, Reagan
-
-v0.2.4 TODO:
-    - Add day age to lots in lot view, or remove birthday emoji from lot list
-    - Add roommate bonus to market watch (from top lots api page)
-    - Show count of how many sims are at the same job lot (out-of-range locations still match up)
-    - Style editor
-        - Either in-site or a new repo
-        - GUI editor for custom styles
-    - Hidden sims show up as being in lot, even when all sims at lot are accounted for
-    - Bookmark list and lot list should fight for space, always reach max height if possible
-    - Refactor "CleanLink" function
-    - New colors:
-        - Royal purple (felt texture?)
-        - Darker blue
-        - Black
-    - Move wiki pictures to sim-finder-data repo
-    - Move custom styles to sim-finder-data repo
-
-Low Priority TODO:
-    - Reduce bookmark lookups on page launch
-        - Cache name/id pairs of bookmarked sims
-    - Make certain elements redirect to a filter
-        - Clicking "hidden sims on lot" -> hidden sim filter
-        - Clicking job icon -> clicked job filter
-    - Some functions are still out of place (constant refactor)
-        - Move all GUI/writing functions to GUI etc
-    - Clean up css (constant refactor)
-        - Many scrambled and unused classes
-    - Change "idList" to "simfinder-bookmarks" in localStorage
-    - Make easier to use on mobile
-        - Layout is very large, could be much smaller
