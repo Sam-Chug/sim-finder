@@ -17,7 +17,7 @@ simUtils = function() {
         let simDateObject = returnDateObjectFromUNIX(simUnix);
         let simDayAge = returnSimAge(simUnix);
 
-        // Make sure sim isnt old day old
+        // Make sure sim isnt one day old
         if (simDayAge == 0) return false;
         // Catch 1000 day milestones
         if (simDayAge % 1000 == 0) return true;
