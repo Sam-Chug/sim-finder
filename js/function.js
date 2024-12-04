@@ -184,6 +184,7 @@ domUtils = function() {
         addTooltipToButton(GUI_EXPORT_BUTTON, "export");
         addTooltipToButton(GUI_IMPORT_BUTTON, "import");
 
+        addTooltipToButton(GUI_SEARCH_SIM_BUTTON, "search");
         addTooltipToButton(GUI_SIM_HELP_BUTTON, "style-help");
         addTooltipToButton(GUI_COLORMODE_BUTTON, "colormode");
     }
@@ -193,7 +194,7 @@ domUtils = function() {
 
         element.addEventListener("mouseover", function() {
     
-            filterUtils.mouseOverFilterChange(this, "in", type);
+            domUtils.mouseOverFilterChange(this, "in", type);
             let tooltip = document.createElement("span");
             tooltip.classList.add("tooltip");
 
@@ -233,10 +234,46 @@ domUtils = function() {
     
             if (this.children.length > 0) {
 
-                filterUtils.mouseOverFilterChange(this, "out", type);
+                domUtils.mouseOverFilterChange(this, "out", type);
                 this.removeChild(this.children[0]);
             }
         });
+    }
+
+    // On mouseover filter button
+    function mouseOverFilterChange(button, action, type) {
+
+        const index = Array.from(button.parentElement.children).indexOf(button);
+    
+        var x = (index % 4) * 71;
+        var y = Math.floor(index / 4) * 71;
+    
+        if (type == "lot") {
+    
+            if (button.classList.contains("lot-filter-active")) return;
+    
+            if (action == "in") {
+            
+                button.style.background = "url(./images/filter-spritesheets/lot-filter-hover.png?v0.2.3c) " + -x + "px " + -y + "px";
+            }
+            else if (action == "out") {
+    
+                button.style.background = "url(./images/filter-spritesheets/lot-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+            }
+        }
+        else if (type == "sim") {
+    
+            if (button.classList.contains("sim-filter-active")) return;
+    
+            if (action == "in") {
+            
+                button.style.background = "url(./images/filter-spritesheets/sim-filter-hover.png?v0.2.3c) " + -x + "px " + -y + "px";
+            }
+            else if (action == "out") {
+    
+                button.style.background = "url(./images/filter-spritesheets/sim-filter.png?v0.2.3c) " + -x + "px " + -y + "px";
+            }
+        }
     }
 
     return {
@@ -247,7 +284,8 @@ domUtils = function() {
         centerListLabels: centerListLabels,
         siteColorMode: siteColorMode,
         buildButtonTooltips: buildButtonTooltips,
-        swapColorMode: swapColorMode
+        swapColorMode: swapColorMode,
+        mouseOverFilterChange: mouseOverFilterChange
     }
 }();
 
@@ -446,6 +484,11 @@ guiUtils = function() {
 
         // Grab avatars shutdown data
         let selectedID = simDataHolder.name_search[simName];
+
+        // Skip if sim already selected
+        if (selectedID == simDataHolder.selSimID) return;
+
+        // Get sim data from archived database
         let selectedSimShort = await shutdownUtils.getSimGroup(selectedID);
 
         // Log to analytics
@@ -482,6 +525,8 @@ guiUtils = function() {
 
     // Build sim thumbnail
     function writeSimThumbnail(selectedSimShort) {
+
+        if (simDataHolder.selSimID == selectedSimShort.id) return;
 
         writeToLabel(returnSimTitle(selectedSimShort), "", "sim-title");
         simDataHolder.selSimID = selectedSimShort.id;

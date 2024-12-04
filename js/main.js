@@ -50,6 +50,9 @@ simFinderMain = function() {
         // Fill bookmark lists
         guiUtils.writeBookmarkSims(simDataHolder.bookmarkList);
 
+        // Generate tooltips
+        domUtils.buildButtonTooltips();
+
         // Write site info
         sidebarUtils.writeSidebarInfo();
 
